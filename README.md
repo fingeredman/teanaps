@@ -19,12 +19,12 @@
 > konlpy 0.5.1 or higher  
 > eunjeon 0.4.0 or higher  
 > gensim 3.7.3 or higher  
-> glove 0.1.0 or higher
+> glove 0.1.0 or higher  
 > numpy: 1.14.2 or higher  
 > nltk 3.2.3 or higher  
 > pandas 0.24.2 or higher  
 > plotly 2.7.0 or higher  
-> pyldavis 2.1.2 or higher
+> pyldavis 2.1.2 or higher  
 > wordcloud 1.3.1 or higher  
 > xlwt 1.2.0 or higher
 
