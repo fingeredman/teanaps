@@ -6,7 +6,7 @@ PLOTLY_USERNAME = "fingeredman"
 PLOTLY_API_KEY = "7xQjXPiDYPi1iIrrT3ID"
 
 # Text Pre-processing
-STOPWORD_PATH = "stopword.txt"
+STOPWORD_PATH = "data/stopword.txt"
 
 # CoWordCalculator
 WINDOW_SIZE = 2

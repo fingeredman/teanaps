@@ -1,5 +1,5 @@
-from Teanaps.TextAnalytics.TfidfCalculator import TfidfCalculator
-from Teanaps import configure as con
+from teanaps.text_analysis.TfidfCalculator import TfidfCalculator
+from teanaps import configure as con
 PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
 

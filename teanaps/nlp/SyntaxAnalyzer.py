@@ -1,5 +1,5 @@
-from Teanaps.NaturalLanguageProcessing.Replacers import RegexpReplacer 
-from Teanaps import configure as con
+from teanaps.nlp.Replacers import RegexpReplacer 
+from teanaps import configure as con
 PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
 

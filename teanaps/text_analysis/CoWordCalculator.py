@@ -1,4 +1,4 @@
-from Teanaps import configure as con
+from teanaps import configure as con
 PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
 
@@ -19,7 +19,7 @@ import networkx as nx
 
 class CoWordCalculator():  
     def __init__(self):
-        self.tokenized_sentence_list = []
+        #self.tokenized_sentence_list = []
         self.stopword_list = self.__get_stopwords()
         
     def __calculation(self, word_list):
@@ -35,7 +35,10 @@ class CoWordCalculator():
             word_pair_list.extend(pairs)
         return word_pair_list
 
-    def __calculation_co_word(self, sentence_list):
+    def __calculation_co_word(self, tokenized_sentence_list):
+        sentence_list = []
+        for tokenized_sentence in tokenized_sentence_list:
+            sentence_list.append(tokenized_sentence.split(" "))
         word_pair_list = []
         with concurrent.futures.ThreadPoolExecutor(max_workers=con.MAX_WORKERS) as executor:
             future_co_word = {
@@ -48,21 +51,24 @@ class CoWordCalculator():
                     continue
         return word_pair_list
     
+    '''
     def set_document(self, document_path, pos_list):
         f = open(document_path, encoding="utf-8")
         for line in f:
             line = line.strip()
             words = [w.split("/")[0] for w in line.split(" ") if w.split("/")[3] in pos_list]
-            self.tokenized_sentence_list.append(words)
+            #self.tokenized_sentence_list.append(words)
             f.flush()
         f.close()
+    '''
     
     def __get_stopwords(self):
         stopword_list = open(con.STOPWORD_PATH, encoding="utf-8").read().strip().split("\n")
         return stopword_list
     
-    def calculation_co_matrix(self):
-        word_pair_list = self.__calculation_co_word(self.tokenized_sentence_list)
+    def calculation_co_matrix(self, tokenized_sentence_list):
+        #word_pair_list = self.__calculation_co_word(self.tokenized_sentence_list)
+        word_pair_list = self.__calculation_co_word(tokenized_sentence_list)
         self.result_list = [[(first_word, second_word), count] for (first_word, second_word), count in Counter(word_pair_list).items()]
         self.result_list.sort(key=lambda elem: elem[1], reverse=True)
         return self.result_list
