@@ -9,15 +9,54 @@ from nltk.tokenize import sent_tokenize
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
-import MeCab
+#import MeCab
 
 import re
 
 class SyntaxAnalyzer():  
     def __init__(self):
-        self.mecab = MeCab.Tagger()
         self.replacer = RegexpReplacer()      
         self.lemmatizer = WordNetLemmatizer()
+        self.tagger = "mecab"
+    
+    def __parse(self, sentence):
+        word_tagged_pos_list = []
+        if self.tagger == "mecab":
+            sentence_tagged = self.mecab.parse(sentence)
+            word_tagged_comma_list = [word_tagged.split("\t") for word_tagged in sentence_tagged.split("\n")[:-2]]
+            word_tagged_total_list = [(word_tagged[0], word_tagged[1].split(",")) for word_tagged in word_tagged_comma_list]
+            for word_tagged in word_tagged_total_list:
+                word = word_tagged[0]
+                if word in con.SKIP_WORD_LIST:
+                    continue
+                pos_tag = word_tagged[1][0]
+                pos_tag_split = word_tagged[1][7]
+                if "+" not in pos_tag:
+                    pos_tag = con.POS_TAG_MAP[pos_tag]
+                    tagged_set = (word, pos_tag)
+                    word_tagged_pos_list.append(tagged_set)
+                else:
+                    tagged_set_list = [(tag_split.split("/")[:2][0], tag_split.split("/")[:2][1]) for tag_split in pos_tag_split.split("+")]
+                    word_tagged_pos_list.extend(tagged_set_list)
+        elif self.tagger == "kkma":
+            word_tagged_total_list = self.kkma.pos(sentence)
+            for word_tagged in word_tagged_total_list:
+                word = word_tagged[0]
+                if word in con.SKIP_WORD_LIST:
+                    continue
+                pos_tag = con.POS_TAG_MAP[word_tagged[1]]
+                tagged_set = (word, pos_tag)
+                word_tagged_pos_list.append(tagged_set)
+        elif self.tagger == "okt":
+            word_tagged_total_list = self.okt.pos(sentence)
+            for word_tagged in word_tagged_total_list:
+                word = word_tagged[0]
+                if word in con.SKIP_WORD_LIST:
+                    continue
+                pos_tag = con.POS_TAG_MAP[word_tagged[1]]
+                tagged_set = (word, pos_tag)
+                word_tagged_pos_list.append(tagged_set)
+        return word_tagged_pos_list
         
     def __language_detector(self, sentence):
         len_ko = len(re.sub("[^가-힇]", "", sentence))
@@ -38,24 +77,8 @@ class SyntaxAnalyzer():
         sentence = self.__iteration_remover(sentence)
         # Korean
         if language == "ko":
-            word_tagged_pos_list = []
             sentence = sentence.lower()
-            sentence_tagged = self.mecab.parse(sentence)
-            word_tagged_comma_list = [word_tagged.split("\t") for word_tagged in sentence_tagged.split("\n")[:-2]]
-            word_tagged_total_list = [(word_tagged[0], word_tagged[1].split(",")) for word_tagged in word_tagged_comma_list]
-            for word_tagged in word_tagged_total_list:
-                word = word_tagged[0]
-                if word in con.SKIP_WORD_LIST:
-                    continue
-                pos_tag = word_tagged[1][0]
-                pos_tag_split = word_tagged[1][7]
-                if "+" not in pos_tag:
-                    pos_tag = con.POS_TAG_MAP[pos_tag]
-                    tagged_set = (word, pos_tag)
-                    word_tagged_pos_list.append(tagged_set)
-                else:
-                    tagged_set_list = [(tag_split.split("/")[:2][0], tag_split.split("/")[:2][1]) for tag_split in pos_tag_split.split("+")]
-                    word_tagged_pos_list.extend(tagged_set_list)
+            word_tagged_pos_list = self.__parse(sentence)
         # English
         else:
             sentence = self.replacer.replace(sentence)
@@ -79,3 +102,15 @@ class SyntaxAnalyzer():
     def parse(self, sentence):
         result_list = self.__pos_tagging(sentence)
         return result_list
+    
+    def set_tagger(self, tagger):
+        self.tagger = tagger
+        if tagger == "mecab":
+            import MeCab
+            self.mecab = MeCab.Tagger()
+        elif tagger == "kkma":
+            from konlpy.tag import Kkma
+            self.kkma = Kkma()
+        elif tagger == "okt":
+            from konlpy.tag import Okt
+            self.okt = Okt()

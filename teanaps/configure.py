@@ -14,6 +14,7 @@ MAX_WORKERS = 5
 
 # SyntaxAnalyzer
 POS_TAG_MAP = {
+    #For MeCab
     'NNG': 'NNG','NNB': 'NNB', 'NNBC': 'NNB', 'NNP': 'NNP', 
     'NN': 'NNG', 'NNS': 'NNG', 'NNPS': 'NNP',
     'NP': 'NP', 'NR': 'NR', 'PRP': 'NP', 'PRP$': 'NP',
@@ -31,7 +32,19 @@ POS_TAG_MAP = {
     'XR': 'XR', 'SE': 'SE', 'SF': 'SF', 'SSO': 'SS', 'SSC': 'SS', 'SC': 'SP', 
     'SY': 'SO', 
     'SH': 'SH', 'SL': 'SL', 'SN': 'SN', 'LS': 'SW',
-    'UNKNOWN': "UN", 'UNT': "UN", 'UNA': "UN", 'NA': "UN", 'E': "UN"
+    'UNKNOWN': "UN", 'UNT': "UN", 'UNA': "UN", 'NA': "UN", 'E': "UN",
+    #For KKMA
+    "NNM": "NNB", "VXV": "VX", "VXA": "VX", "VXN": "VX", "MDT": "MM", "MDN": "MM", "MAC": "MAJ",
+    "JKM": "JKB", "EPH": "EP", "EPT": "EP", "EPP": "EP", "ECE": "EC", "ECD": "EC", "ECS": "EC",
+    "EFN": "EF", "EFQ": "EF", "EFO": "EF", "EFA": "EF", "EFI": "EF", "EFR": "EF", "ETD": "ETM",
+    "XPV": "XPN", "OH": "SH", "OL": "SL", "ON": "SN", "UV": "UN", "UE": "UN", "SS": "SS", "SW": "SW",
+    "SP": "SP", "UN": "UN", "SO": "SO", 
+    #For Okt
+    "Noun": "NNG", "Adjective": "VA", "Verb": "VV", "Determiner": "MM", "Adverb": "MAG",
+    "Conjunction": "MAJ", "Exclamation": "IC", "Josa": "JC", "PreEomi": "EP", "Eomi": "EC",
+    "Suffix": "XPN", "Unknown": "UN", "Punctuation": "SW", "Alpha": "SL", "Number": "SN",
+    "Foreign": "SL", "Modifier": "MM", "Hashtag": "SW", "KoreanParticle": "SW", "ScreenName": "SW",
+    "Email": "SW", "VerbPrefix": "XPN", "URL": "SW",
 }
 LEMMATIZER_POS_MAP = {'J': 'a', 'N': 'n', 'R': 'r', 'V': 'v'}
 SYMBOLS_POS_MAP = {
