@@ -1,44 +1,57 @@
-# Database
+# -----------------------------------------
+# * Database *
+# -----------------------------------------
 
-
-# Plotly
+# -----------------------------------------
+# * Plotly *
+# -----------------------------------------
 PLOTLY_USERNAME = "fingeredman"
 PLOTLY_API_KEY = "7xQjXPiDYPi1iIrrT3ID"
 
-# Text Pre-processing
+# -----------------------------------------
+# * Text Pre-processing *
+# -----------------------------------------
 STOPWORD_PATH = "data/stopword.txt"
 
+# Select Part of Speech Tagger
+POS_TAGGER = "mecab"
+#POS_TAGGER = "kkma"
+#POS_TAGGER = "okt"
+#
+
+# -----------------------------------------
 # CoWordCalculator
+# -----------------------------------------
 WINDOW_SIZE = 2
 MAX_WORKERS = 5
 
+# -----------------------------------------
 # SyntaxAnalyzer
+# -----------------------------------------
 POS_TAG_MAP = {
+    "NNG": "NNG", "NNB": "NNB", "NNP": "NNP", "NP": "NP", "NR": "NR", 
+    "VV": "VV", "VX": "VX", "VA": "VA", "VCN": "VCN", "VCP": "VCP",
+    "MM": "MM", "MAG": "MAG","MAJ": "MAJ", "IC": "IC", 
+    "DT": "DT", "EX": "EX", "IN": "IN", "MD": "MD", "PDT": "PDT", "RP": "RP", "TO": "TO",
+    "WDT": "WDT", "WP": "WP", "WP$": "WP$", "WRB": "WRB",
+    "JKB": "JKB", "JKC": "JKC","JKG": "JKG", "JKO": "JKO", "JKQ": "JKQ", "JKS": "JKS", "JKV": "JKV", 
+    "JC": "JC", "JX": "JX", 
+    "EC": "EC", "EP": "EP", "EF": "EF", "ETN": "ETN", "ETM": "ETM", 
+    "XPN": "XPN", "XSN": "XSN", "XSV": "XSV", "XSA": "XSA", 
+    "XR": "XR", "SE": "SE", "SF": "SF", "SH": "SH", "SL": "SL", "SN": "SN", 
+    "SS": "SS", "SW": "SW", "SP": "SP", "UN": "UN", "SO": "SO", 
     #For MeCab
-    'NNG': 'NNG','NNB': 'NNB', 'NNBC': 'NNB', 'NNP': 'NNP', 
-    'NN': 'NNG', 'NNS': 'NNG', 'NNPS': 'NNP',
-    'NP': 'NP', 'NR': 'NR', 'PRP': 'NP', 'PRP$': 'NP',
-    'VV': 'VV', 'VX': 'VX', 'VA': 'VA', 'VCN': 'VCN', 'VCP': 'VCP', 
-    'JJ': 'VA', 'JJR': 'VA', 'JJS': 'VA', 'VB': 'VV', 'VBG': 'VV', 'VBN': 'VV', 'VBZ': 'VV', 
-    'MM': 'MM', 'MAG': 'MAG','MAJ': 'MAJ', 'RB': 'MAG', 'RBS': 'MAG', 'RBR': 'MAG',
-    'IC': 'IC', 'UH': 'IC', 'CC': 'JC', 'FW': 'SL', 'CD': 'SN',
-    'DT': 'DT', 'EX': 'EX', 'IN': 'IN',
-    'MD': 'MD', 'PDT': 'PDT', 'RP': 'RP', 'TO': 'TO',
-    'WDT': 'WDT', 'WP': 'WP', 'WP$': 'WP$', 'WRB': 'WRB',
-    'JKB': 'JKB', 'JKC': 'JKC','JKG': 'JKG', 'JKO': 'JKO', 'JKQ': 'JKQ', 'JKS': 'JKS', 'JKV': 'JKV', 
-    'JC': 'JC', 'JX': 'JX', 
-    'EC': 'EC', 'EP': 'EP', 'EF': 'EF', 'ETN': 'ETN', 'ETM': 'ETM', 
-    'XPN': 'XPN', 'XSN': 'XSN', 'XSV': 'XSV', 'XSA': 'XSA', 
-    'XR': 'XR', 'SE': 'SE', 'SF': 'SF', 'SSO': 'SS', 'SSC': 'SS', 'SC': 'SP', 
-    'SY': 'SO', 
-    'SH': 'SH', 'SL': 'SL', 'SN': 'SN', 'LS': 'SW',
-    'UNKNOWN': "UN", 'UNT': "UN", 'UNA': "UN", 'NA': "UN", 'E': "UN",
+    "NNBC": "NNB", "NN": "NNG", "NNS": "NNG", "NNPS": "NNP", "PRP": "NP", "PRP$": "NP", 
+    "JJ": "VA", "JJR": "VA", "JJS": "VA", "VB": "VV", "VBG": "VV", "VBN": "VV", "VBZ": "VV", 
+    "RB": "MAG", "RBS": "MAG", "RBR": "MAG",
+    "UH": "IC", "CC": "JC", "FW": "SL", "CD": "SN",
+    "SSO": "SS", "SSC": "SS", "SC": "SP", "SY": "SO", "LS": "SW",
+    "UNKNOWN": "UN", "UNT": "UN", "UNA": "UN", "NA": "UN", "E": "UN",
     #For KKMA
     "NNM": "NNB", "VXV": "VX", "VXA": "VX", "VXN": "VX", "MDT": "MM", "MDN": "MM", "MAC": "MAJ",
     "JKM": "JKB", "EPH": "EP", "EPT": "EP", "EPP": "EP", "ECE": "EC", "ECD": "EC", "ECS": "EC",
     "EFN": "EF", "EFQ": "EF", "EFO": "EF", "EFA": "EF", "EFI": "EF", "EFR": "EF", "ETD": "ETM",
-    "XPV": "XPN", "OH": "SH", "OL": "SL", "ON": "SN", "UV": "UN", "UE": "UN", "SS": "SS", "SW": "SW",
-    "SP": "SP", "UN": "UN", "SO": "SO", 
+    "XPV": "XPN", "OH": "SH", "OL": "SL", "ON": "SN", "UV": "UN", "UE": "UN", 
     #For Okt
     "Noun": "NNG", "Adjective": "VA", "Verb": "VV", "Determiner": "MM", "Adverb": "MAG",
     "Conjunction": "MAJ", "Exclamation": "IC", "Josa": "JC", "PreEomi": "EP", "Eomi": "EC",
@@ -54,4 +67,6 @@ SYMBOLS_POS_MAP = {
 }
 SKIP_WORD_LIST = ["/"]
 
+# -----------------------------------------
 # DocumentClustering
+# -----------------------------------------

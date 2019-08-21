@@ -17,7 +17,7 @@ class SyntaxAnalyzer():
     def __init__(self):
         self.replacer = RegexpReplacer()      
         self.lemmatizer = WordNetLemmatizer()
-        self.tagger = "mecab"
+        self.set_tagger("mecab")
     
     def __parse(self, sentence):
         word_tagged_pos_list = []
