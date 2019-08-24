@@ -14,9 +14,10 @@ PLOTLY_API_KEY = "7xQjXPiDYPi1iIrrT3ID"
 STOPWORD_PATH = "data/stopword.txt"
 
 # Select Part of Speech Tagger
-POS_TAGGER = "mecab"
+#POS_TAGGER = "mecab"
+#POS_TAGGER = "mecab-ko"
 #POS_TAGGER = "kkma"
-#POS_TAGGER = "okt"
+POS_TAGGER = "okt"
 #
 
 # -----------------------------------------

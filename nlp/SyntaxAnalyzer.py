@@ -17,7 +17,7 @@ class SyntaxAnalyzer():
     def __init__(self):
         self.replacer = RegexpReplacer()      
         self.lemmatizer = WordNetLemmatizer()
-        self.set_tagger("kkma")
+        self.set_tagger(con.POS_TAGGER)
     
     def __parse(self, sentence):
         word_tagged_pos_list = []
@@ -27,7 +27,10 @@ class SyntaxAnalyzer():
                 word = word_tagged[0]
                 if word in con.SKIP_WORD_LIST:
                     continue
-                pos_tag = con.POS_TAG_MAP[word_tagged[1]]
+                if "+" in word_tagged[1]:
+                    pos_tag = word_tagged[1]
+                else:
+                    pos_tag = con.POS_TAG_MAP[word_tagged[1]]
                 tagged_set = (word, pos_tag)
                 word_tagged_pos_list.append(tagged_set)
         elif self.tagger == "mecab-ko":
