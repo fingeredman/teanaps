@@ -17,12 +17,21 @@ class SyntaxAnalyzer():
     def __init__(self):
         self.replacer = RegexpReplacer()      
         self.lemmatizer = WordNetLemmatizer()
-        self.set_tagger("mecab")
+        self.set_tagger("kkma")
     
     def __parse(self, sentence):
         word_tagged_pos_list = []
         if self.tagger == "mecab":
-            sentence_tagged = self.mecab.parse(sentence)
+            word_tagged_total_list = self.mecab.pos(sentence)
+            for word_tagged in word_tagged_total_list:
+                word = word_tagged[0]
+                if word in con.SKIP_WORD_LIST:
+                    continue
+                pos_tag = con.POS_TAG_MAP[word_tagged[1]]
+                tagged_set = (word, pos_tag)
+                word_tagged_pos_list.append(tagged_set)
+        elif self.tagger == "mecab-ko":
+            sentence_tagged = self.mecab_ko.parse(sentence)
             word_tagged_comma_list = [word_tagged.split("\t") for word_tagged in sentence_tagged.split("\n")[:-2]]
             word_tagged_total_list = [(word_tagged[0], word_tagged[1].split(",")) for word_tagged in word_tagged_comma_list]
             for word_tagged in word_tagged_total_list:
@@ -106,8 +115,11 @@ class SyntaxAnalyzer():
     def set_tagger(self, tagger):
         self.tagger = tagger
         if tagger == "mecab":
+            from konlpy.tag import Mecab
+            self.mecab = Mecab()
+        elif tagger == "mecab-ko":
             import MeCab
-            self.mecab = MeCab.Tagger()
+            self.mecab_ko = MeCab.Tagger()
         elif tagger == "kkma":
             from konlpy.tag import Kkma
             self.kkma = Kkma()
