@@ -12,14 +12,11 @@
 ---
 ## Install
 - install.ipynb 파일을 참조해주세요.
-- 아래 링크를 통해 설치용 노트북 파일을 Google Colabotory로 열 수 있습니다.
-- https://colab.research.google.com/github/fingeredman/teanaps/blob/master/install.ipynb
+- 링크를 통해 설치용 노트북 파일을 Google Colabotory로 열 수 있습니다. [(Link)](https://colab.research.google.com/github/fingeredman/teanaps/blob/master/install.ipynb)
 
 ---
 ## Tutorial
-- 본 패키지를 활용한 텍스트 마이닝 강의자료 링크입니다.
-- practice-note week_6 부터 활용되었습니다.
-- https://github.com/fingeredman/text-mining-for-practice
+- 본 패키지를 활용한 텍스트 마이닝 강의자료를 참고해주세요. [(Link)](https://github.com/fingeredman/text-mining-for-practice)
 
 ---
 ## Release history
@@ -28,7 +25,7 @@
 
 ---
 ## References
-- Install KoNLPy in colaboratory, https://github.com/konlpy/konlpy/issues/188#issuecomment-383550386  
+- Install KoNLPy in colaboratory [(Link)](https://github.com/konlpy/konlpy/issues/188#issuecomment-383550386)  
 
 ---
 ## Update History
