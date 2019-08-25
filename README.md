@@ -16,8 +16,8 @@
 ---
 ## Installation
 - install.ipynb 파일을 참조해주세요.
-- 파일을 다운로드하거나 아래 링크를 통해 nbviewer로 확인해주세요.
-- https://nbviewer.jupyter.org/github/fingeredman/teanaps/blob/fb1352bce47007c84d75277dcaf408d20eb467fa/install.ipynb
+- 아래 링크를 통해 설치용 노트북 파일을 Google Colabotory로 열 수 있습니다.
+- https://colab.research.google.com/github/fingeredman/teanaps/blob/master/install.ipynb
 
 ---
 ## Release history
