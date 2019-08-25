@@ -28,6 +28,7 @@ pd.set_option('display.max_columns', None)
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=RuntimeWarning)
+warnings.simplefilter(action='ignore', category=DeprecationWarning)
 
 class TopicClustering():  
     def __init__(self):
