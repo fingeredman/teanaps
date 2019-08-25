@@ -2,7 +2,7 @@
 > Text Analysis & Natural Language Processing API Packages for Education
 
 - 본 패키지는 텍스트 마이닝을 활용한 연구 및 강의를 위한 목적으로 제작되었습니다.
-- 본 패키지를 강의 목적으로 활용하고자 하시는 경우 꼭 아래 메일주소로 연락주세요.
+- 본 패키지를 강의 또는 연구 목적으로 활용하고자 하시는 경우 꼭 아래 메일주소로 연락주세요.
 - 본 패키지에 대한 허가되지 않은 배포를 금지합니다.
 - 강의, 저작권, 출판, 특허, 공동저자에 관련해서는 문의 바랍니다.
 - **Contact : 전병진(fingeredman@gmail.com)**
@@ -18,9 +18,6 @@
 - install.ipynb 파일을 참조해주세요.
 - 파일을 다운로드하거나 아래 링크를 통해 nbviewer로 확인해주세요.
 - https://nbviewer.jupyter.org/github/fingeredman/teanaps/blob/fb1352bce47007c84d75277dcaf408d20eb467fa/install.ipynb
-
----
-## Dependencies
 
 ---
 ## Release history
