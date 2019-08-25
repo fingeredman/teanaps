@@ -11,7 +11,7 @@ PLOTLY_API_KEY = "7xQjXPiDYPi1iIrrT3ID"
 # -----------------------------------------
 # * Text Pre-processing *
 # -----------------------------------------
-STOPWORD_PATH = "data/stopword.txt"
+STOPWORD_PATH = "teanaps/data/stopword.txt"
 
 # Select Part of Speech Tagger
 #POS_TAGGER = "mecab"
