@@ -66,6 +66,20 @@ class TfidfCalculator():
         word_list = [word for word in self.tfidf_dict.keys() if word not in self.stopword_list]
         return word_list
     
+    def set_plotly(self):
+        import IPython
+        display(IPython.core.display.HTML('''
+            <script src="/static/components/requirejs/require.js"></script>
+            <script>
+              requirejs.config({
+                paths: {
+                  base: '/static/base',
+                  plotly: 'https://cdn.plot.ly/plotly-latest.min.js?noext',
+                },
+              });
+            </script>
+            '''))
+    
     def get_plotly_graph(self, max_words):
         x = self.get_word_list()[:max_words]
         y = [score for word, score in self.get_tf_list()][:max_words]

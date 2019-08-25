@@ -55,6 +55,20 @@ class DocumentClustering():
             inertia_list.append(km.inertia_)
         return inertia_list
     
+    def set_plotly(self):
+        import IPython
+        display(IPython.core.display.HTML('''
+            <script src="/static/components/requirejs/require.js"></script>
+            <script>
+              requirejs.config({
+                paths: {
+                  base: '/static/base',
+                  plotly: 'https://cdn.plot.ly/plotly-latest.min.js?noext',
+                },
+              });
+            </script>
+            '''))
+        
     def get_dendrogram_graph(self, document_list):
         tfidf_matrix = self.__get_tfidf_matrix(document_list)
         similarity_matrix = 1 - cosine_similarity(tfidf_matrix)

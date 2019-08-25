@@ -73,6 +73,20 @@ class CoWordCalculator():
         self.result_list.sort(key=lambda elem: elem[1], reverse=True)
         return self.result_list
     
+    def set_plotly(self):
+        import IPython
+        display(IPython.core.display.HTML('''
+            <script src="/static/components/requirejs/require.js"></script>
+            <script>
+              requirejs.config({
+                paths: {
+                  base: '/static/base',
+                  plotly: 'https://cdn.plot.ly/plotly-latest.min.js?noext',
+                },
+              });
+            </script>
+            '''))
+        
     def get_co_matrix_graph(self, max_words):
         co_word_list = self.result_list
         x = []
