@@ -190,7 +190,7 @@ class DocumentClustering():
                                      mode='lines',
                                      showlegend=False,
                                      line=dict(width=0.5, color=colors),
-                                     fill='tozerox')
+                                    )#fill='tozerox')
             fig.append_trace(filled_area, 1, 1)
 
             y_lower = y_upper + 10  # 10 for the 0 samples
