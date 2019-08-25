@@ -52,6 +52,20 @@ class TopicClustering():
             sequence_topic_list.append((num, self.ldaseq.print_topic_times(topic=num)))
         return sequence_topic_list
     
+    def set_plotly():
+        import IPython
+        display(IPython.core.display.HTML('''
+            <script src="/static/components/requirejs/require.js"></script>
+            <script>
+              requirejs.config({
+                paths: {
+                  base: '/static/base',
+                  plotly: 'https://cdn.plot.ly/plotly-latest.min.js?noext',
+                },
+              });
+            </script>
+            '''))
+    
     def get_sequence_topic_graph(self):
         max_topics = self.ldaseq.num_topics
         topic_weight_dict = {}
