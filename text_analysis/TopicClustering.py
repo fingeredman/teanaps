@@ -52,7 +52,7 @@ class TopicClustering():
             sequence_topic_list.append((num, self.ldaseq.print_topic_times(topic=num)))
         return sequence_topic_list
     
-    def set_plotly():
+    def set_plotly(self):
         import IPython
         display(IPython.core.display.HTML('''
             <script src="/static/components/requirejs/require.js"></script>
