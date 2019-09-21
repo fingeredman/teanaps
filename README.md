@@ -22,6 +22,7 @@
 ## Release history
 > 2019.07.12. teanaps v0.0.1  
 > 2019.08.21. teanaps v0.0.2  
+> 2019.09.22. teanaps v0.0.3  
 
 ---
 ## References
@@ -32,4 +33,5 @@
 > 2019.06.12. 기본 구성 입력  
 > 2019.07.12. teanaps v0.0.1 업데이트  
 > 2019.08.21. teanaps v0.0.2 업데이트, install.ipynb 업로드  
-> 2019.08.24. install.ipynb 업데이트  
+> 2019.08.24. install.ipynb 업데이트 
+> 2019.08.21. teanaps v0.0.3 업데이트  
