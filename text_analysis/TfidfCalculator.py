@@ -10,6 +10,8 @@ plotly.tools.set_credentials_file(username=PLOTLY_USERNAME, api_key=PLOTLY_API_K
 plotly.tools.set_config_file(world_readable=False, sharing='private')
 init_notebook_mode(connected=True)
 
+from IPython.display import display
+
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer

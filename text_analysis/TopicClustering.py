@@ -12,6 +12,8 @@ plotly.tools.set_credentials_file(username=PLOTLY_USERNAME, api_key=PLOTLY_API_K
 plotly.tools.set_config_file(world_readable=False, sharing='private')
 init_notebook_mode(connected=True)
 
+from IPython.display import display
+
 import gensim
 from gensim import corpora
 from gensim.models import ldaseqmodel
@@ -129,40 +131,48 @@ class TopicClustering():
         fig = go.Figure(data=data, layout=layout)
         return iplot(fig, filename='TF-IDF Graph')
     
-    #def lda_topic_modeling(self, model_type, document_list, num_topics, num_keywords):
-    def lda_topic_modeling(self, document_list, num_topics, num_keywords):
+    def topic_modeling(self, model_type, document_list, num_topics, num_keywords):
         stopword_list = self.__get_stopwords()
         topic_list = []
         self.texts = [[word for word in document.split(" ") if word not in stopword_list] for document in document_list]
         self.dictionary = corpora.Dictionary(self.texts)    
         self.corpus = [self.dictionary.doc2bow(text) for text in self.texts]
-        self.lda_model = gensim.models.ldamodel.LdaModel(self.corpus, num_topics=num_topics, id2word=self.dictionary, passes=10)
+        if model_type == "lsi":
+            self.model = gensim.models.lsimodel.LsiModel(self.corpus, num_topics=num_topics, id2word=self.dictionary)
+        elif model_type == "lda":
+            self.model = gensim.models.ldamodel.LdaModel(self.corpus, num_topics=num_topics, id2word=self.dictionary, passes=10)
+        elif model_type == "hdp":
+            self.model = gensim.models.hdpmodel.HdpModel(self.corpus, id2word=self.dictionary)
+        else:
+            return []
         for num in range(num_topics):
-            topic_list.append((num, self.lda_model.show_topic(num, num_keywords)))
+            topic_list.append((num, self.model.show_topic(num, num_keywords)))
         return topic_list
     
-    def get_lda_model_validation_result(self):
-        perplexity = self.lda_model.log_perplexity(self.corpus)
-        coherence_model_lda = CoherenceModel(model=self.lda_model, texts=self.texts, dictionary=self.dictionary, coherence='c_v')
-        coherence = coherence_model_lda.get_coherence()
+    def get_model(self):
+        return self.model
+    
+    def get_model_validation_result(self):
+        try:
+            perplexity = self.model.log_perplexity(self.corpus)
+        except:
+            perplexity = 0
+        coherence_model = CoherenceModel(model=self.model, texts=self.texts, dictionary=self.dictionary, coherence='c_v')
+        coherence = coherence_model.get_coherence()
         return perplexity, coherence
     
-    def display_lda_model_result(self):
+    def display_model_result(self):
         pyLDAvis.enable_notebook()
-        lda_display = pyLDAvis.gensim.prepare(self.lda_model, self.corpus, self.dictionary, sort_topics=True)
+        lda_display = pyLDAvis.gensim.prepare(self.model, self.corpus, self.dictionary, sort_topics=True)
         return pyLDAvis.display(lda_display)
     
-    def get_lda_model_validation_graph(self, document_list, max_topics):
+    def get_model_validation_graph(self, model_type, document_list, max_topics):
         stopword_list = self.__get_stopwords()
         validation_list = []
+        num_keywords = 10
         for num_topics in range(2, max_topics+1):
-            texts = [[word for word in document.split(" ") if word not in stopword_list] for document in document_list]
-            dictionary = corpora.Dictionary(texts)    
-            corpus = [dictionary.doc2bow(text) for text in texts]
-            lda_model = gensim.models.ldamodel.LdaModel(corpus, num_topics=num_topics, id2word=dictionary, passes=10)
-            perplexity = lda_model.log_perplexity(corpus)
-            coherence_model_lda = CoherenceModel(model=lda_model, texts=texts, dictionary=dictionary, coherence='c_v')
-            coherence = coherence_model_lda.get_coherence()
+            self.topic_modeling(model_type, document_list, num_topics, num_keywords)
+            perplexity, coherence = self.get_model_validation_result()
             validation_list.append([num_topics, perplexity, coherence])
         
         x = [str(num_topics) for num_topics, perplexity, coherence in validation_list]
@@ -243,11 +253,11 @@ class TopicClustering():
 
     def get_topics_sentences(self, document_list):
         df_topics_sentences = pd.DataFrame()
-        for i, row in enumerate(self.lda_model[self.corpus]):
+        for i, row in enumerate(self.model[self.corpus]):
             row = sorted(row, key=lambda x: (x[1]), reverse=True)
             for j, (num_topic, prop_topic) in enumerate(row):
                 if j == 0:  # => dominant topic
-                    wp = self.lda_model.show_topic(num_topic)
+                    wp = self.model.show_topic(num_topic)
                     topic_keywords = ", ".join([word for word, prop in wp])
                     df_topics_sentences = df_topics_sentences.append(pd.Series([int(num_topic), round(prop_topic,4), topic_keywords]), ignore_index=True)
                 else:
@@ -262,11 +272,11 @@ class TopicClustering():
     
     def get_topics_documents(self, document_list):
         df_topics_sentences = pd.DataFrame()
-        for i, row in enumerate(self.lda_model[self.corpus]):
+        for i, row in enumerate(self.model[self.corpus]):
             row = sorted(row, key=lambda x: (x[1]), reverse=True)
             for j, (num_topic, prop_topic) in enumerate(row):
                 if j == 0:  # => dominant topic
-                    wp = self.lda_model.show_topic(num_topic)
+                    wp = self.model.show_topic(num_topic)
                     topic_keywords = ", ".join([word for word, prop in wp])
                     df_topics_sentences = df_topics_sentences.append(pd.Series([int(num_topic), round(prop_topic,4), topic_keywords]), ignore_index=True)
                 else:

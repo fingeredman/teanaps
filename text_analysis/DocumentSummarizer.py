@@ -21,6 +21,8 @@ from sumy import summarizers
 from sumy.nlp.stemmers import Stemmer
 from sumy.utils import get_stop_words
 
+from IPython.display import display
+
 class DocumentSummarizer():  
     def __init__(self):
         self.stopword_list = self.__get_stopwords()

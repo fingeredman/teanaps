@@ -13,6 +13,8 @@ plotly.tools.set_credentials_file(username=PLOTLY_USERNAME, api_key=PLOTLY_API_K
 plotly.tools.set_config_file(world_readable=False, sharing='private')
 init_notebook_mode(connected=True)
 
+from IPython.display import display
+
 from sklearn.metrics import silhouette_samples, silhouette_score
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.manifold import TSNE

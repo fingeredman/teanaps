@@ -41,19 +41,19 @@ POS_TAG_MAP = {
     "XPN": "XPN", "XSN": "XSN", "XSV": "XSV", "XSA": "XSA", 
     "XR": "XR", "SE": "SE", "SF": "SF", "SH": "SH", "SL": "SL", "SN": "SN", 
     "SS": "SS", "SW": "SW", "SP": "SP", "UN": "UN", "SO": "SO", 
-    #For MeCab
+    # For MeCab
     "NNBC": "NNB", "NN": "NNG", "NNS": "NNG", "NNPS": "NNP", "PRP": "NP", "PRP$": "NP", 
     "JJ": "VA", "JJR": "VA", "JJS": "VA", "VB": "VV", "VBG": "VV", "VBN": "VV", "VBZ": "VV", 
     "RB": "MAG", "RBS": "MAG", "RBR": "MAG",
     "UH": "IC", "CC": "JC", "FW": "SL", "CD": "SN",
     "SSO": "SS", "SSC": "SS", "SC": "SP", "SY": "SO", "LS": "SW",
     "UNKNOWN": "UN", "UNT": "UN", "UNA": "UN", "NA": "UN", "E": "UN",
-    #For KKMA
+    # For KKMA
     "NNM": "NNB", "VXV": "VX", "VXA": "VX", "VXN": "VX", "MDT": "MM", "MDN": "MM", "MAC": "MAJ",
     "JKM": "JKB", "EPH": "EP", "EPT": "EP", "EPP": "EP", "ECE": "EC", "ECD": "EC", "ECS": "EC",
     "EFN": "EF", "EFQ": "EF", "EFO": "EF", "EFA": "EF", "EFI": "EF", "EFR": "EF", "ETD": "ETM",
     "XPV": "XPN", "OH": "SH", "OL": "SL", "ON": "SN", "UV": "UN", "UE": "UN", 
-    #For Okt
+    # For Okt
     "Noun": "NNG", "Adjective": "VA", "Verb": "VV", "Determiner": "MM", "Adverb": "MAG",
     "Conjunction": "MAJ", "Exclamation": "IC", "Josa": "JC", "PreEomi": "EP", "Eomi": "EC",
     "Suffix": "XPN", "Unknown": "UN", "Punctuation": "SW", "Alpha": "SL", "Number": "SN",
@@ -69,5 +69,7 @@ SYMBOLS_POS_MAP = {
 SKIP_WORD_LIST = ["/"]
 
 # -----------------------------------------
-# DocumentClustering
+# MESSAGE HANDLER
 # -----------------------------------------
+# For SLACK
+WEBHOOK_URL = "https://hooks.slack.com/services/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"
