@@ -8,10 +8,20 @@ import nltk
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-
-#import MeCab
+from pykospacing import spacing
 
 import re
+
+'''
+from soynlp.utils import DoublespaceLineCorpus
+from soynlp.noun import LRNounExtractor_v2
+
+corpus_path = 'teanaps/data/article_sample.txt'
+sents = DoublespaceLineCorpus(corpus_path, iter_sent=True)
+
+noun_extractor = LRNounExtractor_v2(verbose=True)
+nouns = noun_extractor.train_extract(sents)
+'''
 
 class SyntaxAnalyzer():  
     def __init__(self):
@@ -20,6 +30,8 @@ class SyntaxAnalyzer():
         self.set_tagger(con.POS_TAGGER)
     
     def __parse(self, sentence):
+        if len(sentence) < 195:
+            sentence = spacing(sentence)
         word_tagged_pos_list = []
         if self.tagger == "mecab":
             word_tagged_total_list = self.mecab.pos(sentence)
