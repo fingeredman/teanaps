@@ -191,6 +191,8 @@ class SyntaxAnalyzer():
         # English
         else:
             sentence = self.replacer.replace(sentence)
+            sentence = sentence.lower()
+            sentence_org = sentence
             word_list = word_tokenize(sentence)
             word_tagged_pos_list = nltk.pos_tag(word_list)
             lemmatized_word_list = []
