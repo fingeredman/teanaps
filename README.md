@@ -13,7 +13,7 @@
 ## Install
 - install.ipynb 파일을 참조해주세요.
 - 링크를 통해 설치용 노트북 파일을 Google Colabotory로 열 수 있습니다. [(Link)](https://colab.research.google.com/github/fingeredman/teanaps/blob/master/install.ipynb)
-- 로컬 환경에 철치가 필요하신 경우, [teanaps_install.py](https://https://github.com/fingeredman/teanaps/blob/master/teanaps_setup.py) 파일을 참고 바랍니다.
+- 로컬 환경에 철치가 필요하신 경우, [teanaps_install.py](https://github.com/fingeredman/teanaps/blob/master/teanaps_setup.py) 파일을 참고 바랍니다.
 - Windows 운영체제에서 일부 기능에 제한이 있을 수 있습니다.
 
 ---
