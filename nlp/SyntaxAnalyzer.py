@@ -88,7 +88,7 @@ class SyntaxAnalyzer():
                     if len(compound_word) < 2:
                         continue
                     if compound_word in ner_lexicon.keys():
-                        word_tagged_ner_list.append([compound_word, ner_lexicon[compound_word][0], (loc[0][0], loc[-1][1])])
+                        word_tagged_ner_list.append((compound_word, ner_lexicon[compound_word][0], (loc[0][0], loc[-1][1])))
         return word_tagged_ner_list
     
     def __parse(self, sentence):
@@ -181,6 +181,7 @@ class SyntaxAnalyzer():
         return sentence
     
     def __pos_tagging(self, sentence):
+        sentence_org = sentence
         language = self.__language_detector(sentence)
         sentence = self.__iteration_remover(sentence)
         # Korean
@@ -205,6 +206,7 @@ class SyntaxAnalyzer():
                     pos = "SW"
                 lemmatized_word_list.append((word.lower(), pos))
             word_tagged_pos_list = lemmatized_word_list
+            word_tagged_pos_list = self.__get_word_position(sentence_org, word_tagged_pos_list)
         return word_tagged_pos_list
 
     def parse(self, sentence):
