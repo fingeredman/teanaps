@@ -18,6 +18,89 @@
 ## Tutorial
 - 본 패키지를 활용한 텍스트 마이닝 강의자료를 참고해주세요. [(Link)](https://github.com/fingeredman/text-mining-for-practice)
 
+### 형태소분석 (POS Tagging)
+> 형태소분석을 위한 기본코드는 아래와 같습니다. 한국어 문장은 Okt 영어 문장은 NLTK 형태소분석기를 기본으로 사용합니다. 언어는 별도로 지정하지 않으며 입력된 문장을 보고 스스로 판단해 입력문장에 맞는 한국어/영어 형태소분석기를 선택합니다.  
+
+Python Code:
+```python
+from teanaps.nlp import SyntaxAnalyzer
+
+sentence = "자연어처리(NLP)는 텍스트 분석을 위한 기반기술 입니다."
+
+sa = SyntaxAnalyzer()
+
+result = sa.parse(sentence)
+print(result)
+```
+Output:
+```python
+[('자연어', 'NNG', (0, 3)), ('처리', 'NNG', (3, 5)), ('(', 'SW', (5, 6)), ('nlp', 'SL', (6, 9)), (')', 'SW', (9, 10)), ('는', 'VV', (10, 11)), ('텍스트', 'NNG', (12, 15)), ('분석', 'NNG', (16, 18)), ('을', 'JC', (18, 19)), ('위', 'NNG', (20, 21)), ('한', 'JC', (21, 22)), ('기반', 'NNG', (23, 25)), ('기술', 'NNG', (25, 27)), ('입니다', 'VA', (28, 31)), ('.', 'SW', (31, 32))]
+```
+> TEANAPS는 4가지 형태소분석기를 지원합니다. 한국어 형태소분석기는 MeCab/KKMA/Okt, 영어 형태소분석기는 NLTK를 사용하며 아래 코드와 같이 한국어 문장에 대해 어떤 형태소분석기를 사용할지를 지정할 수 있습니다. 형태소분석기 미지정시 Okt 형태소분석기가 기본으로 사용됩니다. 단, 지원하는 모든 형태소분석기의 형태소 태그는 통일하여 사용합니다.  
+
+```python
+sa.set_tagger("mecab") 
+
+result = sa.parse(sentence)
+print(result)
+```
+Output:
+```python
+[('자연어', 'NNG', (0, 3)), ('처리', 'NNG', (3, 5)), ('(', 'SS', (5, 6)), ('nlp', 'SL', (6, 9)), (')', 'SS', (9, 10)), ('는', 'JX', (10, 11)), ('텍스트', 'NNG', (12, 15)), ('분석', 'NNG', (16, 18)), ('을', 'JKO', (18, 19)), ('위한', 'VV+ETM', (20, 22)), ('기반', 'NNG', (23, 25)), ('기술', 'NNG', (25, 27)), ('입니다', 'VCP+EF', (28, 31)), ('.', 'SF', (31, 32))]
+```
+
+### 개체명인식 (NER Tagging)
+> 개체명인식을 위한 기본코드는 아래와 같습니다. 개체명인식의 기본 입력은 형태소 단위로 구분된 문장 리스트(List)이며, 출력은 그 중 개체명으로 인식된 부분만 리스트로 반환합니다. 개체명 태그는 총 14종으로 구분됩니다.  
+
+Python Code:
+```python
+from teanaps.nlp import SyntaxAnalyzer
+
+tokenize_sentence = [('자연어', 'NNG', (0, 3)), ('처리', 'NNG', (3, 5)), ('(', 'SS', (5, 6)), 
+                     ('nlp', 'SL', (6, 9)), (')', 'SS', (9, 10)), ('는', 'JX', (10, 11)), 
+                     ('텍스트', 'NNG', (12, 15)), ('분석', 'NNG', (16, 18)), ('을', 'JKO', (18, 19)), 
+                     ('위한', 'VV+ETM', (20, 22)), ('기반', 'NNG', (23, 25)), 
+                     ('기술', 'NNG', (25, 27)), ('입니다', 'VCP+EF', (28, 31)), ('.', 'SF', (31, 32))
+                    ]
+access_token = "##########"
+
+sa = SyntaxAnalyzer()
+
+result = sa.ner(tokenize_sentence, access_token)
+print(result)
+```
+Output:
+```python
+[['분석', 'CVL', (16, 18)], ['기술', 'TRM', (25, 27)]]
+```
+> TEANAPS에서 지원하는 개체명인식기가 지원하지 않는 개체명에 대해 아래와 같이 추가로 개체명과 개체명 태그를 추가할 수 있습니다.  
+
+Python Code:
+```python
+sa.set_ner_lexicon([("자연어처리", "TRM"), ("기반기술", "NNG")])
+
+result = sa.ner(tokenize_sentence, access_token)
+print(result)
+```
+Output:
+```python
+[['자연어처리', 'TRM', (0, 5)], ['분석', 'CVL', (16, 18)], ['기반기술', 'NNG', (23, 27)], ['기술', 'TRM', (25, 27)]]
+```
+> 개체명 사전을 별도로 구축하기 어려운 경우, 아래와 같이 문서가 저장된 텍스트 파일을 입력파일로 하여 파일 안의 개체명을 자동으로 추출해 개체명 사전에 추가할 수 있습니다.  
+
+Python Code:
+```python
+path = 'teanaps/data/article_sample.txt'
+
+sa.train_lexicon(path)
+
+result = sa.ner(tokenize_sentence, access_token)
+print(result)
+```
+Output:
+```python
+[['자연어처리', 'TRM', (0, 5)], ['분석', 'CVL', (16, 18)], ['기반기술', 'NNG', (23, 27)], ['기술', 'TRM', (25, 27)]]
+```
 ---
 ## Release history
 > 2019.07.12. teanaps v0.0.1  
