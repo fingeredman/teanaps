@@ -48,9 +48,60 @@ Output:
 ```python
 [('자연어', 'NNG', (0, 3)), ('처리', 'NNG', (3, 5)), ('(', 'SS', (5, 6)), ('nlp', 'SL', (6, 9)), (')', 'SS', (9, 10)), ('는', 'JX', (10, 11)), ('텍스트', 'NNG', (12, 15)), ('분석', 'NNG', (16, 18)), ('을', 'JKO', (18, 19)), ('위한', 'VV+ETM', (20, 22)), ('기반', 'NNG', (23, 25)), ('기술', 'NNG', (25, 27)), ('입니다', 'VCP+EF', (28, 31)), ('.', 'SF', (31, 32))]
 ```
+> 형태소 품사태그는 세종말뭉치 품사태그를 기본으로 하여 아래와 같이 통일합니다.  
+
+| 구분        | 품사                       | TEANAPS | 세종 | MeCab     | Okt                                                   | KKMA                           |
+|-------------|----------------------------|---------|------|-----------|-------------------------------------------------------|--------------------------------|
+| 체언        | 일반명사                   | NNG     | NNG  | NNG       | Noun                                                  | NNG                            |
+|             | 고유명사                   | NNP     | NNP  | NNP       | ProperNoun                                            | NNP                            |
+|             | 의존명사                   | NNB     | NNB  | NNB, NNBC |                                                       | NNB, NNM                       |
+|             | 수사                       | NR      | NR   | NR        | Number                                                | NR                             |
+|             | 대명사                     | NP      | NP   | NP        |                                                       | NP                             |
+| 용언        | 동사                       | VV      | VV   | VV        | Verb                                                  | VV                             |
+|             | 형용사                     | VA      | VA   | VA        | Adjective                                             | VA                             |
+|             | 보조용언                   | VX      | VX   | VX        |                                                       | VXV, VXA                       |
+|             | 긍정지정사                 | VCP     | VCP  | VCP       |                                                       | VCP                            |
+|             | 부정지정사                 | VCN     | VCN  | VCN       |                                                       | VCN                            |
+| 관형사      | 관형사                     | MM      | MM   | MM        | Determiner, Modifier                                  | MDT, MDN                       |
+| 부사        | 일반부사                   | MAG     | MAG  | MAG       | Adverb                                                | MAG                            |
+|             | 접속부사                   | MAJ     | MAJ  | MAJ       | Adverb                                                | MAC                            |
+| 감탄사      | 감탄사                     | IC      | IC   | IC        | Exclamation                                           | IC                             |
+| 조사        | 주격조사                   | JKS     | JKS  | JKS       | Josa                                                  | JKS                            |
+|             | 보격조사                   | JKC     | JKC  | JKC       | Josa                                                  | JKC                            |
+|             | 관형격조사                 | JKG     | JKG  | JKG       | Josa                                                  | JKG                            |
+|             | 목적격조사                 | JKO     | JKO  | JKO       | Josa                                                  | JKO                            |
+|             | 부사격조사                 | JKB     | JKB  | JKB       | Josa                                                  | JKM                            |
+|             | 호격조사                   | JKV     | JKV  | JKV       | Josa                                                  | JKI                            |
+|             | 인용격조사                 | JKQ     | JKQ  | JKQ       | Josa                                                  | JKQ                            |
+|             | 접속조사                   | JC      | JC   | JC        | Conjunction                                           | JC                             |
+|             | 보조사                     | JX      | JX   | JX        |                                                       | JX                             |
+| 선어말 어미 | 선어말어미                 | EP      | EP   | EP        | PreEomi                                               | EPH, EPT,  EPP                 |
+| 어말 어미   | 종결어미                   | EF      | EF   | EF        | Emoi                                                  | EFN, EFQ,  EFO, EFA,  EFI, EFR |
+|             | 연결어미                   | EC      | EC   | EC        | Emoi                                                  | ECE, ECD,  ECS                 |
+|             | 명사형 전성어미            | ETN     | ETN  | ETN       | Emoi                                                  | ETN                            |
+|             | 관형형 전성어미            | ETM     | ETM  | ETM       | Emoi                                                  | ETD                            |
+| 접두사      | 체언접두사                 | XPN     | XPN  | XPN       | VerbPrefix                                            | XPV                            |
+| 접미사      | 명사파생접미사             | XSN     | XSN  | XSN       | Suffix                                                | XSN                            |
+|             | 부사파생접미사             | XSM     |      |           | Suffix                                                | XSM                            |
+|             | 동사파생접미사             | XSV     | XSV  | XSV       | Suffix                                                |                                |
+|             | 형용사파생접미사           | XSA     | XSA  | XSA       | Suffix                                                |                                |
+|             | 기타접미사                 | XSO     |      |           | Suffix                                                | XSO                            |
+| 어근        | 어근                       | XR      | XR   | XR        |                                                       | XR                             |
+| 부호        | 마침표, 물음표, 느낌표     | SF      | SF   | SF        | Punctuation                                           | SF                             |
+|             | 쉼표, 가웃뎃점, 콜론, 빗금 | SP      | SP   | SC        | CashTagOthers                                         | SP                             |
+|             | 따옴표, 괄호표, 줄표       | SS      | SS   | SSO, SSC  | CashTagOthers                                         | SS                             |
+|             | 줄임표                     | SE      | SE   | SE        | CashTagOthers                                         | SE                             |
+|             | 물결표, 숨김표, 빠짐표     | SO      | SO   | SY        | CashTagOthers                                         | SO                             |
+|             | 기타기호                   | SW      | SW   | SY        | CashTagOthers,  Hashtag,  ScreenName,  KoreanParticle | SW                             |
+| 불능        | 명사형추정범주             | UN      | NF   |           | Unknown                                               |                                |
+|             | 용언추정범주               | UN      | NV   |           | Unknown                                               |                                |
+|             | 분석불능범주               | UN      | NA   |           | Unknown                                               |                                |
+| 기타        | 외국어                     | OL      | SL   | SL        | AlphaForeign                                          | OL                             |
+|             | 한자                       | OL      | SH   | SH        | AlphaForeign                                          | OH                             |
+|             | 숫자                       | SN      | SN   | SN        |                                                       | ON                             |
 
 ### 개체명인식 (NER Tagging)
-> 개체명인식을 위한 기본코드는 아래와 같습니다. 개체명인식의 기본 입력은 형태소 단위로 구분된 문장 리스트(List)이며, 출력은 그 중 개체명으로 인식된 부분만 개체명, 태그, 개체명의 원문위치가 포함된 튜플(Tuple)의 리스트(List)로 반환합니다. 개체명 태그는 총 14종으로 구분됩니다.  
+> 개체명인식을 위한 기본코드는 아래와 같습니다. 개체명인식의 기본 입력은 형태소 단위로 구분된 문장 리스트(List)이며, 출력은 그 중 개체명으로 인식된 부분만 개체명, 태그, 개체명의 원문위치가 포함된 튜플(Tuple)의 리스트(List)로 반환합니다.  
 
 Python Code:
 ```python
@@ -73,6 +124,25 @@ Output:
 ```python
 [('분석', 'CVL', (16, 18)), ('기술', 'TRM', (25, 27))]
 ```
+> 개체명 태그는 총 14종으로 구분됩니다.  
+
+|    | 구분                    | 태그 | 설명                                    |
+|----|-------------------------|------|-----------------------------------------|
+| 1  | 사람(Person)            | PER  | 인물명(가장인물 포함), 연예인 그룹명 등 |
+| 2  | 분야(Field)             | FLD  | 학문, 이론, 법칙, 기술 등               |
+| 3  | 인공물(Artifacts Works) | AFW  | 사람에 의해 생성된 대상                 |
+| 4  | 기관(Organization)      | ORG  | 기관, 단체, 회의, 모임 등               |
+| 5  | 장소(Location)          | LOC  | 장소, 지역, 행정구역 등                 |
+| 6  | 문명(Civilization)      | CVL  | 문명, 문화 등                           |
+| 7  | 날짜(Data)              | DAT  | 날짜                                    |
+| 8  | 시간(Time)              | TIM  | 시간                                    |
+| 9  | 숫자(Number)            | NUM  | 숫자                                    |
+| 10 | 사건(Event)             | EVT  | 사건, 사고, 행사, 이벤트, 기념일        |
+| 11 | 동물(Animal)            | ANM  | 사람을 제외한 동물                      |
+| 12 | 식물(Plant)             | PLT  | 식물                                    |
+| 13 | 물질(Meterial)          | MAT  | 금속, 암석, 화합물 등                   |
+| 14 | 용어(Term)              | TRM  | 전문용어, 일반용어, 신조어 등           |
+| 15 | 알 수 없음              | UNK  | 특정 개체명 분류에 해당하지 않는 단어   |
 > TEANAPS에서 지원하는 개체명인식기가 지원하지 않는 개체명에 대해 아래와 같이 추가로 개체명과 개체명 태그를 추가할 수 있습니다.  
 
 Python Code:
