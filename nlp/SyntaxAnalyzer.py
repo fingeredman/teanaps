@@ -1,4 +1,4 @@
-from teanaps.nlp.Replacers import RegexpReplacer 
+from teanaps.nlp import RegexpReplacer 
 from teanaps import configure as con
 PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
@@ -26,22 +26,49 @@ class SyntaxAnalyzer():
         self.replacer = RegexpReplacer()      
         self.lemmatizer = WordNetLemmatizer()
         self.set_tagger(con.POS_TAGGER)
-        self.user_ner_lexicon = []
-        self.train_ner_lexicon = []
+        self.ner_lexicon = {}
     
+    def syntax(self, word_tagged_pos_list, word_tagged_ner_list):
+        sa_result = []
+        last_loc = 0
+        word_tagged_ner_list.sort(key=lambda elem: len(elem[0]), reverse=True)
+        for name, pos, loc in word_tagged_pos_list:
+            is_ner = False
+            for ner_name, ner_tag, ner_loc in word_tagged_ner_list:
+                if loc[0] >= ner_loc[0] and loc[1] <= ner_loc[1]:
+                    if len(sa_result) == 0:
+                        sa_result.append((ner_name, pos, ner_tag, ner_loc))
+                    elif sa_result[-1] != (ner_name, pos, ner_tag, ner_loc):
+                        sa_result.append((ner_name, pos, ner_tag, ner_loc))
+                    is_ner = True
+                    break
+            if not is_ner:
+                sa_result.append((name, pos, "UN", loc))
+        return sa_result
+        
     def __get_lexicon(self, access_token):
         try:
             url = con.ENTITY_API_URL + "/?access_token=" + str(access_token)
             print("lexicon loading...")
             r = requests.get(url)
             j = json.loads(r.text)
-            return j["data"]
+            print("done.")
+            return j["result"]
         except:
+            print("failed.")
             return {}
-       
-    def set_ner_lexicon(self, ner_lexicon_list):
-        self.user_ner_lexicon += ner_lexicon_list
-        
+           
+    def set_ner_lexicon(self, access_token="", ner_lexicon_list=[]):
+        if access_token == "":
+            None
+        else:
+            self.ner_lexicon = self.__get_lexicon(access_token)
+        for word, ner_tag in ner_lexicon_list:
+            if word in self.ner_lexicon.keys():
+                self.ner_lexicon[word] = [ner_tag] + self.ner_lexicon[word]
+            else:
+                self.ner_lexicon[word] = [ner_tag]
+                
     def train_lexicon(self, document_path):
         sentence_list = DoublespaceLineCorpus(document_path, iter_sent=True)
         compound_extractor = LRNounExtractor_v2(verbose=True)
@@ -49,19 +76,14 @@ class SyntaxAnalyzer():
         p = re.compile("[^a-zA-Z0-9가-힣_]+")
         compound_list = [n for n, score in compounds.items() 
                          if len(p.findall(n)) == 0 and score[0] + score[1] > 5 and len(n) > 2]
+        train_ner_lexicon = []
         for compound in compound_list:
-            self.train_ner_lexicon.append((compound, "UNK"))        
+            train_ner_lexicon.append((compound, "UNK")) 
+        for word, ner_tag in train_ner_lexicon:
+            if word not in self.ner_lexicon.keys():
+                self.ner_lexicon[word] = [ner_tag]
         
-    def ner(self, sentence_pos_list, access_token):
-        ner_lexicon = self.__get_lexicon(access_token)
-        for word, ner_tag in self.user_ner_lexicon:
-            if word in ner_lexicon.keys():
-                ner_lexicon[word] = [ner_tag] + ner_lexicon[word]
-            else:
-                ner_lexicon[word] = [ner_tag]
-        for word, ner_tag in self.train_ner_lexicon:
-            if word not in ner_lexicon.keys():
-                ner_lexicon[word] = [ner_tag]
+    def ner(self, sentence_pos_list):
         word_tagged_ner_list = []
         window_size = 5
         compound_pos_list = ["NNG", "NNP"]
@@ -87,8 +109,8 @@ class SyntaxAnalyzer():
                         compound_word += w
                     if len(compound_word) < 2:
                         continue
-                    if compound_word in ner_lexicon.keys():
-                        word_tagged_ner_list.append((compound_word, ner_lexicon[compound_word][0], (loc[0][0], loc[-1][1])))
+                    if compound_word in self.ner_lexicon.keys():
+                        word_tagged_ner_list.append((compound_word, self.ner_lexicon[compound_word][0], (loc[0][0], loc[-1][1])))
         return word_tagged_ner_list
     
     def __parse(self, sentence):

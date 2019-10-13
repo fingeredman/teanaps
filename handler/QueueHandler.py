@@ -1,37 +1,6 @@
 import concurrent.futures
 import jpype
 
-'''
-class MyFunction():
-    def __init__(self):
-        #jpype.attachThreadToJVM()
-        None
-        
-    def test_function(self, parm_dict):
-        #jpype.attachThreadToJVM()
-        print_list = parm_dict["print_list"]
-        for i in print_list:
-            print(i)
-            time.sleep(1)
-        result = {
-            "request_id": parm_dict["request_id"], 
-            "result": "complete."
-        }
-        return result
-        
-from teanaps.handler.QueueHandler import QueueHandler
-
-qh = QueueHandler(3)
-for i in range(10):
-    mf = MyFunction()
-    input_function = mf.test_function
-    parm_dict = {
-        "request_id" : i,
-        "print_list": ["aaa", "bbb", "ccc", "ddd"]
-    }
-    qh.add_lambda(input_function, parm_dict)
-'''
-
 class QueueHandler():
     def __init__(self, thread_count):
         self.lambda_count = 0
