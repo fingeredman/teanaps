@@ -97,11 +97,11 @@ Output:
 |             | 형용사파생접미사           | XSA     | XSA  | XSA       | Suffix                                                |                                |
 |             | 기타접미사                 | XSO     |      |           | Suffix                                                | XSO                            |
 | 어근        | 어근                       | XR      | XR   | XR        |                                                       | XR                             |
-| 부호        | 마침표, 물음표, 느낌표     | SF      | SF   | SF        | Punctuation                                           | SF                             |
-|             | 쉼표, 가웃뎃점, 콜론, 빗금 | SP      | SP   | SC        | CashTagOthers                                         | SP                             |
-|             | 따옴표, 괄호표, 줄표       | SS      | SS   | SSO, SSC  | CashTagOthers                                         | SS                             |
-|             | 줄임표                     | SE      | SE   | SE        | CashTagOthers                                         | SE                             |
-|             | 물결표, 숨김표, 빠짐표     | SO      | SO   | SY        | CashTagOthers                                         | SO                             |
+| 부호        | 마침표, 물음표, 느낌표     | SW      | SF   | SF        | Punctuation                                           | SF                             |
+|             | 쉼표, 가웃뎃점, 콜론, 빗금 | SW      | SP   | SC        | CashTagOthers                                         | SP                             |
+|             | 따옴표, 괄호표, 줄표       | SW      | SS   | SSO, SSC  | CashTagOthers                                         | SS                             |
+|             | 줄임표                     | SW      | SE   | SE        | CashTagOthers                                         | SE                             |
+|             | 물결표, 숨김표, 빠짐표     | SW      | SO   | SY        | CashTagOthers                                         | SO                             |
 |             | 기타기호                   | SW      | SW   | SY        | CashTagOthers,  Hashtag,  ScreenName,  KoreanParticle | SW                             |
 | 불능        | 명사형추정범주             | UN      | NF   |           | Unknown                                               |                                |
 |             | 용언추정범주               | UN      | NV   |           | Unknown                                               |                                |
