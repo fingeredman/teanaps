@@ -38,6 +38,7 @@ Python Code:
 ---
 ## References
 - Install KoNLPy in colaboratory [(Link)](https://github.com/konlpy/konlpy/issues/188#issuecomment-383550386)  
+- MeCab PoS tagger in windows [(Link)](https://cleancode-ws.tistory.com/97)  
 
 ---
 ## Update History
@@ -47,3 +48,4 @@ Python Code:
 > 2019.08.24. install.ipynb 업데이트  
 > 2019.09.22. teanaps v0.0.3 업데이트  
 > 2019.10.13. teanaps v0.0.4 업데이트  
+> 2019.11.09. teanaps v0.0.5 업데이트, REST API 문서 업로드  
