@@ -3,6 +3,18 @@ from teanaps import configure as con
 PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
 
+import plotly 
+from plotly.offline import init_notebook_mode, iplot
+import plotly.graph_objs as go
+import plotly.plotly as py
+import plotly.figure_factory as ff
+from plotly import tools
+plotly.tools.set_credentials_file(username=PLOTLY_USERNAME, api_key=PLOTLY_API_KEY)
+plotly.tools.set_config_file(world_readable=False, sharing='private')
+init_notebook_mode(connected=True)
+
+from IPython.display import display
+
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=RuntimeWarning)
@@ -48,9 +60,10 @@ class SyntaxAnalyzer():
         
     def __get_lexicon(self, access_token):
         try:
-            url = con.ENTITY_API_URL + "/?access_token=" + str(access_token)
+            url = con.ENTITY_API_URL
             print("lexicon loading...")
-            r = requests.get(url)
+            data = {"access_token": access_token}
+            r = requests.post(url, data=data)
             j = json.loads(r.text)
             print("done.")
             return j["result"]
@@ -86,7 +99,7 @@ class SyntaxAnalyzer():
     def ner(self, sentence_pos_list):
         word_tagged_ner_list = []
         window_size = 5
-        compound_pos_list = ["NNG", "NNP"]
+        compound_pos_list = ["NNG", "NNP", "XSV+EC+JKS"]
         word_list = [w[0] for w in sentence_pos_list]
         pos_list = [w[1] for w in sentence_pos_list]
         loc_list = [w[2] for w in sentence_pos_list]
@@ -232,7 +245,202 @@ class SyntaxAnalyzer():
             word_tagged_pos_list = lemmatized_word_list
             word_tagged_pos_list = self.__get_word_position(sentence_org, word_tagged_pos_list)
         return word_tagged_pos_list
+    
+    def set_plotly(self):
+        import IPython
+        display(IPython.core.display.HTML('''
+            <script src="/static/components/requirejs/require.js"></script>
+            <script>
+              requirejs.config({
+                paths: {
+                  base: '/static/base',
+                  plotly: 'https://cdn.plot.ly/plotly-latest.min.js?noext',
+                },
+              });
+            </script>
+            '''))
+        
+    def get_tag_evaluation_graph(self, tag_evaluation_result):
+        tag_name_list = ['형태소단위', '어절단위', '명사추출']
+        precision_list = [tag_evaluation_result["precision_total"], 
+                          tag_evaluation_result["precision_phrase"], 
+                          tag_evaluation_result["precision_noun"]]
+        recall_list = [tag_evaluation_result["recall_total"], 
+                       tag_evaluation_result["recall_phrase"], 
+                       tag_evaluation_result["recall_noun"]]
+        f1_score_list = [tag_evaluation_result["f1_score_total"], 
+                         tag_evaluation_result["f1_score_phrase"], 
+                         tag_evaluation_result["f1_score_noun"]]
+        trace1 = go.Bar(
+            x=tag_name_list,
+            y=precision_list,
+            name='Precision'
+        )
+        trace2 = go.Bar(
+            x=tag_name_list,
+            y=recall_list,
+            name='Recall'
+        )
+        trace3 = go.Bar(
+            x=tag_name_list,
+            y=f1_score_list,
+            name='F1-score'
+        )
 
+        data = [trace1, trace2, trace3]
+        layout = go.Layout(
+            barmode='group',
+            title='Tagging Evaluation Graph',
+            xaxis=dict(
+                title='Evaluation Items',
+                titlefont=dict(
+                    size=10,
+                    color='black'
+                ),
+                showticklabels=True,
+                #tickangle=-45,
+                tickfont=dict(
+                    size=10,
+                    color='black'
+                ),
+                exponentformat='e',
+                showexponent='all'
+            ),
+            yaxis=dict(
+                title='Result',
+                #nticks=4,
+                range=[0, 100],
+                titlefont=dict(
+                    size=10,
+                    color='black'
+                ),
+                showticklabels=True,
+                tickangle=0,
+                tickfont=dict(
+                    size=10,
+                    color='black'
+                ),
+                exponentformat='e',
+                showexponent='all',
+                #overlaying='y',
+            ),
+        )
+        fig = go.Figure(data=data, layout=layout)
+        return iplot(fig, filename='grouped-bar')
+        
+    def tag_evaluation(self, expert_token_sentence_list, challenger_token_sentence_list, user_tag_list=[]):
+        total_tag_count_expert = 0
+        total_tag_count_challenger = 0
+        noun_tag_count_expert = 0
+        noun_tag_count_challenger = 0
+        total_phrase_count_expert = 0
+        total_phrase_count_challenger = 0
+        tp_count = 0
+        tp_noun_count = 0
+        tp_phrase_count = 0
+        # POS Tag List
+        tag_list = ['NNG', 'NNB', 'NNP', 'NP', 'NR', 'VV', 
+                    'VX', 'VA', 'VCN', 'VCP', 'MM', 'MAG', 
+                    'MAJ', 'IC', 'DT', 'EX', 'IN', 'MD', 'PDT', 
+                    'RP', 'TO', 'WDT', 'WP', 'WP$', 'WRB', 'JKB', 
+                    'JKC', 'JKG', 'JKO', 'JKQ', 'JKS', 'JKV', 'JC', 
+                    'JX', 'EC', 'EP', 'EF', 'ETN', 'ETM', 'XPN', 
+                    'XSN', 'XSV', 'XSA', 'XR', 'SW', 'OL', 'SN', 'UN', 'SL'] + user_tag_list
+        # Counting
+        for expert_token_sentence, challenger_token_sentence in zip(expert_token_sentence_list, challenger_token_sentence_list):
+            # Counting in Token
+            total_tag_count_challenger += len(challenger_token_sentence)
+            noun_tag_count_challenger += sum([1 for ct in challenger_token_sentence if ct[1] in ["NNP", "NNG"]])
+            for expert_token in expert_token_sentence:
+                total_tag_count_expert += 1
+                expert_token_sub = expert_token
+                if expert_token[1] == "NNP":
+                    noun_tag_count_expert += 1
+                    expert_token_sub = (expert_token[0], "NNG", expert_token[2])
+                elif expert_token[1] == "NNG":
+                    noun_tag_count_expert += 1
+                    expert_token_sub = (expert_token[0], "NNP", expert_token[2])
+                #print(expert_token)
+                if expert_token in challenger_token_sentence or expert_token_sub in challenger_token_sentence:
+                    tp_count += 1
+                    if expert_token[1] in ["NNP", "NNG"]:
+                        tp_noun_count += 1
+
+            # Counting in Phrase
+            last_index = 0
+            phrase_list = []
+            for expert_token in expert_token_sentence:
+                #print(expert_token[2][0], last_index)
+                if expert_token[2][0] != last_index or last_index == 0:
+                    is_tp_phrase = True
+                    for phrase in phrase_list:
+                        phrase_sub = phrase
+                        if phrase[1] == "NNP":
+                            phrase_sub = (expert_token[0], "NNG", expert_token[2])
+                        elif phrase[1] == "NNG":
+                            phrase_sub = (expert_token[0], "NNP", expert_token[2])
+                        if phrase not in challenger_token_sentence and phrase_sub not in challenger_token_sentence:
+                            is_tp_phrase = False
+                    if is_tp_phrase:
+                        tp_phrase_count += 1
+                    total_phrase_count_expert += 1
+                    phrase_list = []
+                last_index = expert_token[2][1]
+                phrase_list.append(expert_token)
+                #print(phrase_list)
+            for challenger_token in challenger_token_sentence:
+                if challenger_token[2][0] != last_index or last_index == 0:
+                    total_phrase_count_challenger += 1
+                last_index = challenger_token[2][1]
+        # Evaluation
+        #recall = tp_count/noun_tag_count_expert
+        #precision = tp_count/tag_count
+        #f1_score = (2*recall*precision)/(recall+precision)
+        recall_total = round(tp_count/total_tag_count_expert*100, 2)
+        recall_noun = round(tp_noun_count/noun_tag_count_expert*100, 2)
+        recall_phrase = round(tp_phrase_count/total_phrase_count_expert*100, 2)
+        precision_total = round(tp_count/total_tag_count_challenger*100, 2)
+        precision_noun = round(tp_noun_count/noun_tag_count_challenger*100, 2)
+        precision_phrase = round(tp_phrase_count/total_phrase_count_challenger*100, 2)
+        f1_score_total = round((2*recall_total*precision_total)/(recall_total+precision_total))
+        f1_score_noun = round((2*recall_noun*precision_noun)/(recall_noun+precision_noun))
+        f1_score_phrase = round((2*recall_phrase*precision_phrase)/(recall_phrase+precision_phrase))
+        result = {
+            #
+            "total_tag_count_expert": total_tag_count_expert,
+            "total_tag_count_challenger": total_tag_count_challenger,
+            "total_phrase_count_expert": total_phrase_count_expert,
+            "total_phrase_count_challenger": total_phrase_count_challenger,
+            "noun_tag_count_expert": noun_tag_count_expert,
+            "noun_tag_count_challenger": noun_tag_count_challenger,
+            "tp_token_count": tp_count,
+            "tp_token_noun_count": tp_noun_count,
+            "tp_phrase_count": tp_phrase_count,
+            "recall_total": recall_total,
+            "recall_noun": recall_noun,
+            "recall_phrase": recall_phrase,
+            "precision_total": precision_total,
+            "precision_noun": precision_noun,
+            "precision_phrase": precision_phrase,
+            "f1_score_total": f1_score_total,
+            "f1_score_noun": f1_score_noun,
+            "f1_score_phrase": f1_score_phrase,
+        }
+        return result
+    
+    def get_plain_text(self, sentence_list, pos_list=[], word_index=0, tag_index=1):
+        plain_text_sentence_list = []
+        for sentence in sentence_list:
+            plain_text_sentence = ""
+            for token in sentence:
+                if len(pos_list) > 0:
+                    if token[tag_index] in pos_list:
+                        plain_text_sentence += token[word_index] + "/" + token[tag_index] + " "
+                else:
+                    plain_text_sentence += token[word_index] + "/" + token[tag_index] + " "
+            plain_text_sentence_list.append(plain_text_sentence.strip())
+        return plain_text_sentence_list
+    
     def parse(self, sentence):
         result_list = self.__pos_tagging(sentence)
         return result_list
