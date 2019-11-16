@@ -7,7 +7,7 @@
 - 본 패키지를 강의 또는 연구 목적으로 활용하고자 하시는 경우 꼭 아래 메일주소로 연락주세요.
 - 본 패키지에 대한 허가되지 않은 배포를 금지합니다.
 - 강의, 저작권, 출판, 특허, 공동저자에 관련해서는 문의 바랍니다.
-- **Contact : 전병진(fingeredman@gmail.com)**
+- **Contact : FINGEREDMAN(fingeredman@gmail.com)**
 
 ---
 ## Install
@@ -39,6 +39,8 @@ Python Code:
 ## References
 - Install KoNLPy in colaboratory [(Link)](https://github.com/konlpy/konlpy/issues/188#issuecomment-383550386)  
 - MeCab PoS tagger in windows [(Link)](https://cleancode-ws.tistory.com/97)  
+- KoBERT [(Link)](https://github.com/sktbrain/kobert)  
+- Pytorch-BERT-CRF-NER [(Link)](https://github.com/eagle705/pytorch-bert-crf-ner)  
 
 ---
 ## Update History
