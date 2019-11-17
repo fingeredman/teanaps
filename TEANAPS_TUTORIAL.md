@@ -110,7 +110,7 @@ Output:
 |             | 한자                       | OL      | SH   | SH        | AlphaForeign                                          | OH                             |
 |             | 숫자                       | SN      | SN   | SN        |                                                       | ON                             |
 
-#### 2. 개체명인식 (NER Tagging)
+#### 2. 개체명인식 (NER Tagging) - TBU
 > 개체명인식을 위한 기본코드는 아래와 같습니다. 개체명인식의 기본 입력은 형태소 단위로 구분된 문장 리스트(List)이며, 출력은 그 중 개체명으로 인식된 부분만 개체명, 태그, 개체명의 원문위치가 포함된 튜플(Tuple)의 리스트(List)로 반환합니다.  
 
 Python Code:
