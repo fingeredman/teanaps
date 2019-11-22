@@ -47,10 +47,10 @@ Python Code:
 ---
 ## Update History
 > 2019.06.12. 기본 구성 입력  
-> 2019.07.12. teanaps v0.0.1 업데이트  
-> 2019.08.21. teanaps v0.0.2 업데이트, install.ipynb 업로드  
-> 2019.08.24. install.ipynb 업데이트  
-> 2019.09.22. teanaps v0.0.3 업데이트  
-> 2019.10.13. teanaps v0.0.4 업데이트  
-> 2019.11.09. teanaps v0.0.5 업데이트, REST API 문서 업로드  
-> 2019.11.23. teanaps v0.0.6 업데이트  
+> 2019.07.12. `teanaps v0.0.1` 업데이트  
+> 2019.08.21. `teanaps v0.0.2` 업데이트, `install.ipynb` 업로드  
+> 2019.08.24. `install.ipynb` 업데이트  
+> 2019.09.22. `teanaps v0.0.3` 업데이트  
+> 2019.10.13. `teanaps v0.0.4` 업데이트  
+> 2019.11.09. `teanaps v0.0.5` 업데이트, `REST API` 문서 초안 업로드  
+> 2019.11.23. `teanaps v0.0.6` 업데이트  
