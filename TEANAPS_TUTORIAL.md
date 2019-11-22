@@ -2,11 +2,11 @@
 
 ---
 ## Install
-- install.ipynb 파일을 참조해주세요.
-- 링크를 통해 설치용 Jupyter Notebook 파일을 Google Colabotory로 열 수 있습니다. [(Link)](https://colab.research.google.com/github/fingeredman/teanaps/blob/master/install.ipynb)
+- `install.ipynb` 파일을 참조해주세요.
+- 링크를 통해 설치용 `Jupyter Notebook` 파일을 `Google Colabotory`로 열 수 있습니다. [(Link)](https://colab.research.google.com/github/fingeredman/teanaps/blob/master/install.ipynb)
 - 로컬 환경에 철치가 필요하신 경우, [teanaps_install.py](https://github.com/fingeredman/teanaps/blob/master/teanaps_setup.py) 파일을 참고 바랍니다.
-- 본 패키지는 pip를 통한 설치를 지원하지 않습니다.
-- Windows 운영체제에서 일부 기능에 제한이 있을 수 있습니다.
+- 본 패키지는 `pip`를 통한 설치를 지원하지 않습니다.
+- `Windows 운영체제`에서 일부 기능에 제한이 있을 수 있습니다.
 
 Python Code:
 ```python
@@ -19,7 +19,7 @@ Python Code:
 
 ### 텍스트 전처리 (Text Pre-processing)
 #### 1. 형태소분석 (POS Tagging)
-> `형태소분석`을 위한 기본코드는 아래와 같습니다. 한국어 문장은 Okt 영어 문장은 NLTK 형태소분석기를 기본으로 사용합니다. 언어는 별도로 지정하지 않으며 입력된 문장을 보고 스스로 판단해 입력문장에 맞는 한국어/영어 형태소분석기를 선택합니다.  
+> 형태소분석을 위한 기본코드는 아래와 같습니다. 한국어 문장은 `Okt`, 영어 문장은 `NLTK` 형태소분석기를 기본으로 사용합니다. 언어는 별도로 지정하지 않으며 입력된 문장을 보고 스스로 판단해 입력문장에 맞는 한국어/영어 형태소분석기를 선택합니다.  
 
 Python Code:
 ```python
@@ -41,7 +41,7 @@ Output:
  ('기술', 'NNG', (25, 27)), ('입니다', 'VA', (28, 31)), ('.', 'SW', (31, 32))
 ]
 ```
-> TEANAPS는 4가지 형태소분석기를 지원합니다. 한국어 형태소분석기는 MeCab/KKMA/Okt, 영어 형태소분석기는 NLTK를 사용하며 아래 코드와 같이 한국어 문장에 대해 어떤 형태소분석기를 사용할지를 지정할 수 있습니다. 형태소분석기 미지정시 Okt 형태소분석기가 기본으로 사용됩니다. 단, 지원하는 모든 형태소분석기의 형태소 태그는 통일하여 사용합니다. 형태소분석기의 기본입력은 일반 문장(String)이며, 출력은 형태소, 태그, 형태소의 원문위치가 포함된 튜플(Tuple)의 리스트(List)입니다.  
+> `TEANAPS`는 4가지 형태소분석기를 지원합니다. 한국어 형태소분석기는 `MeCab`/`KKMA`/`Okt`, 영어 형태소분석기는 `NLTK`를 사용하며 아래 코드와 같이 한국어 문장에 대해 어떤 형태소분석기를 사용할지를 지정할 수 있습니다. 형태소분석기 미지정시 `Okt` 형태소분석기가 기본으로 사용됩니다. 단, 지원하는 모든 형태소분석기의 형태소 태그는 통일하여 사용합니다. 형태소분석기의 기본입력은 일반 문장(String)이며, 출력은 형태소, 태그, 형태소의 원문위치가 포함된 튜플(Tuple)의 리스트(List)입니다.  
 
 ```python
 ma.set_tagger("mecab") 
@@ -58,7 +58,7 @@ Output:
  ('입니다', 'VCP+EF', (28, 31)), ('.', 'SF', (31, 32))
 ]
 ```
-> 형태소 품사태그는 세종말뭉치 품사태그를 기본으로 하여 아래와 같이 통일합니다.  
+> 형태소 품사태그는 `세종말뭉치 품사태그`를 기본으로 하여 아래와 같이 통일합니다.  
 
 | 구분        | 품사                       | TEANAPS | 세종 | MeCab     | Okt                                                   | KKMA                           |
 |-------------|----------------------------|---------|------|-----------|-------------------------------------------------------|--------------------------------|
@@ -111,7 +111,7 @@ Output:
 |             | 숫자                       | SN      | SN   | SN        |                                                       | ON                             |
 
 #### 2. 개체명인식 (NER Tagging) - TBU
-> 개체명인식을 위한 기본코드는 아래와 같습니다. 딥러닝 기반의 NamedEntityRecognizer와 룰기반의 NamedEntityTagger가 제공됩니다. 개체명인식의 기본 입력은 형태소 단위로 구분된 문장 리스트(List)이며, 출력은 그 중 개체명으로 인식된 부분만 개체명, 태그, 개체명의 원문위치가 포함된 튜플(Tuple)의 리스트(List)로 반환합니다.  
+> 개체명인식을 위한 기본코드는 아래와 같습니다. 딥러닝 기반의 `NamedEntityRecognizer`와 룰기반의 `NamedEntityTagger`가 제공됩니다. 개체명인식의 기본 입력은 형태소 단위로 구분된 문장 리스트(List)이며, 출력은 그 중 개체명으로 인식된 부분만 개체명, 태그, 개체명의 원문위치가 포함된 튜플(Tuple)의 리스트(List)로 반환합니다.  
 
 Python Code:
 ```python
@@ -235,7 +235,7 @@ Output:
 ```
 
 ### 텍스트 분석 (Text Analysis)
-- TEANAPS를 활용한 텍스트 분석 방법은 텍스트 마이닝 강의자료를 참고해주세요. [(Link)](https://github.com/fingeredman/text-mining-for-practice)
+- `TEANAPS`를 활용한 텍스트 분석 방법은 텍스트 마이닝 강의자료를 참고해주세요. [(Link)](https://github.com/fingeredman/text-mining-for-practice)
 #### 1. 단어빈도 및 TF-IDF (Word Frequency & TF-IDF)
 #### 2. 단어 임베딩 (Word Embedding)
 #### 3. 동시출현분석 (Co-word Analysis)
@@ -248,3 +248,5 @@ Output:
 ---
 ## Update History
 > 2019.10.19. 초안입력  
+> 2019.11.23. `teanaps v0.0.6` 업데이트 반영  
+
