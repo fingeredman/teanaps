@@ -42,15 +42,23 @@ class Processing():
                                             iteration_term[:pattern.count(".")] + "."*(len(iteration_term)-pattern.count(".")))
         return sentence
     
-    def get_plain_text(self, sentence, pos_list=[], word_index=0, tag_index=1):
+    def get_plain_text(self, sentence, pos_list=[], word_index=0, tag_index=1, tag=True):
         plain_text_sentence_list = []
         plain_text_sentence = ""
         for token in sentence:
             if len(pos_list) > 0:
                 if token[tag_index] in pos_list:
-                    plain_text_sentence += token[word_index] + "/" + token[tag_index] + " "
+                    plain_text_sentence += token[word_index]
+                    if tag:
+                        plain_text_sentence += "/" + token[tag_index] + " "
+                    else:
+                        plain_text_sentence += " "
             else:
-                plain_text_sentence += token[word_index] + "/" + token[tag_index] + " "
+                plain_text_sentence += token[word_index]
+                if tag:
+                    plain_text_sentence += "/" + token[tag_index] + " "
+                else:
+                    plain_text_sentence += " "
         return plain_text_sentence
     
     def replacer(self, text):

@@ -118,4 +118,4 @@ MAX_WORKERS = 5
 # teanaps.handler.MESSAGE HANDLER
 # -----------------------------------------
 # For SLACK
-#WEBHOOK_URL = "https://hooks.slack.com/services/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"
+#WEBHOOK_URL = ""
