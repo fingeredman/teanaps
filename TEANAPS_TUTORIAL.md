@@ -119,8 +119,7 @@ from teanaps.nlp import NamedEntityRecognizer
 
 sentence = "BERT 발표 후 NLP 기술동향에 큰 변화가 생겼습니다."
 
-net = NamedEntityRecognizer()
-net.set_ner_lexicon(access_token=access_token)
+net = NamedEntityRecognizer(model_path="/model")
 
 result = net.ner(input_text)
 print(result)
