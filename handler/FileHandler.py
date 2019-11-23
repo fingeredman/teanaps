@@ -5,11 +5,11 @@ class FileHandler():
         None
         
     def save_data(self, file_name, data):
-        with open(file_name, 'wb') as f:
+        with open(file_name, "wb") as f:
             pickle.dump(data, f, -1)
         
     def load_data(self, file_name):
-        with open(file_name, 'rb') as f:
+        with open(file_name, "rb") as f:
             data = pickle.load(f)
         return data
     

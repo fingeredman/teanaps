@@ -109,3 +109,35 @@ class GraphVisualizer():
         }
         fig = go.Figure(data=data_list, layout=graph_meta)
         return iplot(fig, filename='labelled-heatmap')
+    
+    def draw_scatter(self, data_meta_list, graph_meta):
+        # Data
+        data_list = []
+        for data_meta in data_meta_list:
+            data = {
+                "name": data_meta["data_name"],
+                "mode": "markers",
+                "x": data_meta["x_data"],
+                "y": data_meta["y_data"]
+            }
+            data_list.append(data)
+        # Graph
+        layout = {
+            "title": graph_meta["title"],
+            "xaxis": {
+                "title": graph_meta["x_name"],
+                "exponentformat": "e",
+                "showexponent": "all",
+                "showticklabels": True,
+                #"type": "log",
+            },
+            "yaxis": {
+                "title": graph_meta["y_name"],
+                "showticklabels": True,
+                #"type": "log"    
+            },
+            "width": 1000,
+            "height": 1000,
+        }
+        fig = go.Figure(data=data_list, layout=layout)
+        return iplot(fig, filename=graph_meta["title"])

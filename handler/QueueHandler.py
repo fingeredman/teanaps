@@ -1,5 +1,4 @@
 import concurrent.futures
-import jpype
 
 class QueueHandler():
     def __init__(self, thread_count):
