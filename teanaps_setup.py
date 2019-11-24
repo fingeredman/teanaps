@@ -55,6 +55,24 @@ subprocess.call("pip install soynlp", shell=True)
 subprocess.call("pip install git+https://github.com/haven-jeon/PyKoSpacing.git", shell=True)
 #!pip install git+https://github.com/haven-jeon/PyKoSpacing.git
 
+# 13) PyTorch-CRF(https://pypi.org/project/pytorch-crf/)
+subprocess.call("pip install pytorch-crf", shell=True)
+#!pip install pytorch-crf
+
+# 14) PyTorch-Transformers(https://pypi.org/project/pytorch-transformers/)
+subprocess.call("pip install pytorch-transformers", shell=True)
+#!pip install pytorch-transformers
+
+# 15) Transformers(https://pypi.org/project/transformers/)
+subprocess.call("pip install transformers", shell=True)
+#!pip install transformers
+
+# 16) GluonNLP(https://pypi.org/project/gluonnlp/)
+subprocess.call("pip install gluonnlp", shell=True)
+#!pip install gluonnlp
+subprocess.call("pip install --upgrade mxnet>=1.5.0", shell=True)
+#!pip install --upgrade mxnet>=1.5.0
+
 os_type = platform.platform()
 if "Windows" not in os_type:
     # MeCab
