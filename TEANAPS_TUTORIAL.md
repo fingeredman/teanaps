@@ -111,7 +111,7 @@ Output:
 |             | 숫자                       | SN      | SN   | SN        |                                                       | ON                             |
 
 #### 2. 개체명인식 (NER Tagging) - TBU
-> 개체명인식을 위한 기본코드는 아래와 같습니다. 딥러닝 기반의 `NamedEntityRecognizer`와 룰기반의 `NamedEntityTagger`가 제공됩니다. `NamedEntityRecognizer` 활용을 위해서는 모델 파일을 별도로 다운로드해야합니다(용량이 매우 큰 관계로 패키지 내에 포함해 배포가 불가). `NamedEntityTagger`를 활용하는 경우 입력하신 사전을 기반으로 개체명인식이 가능합니다. 기본적으로 제공되는 사전을 활용하시려면 `access_token`이 필요하며, 발급은 관리자에게 문의 바랍니다. 개체명인식의 기본 입력은 형태소 단위로 구분된 문장 리스트(List)이며, 출력은 그 중 개체명으로 인식된 부분만 개체명, 태그, 개체명의 원문위치가 포함된 튜플(Tuple)의 리스트(List)로 반환합니다.  
+> 개체명인식을 위한 기본코드는 아래와 같습니다. 딥러닝 기반의 `NamedEntityRecognizer`와 룰기반의 `NamedEntityTagger`가 제공됩니다. `NamedEntityRecognizer` 활용을 위해서는 모델 파일을 별도로 [다운로드](https://drive.google.com/open?id=1qZ5qttjvRhHiQesECRQc6JgB4_kAcVBr)해야합니다(용량이 매우 큰 관계로 패키지 내에 포함해 배포가 불가). `NamedEntityTagger`를 활용하는 경우 입력하신 사전을 기반으로 개체명인식이 가능합니다. 기본적으로 제공되는 사전을 활용하시려면 `access_token`이 필요하며, 발급은 관리자에게 문의 바랍니다. 개체명인식의 기본 입력은 형태소 단위로 구분된 문장 리스트(List)이며, 출력은 그 중 개체명으로 인식된 부분만 개체명, 태그, 개체명의 원문위치가 포함된 튜플(Tuple)의 리스트(List)로 반환합니다.  
 
 Python Code:
 ```python
