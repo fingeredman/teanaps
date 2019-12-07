@@ -240,6 +240,9 @@ Output:
 #### 3. 동시출현분석 (Co-word Analysis)
 #### 4. 문서 군집화 (Document Clustering)
 #### 5. 감성분석 (Sentiment Analysis)
+> `TEANAPS`가 제공하는 감성분석 활용을 위해서는 두 개의 모델 파일을 별도로 해야합니다(용량이 매우 큰 관계로 패키지 내에 포함해 배포가 불가).
+> - [모델 1 다운로드](https://drive.google.com/file/d/11zkNQ0i9MUlqWVG_y7Ynrpt1yv5jabsx/view?usp=sharing)
+> - [모델 2 다운로드](https://drive.google.com/file/d/11RBCiWkNblT26qAASvYTA4MmkwuE5gGe/view?usp=sharing)
 #### 6. 키워드추출 (Keyword Extraction)
 #### 7. 문서요약 (Document Summarization)
 #### 8. 예측 모델링 (Predictive Analysis)
@@ -248,4 +251,4 @@ Output:
 ## Update History
 > 2019.10.19. 초안입력  
 > 2019.11.23. `teanaps v0.0.6` 업데이트 반영  
-
+> 2019.12.07. `teanaps v0.0.7` 업데이트 반영  
