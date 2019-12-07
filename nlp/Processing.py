@@ -7,16 +7,11 @@ class Processing():
     def __init__(self):
         self.a = 100
         
-    '''
-    def get_sentence_list(self, document):
-        kkma = Kkma()
-        return kkma.sentences(document)
-    '''
-    def start_timer():
+    def start_timer(self):
         self.start = time.time()
         
-    def lab_timer():
-        print("lab: %.4F" % (time.time() - start))
+    def lab_timer(self):
+        print("lab: %.4F" % (time.time() - self.start))
     
     def get_spacing(self, sentence):
         if len(sentence) < 195:
