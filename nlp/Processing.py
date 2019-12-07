@@ -1,9 +1,22 @@
 import re
+import time
 from pykospacing import spacing
+from konlpy.tag import Kkma
 
 class Processing():  
     def __init__(self):
         self.a = 100
+        
+    '''
+    def get_sentence_list(self, document):
+        kkma = Kkma()
+        return kkma.sentences(document)
+    '''
+    def start_timer():
+        self.start = time.time()
+        
+    def lab_timer():
+        print("lab: %.4F" % (time.time() - start))
     
     def get_spacing(self, sentence):
         if len(sentence) < 195:
@@ -42,19 +55,19 @@ class Processing():
                                             iteration_term[:pattern.count(".")] + "."*(len(iteration_term)-pattern.count(".")))
         return sentence
     
-    def get_plain_text(self, sentence, pos_list=[], word_index=0, tag_index=1, tag=True):
+    def get_plain_text(self, sentence, pos_list=[], word_index=0, pos_index=1, tag_index=1, tag=True):
         plain_text_sentence_list = []
         plain_text_sentence = ""
         for token in sentence:
             if len(pos_list) > 0:
-                if token[tag_index] in pos_list:
-                    plain_text_sentence += token[word_index]
+                if token[pos_index] in pos_list:
+                    plain_text_sentence += token[word_index].replace(" ", "_")
                     if tag:
                         plain_text_sentence += "/" + token[tag_index] + " "
                     else:
                         plain_text_sentence += " "
             else:
-                plain_text_sentence += token[word_index]
+                plain_text_sentence += token[word_index].replace(" ", "_")
                 if tag:
                     plain_text_sentence += "/" + token[tag_index] + " "
                 else:

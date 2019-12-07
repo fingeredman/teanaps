@@ -141,3 +141,99 @@ class GraphVisualizer():
         }
         fig = go.Figure(data=data_list, layout=layout)
         return iplot(fig, filename=graph_meta["title"])
+    
+    def draw_scatter(self, data_meta_list, graph_meta):
+        # Data
+        data_list = []
+        for data_meta in data_meta_list:
+            data = {
+                "name": data_meta["data_name"],
+                "mode": "markers",
+                "x": data_meta["x_data"],
+                "y": data_meta["y_data"]
+            }
+            data_list.append(data)
+        # Graph
+        layout = {
+            "title": graph_meta["title"],
+            "xaxis": {
+                "title": graph_meta["x_name"],
+                "exponentformat": "e",
+                "showexponent": "all",
+                "showticklabels": True,
+                #"type": "log",
+            },
+            "yaxis": {
+                "title": graph_meta["y_name"],
+                "showticklabels": True,
+                #"type": "log"    
+            },
+            "width": 1000,
+            "height": 1000,
+        }
+        fig = go.Figure(data=data_list, layout=layout)
+        return iplot(fig, filename=graph_meta["title"])
+    
+    def draw_sentence_attention(self, token_list, weight_list):
+        max_len = 50
+        token_list = token_list
+        attn_list = weight_list
+        normalized_attn_list = [attn/max(attn_list) for attn in attn_list]
+        temp_len = 0
+        temp_token_list = []
+        tokenized_token_list = []
+        for i, token in enumerate(token_list):
+            if temp_len+len(token) <= max_len:
+                temp_len += len(token)
+                temp_token_list.append(token)
+                if i+1 == len(token_list):
+                    tokenized_token_list.append(temp_token_list)
+            else:
+                tokenized_token_list.append(temp_token_list)
+                temp_len = 0
+                temp_token_list = [token]
+
+        fig = plotly.tools.make_subplots(rows=len(tokenized_token_list), cols=1, print_grid=False)
+        annotations = []    
+        for tokenized_index, token_list in enumerate(tokenized_token_list):
+            tokenized_attn_list = normalized_attn_list[:len(token_list)]
+            normalized_attn_list = normalized_attn_list[len(token_list):]
+            token_len_list = [len(token) for token in token_list]
+            token_len_list += [1 for i in range(max_len-sum(token_len_list))]
+            tokenized_attn_list += [0 for i in range(len(token_len_list)-len(tokenized_attn_list))]
+            xaxis = 'x'+str(tokenized_index+1)
+            yaxis = 'y'+str(tokenized_index+1)
+            char_list = []
+            for token in token_list:
+                char_list += token
+            for char_index, char in enumerate(char_list):
+                annotations.append(dict(xref=xaxis, yref=yaxis, 
+                                        x=char_index+0.5, y=1, text=char, align="left",
+                                        font=dict(family='Arial', size=14, color='black'), showarrow=False))
+            data = []
+            for token_len, attn in zip(token_len_list, tokenized_attn_list):
+                block = go.Bar(
+                    y=[1], x=[token_len],
+                    orientation='h',
+                    width=0.5,
+                    marker=dict(color='rgb(' + str(200) + ', ' + str(230) + ', ' + str(255-(attn*250)) + ')')
+                )
+                data.append(block)
+            for trace in data:
+                trace["xaxis"] = xaxis
+                trace["yaxis"] = yaxis
+                fig.append_trace(trace, tokenized_index+1, 1)
+
+        layout = fig["layout"]
+        for axis in layout.keys():
+            layout[axis]["showgrid"] = False
+            layout[axis]["showline"] = False
+            layout[axis]["showticklabels"] = False
+            layout[axis]["zeroline"] = False
+        layout["barmode"] = "stack"
+        layout["showlegend"] = False
+        layout["margin"] = {'b': 30, 'l': 20, 'r': 20, 't': 10}
+        layout["annotations"] = annotations
+        layout["height"] = 30 + (50*len(tokenized_token_list))
+
+        return iplot(fig, filename="title")

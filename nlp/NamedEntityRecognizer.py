@@ -41,8 +41,8 @@ class NamedEntityRecognizer():
                                                                      list_of_pred_ids=list_of_pred_ids)
         return list_of_ner_word
     
-    def draw_weight(self, sentence_a):
-        attn_data = self.__get_attention(self.model, sentence_a)
+    def draw_weight(self, sentence):
+        attn_data = self.__get_attention(self.model, sentence)
         gv = GraphVisualizer()
         x = attn_data["text"]
         y = x
@@ -71,6 +71,15 @@ class NamedEntityRecognizer():
             "y2_name": "WEIGHT",
         }
         return gv.draw_histogram(data_meta_list, graph_meta)
+    
+    def get_weight(self, sentence):
+        attn_data = self.__get_attention(self.model, sentence)
+        gv = GraphVisualizer()
+        token_list = attn_data["text"]
+        weight_list = []
+        for token_index in range(len(token_list)):
+            weight_list.append(attn_data["attn"][11][11][token_index][token_index])
+        return {"token_list": token_list, "weight_list": weight_list}
     
     def __token_list_to_index_list(self, token_list):
         index_list = []
@@ -189,19 +198,19 @@ class NamedEntityRecognizer():
         loc_list = self.__get_token_position(input_text, input_token)
         for i, pred_ner_tag_str in enumerate(pred_ner_tag):
             if "B-" in pred_ner_tag_str:
-                entity_tag = pred_ner_tag_str[-3:]
-                if prev_entity_tag != entity_tag and prev_entity_tag != "":
-                    list_of_ner_word.append({"word": entity_word.replace("▁", ""), 
-                                             "tag": prev_entity_tag, 
-                                             "prob": None})
-                entity_word = input_token[i]
-                prev_entity_tag = entity_tag
                 if input_token[i] == "▁":
                     entity_word_index_a = loc_list[i+1][1][0]
                     entity_word_index_b = loc_list[i+1][1][1]
                 else:
                     entity_word_index_a = loc_list[i][1][0]
                     entity_word_index_b = loc_list[i][1][1]
+                entity_tag = pred_ner_tag_str[-3:]
+                if prev_entity_tag != entity_tag and prev_entity_tag != "":
+                    list_of_ner_word.append((entity_word.replace("▁", ""), 
+                                             prev_entity_tag, 
+                                             (entity_word_index_a, entity_word_index_b)))
+                entity_word = input_token[i]
+                prev_entity_tag = entity_tag
             elif "I-"+entity_tag in pred_ner_tag_str:
                 entity_word += input_token[i]
                 entity_word_index_b = loc_list[i][1][1]

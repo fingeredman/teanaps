@@ -105,6 +105,34 @@ VOCAB = {
 # -----------------------------------------
 
 # -----------------------------------------
+# teanaps.text_analysis.SentimentAnalysis
+# -----------------------------------------
+SENTIMENT_MODEL_PATH = "teanaps/model/sentiment/senti_model"
+SENTIMENT_UTIL_PATH = {
+    "tokenizer": "teanaps/model/sentiment/tokenizer",
+    "kobert": "teanaps/model/sentiment/mxnet_kobert",
+}
+SENTIMENT_MODEL_CONFIG = {
+    "max_len": 128,
+    "batch_size": 32
+}
+SENTIMENT_BERT_CONFIG = {
+    "attention_cell": 'multi_head',
+    "num_layers": 12,
+    "units": 768,
+    "hidden_size": 3072,
+    "max_length": 512,
+    "num_heads": 12,
+    "scaled": True,
+    "dropout": 0.1,
+    "use_residual": True,
+    "embed_size": 768,
+    "embed_dropout": 0.1,
+    "token_type_vocab_size": 2,
+    "word_embed": None,
+}
+
+# -----------------------------------------
 # teanaps.text_analysis.CoWordCalculator
 # -----------------------------------------
 WINDOW_SIZE = 2
@@ -118,4 +146,4 @@ MAX_WORKERS = 5
 # teanaps.handler.MESSAGE HANDLER
 # -----------------------------------------
 # For SLACK
-#WEBHOOK_URL = ""
+#WEBHOOK_URL = "https://hooks.slack.com/services/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"

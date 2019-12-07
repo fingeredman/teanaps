@@ -1,6 +1,7 @@
 from teanaps import configure as con
 PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
+from teanaps.visualization import GraphVisualizer
 
 import plotly 
 from plotly.offline import init_notebook_mode, iplot
@@ -82,79 +83,35 @@ class TfidfCalculator():
             </script>
             '''))
     
-    def get_plotly_graph(self, max_words):
+    def get_plotly_graph(self, max_words=100):
+        gv = GraphVisualizer()
         x = self.get_word_list()[:max_words]
         y = [score for word, score in self.get_tf_list()][:max_words]
         z = [score for word, score in self.get_tfidf_list()][:max_words]
-        data = [
-            go.Histogram(
-                histfunc = "sum",
-                x=x,
-                y=y,
-                name="TF",
-                marker=dict(
-                    color='#FFD7E9',
-                ),
-                yaxis = 'y'
-            ),
-            go.Scatter(
-                x=x,
-                y=z,
-                name="TF-IDF",
-                marker=dict(
-                    color='black',
-                ),
-                yaxis='y2'
-            )
-        ]
-        layout = go.Layout(
-            title='TF & TF-IDF Graph',
-            xaxis=dict(
-                title='WORD',
-                titlefont=dict(
-                    size=10,
-                    color='black'
-                ),
-                showticklabels=True,
-                tickangle=-45,
-                tickfont=dict(
-                    size=10,
-                    color='black'
-                ),
-                exponentformat='e',
-                showexponent='all'
-            ),
-            yaxis=dict(
-                title='TF',
-                titlefont=dict(
-                    size=10,
-                    color='black'
-                ),
-                showticklabels=True,
-                tickangle=0,
-                tickfont=dict(
-                    size=10,
-                    color='black'
-                ),
-                exponentformat='e',
-                showexponent='all',
-                #overlaying='y',
-            ),
-            yaxis2=dict(
-                title='TF-IDF',
-                titlefont=dict(
-                    size=10,
-                    color='black'
-                ),
-                showticklabels=True,
-                tickangle=0,
-                tickfont=dict(
-                    size=10,
-                    color='black'
-                ),
-                overlaying='y',
-                side='right'
-            )
-        )
-        fig = go.Figure(data=data, layout=layout)
-        return iplot(fig, filename='TF-IDF Graph')
+        data_meta_list = []
+        data_meta = {
+            "graph_type": "histogram",
+            "data_name": "TF",
+            "x_data": x,
+            "y_data": y,
+            "y_axis": "y1",
+        }
+        data_meta_list.append(data_meta)
+        data_meta = {
+            "graph_type": "scatter",
+            "data_name": "TF-IDF",
+            "x_data": x,
+            "y_data": z,
+            "y_axis": "y2"
+        }
+        data_meta_list.append(data_meta)
+        graph_meta = {
+            "title": "단어빈도 및 TF-IDF (TF & TF-IDF)",
+            "x_tickangle": -45,
+            "y1_tickangle": 0,
+            "y2_tickangle": 0,
+            "x_name": "단어 (WORD)",
+            "y1_name": "빈도 (TF)",
+            "y2_name": "TF-IDF",
+        }
+        return gv.draw_histogram(data_meta_list, graph_meta)
