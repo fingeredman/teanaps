@@ -36,6 +36,7 @@ Python Code:
 > 2019.10.13. `teanaps v0.0.4`  
 > 2019.11.09. `teanaps v0.0.5`  
 > 2019.11.23. `teanaps v0.0.6`  
+> 2019.12.07. `teanaps v0.0.7`  
 
 ---
 ## References
@@ -54,3 +55,4 @@ Python Code:
 > 2019.10.13. `teanaps v0.0.4` 업데이트  
 > 2019.11.09. `teanaps v0.0.5` 업데이트, `REST API` 문서 초안 업로드  
 > 2019.11.23. `teanaps v0.0.6` 업데이트  
+> 2019.12.07. `teanaps v0.0.7` 업데이트  
