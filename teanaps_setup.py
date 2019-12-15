@@ -36,7 +36,7 @@ subprocess.call("pip install xlwt", shell=True)
 #!pip install xlwt
 
 # 8) KoNLPy (http://konlpy.org/en/latest/#getting-started)
-subprocess.call("pip install konlpy", shell=True)
+subprocess.call("!pip install konlpy==0.5.1", shell=True)
 #!pip install konlpy
 
 # 9) newspaper (https://pypi.org/project/newspaper3k/)
