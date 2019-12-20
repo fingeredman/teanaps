@@ -233,6 +233,29 @@ Output:
  ('입니다', 'VCP+EF', 'UN', (28, 31)), ('.', 'SF', 'UN', (31, 32))
 ]
 ```
+> 구문분석: 분석된 문장의 성분을 바탕으로 문장의 구조를 생성합니다.  
+
+Python Code:
+```python
+sa_result = [('자연어처리', 'NNG', 'TRM', (0, 5)),
+ ('(', 'SS', 'UN', (5, 6)),
+ ('nlp', 'SL', 'UN', (6, 9)),
+ (')', 'SS', 'UN', (9, 10)),
+ ('는', 'JX', 'UN', (10, 11)),
+ ('텍스트', 'NNG', 'UN', (12, 15)),
+ ('분석', 'NNG', 'CVL', (16, 18)),
+ ('을', 'JKO', 'UN', (18, 19)),
+ ('위한', 'VV+ETM', 'UN', (20, 22)),
+ ('기반기술', 'NNG', 'TRM', (23, 27)),
+ ('입니다', 'VCP+EF', 'UN', (28, 31)),
+ ('.', 'SF', 'UN', (31, 32))
+]
+
+label_list, edge_list = sa.get_sentence_tree(sentence, sa_result)
+sa.draw_sentence_tree(sentence, label_list, edge_list)
+```
+Output:
+![teanaps_logo_wide](./data/sentence_tree.png)
 
 ### 텍스트 분석 (Text Analysis)
 - `TEANAPS`를 활용한 텍스트 분석 방법은 텍스트 마이닝 강의자료를 참고해주세요. [(Link)](https://github.com/fingeredman/text-mining-for-practice)
@@ -253,3 +276,4 @@ Output:
 > 2019.10.19. 초안입력  
 > 2019.11.23. `teanaps v0.0.6` 업데이트 반영  
 > 2019.12.07. `teanaps v0.0.7` 업데이트 반영  
+> 2019.12.21. `teanaps v0.0.8` 업데이트 반영  
