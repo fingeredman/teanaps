@@ -72,6 +72,8 @@ class SyntaxAnalyzer():
                 eojeol_type = "SUBJECT"
             elif phrase_list[-1][-1][1].split("+")[-1] in ["JKB"]:
                 eojeol_type = "ADVERB"
+            elif phrase_list[-1][-1][1].split("+")[-1] in ["JKO"]:
+                eojeol_type = "OBJECT"
             elif phrase_list[-1][-1][1].split("+")[-1] in ["JC"]:
                 eojeol_type = "PHRASE"
             elif phrase_list[-1][-1][1].split("+")[-1] in ["EC", "EF", "EP", "ETM", "ETN"]:
