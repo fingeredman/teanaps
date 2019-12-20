@@ -19,8 +19,10 @@ class FileHandler():
             if type(line) == "str":
                 f.write(line.replace("\n", " "))
             else:
+                new_line = ""
                 for col in line:
-                    f.write(col.replace("\n", " "))
+                    new_line += col.replace("\n", " ") + separator
+                f.write(new_line.strip())
             f.write("\n")
         f.close()
     
@@ -28,6 +30,6 @@ class FileHandler():
         line_list = []
         f = open(file_name, encoding=encoding)
         for line in f:
-            line = line.strip().split(separator)
+            line = line.replace("\n", " ").split(separator)
             line_list.append(line)
         return line_list

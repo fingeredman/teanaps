@@ -73,6 +73,10 @@ subprocess.call("pip install gluonnlp", shell=True)
 subprocess.call("pip install --upgrade mxnet>=1.5.0", shell=True)
 #!pip install --upgrade mxnet>=1.5.0
 
+# 17) iGraph(https://pypi.org/project/igraph-python/)
+subprocess.call("pip install python-igraph", shell=True)
+#!pip install python-igraph
+
 os_type = platform.platform()
 if "Windows" not in os_type:
     # MeCab

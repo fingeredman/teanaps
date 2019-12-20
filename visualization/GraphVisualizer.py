@@ -5,12 +5,13 @@ PLOTLY_API_KEY = con.PLOTLY_API_KEY
 import plotly 
 from plotly.offline import init_notebook_mode, iplot
 import plotly.graph_objs as go
-import plotly.plotly as py
 plotly.tools.set_credentials_file(username=PLOTLY_USERNAME, api_key=PLOTLY_API_KEY)
 plotly.tools.set_config_file(world_readable=False, sharing='private')
 init_notebook_mode(connected=True)
 
 from IPython.display import display
+
+from igraph import Graph, EdgeSeq
 
 class GraphVisualizer():  
     def __init__(self):
@@ -110,47 +111,16 @@ class GraphVisualizer():
         fig = go.Figure(data=data_list, layout=graph_meta)
         return iplot(fig, filename='labelled-heatmap')
     
-    def draw_scatter(self, data_meta_list, graph_meta):
+    def draw_scatter(self, data_meta_list, graph_meta, mode="markers"):
         # Data
         data_list = []
         for data_meta in data_meta_list:
             data = {
                 "name": data_meta["data_name"],
-                "mode": "markers",
+                "mode": mode,
                 "x": data_meta["x_data"],
-                "y": data_meta["y_data"]
-            }
-            data_list.append(data)
-        # Graph
-        layout = {
-            "title": graph_meta["title"],
-            "xaxis": {
-                "title": graph_meta["x_name"],
-                "exponentformat": "e",
-                "showexponent": "all",
-                "showticklabels": True,
-                #"type": "log",
-            },
-            "yaxis": {
-                "title": graph_meta["y_name"],
-                "showticklabels": True,
-                #"type": "log"    
-            },
-            "width": 1000,
-            "height": 1000,
-        }
-        fig = go.Figure(data=data_list, layout=layout)
-        return iplot(fig, filename=graph_meta["title"])
-    
-    def draw_scatter(self, data_meta_list, graph_meta):
-        # Data
-        data_list = []
-        for data_meta in data_meta_list:
-            data = {
-                "name": data_meta["data_name"],
-                "mode": "markers",
-                "x": data_meta["x_data"],
-                "y": data_meta["y_data"]
+                "y": data_meta["y_data"],
+                "text": data_meta['label']
             }
             data_list.append(data)
         # Graph
@@ -175,10 +145,9 @@ class GraphVisualizer():
         return iplot(fig, filename=graph_meta["title"])
     
     def draw_sentence_attention(self, token_list, weight_list):
+        # Normalize
         max_len = 50
-        token_list = token_list
-        attn_list = weight_list
-        normalized_attn_list = [attn/max(attn_list) for attn in attn_list]
+        normalized_weight_list = [weight/max(weight_list) for weight in weight_list]
         temp_len = 0
         temp_token_list = []
         tokenized_token_list = []
@@ -192,38 +161,37 @@ class GraphVisualizer():
                 tokenized_token_list.append(temp_token_list)
                 temp_len = 0
                 temp_token_list = [token]
-
+        # Data
         fig = plotly.tools.make_subplots(rows=len(tokenized_token_list), cols=1, print_grid=False)
-        annotations = []    
+        annotations = []
         for tokenized_index, token_list in enumerate(tokenized_token_list):
-            tokenized_attn_list = normalized_attn_list[:len(token_list)]
-            normalized_attn_list = normalized_attn_list[len(token_list):]
+            tokenized_weight_list = normalized_weight_list[:len(token_list)]
+            normalized_weight_list = normalized_weight_list[len(token_list):]
             token_len_list = [len(token) for token in token_list]
             token_len_list += [1 for i in range(max_len-sum(token_len_list))]
-            tokenized_attn_list += [0 for i in range(len(token_len_list)-len(tokenized_attn_list))]
-            xaxis = 'x'+str(tokenized_index+1)
-            yaxis = 'y'+str(tokenized_index+1)
+            tokenized_weight_list += [0 for i in range(len(token_len_list) - len(tokenized_weight_list))]
+            xaxis = "x" + str(tokenized_index + 1)
+            yaxis = "y" + str(tokenized_index + 1)
             char_list = []
             for token in token_list:
                 char_list += token
             for char_index, char in enumerate(char_list):
                 annotations.append(dict(xref=xaxis, yref=yaxis, 
                                         x=char_index+0.5, y=1, text=char, align="left",
-                                        font=dict(family='Arial', size=14, color='black'), showarrow=False))
+                                        font=dict(family="Arial", size=14, color="black"), showarrow=False))
             data = []
-            for token_len, attn in zip(token_len_list, tokenized_attn_list):
+            for token_len, weight in zip(token_len_list, tokenized_weight_list):
                 block = go.Bar(
-                    y=[1], x=[token_len],
-                    orientation='h',
-                    width=0.5,
-                    marker=dict(color='rgb(' + str(200) + ', ' + str(230) + ', ' + str(255-(attn*250)) + ')')
+                    y=[1], x=[token_len], orientation="h", width=0.5,                    
+                    text=round(weight, 1) if weight != 0 else "", hoverinfo='text',
+                    marker=dict(color="rgb(" + str(255) + ", " + str(255-(weight*200)) + ", " + str(255-(weight*200)) + ")")
                 )
                 data.append(block)
             for trace in data:
                 trace["xaxis"] = xaxis
                 trace["yaxis"] = yaxis
                 fig.append_trace(trace, tokenized_index+1, 1)
-
+        # Graph
         layout = fig["layout"]
         for axis in layout.keys():
             layout[axis]["showgrid"] = False
@@ -232,8 +200,55 @@ class GraphVisualizer():
             layout[axis]["zeroline"] = False
         layout["barmode"] = "stack"
         layout["showlegend"] = False
-        layout["margin"] = {'b': 30, 'l': 20, 'r': 20, 't': 10}
+        layout["margin"] = {"b": 30, "l": 20, "r": 20, "t": 10}
         layout["annotations"] = annotations
         layout["height"] = 30 + (50*len(tokenized_token_list))
-
-        return iplot(fig, filename="title")
+        return iplot(fig, filename="SENTENCE ATTENTION")
+    
+    def draw_sentence_tree(self, sentence, label_list, edge_list):
+        # Generate Graph
+        label_len = len(label_list)
+        G = Graph()
+        G.add_vertices(label_len)
+        G.add_edges(edge_list)
+        layout = G.layout("rt", root=[0, 1, 2, 3], rootlevel=[1, 2, 2, 2])
+        position = {k: layout[k] for k in range(label_len)}
+        Y = [layout[k][1] for k in range(label_len)]
+        M = max(Y)
+        E = [e.tuple for e in G.es]
+        L = len(position)
+        Xn = [position[k][0] for k in range(L)]
+        Yn = [2*M-position[k][1] for k in range(L)]
+        Xe = []
+        Ye = []
+        # Data
+        for edge in E:
+            Xe+=[position[edge[0]][0],position[edge[1]][0], None]
+            Ye+=[2*M-position[edge[0]][1],2*M-position[edge[1]][1], None]
+        edge_data = go.Scatter(x=Xe, y=Ye, mode="lines", line=dict(color="rgb(210, 210, 210)", width=1), hoverinfo="none")
+        node_data = go.Scatter(x=Xn, y=Yn, mode="markers", name="bla", 
+                               marker=dict(symbol="circle", size=1, color="rgb(250,250,250)", 
+                                           line=dict(color="rgb(50,50,50)", width=2)),
+                               text=label_list, hoverinfo="text", opacity=0.8)
+        font_size=10
+        font_color="rgb(10, 10, 10)"
+        annotation_list = []
+        for k in range(L):
+            annotation_list.append(dict(text=label_list[k], x=position[k][0], y=2*M-position[k][1], textangle=0,
+                                    xref='x1', yref='y1', font=dict(color=font_color, size=font_size), showarrow=False))
+        graph_meta = {"height": 300, "width": 20*len(sentence) if len(sentence) > 50 else 1000,
+                      "annotations": annotation_list, "xaxis": {}, "yaxis": {}}
+        graph_meta["xaxis"]["showgrid"] = False
+        graph_meta["xaxis"]["showline"] = False
+        graph_meta["xaxis"]["showticklabels"] = False
+        graph_meta["xaxis"]["zeroline"] = False
+        graph_meta["yaxis"]["showgrid"] = False
+        graph_meta["yaxis"]["showline"] = False
+        graph_meta["yaxis"]["showticklabels"] = False
+        graph_meta["yaxis"]["zeroline"] = False
+        graph_meta["showlegend"] = False
+        graph_meta["barmode"] = "stack"
+        graph_meta["showlegend"] = False
+        graph_meta["margin"] = {"b": 30, "l": 20, "r": 20, "t": 10}
+        fig = go.Figure(data=[edge_data, node_data], layout=graph_meta)
+        return iplot(fig, filename="SENTENCE TREE")

@@ -8,10 +8,7 @@ from transformers import BertModel, BertConfig
 from gluonnlp.data import SentencepieceTokenizer
 
 import pickle
-import json
 from collections import defaultdict
-
-from IPython.core.display import display, HTML, Javascript
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -36,21 +33,36 @@ class NamedEntityRecognizer():
         list_of_input_ids = self.__sentence_to_token_index_list([input_text])
         x_input = torch.tensor(list_of_input_ids).long()
         list_of_pred_ids, _ = self.model(x_input)
-        list_of_ner_word, decoding_ner_sentence = self.__ner_decoder(input_text=input_text, 
+        list_of_ner_word, _ = self.__ner_decoder(input_text=input_text, 
                                                                      list_of_input_ids=list_of_input_ids, 
                                                                      list_of_pred_ids=list_of_pred_ids)
+        list_of_ner_word.sort(key=lambda elem: len(elem[2]), reverse=True)
         return list_of_ner_word
+    
+    def ner_sentence(self, input_text):
+        list_of_input_ids = self.__sentence_to_token_index_list([input_text])
+        x_input = torch.tensor(list_of_input_ids).long()
+        list_of_pred_ids, _ = self.model(x_input)
+        _, decoding_ner_sentence = self.__ner_decoder(input_text=input_text, 
+                                                                     list_of_input_ids=list_of_input_ids, 
+                                                                     list_of_pred_ids=list_of_pred_ids)
+        return decoding_ner_sentence
+    
+    def draw_sentence_weight(self, sentence):
+        weight = self.get_weight(sentence)
+        token_list = weight["token_list"]
+        weight_list = weight["weight_list"]
+        gv = GraphVisualizer()
+        return gv.draw_sentence_attention(token_list, weight_list)
     
     def draw_weight(self, sentence):
         attn_data = self.__get_attention(self.model, sentence)
         gv = GraphVisualizer()
         x = attn_data["text"]
-        y = x
         x_data = []
-        y_data = []
         z_data = []
         for x_index in range(len(x)):
-            x_data.append("("+str(x_index)+")"+x[x_index])
+            x_data.append("(" + str(x_index) + ")" + x[x_index])
             z_data.append(attn_data["attn"][11][11][x_index][x_index])
         data_meta_list = []
         data_meta = {
@@ -74,7 +86,6 @@ class NamedEntityRecognizer():
     
     def get_weight(self, sentence):
         attn_data = self.__get_attention(self.model, sentence)
-        gv = GraphVisualizer()
         token_list = attn_data["text"]
         weight_list = []
         for token_index in range(len(token_list)):
@@ -125,11 +136,11 @@ class NamedEntityRecognizer():
             return self.index_to_token[index]
 
     def __get_token_position(self, sentence_org, token_list):
+        token_list = [token.replace("▁", "") for token in token_list[1:-1]]
         content_ = sentence_org
         position = 0
         token_loc_list = []
         for token in token_list:
-            token = token.replace("▁", "")
             loc = content_.find(token)
             if loc != -1:
                 position += loc
@@ -140,8 +151,8 @@ class NamedEntityRecognizer():
                 start = 0
                 end = 0
             token_loc_list.append((token, (start, end)))
-        return token_loc_list
-
+        return [('[CLS]', (0, 0))] + token_loc_list + [('[SEP]', (0, 0))]
+        
     def __load_ner_model(self):
         self.model = KobertCRF(config=self.model_config, num_classes=len(self.entity_to_index), vocab=self.vocab)
         model_dict = self.model.state_dict()
@@ -166,93 +177,74 @@ class NamedEntityRecognizer():
         _, output = model(tokens_tensor)
         attn_data_list = output[-1]
         attn_dict = defaultdict(list)
-        for layer, attn_data in enumerate(attn_data_list):
+        for attn_data in attn_data_list:
             attn = attn_data[0]
-            attn_dict['all'].append(attn.tolist())
+            attn_dict["all"].append(attn.tolist())
         token_list = self.__remove_char(token_list)
         token_list = self.__set_delimiter(token_list, self.vocab["cls_token"], self.vocab["sep_token"])
         results = {
-            'attn': attn_dict['all'],
-            'text': token_list,
+            "attn": attn_dict["all"],
+            "text": token_list,
         }
         return results
 
     def __remove_char(self, tokens):
-        return [t.replace('Ġ', ' ').replace('▁', ' ') for t in tokens]
+        return [t.replace("Ġ", " ").replace("▁", " ") for t in tokens]
 
     def __set_delimiter(self, tokens, cls_token, sep_token):
         formatted_tokens = []
         for t in tokens:
             if sep_token:
-                t = t.replace(sep_token, '[SEP]')
+                t = t.replace(sep_token, "[SEP]")
             if cls_token:
-                t = t.replace(cls_token, '[CLS]')
+                t = t.replace(cls_token, "[CLS]")
             formatted_tokens.append(t)
         return formatted_tokens
     
     def __ner_decoder(self, input_text, list_of_input_ids, list_of_pred_ids):
-        input_token = self.__index_list_to_token_list(list_of_input_ids)[0]
+        list_of_tokens = self.__sentence_to_token_list([input_text])
+        input_token = []
+        for i, token in enumerate(self.__index_list_to_token_list(list_of_input_ids)[0]):
+            if token == "[UNK]":
+                input_token.append(list_of_tokens[0][i-1])
+            else:
+                input_token.append(token)
         pred_ner_tag = [self.index_to_entity[pred_id] for pred_id in list_of_pred_ids[0]]
-        list_of_ner_word = []
-        entity_word, entity_tag, prev_entity_tag = "", "", ""
         loc_list = self.__get_token_position(input_text, input_token)
-        for i, pred_ner_tag_str in enumerate(pred_ner_tag):
-            if "B-" in pred_ner_tag_str:
-                if input_token[i] == "▁":
-                    entity_word_index_a = loc_list[i+1][1][0]
-                    entity_word_index_b = loc_list[i+1][1][1]
-                else:
-                    entity_word_index_a = loc_list[i][1][0]
-                    entity_word_index_b = loc_list[i][1][1]
-                entity_tag = pred_ner_tag_str[-3:]
-                if prev_entity_tag != entity_tag and prev_entity_tag != "":
-                    list_of_ner_word.append((entity_word.replace("▁", ""), 
-                                             prev_entity_tag, 
-                                             (entity_word_index_a, entity_word_index_b)))
-                entity_word = input_token[i]
-                prev_entity_tag = entity_tag
-            elif "I-"+entity_tag in pred_ner_tag_str:
-                entity_word += input_token[i]
-                entity_word_index_b = loc_list[i][1][1]
+        list_of_ner_word = []        
+        temp_loc_a = loc_list[1][1][0]
+        temp_loc_b = loc_list[1][1][1]
+        temp_entity = ""
+        temp_ner_tag = ""
+        temp_sentence = ""
+        for token, ner_tag, loc in zip(input_token, pred_ner_tag, loc_list):
+            if ner_tag[:2] == "B-":
+                if temp_entity != "":
+                    list_of_ner_word.append((temp_entity.replace("▁", " ").strip(), 
+                                             temp_ner_tag, (temp_loc_a, temp_loc_b)))
+                    if temp_entity[0] == "▁":
+                        temp_sentence += " "
+                    temp_sentence += "<" + temp_entity.replace("▁", " ").strip() + ":" + temp_ner_tag + ">"
+                temp_entity = ""
+                temp_loc_a = loc[1][0]
+                temp_loc_b = loc[1][1]
+                temp_ner_tag = ner_tag[2:]
+                temp_entity += token
+            elif ner_tag[:2] == "I-":
+                temp_loc_b = loc[1][1]
+                temp_ner_tag = ner_tag[2:]
+                temp_entity += token
             else:
-                if entity_word != "" and entity_tag != "":
-                    list_of_ner_word.append((entity_word.replace("▁", " ").strip(), 
-                                             entity_tag, (entity_word_index_a, entity_word_index_b)))
-                entity_word, entity_tag, prev_entity_tag = "", "", ""
-        decoding_ner_sentence = ""
-        is_prev_entity = False
-        prev_entity_tag = ""
-        is_there_B_before_I = False        
-        for i, (token_str, pred_ner_tag_str) in enumerate(zip(input_token, pred_ner_tag)):
-            if i == 0 or i == len(pred_ner_tag)-1:
-                continue
-            token_str = token_str.replace('▁', ' ')
-            if 'B-' in pred_ner_tag_str:
-                if is_prev_entity is True:
-                    decoding_ner_sentence += '/' + prev_entity_tag+ ']'
-                if token_str[0] == ' ':
-                    token_str = list(token_str)
-                    token_str[0] = ' ['
-                    token_str = ''.join(token_str)
-                    decoding_ner_sentence += token_str
-                else:
-                    decoding_ner_sentence += '[' + token_str
-                is_prev_entity = True
-                prev_entity_tag = pred_ner_tag_str[-3:]
-                is_there_B_before_I = True
-            elif 'I-' in pred_ner_tag_str:
-                decoding_ner_sentence += token_str
-
-                if is_there_B_before_I is True:
-                    is_prev_entity = True
-            else:
-                if is_prev_entity is True:
-                    decoding_ner_sentence += '/' + prev_entity_tag+ ']' + token_str
-                    is_prev_entity = False
-                    is_there_B_before_I = False
-                else:
-                    decoding_ner_sentence += token_str
-        return list_of_ner_word, decoding_ner_sentence
+                if temp_entity != "":
+                    list_of_ner_word.append((temp_entity.replace("▁", " ").strip(), 
+                                             temp_ner_tag, (temp_loc_a, temp_loc_b)))
+                    if temp_entity[0] == "▁":
+                        temp_sentence += " "
+                    temp_sentence += "<" + temp_entity.replace("▁", " ").strip() + ":" + temp_ner_tag + ">"
+                if token not in ["[CLS]", "[SEP]"]:
+                    temp_sentence += token.replace("▁", " ")
+                temp_entity = ""
+        return list_of_ner_word, temp_sentence.strip()
         
 class KobertCRF(nn.Module):
     def __init__(self, config, num_classes, vocab=None):

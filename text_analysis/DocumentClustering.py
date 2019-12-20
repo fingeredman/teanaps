@@ -6,7 +6,6 @@ PLOTLY_API_KEY = con.PLOTLY_API_KEY
 import plotly 
 from plotly.offline import init_notebook_mode, iplot
 import plotly.graph_objs as go
-import plotly.plotly as py
 import plotly.figure_factory as ff
 from plotly import tools
 plotly.tools.set_credentials_file(username=PLOTLY_USERNAME, api_key=PLOTLY_API_KEY)
@@ -43,7 +42,7 @@ class DocumentClustering():
     
     def kmeans_clustering(self, document_list, num_cluters, num_init, max_iterations):
         tfidf_matrix = self.__get_tfidf_matrix(document_list)
-        km = KMeans(n_clusters = num_cluters, init='k-means++', n_init=num_init, max_iter=max_iterations, random_state=0)
+        km = KMeans(n_clusters = num_cluters, init="k-means++", n_init=num_init, max_iter=max_iterations, random_state=0)
         predict_list = km.fit_predict(tfidf_matrix)
         inertia = km.inertia_
         return {"inertia": inertia, "predict_list": predict_list}
@@ -52,7 +51,7 @@ class DocumentClustering():
         tfidf_matrix = self.__get_tfidf_matrix(document_list)
         inertia_list = []
         for num_clutsers in range(1, max_cluters+1):
-            km = KMeans(n_clusters = num_clutsers, init='k-means++', n_init=num_init, max_iter=max_iterations, random_state=0)
+            km = KMeans(n_clusters = num_clutsers, init="k-means++", n_init=num_init, max_iter=max_iterations, random_state=0)
             km.fit(tfidf_matrix)
             inertia_list.append(km.inertia_)
         return inertia_list
@@ -82,60 +81,40 @@ class DocumentClustering():
     def get_pair_wize_matrix(self, document_list):
         tfidf_matrix = self.__get_tfidf_matrix(document_list)
         similarity_matrix = 1 - cosine_similarity(tfidf_matrix)
-
         x = []
         y = []
         z = []
-
         for x_index in range(len(similarity_matrix)):
             for y_index in range(len(similarity_matrix[x_index])):
                 x.append(x_index)
                 y.append(y_index)
                 z.append(similarity_matrix[x_index][y_index])
-
-        trace = go.Heatmap(
-                        z=z,
-                        x=x,
-                        y=y,
-
-                        colorscale='Reds',
-
-                        colorbar = dict(
-                            title = 'Freq.',
-                            titleside='right',
-                            xanchor='left',
-                            thickness=15,
-                            #tickmode = 'array',
-                            #tickvals = [2,50,98],
-                            #ticktext = ['Low','Mid','High'],
-                            ticks = 'outside'
-                        )
+        trace = go.Heatmap(z=z, x=x, y=y, colorscale='Reds', 
+                           colorbar = dict(title = 'Freq.', titleside='right', xanchor='left', thickness=15, ticks = 'outside')
                     )
-        layout = go.Layout(
-            width=1000,
-            height=1000,)
+        layout = go.Layout(width=1000, height=1000)
         data=[trace]
         fig = go.Figure(data=data, layout=layout)
-        return  iplot(fig, filename='labelled-heatmap')
+        return  iplot(fig, filename='HEATMAP')
     
     def get_kmeans_graph(self, df_result, label):
         fig = {
-            'data': [
+            "data": [
                 {
-                    'x': df_result[df_result[label]==predict]['x'],
-                    'y': df_result[df_result[label]==predict]['y'],
-                    'name': predict, 'mode': 'markers',
+                    "x": df_result[df_result[label]==predict]["x"],
+                    "y": df_result[df_result[label]==predict]["y"],
+                    "name": predict, "mode": "markers",
                 } for predict in list(OrderedDict.fromkeys(df_result[label]))
             ],
-            'layout': {
-                'title': 'K-Means Clutering Graph - ' + label,
-                'xaxis': {'title': 'TSNE X'},#, 'type': 'log'},
-                'yaxis': {'title': "TSNE Y"},
-                'width':500,
-                'height':500,
+            "layout": {
+                "title": "K-Means Clutering Graph - " + label,
+                "xaxis": {"title": "TSNE X"},#, 'type': 'log'},
+                "yaxis": {"title": "TSNE Y"},
+                "width": 500,
+                "height": 500,
             }
         }
-        return iplot(fig, filename='pandas/grouped-scatter')
+        return iplot(fig, filename='GROUPED-SCATTER')
     
     def get_tfidf_tsne(self, document_list, predict_list, df_document_list):
         tfidf_matrix = self.__get_tfidf_matrix(document_list)
@@ -148,7 +127,8 @@ class DocumentClustering():
     
     def get_silhouette_score(self, document_list, df_result, num_clusters):
         X = self.__get_tfidf_matrix(document_list)
-        figures = []
+        #figures = []
+        '''
         color_list = [
             '#1f77b4',  # muted blue
             '#ff7f0e',  # safety orange
@@ -161,12 +141,13 @@ class DocumentClustering():
             '#bcbd22',  # curry yellow-green
             '#17becf'   # blue-teal
         ]
-        cmap = cm.get_cmap("Spectral")
+        '''
+        #cmap = cm.get_cmap("Spectral")
         fig = tools.make_subplots(rows=1, cols=2, print_grid=False, subplot_titles=('Silhouette Graph', 'Clutering Graph'))
 
         # Initialize Silhouette Graph
-        fig['layout']['xaxis1'].update(title='Silhouette Coefficient', range=[-0.1, 1])
-        fig['layout']['yaxis1'].update(title='Cluster Label', showticklabels=False, range=[0, len(X) + (num_clusters + 1) * 10])
+        fig["layout"]["xaxis1"].update(title="Silhouette Coefficient", range=[-0.1, 1])
+        fig["layout"]["yaxis1"].update(title="Cluster Label", showticklabels=False, range=[0, len(X) + (num_clusters + 1) * 10])
 
         # Compute K-Means Cluster
         clusterer = KMeans(n_clusters=num_clusters, random_state=10)
@@ -175,12 +156,11 @@ class DocumentClustering():
 
         # Compute Average Silhouette Score
         silhouette_avg = silhouette_score(X, cluster_labels)
-        #print("For n_clusters =", num_clusters, "The average silhouette_score is :", silhouette_avg)
         return silhouette_avg
     
     def get_silhouette_graph(self, document_list, df_result, num_clusters):
         X = self.__get_tfidf_matrix(document_list)
-        figures = []
+        #figures = []
         color_list = [
             '#1f77b4',  # muted blue
             '#ff7f0e',  # safety orange

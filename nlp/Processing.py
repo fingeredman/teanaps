@@ -67,7 +67,7 @@ class Processing():
                     plain_text_sentence += "/" + token[tag_index] + " "
                 else:
                     plain_text_sentence += " "
-        return plain_text_sentence
+        return plain_text_sentence.strip()
     
     def replacer(self, text):
         patterns = [
@@ -87,5 +87,3 @@ class Processing():
         for (pattern, repl) in self.patterns:
             s = re.sub(pattern, repl, s)
         return s
-    
-    

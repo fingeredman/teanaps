@@ -37,7 +37,14 @@ class SentimentAnalysis():
                 sentiment = r.index(predict_value)
                 sentiment_label = "positive" if sentiment == 1 else "negative"
                 return (r.index(predict_value), sentiment_label)
-    
+            
+    def draw_sentence_weight(self, sentence):
+        weight = self.get_weight(sentence)
+        token_list = weight["token_list"]
+        weight_list = [w**3 for w in weight["weight_list"]]
+        gv = GraphVisualizer()
+        return gv.draw_sentence_attention(token_list, weight_list)
+        
     def draw_weight(self, sentence):
         attn_data = self.__get_attention(self.model, sentence)
         gv = GraphVisualizer()

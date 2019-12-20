@@ -6,7 +6,6 @@ from teanaps.visualization import GraphVisualizer
 import plotly 
 from plotly.offline import init_notebook_mode, iplot
 import plotly.graph_objs as go
-import plotly.plotly as py
 plotly.tools.set_credentials_file(username=PLOTLY_USERNAME, api_key=PLOTLY_API_KEY)
 plotly.tools.set_config_file(world_readable=False, sharing='private')
 init_notebook_mode(connected=True)
@@ -15,14 +14,12 @@ from IPython.display import display
 
 import concurrent.futures
 from collections import Counter
-import itertools
 import math
 
 import networkx as nx
 
 class CoWordCalculator():  
     def __init__(self):
-        #self.tokenized_sentence_list = []
         self.stopword_list = self.__get_stopwords()
         
     def __calculation(self, word_list):
@@ -149,17 +146,12 @@ class CoWordCalculator():
             centrality_dict = nx.degree_centrality(self.G)
         elif centrality_type == "c_cent":
             centrality_dict = nx.closeness_centrality(self.G)
-        #centrality_list = list(centrality_dict.items())
-        #centrality_list.sort(key=lambda elem: elem[1], reverse=True)
         return centrality_dict  
     
     
     def get_word_network_graph(self, node_list, centrality_dict):
         edge_trace = go.Scatter(x=[], y=[], line=dict(width=0.5,color='#999'), hoverinfo='none', mode='lines')
         pos = nx.spring_layout(self.G)
-        #pos = nx.random_layout(self.G)
-        #pos = nx.circular_layout(self.G)
-        #pos = nx.shell_layout(self.G)
         for edge in self.G.edges():
             x0, y0 = pos[edge[0]]
             x1, y1 = pos[edge[1]]
