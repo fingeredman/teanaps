@@ -20,18 +20,18 @@ import networkx as nx
 
 class CoWordCalculator():  
     def __init__(self):
-        self.stopword_list = self.__get_stopwords()
+        None
         
     def __calculation(self, word_list):
         word_pair_list = []
         for word_index in range(len(word_list)):
-            if word_list[word_index] in self.stopword_list or len(word_list[word_index]) <= 1:
+            if word_list[word_index] in self.__get_stopwords() or len(word_list[word_index]) <= 1:
                 continue
             WINDOW_SIZE = con.WINDOW_SIZE
             start_window_index = word_index-WINDOW_SIZE if WINDOW_SIZE <= word_index else 0
             end_window_index = word_index+WINDOW_SIZE+1
             window = word_list[start_window_index:end_window_index] 
-            pairs = [(word_list[word_index], word) for word in window if word not in self.stopword_list and len(word) > 1]
+            pairs = [(word_list[word_index], word) for word in window if word not in self.__get_stopwords() and len(word) > 1]
             word_pair_list.extend(pairs)
         return word_pair_list
 
@@ -230,4 +230,4 @@ class CoWordCalculator():
             for n in bt:
                 bt_c[n] += bt[n]
         return bt_c
-        '''
+    '''

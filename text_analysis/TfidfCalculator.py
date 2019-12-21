@@ -4,9 +4,7 @@ PLOTLY_API_KEY = con.PLOTLY_API_KEY
 from teanaps.visualization import GraphVisualizer
 
 import plotly 
-from plotly.offline import init_notebook_mode, iplot
-import plotly.graph_objs as go
-import plotly.plotly as py
+from plotly.offline import init_notebook_mode
 plotly.tools.set_credentials_file(username=PLOTLY_USERNAME, api_key=PLOTLY_API_KEY)
 plotly.tools.set_config_file(world_readable=False, sharing='private')
 init_notebook_mode(connected=True)
@@ -14,13 +12,12 @@ init_notebook_mode(connected=True)
 from IPython.display import display
 
 import pandas as pd
-import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 
 class TfidfCalculator():  
     def __init__(self):
-        self.stopword_list = self.__get_stopwords()
+        None
     
     def calculation_tfidf(self, tokenized_sentence_list):
         # TF-IDF Vector
@@ -52,7 +49,7 @@ class TfidfCalculator():
         return self.tf_dict
     
     def get_tf_list(self):
-        tf_list = [[word, self.tf_dict[word]] for word in self.tf_dict.keys() if word not in self.stopword_list]
+        tf_list = [[word, self.tf_dict[word]] for word in self.tf_dict.keys() if word not in self.__get_stopwords()]
         return tf_list
         
     def get_tfidf_matrix(self):
@@ -62,11 +59,11 @@ class TfidfCalculator():
         return self.tfidf_dict
     
     def get_tfidf_list(self):
-        tfidf_list = [[word, self.tfidf_dict[word]] for word in self.tfidf_dict.keys() if word not in self.stopword_list]
+        tfidf_list = [[word, self.tfidf_dict[word]] for word in self.tfidf_dict.keys() if word not in self.__get_stopwords()]
         return tfidf_list
         
     def get_word_list(self):
-        word_list = [word for word in self.tfidf_dict.keys() if word not in self.stopword_list]
+        word_list = [word for word in self.tfidf_dict.keys() if word not in self.__get_stopwords()]
         return word_list
     
     def set_plotly(self):
@@ -86,8 +83,8 @@ class TfidfCalculator():
     def get_plotly_graph(self, max_words=100):
         gv = GraphVisualizer()
         x = self.get_word_list()[:max_words]
-        y = [score for word, score in self.get_tf_list()][:max_words]
-        z = [score for word, score in self.get_tfidf_list()][:max_words]
+        y = [score for _, score in self.get_tf_list()][:max_words]
+        z = [score for _, score in self.get_tfidf_list()][:max_words]
         data_meta_list = []
         data_meta = {
             "graph_type": "histogram",

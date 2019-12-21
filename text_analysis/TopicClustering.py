@@ -5,9 +5,6 @@ PLOTLY_API_KEY = con.PLOTLY_API_KEY
 import plotly 
 from plotly.offline import init_notebook_mode, iplot
 import plotly.graph_objs as go
-import plotly.plotly as py
-import plotly.figure_factory as ff
-from plotly import tools
 plotly.tools.set_credentials_file(username=PLOTLY_USERNAME, api_key=PLOTLY_API_KEY)
 plotly.tools.set_config_file(world_readable=False, sharing='private')
 init_notebook_mode(connected=True)
@@ -18,12 +15,8 @@ import gensim
 from gensim import corpora
 from gensim.models import ldaseqmodel
 from gensim.models import CoherenceModel
-from gensim.matutils import hellinger
-
 import pyLDAvis.gensim
-import pickle
 
-import numpy
 import pandas as pd
 pd.set_option('display.max_columns', None)
 
@@ -34,16 +27,15 @@ warnings.simplefilter(action='ignore', category=DeprecationWarning)
 
 class TopicClustering():  
     def __init__(self):
-        self.stopword_list = self.__get_stopwords()
+        None
     
     def __get_stopwords(self):
         stopword_list = open(con.STOPWORD_PATH, encoding="utf-8").read().strip().split("\n")
         return stopword_list
     
     def sequence_lda_topic_modeling(self, tokenized_sentence_list, time_slice, num_topics):
-        stopword_list = self.__get_stopwords()
         self.time_slice = time_slice
-        texts = [[word for word in document.split(" ") if word not in stopword_list] 
+        texts = [[word for word in document.split(" ") if word not in self.__get_stopwords()] 
                  for document in tokenized_sentence_list]
         dictionary = corpora.Dictionary(texts)
         corpus = [dictionary.doc2bow(text) for text in texts]
@@ -125,16 +117,14 @@ class TopicClustering():
                 ),
                 exponentformat='e',
                 showexponent='all',
-                #overlaying='y',
             ),
         )
         fig = go.Figure(data=data, layout=layout)
         return iplot(fig, filename='TF-IDF Graph')
     
     def topic_modeling(self, model_type, document_list, num_topics, num_keywords):
-        stopword_list = self.__get_stopwords()
         topic_list = []
-        self.texts = [[word for word in document.split(" ") if word not in stopword_list] for document in document_list]
+        self.texts = [[word for word in document.split(" ") if word not in self.__get_stopwords()] for document in document_list]
         self.dictionary = corpora.Dictionary(self.texts)    
         self.corpus = [self.dictionary.doc2bow(text) for text in self.texts]
         if model_type == "lsi":
@@ -167,14 +157,12 @@ class TopicClustering():
         return pyLDAvis.display(lda_display)
     
     def get_model_validation_graph(self, model_type, document_list, max_topics):
-        stopword_list = self.__get_stopwords()
         validation_list = []
         num_keywords = 10
         for num_topics in range(2, max_topics+1):
             self.topic_modeling(model_type, document_list, num_topics, num_keywords)
             perplexity, coherence = self.get_model_validation_result()
             validation_list.append([num_topics, perplexity, coherence])
-        
         x = [str(num_topics) for num_topics, perplexity, coherence in validation_list]
         y = [perplexity for num_topics, perplexity, coherence in validation_list]
         z = [coherence for num_topics, perplexity, coherence in validation_list]
@@ -230,7 +218,6 @@ class TopicClustering():
                 ),
                 exponentformat='e',
                 showexponent='all',
-                #overlaying='y',
             ),
             yaxis2=dict(
                 title='Coherence',
@@ -256,14 +243,13 @@ class TopicClustering():
         for i, row in enumerate(self.model[self.corpus]):
             row = sorted(row, key=lambda x: (x[1]), reverse=True)
             for j, (num_topic, prop_topic) in enumerate(row):
-                if j == 0:  # => dominant topic
+                if j == 0:
                     wp = self.model.show_topic(num_topic)
                     topic_keywords = ", ".join([word for word, prop in wp])
                     df_topics_sentences = df_topics_sentences.append(pd.Series([int(num_topic), round(prop_topic,4), topic_keywords]), ignore_index=True)
                 else:
                     break
         df_topics_sentences.columns = ['Dominant_Topic', 'Perc_Contribution', 'Topic_Keywords']
-        
         contents = pd.Series(document_list)
         df_topics_sentences = pd.concat([df_topics_sentences, contents], axis=1)
         df_dominant_topic = df_topics_sentences.reset_index()
@@ -272,12 +258,12 @@ class TopicClustering():
     
     def get_topics_documents(self, document_list):
         df_topics_sentences = pd.DataFrame()
-        for i, row in enumerate(self.model[self.corpus]):
+        for row in self.model[self.corpus]:
             row = sorted(row, key=lambda x: (x[1]), reverse=True)
             for j, (num_topic, prop_topic) in enumerate(row):
                 if j == 0:  # => dominant topic
                     wp = self.model.show_topic(num_topic)
-                    topic_keywords = ", ".join([word for word, prop in wp])
+                    topic_keywords = ", ".join([word for word, _ in wp])
                     df_topics_sentences = df_topics_sentences.append(pd.Series([int(num_topic), round(prop_topic,4), topic_keywords]), ignore_index=True)
                 else:
                     break
@@ -290,7 +276,7 @@ class TopicClustering():
         
         sent_topics_sorteddf = pd.DataFrame()
         sent_topics_outdf_grpd = df_topics_sentences.groupby('Dominant_Topic')
-        for i, grp in sent_topics_outdf_grpd:
+        for _, grp in sent_topics_outdf_grpd:
             sent_topics_sorteddf = pd.concat([sent_topics_sorteddf, 
                                                      grp.sort_values(['Perc_Contribution'], ascending=[0]).head(5)], axis=0)
         sent_topics_sorteddf.reset_index(drop=True, inplace=True)

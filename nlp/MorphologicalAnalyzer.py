@@ -4,11 +4,8 @@ PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
 
 import nltk
-#nltk.data.path.append("/home/ubuntu/euc-rest-api/euc_api/api/eucalyptus/nltk_data")
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-
-import re
 
 class MorphologicalAnalyzer():  
     def __init__(self):

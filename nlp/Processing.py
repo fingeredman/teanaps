@@ -1,12 +1,59 @@
+from teanaps import configure as con
+
 import re
 import time
 from pykospacing import spacing
-from konlpy.tag import Kkma
 
 class Processing():  
     def __init__(self):
-        self.a = 100
+        self.stopword_path = con.STOPWORD_PATH
+        self.stopword_org_path = con.STOPWORD_ORG_PATH
+    
+    def get_stopword(self):
+        stopword_list = []
+        f = open(self.stopword_path, encoding="utf-8")
+        for line in f:
+            stopword_list.append(line.strip())
+        f.close()
+        return stopword_list
+    
+    def add_stopword(self, add_list=[]):
+        f = open(self.stopword_path, "a", encoding="utf-8")
+        if type(add_list) == type(""):
+            add_list = [add_list]
+        for stopword in add_list:
+            f.write(stopword + "\n")
+        f.close()
         
+    def remove_stopword(self, remove_list=[]):
+        stopword_list = self.get_stopword()
+        f = open(self.stopword_path, "w", encoding="utf-8")
+        if type(remove_list) == type(""):
+            remove_list = [remove_list]
+        for stopword in stopword_list:
+            if stopword not in remove_list:
+                f.write(stopword + "\n")
+        f.close()
+        
+    def clear_stopword(self):
+        f = open(self.stopword_path, "w", encoding="utf-8")
+        f.close()
+        
+    def set_org_stopword(self):
+        f = open(self.stopword_path, "w", encoding="utf-8")
+        f_org = open(self.stopword_org_path, encoding="utf-8")
+        for line in f_org:
+            f.write(line)
+        f_org.close()
+        f.close()
+        
+    def is_stopword(self, stopword):
+        stopword_list = self.get_stopword()
+        if stopword in stopword_list:
+            return True
+        else:
+            return False
+    
     def start_timer(self):
         self.start = time.time()
         
@@ -51,7 +98,6 @@ class Processing():
         return sentence
     
     def get_plain_text(self, sentence, pos_list=[], word_index=0, pos_index=1, tag_index=1, tag=True):
-        plain_text_sentence_list = []
         plain_text_sentence = ""
         for token in sentence:
             if len(pos_list) > 0:

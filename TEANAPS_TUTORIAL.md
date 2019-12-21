@@ -255,7 +255,7 @@ label_list, edge_list = sa.get_sentence_tree(sentence, sa_result)
 sa.draw_sentence_tree(sentence, label_list, edge_list)
 ```
 Output:
-![teanaps_logo_wide](./data/sentence_tree.png)
+![teanaps_logo_wide](./data/sample_image/sentence_tree.png)
 
 ### 텍스트 분석 (Text Analysis)
 - `TEANAPS`를 활용한 텍스트 분석 방법은 텍스트 마이닝 강의자료를 참고해주세요. [(Link)](https://github.com/fingeredman/text-mining-for-practice)

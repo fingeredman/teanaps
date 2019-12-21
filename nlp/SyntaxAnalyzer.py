@@ -1,4 +1,3 @@
-from teanaps import configure as con
 from teanaps.visualization import GraphVisualizer
 
 class SyntaxAnalyzer():  

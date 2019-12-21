@@ -49,9 +49,7 @@ class SentimentAnalysis():
         attn_data = self.__get_attention(self.model, sentence)
         gv = GraphVisualizer()
         x = attn_data["text"]
-        y = x
         x_data = []
-        y_data = []
         z_data = []
         for x_index in range(len(x)):
             if x[x_index].strip() == "":
@@ -80,7 +78,6 @@ class SentimentAnalysis():
     
     def get_weight(self, sentence):
         attn_data = self.__get_attention(self.model, sentence)
-        gv = GraphVisualizer()
         token_list = attn_data["text"]
         weight_list = []
         for token_index in range(len(token_list)):
@@ -128,7 +125,6 @@ class SentimentAnalysis():
                               num_heads=predefined_args["num_heads"],
                               scaled=predefined_args["scaled"],
                               dropout=predefined_args["dropout"],
-                              #output_attention=False, output_all_encodings=False,
                               output_attention=True, output_all_encodings=False,
                               use_residual=predefined_args["use_residual"])
         net = BERTModel(encoder, len(vocab_b_obj.idx_to_token),

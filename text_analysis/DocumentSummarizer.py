@@ -3,25 +3,12 @@ PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
 
 from gensim.summarization.summarizer import summarize
-from gensim.summarization import keywords
-from newspaper import Article #!pip install newspaper3k
-from konlpy.tag import Kkma
-from konlpy.tag import Twitter
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.preprocessing import normalize
-import numpy as np
 
-import sumy
 from sumy.parsers.html import HtmlParser
-from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
-from sumy.summarizers.lsa import LsaSummarizer
 from sumy import summarizers
 from sumy.nlp.stemmers import Stemmer
 from sumy.utils import get_stop_words
-
-from IPython.display import display
 
 class DocumentSummarizer():  
     def __init__(self):
@@ -31,7 +18,7 @@ class DocumentSummarizer():
         # TextRank
         if summarizer_type == "textrank":
             self.result_list = summarize(self.document, ratio=0.3, word_count=None, split=True)
-        #PyTextRank
+        # PyTextRank
         elif summarizer_type == "lsa":
             parser = HtmlParser.from_string(self.document, None,tokenizer=Tokenizer("english"))
             stemmer = Stemmer("english")

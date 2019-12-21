@@ -11,7 +11,7 @@ init_notebook_mode(connected=True)
 
 from IPython.display import display
 
-from igraph import Graph, EdgeSeq
+from igraph import Graph
 
 class GraphVisualizer():  
     def __init__(self):
@@ -251,7 +251,7 @@ class GraphVisualizer():
         annotation_list = []
         for k in range(L):
             annotation_list.append(dict(text=label_list[k], x=position[k][0], y=2*M-position[k][1], textangle=0,
-                                    xref='x1', yref='y1', font=dict(color=font_color, size=font_size), showarrow=False))
+                                        xref='x1', yref='y1', font=dict(color=font_color, size=font_size), showarrow=False))
         graph_meta = {"height": 300, "width": 20*len(sentence) if len(sentence) > 50 else 1000,
                       "annotations": annotation_list, "xaxis": {}, "yaxis": {}}
         graph_meta["xaxis"]["showgrid"] = False

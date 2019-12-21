@@ -34,8 +34,8 @@ class NamedEntityRecognizer():
         x_input = torch.tensor(list_of_input_ids).long()
         list_of_pred_ids, _ = self.model(x_input)
         list_of_ner_word, _ = self.__ner_decoder(input_text=input_text, 
-                                                                     list_of_input_ids=list_of_input_ids, 
-                                                                     list_of_pred_ids=list_of_pred_ids)
+                                                 list_of_input_ids=list_of_input_ids, 
+                                                 list_of_pred_ids=list_of_pred_ids)
         list_of_ner_word.sort(key=lambda elem: len(elem[2]), reverse=True)
         return list_of_ner_word
     
@@ -44,8 +44,8 @@ class NamedEntityRecognizer():
         x_input = torch.tensor(list_of_input_ids).long()
         list_of_pred_ids, _ = self.model(x_input)
         _, decoding_ner_sentence = self.__ner_decoder(input_text=input_text, 
-                                                                     list_of_input_ids=list_of_input_ids, 
-                                                                     list_of_pred_ids=list_of_pred_ids)
+                                                      list_of_input_ids=list_of_input_ids,
+                                                      list_of_pred_ids=list_of_pred_ids)
         return decoding_ner_sentence
     
     def draw_sentence_weight(self, sentence):
