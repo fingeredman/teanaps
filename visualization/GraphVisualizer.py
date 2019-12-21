@@ -15,7 +15,19 @@ from igraph import Graph, EdgeSeq
 
 class GraphVisualizer():  
     def __init__(self):
-        None
+        self.watermark_image = [{
+            "source": con.WATERMARK_URL,
+            "xref": "paper",
+            "yref": "paper",
+            "x": 0.5,
+            "y": 0.6,
+            "sizex": 0.7,
+            "sizey": 0.7,
+            "xanchor": "center",
+            "yanchor": "center",
+            "opacity": 0.3,
+            "layer": "above"
+        }]
         
     def set_plotly(self):
             import IPython
@@ -40,13 +52,13 @@ class GraphVisualizer():
                 "type": data_meta["graph_type"],
                 "x": data_meta["x_data"],
                 "y": data_meta["y_data"],
-                "yaxis": data_meta["y_axis"]
+                "yaxis": data_meta["y_axis"],
             }
             if data["type"] == "histogram":
                 data["histfunc"] = "sum"
             data_list.append(data)
         # Graph
-        layout = {
+        graph_meta = {
             "title": graph_meta["title"],
             "xaxis": {
                 "exponentformat": "e",
@@ -73,9 +85,10 @@ class GraphVisualizer():
                 "tickfont": {"color": "black", "size": 10},
                 "title": graph_meta["y2_name"],
                 "titlefont": {"color": "black", "size": 10}
-            }
+            },
+            "images": self.watermark_image
         }
-        fig = go.Figure(data=data_list, layout=layout)
+        fig = go.Figure(data=data_list, layout=graph_meta)
         return iplot(fig, filename=graph_meta["title"])
 
     def draw_matrix(self, data_meta, graph_meta):
@@ -106,7 +119,8 @@ class GraphVisualizer():
             "xaxis": {
                 "tickangle": graph_meta["x_tickangle"],
                 "title": graph_meta["x_name"],
-            }
+            },
+            "images": self.watermark_image
         }
         fig = go.Figure(data=data_list, layout=graph_meta)
         return iplot(fig, filename='labelled-heatmap')
@@ -140,6 +154,7 @@ class GraphVisualizer():
             },
             "width": 1000,
             "height": 1000,
+            "images": self.watermark_image
         }
         fig = go.Figure(data=data_list, layout=layout)
         return iplot(fig, filename=graph_meta["title"])
@@ -192,17 +207,18 @@ class GraphVisualizer():
                 trace["yaxis"] = yaxis
                 fig.append_trace(trace, tokenized_index+1, 1)
         # Graph
-        layout = fig["layout"]
-        for axis in layout.keys():
-            layout[axis]["showgrid"] = False
-            layout[axis]["showline"] = False
-            layout[axis]["showticklabels"] = False
-            layout[axis]["zeroline"] = False
-        layout["barmode"] = "stack"
-        layout["showlegend"] = False
-        layout["margin"] = {"b": 30, "l": 20, "r": 20, "t": 10}
-        layout["annotations"] = annotations
-        layout["height"] = 30 + (50*len(tokenized_token_list))
+        graph_meta = fig["layout"]
+        for axis in graph_meta.keys():
+            graph_meta[axis]["showgrid"] = False
+            graph_meta[axis]["showline"] = False
+            graph_meta[axis]["showticklabels"] = False
+            graph_meta[axis]["zeroline"] = False
+        graph_meta["barmode"] = "stack"
+        graph_meta["showlegend"] = False
+        graph_meta["margin"] = {"b": 30, "l": 20, "r": 20, "t": 10}
+        graph_meta["annotations"] = annotations
+        graph_meta["height"] = 30 + (50*len(tokenized_token_list))
+        graph_meta["images"] = self.watermark_image
         return iplot(fig, filename="SENTENCE ATTENTION")
     
     def draw_sentence_tree(self, sentence, label_list, edge_list):
@@ -250,5 +266,6 @@ class GraphVisualizer():
         graph_meta["barmode"] = "stack"
         graph_meta["showlegend"] = False
         graph_meta["margin"] = {"b": 30, "l": 20, "r": 20, "t": 10}
+        graph_meta["images"] = self.watermark_image
         fig = go.Figure(data=[edge_data, node_data], layout=graph_meta)
         return iplot(fig, filename="SENTENCE TREE")
