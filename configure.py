@@ -76,6 +76,16 @@ NER_UTIL_PATH = {
     "index_to_entity": "teanaps/model/ner/index_to_entity",
     "tokenizer": "teanaps/model/ner/tokenizer"
 }
+'''
+NER_MODEL_PATH = "teanaps/model/ner_article/ner_article_model_20191215.bin"
+NER_UTIL_PATH = {
+    "token_to_index": "teanaps/model/ner_article/token_to_index",
+    "index_to_token": "teanaps/model/ner_article/index_to_token",
+    "entity_to_index": "teanaps/model/ner_article/entity_to_index",
+    "index_to_entity": "teanaps/model/ner_article/index_to_entity",
+    "tokenizer": "teanaps/model/ner_article/tokenizer"
+}
+'''
 BERT_CONFIG = {
     "attention_probs_dropout_prob": 0.1,
     "hidden_act": "gelu",
@@ -139,6 +149,15 @@ WINDOW_SIZE = 2
 MAX_WORKERS = 5
 
 # -----------------------------------------
+# * Visualization *
+# -----------------------------------------
+
+# -----------------------------------------
+# teanaps.visualization.GraphVisualizer
+# -----------------------------------------
+WATERMARK_URL = "https://raw.githubusercontent.com/fingeredman/teanaps/master/data/teanaps_logo_no-bg.png"
+
+# -----------------------------------------
 # * Handler *
 # -----------------------------------------
 
@@ -146,4 +165,4 @@ MAX_WORKERS = 5
 # teanaps.handler.MESSAGE HANDLER
 # -----------------------------------------
 # For SLACK
-#WEBHOOK_URL = "https://hooks.slack.com/services/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"
+#WEBHOOK_URL = "https://hooks.slack.com/services/TNLDWA5B7/BN-----JS/GZ0f--------------FIaug7"
