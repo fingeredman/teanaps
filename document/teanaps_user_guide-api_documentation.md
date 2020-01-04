@@ -710,22 +710,22 @@
 ##### 3.1. `teanaps.text_analysis.TfidfCalculator`
   - TBU
 
-##### 3.1. `teanaps.text_analysis.DocumentClustering`
+##### 3.2. `teanaps.text_analysis.DocumentClustering`
   - TBU
 
-##### 3.1. `teanaps.text_analysis.TopicClustering`
+##### 3.3. `teanaps.text_analysis.TopicClustering`
   - TBU
 
-##### 3.1. `teanaps.text_analysis.CoWordCalculator`
+##### 3.4. `teanaps.text_analysis.CoWordCalculator`
   - TBU
 
-##### 3.1. `teanaps.text_analysis.SentimentAnalysis`
+##### 3.5. `teanaps.text_analysis.SentimentAnalysis`
   - TBU
 
-##### 3.1. `teanaps.text_analysis.DocumentSummarizer`
+##### 3.6. `teanaps.text_analysis.DocumentSummarizer`
   - TBU
 
-##### 3.1. `teanaps.text_analysis.KeyphraseExtraction`
+##### 3.7. `teanaps.text_analysis.KeyphraseExtraction`
   - TBU
 
 #### 4. `teanaps.visualization`
