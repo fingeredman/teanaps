@@ -1,4 +1,4 @@
-from teanaps.nlp import preprocessing
+from teanaps.nlp import Processing
 from teanaps import configure as con
 PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
@@ -9,7 +9,7 @@ from nltk.stem import WordNetLemmatizer
 
 class MorphologicalAnalyzer():  
     def __init__(self):
-        self.processing = preprocessing()
+        self.processing = Processing()
         self.lemmatizer = WordNetLemmatizer()
         self.set_tagger(con.POS_TAGGER)
         self.ner_lexicon = {}

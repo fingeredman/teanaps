@@ -137,7 +137,7 @@
 > Notes :  
 > - `QueueHandler`는 `thread_count`의 수 만큼 요청된 함수를 동시에 순차적으로 처리합니다.
 
-- `teanaps.nlp. QueueHandler.add_lambda(function, parmeter_dict)`
+- `teanaps.nlp.QueueHandler.add_lambda(function, parmeter_dict)`
   - 수행할 작업들이 저장된 큐 (Queue)에 작업을 추가합니다.`Webhook URL`에 연결된 `Slack`으로 메시지를 발송합니다.
   - Parameters
     - *function (function) : 특정 작업을 수행하는 함수.*
@@ -148,6 +148,19 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
+    > import time
+    > 
+    > def sample_function(parmeter_dict):
+    >     print_list = parmeter_dict["print_list"]
+    >     for i in print_list:
+    >         print(i, end="")
+    >         time.sleep(1)
+    >     result = {
+    >         "request_id": parmeter_dict["request_id"], 
+    >         "result": "complete."
+    >     }
+    >     return result
+    > 
     > for i in range(3):
     >     parmeter_dict = {
     >         "request_id" : i,
@@ -155,8 +168,17 @@
     >     }
     >     qh.add_lambda(sample_function, parmeter_dict)
     > ```
+	> Output (in Jupyter Notebook) :
+    > ```python
+    > aaabbbcccddd
+    > done : 2 lamda left.
+    > 
+    > done : 1 lamda left.
+    > 
+    > done : 0 lamda left.
+    > ```
 
-- `teanaps.nlp. QueueHandler.get_result()`
+- `teanaps.nlp.QueueHandler.get_result()`
   - 수행할 작업들이 저장된 큐 (Queue)에 작업을 추가합니다.`Webhook URL`에 연결된 `Slack`으로 메시지를 발송합니다.
   - Parameters
     - *None*
@@ -296,7 +318,7 @@
     > result = ner.draw_weight(sentence)
     > ```
     > Output (in Jupyter Notebook) :  
-    > ![histogram](./data/sample_image/histogram.png)
+    > ![sentence_weight_histogram](../data/sample_image/sentence_weight_histogram.png)
 
 - `teanaps.nlp.NamedEntityRecognizer.draw_sentence_weight(sentence)`
   - 문장에서 개체로 인식된 형태소에 대한 가중치를 text attention 그래프로 출력합니다.
@@ -312,7 +334,7 @@
     > result = ner.draw_weight(sentence)
     > ```
     > Output (in Jupyter Notebook) :  
-    > ![sentence_weight](./data/sample_image/sentence_weight.png)
+    > ![sentence_weight](../data/sample_image/sentence_weight.png)
 
 ##### 2.3. `teanaps.nlp.SyntaxAnalyzer`
 
@@ -390,7 +412,7 @@
     > sa.draw_sentence_tree(sentence, label_list, edge_list)
     > ```
     > Output (in Jupyter Notebook) :  
-    > ![sentence_tree](./data/sample_image/sentence_tree.png)
+    > ![sentence_tree](../data/sample_image/sentence_tree.png)
 
 ##### 2.4. `teanaps.nlp.Processing` (pre-processing)
 
@@ -705,7 +727,7 @@
     > 
     > data_meta = {
     >     "graph_type": "histogram",
-    >     "data_name": "Y",
+    >     "data_name": "Z",
     >     "x_data": x,
     >     "y_data": z,
     >     "y_axis": "y1"
@@ -713,7 +735,7 @@
     > data_meta_list.append(data_meta)
     > 
     > graph_meta = {
-    >     "title": "GRAPH",
+    >     "title": "HISTOGRAM",
     >     "x_tickangle": 0,
     >     "y1_tickangle": 0,
     >     "y2_tickangle": 0,
@@ -725,9 +747,7 @@
     > gv.draw_histogram(data_meta_list, graph_meta)
     > ```
     > Output (in Jupyter Notebook) :
-    > ```python
-    > ![histogram](./data/sample_image/histogram.png)
-    > ```
+    > ![histogram](../data/sample_image/histogram.png)
 
 - `teanaps.visualization.GraphVisualizer.draw_line_graph(self, data_meta_list, graph_meta)`
   - 입력된 그래프 메타정보를 바탕으로 생성된 라인 그래프를 출력합니다.
@@ -757,7 +777,7 @@
     > 
     > data_meta = {
     >     "graph_type": "scatter",
-    >     "data_name": "Y",
+    >     "data_name": "Z",
     >     "x_data": x,
     >     "y_data": z,
     >     "y_axis": "y2"
@@ -765,7 +785,7 @@
     > data_meta_list.append(data_meta)
     > 
     > graph_meta = {
-    >     "title": "GRAPH",
+    >     "title": "LINE GRAPH",
     >     "x_tickangle": 0,
     >     "y1_tickangle": 0,
     >     "y2_tickangle": 0,
@@ -777,9 +797,7 @@
     > gv.draw_line_graph(data_meta_list, graph_meta)
     > ```
     > Output (in Jupyter Notebook) :
-    > ```python
-    > ![line_graph](./data/sample_image/line_graph.png)
-    > ```
+    > ![line_graph](../data/sample_image/line_graph.png)
 
 - `teanaps.visualization.GraphVisualizer.draw_matrix(self, data_meta_list, graph_meta)`
   - 입력된 그래프 메타정보를 바탕으로 생성된 매트릭스 그래프를 출력합니다.
@@ -811,7 +829,7 @@
     > }
     > 
     > graph_meta = {
-    >     "title": "Matrix",
+    >     "title": "MATRIX",
     >     "height": 1000, 
     >     "width": 1000,
     >     "y_tickangle": 0,
@@ -823,9 +841,7 @@
     > gv.draw_matrix(data_meta, graph_meta)
     > ```
     > Output (in Jupyter Notebook) :
-    > ```python
-    > ![matrix](./data/sample_image/matrix.png)
-    > ```
+    > ![matrix](../data/sample_image/matrix.png)
 
 - `teanaps.visualization.GraphVisualizer.draw_scatter(self, data_meta_list, graph_meta)`
   - 입력된 그래프 메타정보를 바탕으로 생성된 산점도 그래프를 출력합니다.
@@ -865,7 +881,7 @@
     > data_meta_list.append(data_meta)
     > 
     > graph_meta = {
-    >     "title": "GRAPH",
+    >     "title": "SCATTER",
     >     "x_name": "X",
     >     "y_name": "Y"
     > }
@@ -873,10 +889,7 @@
     > gv.draw_scatter(data_meta_list, graph_meta)
     > ```
     > Output (in Jupyter Notebook) :
-    > ```python
-    > ![scatter](./data/sample_image/scatter.png)
-    > ```
-
+    > ![scatter](../data/sample_image/scatter.png)
 
 ##### 4.2. `teanaps.visualization.TextVisualizer`
 
@@ -906,9 +919,7 @@
     > tv.draw_sentence_attention(token_list, weight_list)
     > ```
     > Output (in Jupyter Notebook) :
-    > ```python
-    > ![sentence_attention](./data/sample_image/sentence_attention.png)
-    > ```
+    > ![sentence_attention](../data/sample_image/sentence_attention.png)
 
 - `teanaps.visualization.Textisualizer.draw_wordcloud(data_meta, graph_meta)`
   - 단어와 그 가중치를 바탕으로 생성된 워드클라우드 이미지를 출력합니다.
@@ -953,9 +964,7 @@
     > tv.draw_wordcloud(data_meta, graph_meta)
     > ```
     > Output (in Jupyter Notebook) :
-    > ```python
-    > ![wordcloud](./data/sample_image/wordcloud.png)
-    > ```
+    > ![wordcloud](../data/sample_image/wordcloud.png)
 
 - `teanaps.visualization.Textisualizer.draw_network(data_meta, graph_meta)`
   - 단어와 그 가중치, 그리고 순서쌍을 바탕으로 생성된 네트워크 이미지를 출력합니다.
@@ -992,9 +1001,7 @@
     > tv.draw_network(data_meta, graph_meta)
     > ```
     > Output (in Jupyter Notebook) :
-    > ```python
-    > ![network](./data/sample_image/network.png)
-    > ```
+    > ![network](../data/sample_image/network.png)
 
 <!--
 #### 5. `teanaps.machine_learning`

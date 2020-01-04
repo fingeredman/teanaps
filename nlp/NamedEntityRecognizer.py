@@ -1,5 +1,6 @@
 from teanaps import configure as con
 from teanaps.visualization import GraphVisualizer
+from teanaps.visualization import TextVisualizer
 
 import torch
 from torch import nn
@@ -53,8 +54,8 @@ class NamedEntityRecognizer():
         weight = self.get_weight(sentence)
         token_list = weight["token_list"]
         weight_list = weight["weight_list"]
-        gv = GraphVisualizer()
-        return gv.draw_sentence_attention(token_list, weight_list)
+        tv = TextVisualizer()
+        return tv.draw_sentence_attention(token_list, weight_list)
     
     def draw_weight(self, sentence):
         attn_data = self.__get_attention(self.model, sentence)
@@ -75,7 +76,7 @@ class NamedEntityRecognizer():
         }
         data_meta_list.append(data_meta)
         graph_meta = {
-            "title": "BERT NER WEIGHT",
+            "title": "NER WEIGHT",
             "x_tickangle": -45,
             "y1_tickangle": 0,
             "y2_tickangle": 0,

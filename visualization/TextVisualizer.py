@@ -164,7 +164,7 @@ class TextVisualizer():
         # Graph
         fig = go.Figure(data=[edge_trace, node_trace], 
                         layout=go.Layout(title=graph_meta["title"], titlefont=dict(size=16),
-                                         showlegend=False, hovermode='closest',
+                                         showlegend=False, hovermode='closest', images=self.watermark_image,
                                          width=graph_meta["width"], height=graph_meta["height"],margin=dict(b=20,l=5,r=5,t=40),
                                          xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
                                          yaxis=dict(showgrid=False, zeroline=False, showticklabels=False)))

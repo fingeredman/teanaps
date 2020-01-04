@@ -17,6 +17,7 @@ PLOTLY_API_KEY = "7xQjXPiDYPi1iIrrT3ID"
 # teanaps.nlp.Processing
 # -----------------------------------------
 STOPWORD_PATH = "teanaps/data/stopword.txt"
+STOPWORD_ORG_PATH = "teanaps/data/stopword_org.txt"
 
 # -----------------------------------------
 # teanaps.nlp.MorphologicalAnalyzer
@@ -55,7 +56,7 @@ POS_TAG_MAP = {
     "Conjunction": "MAJ", "Exclamation": "IC", "Josa": "JC", "PreEomi": "EP", "Eomi": "EC",
     "Suffix": "XPN", "Unknown": "UN", "Punctuation": "SW", "Alpha": "OL", "Number": "SN",
     "Foreign": "OL", "Modifier": "MM", "Hashtag": "SW", "KoreanParticle": "SW", "ScreenName": "SW",
-    "Email": "SW", "VerbPrefix": "XPN", "URL": "SW"
+    "Email": "SW", "VerbPrefix": "XPN", "URL": "SW", "CashTag": "SW"
 }
 LEMMATIZER_POS_MAP = {'J': 'a', 'N': 'n', 'R': 'r', 'V': 'v'}
 SYMBOLS_POS_MAP = {
@@ -155,7 +156,8 @@ MAX_WORKERS = 5
 # -----------------------------------------
 # teanaps.visualization.GraphVisualizer
 # -----------------------------------------
-WATERMARK_URL = "https://raw.githubusercontent.com/fingeredman/teanaps/master/data/teanaps_logo_no-bg.png"
+WATERMARK_URL = "https://raw.githubusercontent.com/fingeredman/teanaps/master/data/logo/teanaps_logo_no-bg.png"
+WORDCLOUD_FONT_PATH = "teanaps/data/font/NanumSquareB.otf"
 
 # -----------------------------------------
 # * Handler *
