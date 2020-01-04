@@ -51,6 +51,6 @@
 - [PyTorch-Transformers](https://pypi.org/project/pytorch-transformers/) - *pip install pytorch-transformers*
 - [Transformers](https://pypi.org/project/transformers/) - *pip install transformers*
 - [GluonNLP](https://pypi.org/project/gluonnlp/) - *pip install gluonnlp*
-- [mxnet](https://) - *pip install --upgrade mxnet>=1.5.0*
+- [mxnet](https://pypi.org/project/mxnet/) - *pip install --upgrade mxnet>=1.5.0*
 - [iGraph](https://pypi.org/project/igraph-python/) - *pip install python-igraph*
-- [mecab](http://) - *Install MeCab for [Mac/Linux](http://), or [Windows](http://)*
+- [mecab](https://bitbucket.org/eunjeon/mecab-ko/src/master/) - *Install MeCab for [Mac/Linux](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/), or [Windows](https://cleancode-ws.tistory.com/97)*

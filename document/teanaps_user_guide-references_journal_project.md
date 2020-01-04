@@ -12,7 +12,8 @@
 ---
 ## References
 - Install KoNLPy in colaboratory [(Link)](https://github.com/konlpy/konlpy/issues/188#issuecomment-383550386)  
-- MeCab PoS tagger in Windows [(Link)](https://cleancode-ws.tistory.com/97)  
+- MeCab PoS tagger for Mac/Linux [(Link)](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/)  
+- MeCab PoS tagger for Windows [(Link)](https://cleancode-ws.tistory.com/97)  
 - KoBERT [(Link)](https://github.com/sktbrain/kobert)  
 - Pytorch-BERT-CRF-NER [(Link)](https://github.com/eagle705/pytorch-bert-crf-ner)  
 
