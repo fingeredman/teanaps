@@ -13,7 +13,8 @@
 ## API Documents
 
 ### `TEANAPS` Architecture
-
+[FileHandler](#1-teanapshandler)
+[FileHandler](https://github.com/fingeredman/teanaps/blob/master/document/teanaps_user_guide-api_documents.md#1-teanapshandler)
 > ```
 > teanaps
 >      ∟ handler
