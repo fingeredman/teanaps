@@ -2,12 +2,12 @@
 
 ---
 ## Contents
-- [Install `TEANAPS`](./document/teanaps_user_guide-install_teanaps.md)
-- [API Documents](./document/teanaps_user_guide-api_documents.md)
-- [Tutorial](./document/teanaps_user_guide-tutorial.md)
-- [References](./document/teanaps_user_guide-references_journal_project.md)
-- [Journal & Project](./document/teanaps_user_guide-references_journal_project.md)
-- [Appendix](./document/teanaps_user_guide-appendix.md)
+- [Install `TEANAPS`](./teanaps_user_guide-install_teanaps.md)
+- [API Documents](./teanaps_user_guide-api_documents.md)
+- [Tutorial](./teanaps_user_guide-tutorial.md)
+- [References](./teanaps_user_guide-references_journal_project.md)
+- [Journal & Project](./teanaps_user_guide-references_journal_project.md)
+- [Appendix](./teanaps_user_guide-appendix.md)
 
 ---
 ## API Documents
@@ -296,7 +296,7 @@
     > result = ner.draw_weight(sentence)
     > ```
     > Output (in Jupyter Notebook) :  
-    > ![teanaps_logo_wide](./data/sample_image/sentence_tree.png)
+    > ![histogram](./data/sample_image/histogram.png)
 
 - `teanaps.nlp.NamedEntityRecognizer.draw_sentence_weight(sentence)`
   - 문장에서 개체로 인식된 형태소에 대한 가중치를 text attention 그래프로 출력합니다.
@@ -312,7 +312,7 @@
     > result = ner.draw_weight(sentence)
     > ```
     > Output (in Jupyter Notebook) :  
-    > ![teanaps_logo_wide](./data/sample_image/sentence_tree.png)
+    > ![sentence_weight](./data/sample_image/sentence_weight.png)
 
 ##### 2.3. `teanaps.nlp.SyntaxAnalyzer`
 
