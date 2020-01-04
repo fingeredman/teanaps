@@ -30,7 +30,7 @@ class NamedEntityRecognizer():
         self.vocab = con.VOCAB
         self.__load_ner_model()
         
-    def ner(self, input_text):
+    def parse(self, input_text):
         input_text = input_text.lower()
         list_of_input_ids = self.__sentence_to_token_index_list([input_text])
         x_input = torch.tensor(list_of_input_ids).long()
@@ -41,7 +41,7 @@ class NamedEntityRecognizer():
         list_of_ner_word.sort(key=lambda elem: len(elem[2]), reverse=True)
         return list_of_ner_word
     
-    def ner_sentence(self, input_text):
+    def parse_sentence(self, input_text):
         list_of_input_ids = self.__sentence_to_token_index_list([input_text])
         x_input = torch.tensor(list_of_input_ids).long()
         list_of_pred_ids, _ = self.model(x_input)

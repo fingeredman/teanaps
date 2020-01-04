@@ -4,7 +4,7 @@ class SyntaxAnalyzer():
     def __init__(self):
         None
     
-    def syntax(self, word_tagged_pos_list, word_tagged_ner_list):
+    def parse(self, word_tagged_pos_list, word_tagged_ner_list):
         sa_result = []
         ner_pos = "NNP"
         word_tagged_ner_list.sort(key=lambda elem: len(elem[0]), reverse=True)
@@ -93,6 +93,7 @@ class SyntaxAnalyzer():
             eojeol_root.append(sentence[phrase_list[0][0][3][0]:phrase_list[-1][-1][3][1]] + "<br>/" + eojeol_type)
             #syntax_dict[eojeol_type].append(phrase_list[:-1])
             edge_list.append((0, len(eojeol_root)))
+            print(phrase_list)
             for phrase in phrase_list:
                 phrase_type = phrase[-1][1][0]
                 phrase_root.append(sentence[phrase[0][3][0]:phrase[-1][3][1]] + "<br>/" + phrase_type)

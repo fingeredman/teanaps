@@ -13,35 +13,39 @@
 ## API Documents
 
 ### `TEANAPS` Architecture
-[FileHandler](#1-teanapshandler)
-[FileHandler](https://github.com/fingeredman/teanaps/blob/master/document/teanaps_user_guide-api_documents.md#1-teanapshandler)
-> ```
-> teanaps
->      ∟ handler
->             ∟ FileHandler
->             ∟ MessageHandler
->             ∟ QueueHandler
->      ∟ nlp
->             ∟ MorphologicalAnalyzer
->             ∟ NamedEntityRecognizer
->             ∟ SyntaxAnalyzer
->             ∟ Processing.py
->      ∟ text_analysis
->             ∟ TfidfCalculator
->             ∟ DocumentClustering
->             ∟ TopicClustering
->             ∟ CoWordCalculator
->             ∟ SentimentAnalysis
->             ∟ DocumentSummarizer
->             ∟ KeyphraseExtraction
->      ∟ visualization
->             ∟ GraphVisualizer
->             ∟ TextVisualizer
->      ∟ machine_learning
->             ∟ Regression
->             ∟ Classification
->             ∟ Clustering
-> ```
+
+├─teanaps  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [handler](#1-teanapshandler)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [FileHandler](#11-teanapshandlerfilehandler)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [MessageHandler](#12-teanapshandlermessagehandler)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ [QueueHandler](#13-teanapshandlerqueuehandler)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [nlp](#2-teanapsnlp)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [MorphologicalAnalyzer](#21-teanapsnlpmorphologicalanalyzer)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [NamedEntityRecognizer](#22-teanapsnlpnamedentityrecognizer)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [SyntaxAnalyzer](#23-teanapsnlpsyntaxanalyzer)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [Processing](#24-teanapsnlpprocessing)   
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ [Embedding](#25-teanapsnlpembedding)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [text_analysis](#3-teanapstext_analysis)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [TfidfCalculator](#3-teanapstext_analysistfidfcalculator)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [DocumentClustering](#3-teanapstext_analysisdocumentclustering)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [TopicClustering](#3-teanapstext_analysistopicclustering)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [CoWordCalculator](#3-teanapstext_analysiscowordcalculator)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [SentimentAnalysis](#3-teanapstext_analysissentimentanalysis)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [DocumentSummarizer](#3-teanapstext_analysisdocumentsummarizer)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ [KeyphraseExtraction](#3-teanapstext_analysiskeyphraseextraction)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [visualization](#4-visualization)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [GraphVisualizer](#4-visualizationgraphvisualizer)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ [TextVisualizer](#4-visualizationtextvisualizer)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ [machine_learning](#5-teanapsmachine_learning)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [Regression](#5-teanapsmachine_learningregression)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ [Classification](#5-teanapsmachine_learningclassification)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ [Clustering](#5-teanapsmachine_learningclustering)  
+└─────────────────────────────────────────
 
 ### Methods
 #### 1. `teanaps.handler`
@@ -233,13 +237,16 @@
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
-    > [('teanaps', 'OL', (0, 7)), ('는', 'JX', (7, 8)), ('텍스트', 'NNG', (9, 12)), ('마이닝', 'NNP', (13, 16)), ('을', 'JKO', (16, 17)), ('위한', 'VV+ETM', (18, 20)), ('python', 'OL', (21, 27)), ('패키지', 'NNG', (28, 31)), ('입니다', 'VCP+EF', (32, 35)), ('.', 'SW', (35, 36))]
+    > [('teanaps', 'OL', (0, 7)), ('는', 'VV', (7, 8)), ('텍스트', 'NNG', (9, 12)), ('마', 'NNG', (13, 14)), ('이닝', 'NNG', (14, 16)), ('을', 'JC', (16, 17)), ('위', 'NNG', (18, 19)), ('한', 'JC', (19, 20)), ('python', 'OL', (21, 27)), ('패키지', 'NNG', (28, 31)), ('입니다', 'VA', (32, 35)), ('.', 'SW', (35, 36))]
     > ```
+
+    > Notes :  
+    > - `TEANAPS`의 품사태그는 세종말뭉치 품사태그를 기본으로 사용합니다. 품사태그표는 [Appendix](./teanaps_user_guide-appendix.md#teanaps-형태소-품사태그표)를 참고해주세요.
 
 - `teanaps.nlp.MorphologicalAnalyzer.set_tagger(tagger)`
   - 형태소 분석기를 선택합니다. 형태소 분석기는 `MeCab`, `Okt (Twitter)`, `Kkma`, `NLTK` 총 4가지를 지원합니다. 형태소 분석기를 선택하지 않으면 기본으로 한국어는 `OKt`, 영어는 `NLTK` 형태소 분석기를 사용합니다.
   - Parameters
-    - *tagger (str) : 형태소 분석기 {"okt", mecab", "kkma"} 중 하나 입력*
+    - *tagger (str) : 형태소 분석기 {"okt", "mecab", "kkma"} 중 하나 입력*
   - Returns
     - *None*
   - Examples
@@ -249,6 +256,14 @@
     > ma.set_tagger("okt")
     > # or ma.set_tagger("mecab")
     > # or ma.set_tagger("kkma")
+    >
+    > sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다."
+    > result = ma.parse(sentence)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > [('teanaps', 'OL', (0, 7)), ('는', 'JX', (7, 8)), ('텍스트', 'NNG', (9, 12)), ('마이닝', 'NNP', (13, 16)), ('을', 'JKO', (16, 17)), ('위한', 'VV+ETM', (18, 20)), ('python', 'OL', (21, 27)), ('패키지', 'NNG', (28, 31)), ('입니다', 'VCP+EF', (32, 35)), ('.', 'SW', (35, 36))]
     > ```
 
 ##### 2.2. `teanaps.nlp.NamedEntityRecognizer `
@@ -280,11 +295,12 @@
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
-    > [('teanaps', 'ORG', (0, 7)), ('python', 'CVL', (0, 27))]
+    > [('teanaps', 'ORG', (0, 7)), ('python 패키지', 'CVL', (18, 31))]
     > ```
 
     > Notes :  
     > - `TEANAPS`의 개체명 태그는 [총 16종](http://)으로 구분됩니다. 태그 종류 및 구분은 [정보통신단체표준(TTAS)](http://committee.tta.or.kr/data/standard_view.jsp?nowPage=32&pk_num=TTAK.KO-10.0852&nowSu=318&rn=1)을 따릅니다.
+    > - 개체명 태그표는 [Appendix](./teanaps_user_guide-appendix.md#teanaps-개체명-태그표)를 참고해주세요.
 
 - `teanaps.nlp.NamedEntityRecognizer.parse_sentence(sentence)`
   - 문장에서 개체명을 인식하고 그 결과를 반환합니다.
@@ -302,7 +318,7 @@
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
-    > "<TEANAPS:ORG>는 텍스트 마이닝을 위한 <python:CVL> 패키지 입니다."
+    > "<TEANAPS:ORG>는 텍스트 마이닝을 위한 <python 패키지:CVL> 입니다."
     > ```
 
 - `teanaps.nlp.NamedEntityRecognizer.draw_weight(sentence)`
@@ -362,13 +378,13 @@
     > ```python
     > #sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다."
     > #ma_result = [('teanaps', 'OL', (0, 7)), ('는', 'JX', (7, 8)), ('텍스트', 'NNG', (9, 12)), ('마이닝', 'NNP', (13, 16)), ('을', 'JKO', (16, 17)), ('위한', 'VV+ETM', (18, 20)), ('python', 'OL', (21, 27)), ('패키지', 'NNG', (28, 31)), ('입니다', 'VCP+EF', (32, 35)), ('.', 'SW', (35, 36))]
-    > #ner_result = [('teanaps', 'ORG', (0, 7)), ('python', 'CVL', (0, 27))]
-    > result = sa.syntax(ma_result, ner_result)
+    > #ner_result = [('teanaps', 'ORG', (0, 7)), ('python 패키지', 'CVL', (18, 31))]
+    > result = sa.parse(ma_result, ner_result)
     > print(result)
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
-    > [('teanaps', 'NNP', 'ORG', (0, 7)), ('는', 'JX', 'UNK', (7, 8)), ('텍스트', 'NNG', 'UNK', (9, 12)), ('마이닝', 'NNP', 'UNK', (13, 16)), ('을', 'JKO', 'UNK', (16, 17)), ('위한', 'VV+ETM', 'UNK', (18, 20)), ('python', 'NNP', 'CVL', (0, 27)), ('패키지', 'NNG', 'UNK', (28, 31)), ('입니다', 'VCP+EF', 'UNK', (32, 35)), ('.', 'SW', 'UNK', (35, 36))]
+    > [('teanaps', 'NNP', 'POH', (0, 7)), ('는', 'JX', 'UNK', (7, 8)), ('텍스트', 'NNG', 'UNK', (9, 12)), ('마이닝', 'NNP', 'UNK', (13, 16)), ('을', 'JKO', 'UNK', (16, 17)), ('python 패키지', 'NNP', 'POH', (18, 31)), ('입니다', 'VCP+EF', 'UNK', (32, 35)), ('.', 'SW', 'UNK', (35, 36))]
     > ```
 
 - `teanaps.nlp.SyntaxAnalyzer.get_sentence_tree(sentence, sa_result)`
@@ -384,15 +400,15 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > #sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다."
-    > #sa_result = [('teanaps', 'NNP', 'ORG', (0, 7)), ('는', 'JX', 'UNK', (7, 8)), ('텍스트', 'NNG', 'UNK', (9, 12)), ('마이닝', 'NNP', 'UNK', (13, 16)), ('을', 'JKO', 'UNK', (16, 17)), ('위한', 'VV+ETM', 'UNK', (18, 20)), ('python', 'NNP', 'CVL', (0, 27)), ('패키지', 'NNG', 'UNK', (28, 31)), ('입니다', 'VCP+EF', 'UNK', (32, 35)), ('.', 'SW', 'UNK', (35, 36))]
+    > #sa_result = [('teanaps', 'NNP', 'POH', (0, 7)), ('는', 'JX', 'UNK', (7, 8)), ('텍스트', 'NNG', 'UNK', (9, 12)), ('마이닝', 'NNP', 'UNK', (13, 16)), ('을', 'JKO', 'UNK', (16, 17)), ('python 패키지', 'NNP', 'POH', (18, 31)), ('입니다', 'VCP+EF', 'UNK', (32, 35)), ('.', 'SW', 'UNK', (35, 36))]
     > label_list, edge_list = sa.get_sentence_tree(sentence, sa_result)
     > print(label_list)
     > print(edge_list)
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
-    > ['TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다.<br>/SENTENCE', 'TEANAPS는 텍스<br>/SUBJECT', ' 마이닝을 위<br>/OBJECT', ' Python 패키지 <br>/EF', 'TEANA<br>/N', 'P<br>/S', 'S는 <br>/N', '텍<br>/S', '스<br>/J', ' 마이닝을 <br>/N', '위<br>/J', ' P<br>/V', 'thon<br>/N', '패키지 <br>/S', '자연어<br>/NNG<br>/UNK', '처리<br>/NNG<br>/UNK', '(<br>/SW<br>/UNK', 'NLP<br>/NNP<br>/TRM', ')<br>/SW<br>/UNK', '는<br>/JX<br>/UNK', '텍스트<br>/NNG<br>/UNK', '분석<br>/NNG<br>/UNK', '을<br>/JKO<br>/UNK', '위한<br>/VV+ETM<br>/UNK', '기반<br>/NNG<br>/UNK', '기술<br>/NNG<br>/UNK', '입니다<br>/VCP+EF<br>/UNK', '.<br>/SW<br>/UNK']
-    > [(0, 1), (1, 4), (4, 14), (4, 15), (1, 5), (5, 16), (1, 6), (6, 17), (1, 7), (7, 18), (1, 8), (8, 19), (0, 2), (2, 9), (9, 20), (9, 21), (2, 10), (10, 22), (0, 3), (3, 11), (11, 23), (3, 12), (12, 24), (12, 25), (3, 13), (13, 26), (13, 27)]
+    > ['TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다.<br>/SENTENCE', 'TEANAPS는<br>/SUBJECT', '텍스트 마이닝을<br>/OBJECT', '위한 Python 패키지 입니다.<br>/EF', 'TEANAPS<br>/N', '는<br>/J', '텍스트 마이닝<br>/N', '을<br>/J', '위한 Python 패키지<br>/N', '입니다.<br>/S', 'teanaps<br>/NNP<br>/POH', '는<br>/JX<br>/UNK', '텍스트<br>/NNG<br>/UNK', '마이닝<br>/NNP<br>/UNK', '을<br>/JKO<br>/UNK', 'python 패키지<br>/NNP<br>/POH', '입니다<br>/VCP+EF<br>/UNK', '.<br>/SW<br>/UNK']
+    > [(0, 1), (1, 4), (4, 10), (1, 5), (5, 11), (0, 2), (2, 6), (6, 12), (6, 13), (2, 7), (7, 14), (0, 3), (3, 8), (8, 15), (3, 9), (9, 16), (9, 17)]
     > ```
 
 - `teanaps.nlp.SyntaxAnalyzer.draw_sentence_tree(sentence, label_list, edge_list)`
@@ -408,8 +424,8 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > #sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다."
-    > #label_list = ['TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다.<br>/SENTENCE', 'TEANAPS는 텍스<br>/SUBJECT', ' 마이닝을 위<br>/OBJECT', ' Python 패키지 <br>/EF', 'TEANA<br>/N', 'P<br>/S', 'S는 <br>/N', '텍<br>/S', '스<br>/J', ' 마이닝을 <br>/N', '위<br>/J', ' P<br>/V', 'thon<br>/N', '패키지 <br>/S', '자연어<br>/NNG<br>/UNK', '처리<br>/NNG<br>/UNK', '(<br>/SW<br>/UNK', 'NLP<br>/NNP<br>/TRM', ')<br>/SW<br>/UNK', '는<br>/JX<br>/UNK', '텍스트<br>/NNG<br>/UNK', '분석<br>/NNG<br>/UNK', '을<br>/JKO<br>/UNK', '위한<br>/VV+ETM<br>/UNK', '기반<br>/NNG<br>/UNK', '기술<br>/NNG<br>/UNK', '입니다<br>/VCP+EF<br>/UNK', '.<br>/SW<br>/UNK']
-    > #edge_list = [(0, 1), (1, 4), (4, 14), (4, 15), (1, 5), (5, 16), (1, 6), (6, 17), (1, 7), (7, 18), (1, 8), (8, 19), (0, 2), (2, 9), (9, 20), (9, 21), (2, 10), (10, 22), (0, 3), (3, 11), (11, 23), (3, 12), (12, 24), (12, 25), (3, 13), (13, 26), (13, 27)]
+    > #label_list = ['TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다.<br>/SENTENCE', 'TEANAPS는<br>/SUBJECT', '텍스트 마이닝을<br>/OBJECT', '위한 Python 패키지 입니다.<br>/EF', 'TEANAPS<br>/N', '는<br>/J', '텍스트 마이닝<br>/N', '을<br>/J', '위한 Python 패키지<br>/N', '입니다.<br>/S', 'teanaps<br>/NNP<br>/POH', '는<br>/JX<br>/UNK', '텍스트<br>/NNG<br>/UNK', '마이닝<br>/NNP<br>/UNK', '을<br>/JKO<br>/UNK', 'python 패키지<br>/NNP<br>/POH', '입니다<br>/VCP+EF<br>/UNK', '.<br>/SW<br>/UNK']
+    > #edge_list = [(0, 1), (1, 4), (4, 10), (1, 5), (5, 11), (0, 2), (2, 6), (6, 12), (6, 13), (2, 7), (7, 14), (0, 3), (3, 8), (8, 15), (3, 9), (9, 16), (9, 17)]
     > sa.draw_sentence_tree(sentence, label_list, edge_list)
     > ```
     > Output (in Jupyter Notebook) :  
@@ -644,21 +660,17 @@
     > TEANAPS는 텍스트마이닝을 위한 Python 패키지입니다.
     > ```
 
-<!--
 - `teanaps.nlp.Processing.get_token_position(sentence_org, word_tagged_pos_list)`
--->
+  - TBU
 
-<!--
 - `teanaps.nlp.Processing.language_detector(sentence)`
--->
+  - TBU
 
-<!--
 - `teanaps.nlp.Processing.iteration_remover(sentence)`
--->
+  - TBU
 
-<!--
 - `teanaps.nlp.Processing.get_plain_text(sentence, pos_list=[], word_index=0, pos_index=1, tag_index=1, tag=True)`
--->
+  - TBU
 
 - `teanaps.nlp.Processing.replacer(sentence)`
   - 문장에서 축약된 표현을 찾아 원래의 표현으로 수정하고 그 결과를 반환합니다.
@@ -679,17 +691,31 @@
     > If it is to be, it is up to me.
     > ```
 
-<!--
 ##### 2.5. `teanaps.nlp.Embedding`
--->
+  - TBU
+
 #### 3. `teanaps.text_analysis`
 ##### 3.1. `teanaps.text_analysis.TfidfCalculator`
+  - TBU
+
 ##### 3.1. `teanaps.text_analysis.DocumentClustering`
+  - TBU
+
 ##### 3.1. `teanaps.text_analysis.TopicClustering`
+  - TBU
+
 ##### 3.1. `teanaps.text_analysis.CoWordCalculator`
+  - TBU
+
 ##### 3.1. `teanaps.text_analysis.SentimentAnalysis`
+  - TBU
+
 ##### 3.1. `teanaps.text_analysis.DocumentSummarizer`
+  - TBU
+
 ##### 3.1. `teanaps.text_analysis.KeyphraseExtraction`
+  - TBU
+
 #### 4. `teanaps.visualization`
 ##### 4.1. `teanaps.visualization.GraphVisualizer`
 
@@ -1004,9 +1030,12 @@
     > Output (in Jupyter Notebook) :
     > ![network](../data/sample_image/network.png)
 
-<!--
 #### 5. `teanaps.machine_learning`
 ##### 5.1. `teanaps.machine_learning.Regression`
+  - TBU
+
 ##### 5.2. `teanaps.machine_learning.Classification`
+  - TBU
+
 ##### 5.3. `teanaps.machine_learning.Clustering`
--->
+  - TBU
