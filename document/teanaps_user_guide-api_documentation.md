@@ -56,7 +56,7 @@
 | [handler](#1-teanapshandler)    | [FileHandler](#11-teanapshandlerfilehandler), [MessageHandler](#12-teanapshandlermessagehandler), [QueueHandler](#13-teanapshandlerqueuehandler)    |
 | [nlp](#2-teanapsnlp)    | [MorphologicalAnalyzer](#21-teanapsnlpmorphologicalanalyzer), [NamedEntityRecognizer](#22-teanapsnlpnamedentityrecognizer), [SyntaxAnalyzer](#23-teanapsnlpsyntaxanalyzer), [Processing](#24-teanapsnlpprocessing), [Embedding](#25-teanapsnlpembedding)    |
 | [text_analysis](#3-teanapstext_analysis)    | [TfidfCalculator](#31-teanapstext_analysistfidfcalculator), [DocumentClustering](#32-teanapstext_analysisdocumentclustering), [TopicClustering](#33-teanapstext_analysistopicclustering), [CoWordCalculator](#34-teanapstext_analysiscowordcalculator), [SentimentAnalysis](#35-teanapstext_analysissentimentanalysis), [DocumentSummarizer](#36-teanapstext_analysisdocumentsummarizer), [KeyphraseExtraction](#37-teanapstext_analysiskeyphraseextraction)    |
-| [visualization](#4-visualization)    | [GraphVisualizer](#41-visualizationgraphvisualizer), [TextVisualizer](#42-visualizationtextvisualizer)    |
+| [visualization](#4-teanapsvisualization)    | [GraphVisualizer](#41-teanapsvisualizationgraphvisualizer), [TextVisualizer](#42-teanapsvisualizationtextvisualizer)    |
 | [machine_learning](#5-teanapsmachine_learning)    | [Regression](#51-teanapsmachine_learningregression), [Classification](#52-teanapsmachine_learningclassification), [Clustering](#53-teanapsmachine_learningclustering)    |
 
 ### Manual
