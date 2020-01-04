@@ -14,7 +14,7 @@
 
 ### Contents
 - [Install `TEANAPS`](./document/teanaps_user_guide-install_teanaps.md)
-- [API Documents](./document/teanaps_user_guide-api_documents.md)
+- [API Documentation](./document/teanaps_user_guide-api_documentation.md)
 - [Tutorial](./document/teanaps_user_guide-tutorial.md)
 - [References](./document/teanaps_user_guide-references_journal_project.md)
 - [Journal & Project](./document/teanaps_user_guide-references_journal_project.md)
