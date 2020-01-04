@@ -19,10 +19,7 @@ class QueueHandler():
         self.lambda_count -= 1
         result = f.result()
         self.result_dict[result["request_id"]] = result["result"]
-        if self.lambda_count == 0:
-            print("done")
-        else:
-            print(self.lambda_count)
+        print("\ndone : " + str(self.lambda_count) + " lamda left.\n")
     
     def get_result(self):
         return self.result_dict

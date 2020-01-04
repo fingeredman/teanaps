@@ -1,4 +1,4 @@
-from teanaps.nlp import Processing
+from teanaps.nlp import preprocessing
 from teanaps import configure as con
 PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
@@ -9,12 +9,43 @@ from nltk.stem import WordNetLemmatizer
 
 class MorphologicalAnalyzer():  
     def __init__(self):
-        self.processing = Processing()
+        self.processing = preprocessing()
         self.lemmatizer = WordNetLemmatizer()
         self.set_tagger(con.POS_TAGGER)
         self.ner_lexicon = {}
     
     def parse(self, sentence):
+        sentence_org = sentence
+        language = self.processing.language_detector(sentence)
+        sentence = self.processing.iteration_remover(sentence)
+        # Korean
+        if language == "ko":
+            sentence = sentence.lower()
+            word_tagged_pos_list = self.__parse(sentence)
+        # English
+        else:
+            sentence = self.processing.replacer(sentence)
+            sentence = sentence.lower()
+            sentence_org = sentence
+            word_list = word_tokenize(sentence)
+            word_tagged_pos_list = nltk.pos_tag(word_list)
+            lemmatized_word_list = []
+            for word, pos in word_tagged_pos_list:
+                if pos[0] in con.LEMMATIZER_POS_MAP.keys():
+                    lemmatizer_pos = con.LEMMATIZER_POS_MAP[pos[0]]
+                    word = self.lemmatizer.lemmatize(word, lemmatizer_pos)
+                if pos in con.POS_TAG_MAP.keys():
+                    pos = con.POS_TAG_MAP[pos]
+                elif pos in con.SYMBOLS_POS_MAP.keys():
+                    pos = con.SYMBOLS_POS_MAP[pos]
+                else:
+                    pos = "SW"
+                lemmatized_word_list.append((word.lower(), pos))
+            word_tagged_pos_list = lemmatized_word_list
+            word_tagged_pos_list = self.processing.get_token_position(sentence_org, word_tagged_pos_list)
+        return word_tagged_pos_list
+    
+    def __parse(self, sentence):
         sentence_org = sentence
         word_tagged_pos_list = []
         if self.tagger == "mecab":
@@ -83,34 +114,3 @@ class MorphologicalAnalyzer():
         elif tagger == "okt":
             from konlpy.tag import Okt
             self.okt = Okt()
-    
-    def __pos_tagging(self, sentence):
-        sentence_org = sentence
-        language = self.processing.language_detector(sentence)
-        sentence = self.processing.iteration_remover(sentence)
-        # Korean
-        if language == "ko":
-            sentence = sentence.lower()
-            word_tagged_pos_list = self.__parse(sentence)
-        # English
-        else:
-            sentence = self.processing.replacer(sentence)
-            sentence = sentence.lower()
-            sentence_org = sentence
-            word_list = word_tokenize(sentence)
-            word_tagged_pos_list = nltk.pos_tag(word_list)
-            lemmatized_word_list = []
-            for word, pos in word_tagged_pos_list:
-                if pos[0] in con.LEMMATIZER_POS_MAP.keys():
-                    lemmatizer_pos = con.LEMMATIZER_POS_MAP[pos[0]]
-                    word = self.lemmatizer.lemmatize(word, lemmatizer_pos)
-                if pos in con.POS_TAG_MAP.keys():
-                    pos = con.POS_TAG_MAP[pos]
-                elif pos in con.SYMBOLS_POS_MAP.keys():
-                    pos = con.SYMBOLS_POS_MAP[pos]
-                else:
-                    pos = "SW"
-                lemmatized_word_list.append((word.lower(), pos))
-            word_tagged_pos_list = lemmatized_word_list
-            word_tagged_pos_list = self.processing.get_token_position(sentence_org, word_tagged_pos_list)
-        return word_tagged_pos_list

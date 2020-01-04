@@ -1,4 +1,5 @@
 from __future__ import absolute_import
 
+from teanaps.machine_learning.Regression import Regression
 from teanaps.machine_learning.Classification import Classification
 from teanaps.machine_learning.Clustering import Clustering

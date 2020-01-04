@@ -19,7 +19,7 @@ class SentimentAnalysis():
         tokenizer_path = con.SENTIMENT_UTIL_PATH["tokenizer"]
         self.tok = nlp.data.BERTSPTokenizer(tokenizer_path, vocab, lower=False)
     
-    def tag(self, sentence):
+    def tag(self, sentence, neutral_th=1.8):
         sentence_list =  [[sentence, '0']]
         bert_sentence_list = BERTDataset(sentence_list, 0, 1, self.tok, 
                                          con.SENTIMENT_MODEL_CONFIG["max_len"], True, False)
@@ -32,11 +32,18 @@ class SentimentAnalysis():
             label = label.as_in_context(self.ctx)
             _, output = self.model(token_ids, segment_ids, valid_length.astype("float32"))
             for r in output:
+                '''
                 r = list(r)
                 predict_value = r[0] if r[0] > r[1] else r[1]
                 sentiment = r.index(predict_value)
-                sentiment_label = "positive" if sentiment == 1 else "negative"
-                return (r.index(predict_value), sentiment_label)
+                '''
+                neg = np.exp(r[0].asnumpy())[0]
+                pos = np.exp(r[1].asnumpy())[0]
+                sentiment_label = "positive" if neg < pos else "negative"
+                if abs(neg - pos) < neutral_th:
+                    sentiment_label = "neutral"
+                #return [r.index(predict_value), sentiment_label, (neg, pos)]
+                return [(neg, pos), sentiment_label]
             
     def draw_sentence_weight(self, sentence):
         weight = self.get_weight(sentence)

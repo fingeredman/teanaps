@@ -66,6 +66,10 @@ class SyntaxAnalyzer():
         phrase_root = []
         token_root = []
         edge_list = []
+        '''
+        syntax_dict = {"SUBJECT": [], "ADVERB": [], "OBJECT": [], "PHRASE": [], 
+                       "VERB": [], "ADJECTIVE": [],"EC": [], "EF": []}
+        '''
         for phrase_list in eojeol_list:
             if phrase_list[-1][-1][1].split("+")[-1] in ["JX", "JKS"]:
                 eojeol_type = "SUBJECT"
@@ -73,6 +77,8 @@ class SyntaxAnalyzer():
                 eojeol_type = "ADVERB"
             elif phrase_list[-1][-1][1].split("+")[-1] in ["JKO"]:
                 eojeol_type = "OBJECT"
+            elif phrase_list[-1][-1][1].split("+")[-1] in ["JKG"]:
+                eojeol_type = "ADJECTIVE"
             elif phrase_list[-1][-1][1].split("+")[-1] in ["JC"]:
                 eojeol_type = "PHRASE"
             elif phrase_list[-1][-1][1].split("+")[-1] in ["EC", "EF", "EP", "ETM", "ETN"]:
@@ -85,6 +91,7 @@ class SyntaxAnalyzer():
             else:
                 eojeol_type = "EF"
             eojeol_root.append(sentence[phrase_list[0][0][3][0]:phrase_list[-1][-1][3][1]] + "<br>/" + eojeol_type)
+            #syntax_dict[eojeol_type].append(phrase_list[:-1])
             edge_list.append((0, len(eojeol_root)))
             for phrase in phrase_list:
                 phrase_type = phrase[-1][1][0]
@@ -94,7 +101,7 @@ class SyntaxAnalyzer():
                     token_root.append(token[0] + "<br>/" + token[1] + "<br>/" + token[2])
                     edge_list.append((eojeol_len+len(phrase_root), eojeol_len+phrase_len+len(token_root)))
         label_list = [sentence+"<br>/SENTENCE"] + eojeol_root + phrase_root + token_root
-        return label_list, edge_list
+        return label_list, edge_list#, syntax_dict
     
     def draw_sentence_tree(self, sentence, label_list, edge_list):
         gv = GraphVisualizer()

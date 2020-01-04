@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-from teanaps.nlp.Processing import Processing
+from teanaps.nlp.preprocessing import preprocessing
 from teanaps.nlp.MorphologicalAnalyzer import MorphologicalAnalyzer
 from teanaps.nlp.NamedEntityRecognizer import NamedEntityRecognizer
 from teanaps.nlp.NamedEntityTagger import NamedEntityTagger

@@ -149,37 +149,24 @@ class CoWordCalculator():
         return centrality_dict  
     
     
-    def get_word_network_graph(self, node_list, centrality_dict):
-        edge_trace = go.Scatter(x=[], y=[], line=dict(width=0.5,color='#999'), hoverinfo='none', mode='lines')
-        pos = nx.spring_layout(self.G)
-        for edge in self.G.edges():
-            x0, y0 = pos[edge[0]]
-            x1, y1 = pos[edge[1]]
-            edge_trace['x'] += tuple([x0, x1, None])
-            edge_trace['y'] += tuple([y0, y1, None])
-        node_trace = go.Scatter(x=[], y=[], text=[], mode='markers', hoverinfo='text', 
-                                marker=dict(showscale=True, colorscale='YlOrRd', reversescale=True, color=[],
-                                            size=[math.sqrt(centrality_dict[node])*100 for node in node_list],
-                                            colorbar=dict(thickness=15, title='Node Centrality', xanchor='left', 
-                                                          titleside='right'), 
-                                            line=dict(width=1, color="black")))
-        for node in node_list:
-            x, y = pos[node]
-            node_trace['x'] += tuple([x])
-            node_trace['y'] += tuple([y])
-        for node, adjacencies in enumerate(self.G.adjacency()):
-            node_trace['marker']['color']+=tuple([len(adjacencies[1])])
-            node_info = "Node: " + str(adjacencies[0]) + "<br>centrality: " + str(centrality_dict[adjacencies[0]])
-            node_trace['text']+=tuple([node_info])
+    def get_word_network_graph(self, centrality_dict):
+        gv = GraphVisualizer()
+        
+        data_meta = {
+            "node_list": self.get_node_list(),
+            "edge_list": [(a, b, w) for (a, b), w in self.get_edge_list()],
+            "weight_dict": centrality_dict
+        }
 
-        fig = go.Figure(data=[edge_trace, node_trace], 
-                        layout=go.Layout(title='Network Graph', titlefont=dict(size=16),
-                                         showlegend=False, hovermode='closest',
-                                         width=1000, height=1000,margin=dict(b=20,l=5,r=5,t=40),
-                                         xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-                                         yaxis=dict(showgrid=False, zeroline=False, showticklabels=False)))
-        return iplot(fig, filename='networkx')
-    
+        graph_meta = {
+            "title": "Word Network Graph",
+            "height": 1000, 
+            "width": 1000,
+            "weight_name": "Word Centrality",
+        }
+
+        return gv.draw_network(data_meta, graph_meta)
+        
     '''
     from multiprocessing import Pool
     import itertools

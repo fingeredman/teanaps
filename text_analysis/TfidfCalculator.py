@@ -112,3 +112,18 @@ class TfidfCalculator():
             "y2_name": "TF-IDF",
         }
         return gv.draw_histogram(data_meta_list, graph_meta)
+    
+    def get_wordcloud(self, weight_dict):
+        gv = GraphVisualizer()
+        data_meta = {
+            "weight_dict": weight_dict,
+        }
+        graph_meta = {
+            "height": 1000, 
+            "width": 1000,
+            "min_font_size": 10,
+            "max_font_size": 500,
+            "margin": 10,
+            "background_color": "white"
+        }
+        gv.draw_wordcloud(data_meta, graph_meta)

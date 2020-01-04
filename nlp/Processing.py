@@ -56,9 +56,11 @@ class Processing():
     
     def start_timer(self):
         self.start = time.time()
+        self.lab = []
         
     def lab_timer(self):
-        print("lab: %.4F" % (time.time() - self.start))
+        self.lab.append((len(self.lab)+1, round(time.time() - self.start, 4)))
+        return self.lab
     
     def get_spacing(self, sentence):
         if len(sentence) < 195:

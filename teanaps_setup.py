@@ -37,7 +37,7 @@ subprocess.call("pip install xlwt", shell=True)
 
 # 8) KoNLPy (http://konlpy.org/en/latest/#getting-started)
 subprocess.call("pip install konlpy==0.5.1", shell=True)
-#!pip install konlpy
+#!pip install konlpy==0.5.1
 
 # 9) newspaper (https://pypi.org/project/newspaper3k/)
 subprocess.call("pip install newspaper3k", shell=True)
@@ -51,29 +51,29 @@ subprocess.call("pip install sumy", shell=True)
 subprocess.call("pip install soynlp", shell=True)
 #!pip install soynlp
 
-# 12) PyKoSpacing(https://github.com/haven-jeon/PyKoSpacing)
+# 12) PyKoSpacing (https://github.com/haven-jeon/PyKoSpacing)
 subprocess.call("pip install git+https://github.com/haven-jeon/PyKoSpacing.git", shell=True)
 #!pip install git+https://github.com/haven-jeon/PyKoSpacing.git
 
-# 13) PyTorch-CRF(https://pypi.org/project/pytorch-crf/)
+# 13) PyTorch-CRF (https://pypi.org/project/pytorch-crf/)
 subprocess.call("pip install pytorch-crf", shell=True)
 #!pip install pytorch-crf
 
-# 14) PyTorch-Transformers(https://pypi.org/project/pytorch-transformers/)
+# 14) PyTorch-Transformers (https://pypi.org/project/pytorch-transformers/)
 subprocess.call("pip install pytorch-transformers", shell=True)
 #!pip install pytorch-transformers
 
-# 15) Transformers(https://pypi.org/project/transformers/)
+# 15) Transformers (https://pypi.org/project/transformers/)
 subprocess.call("pip install transformers", shell=True)
 #!pip install transformers
 
-# 16) GluonNLP(https://pypi.org/project/gluonnlp/)
+# 16) GluonNLP (https://pypi.org/project/gluonnlp/)
 subprocess.call("pip install gluonnlp", shell=True)
 #!pip install gluonnlp
 subprocess.call("pip install --upgrade mxnet>=1.5.0", shell=True)
 #!pip install --upgrade mxnet>=1.5.0
 
-# 17) iGraph(https://pypi.org/project/igraph-python/)
+# 17) iGraph (https://pypi.org/project/igraph-python/)
 subprocess.call("pip install python-igraph", shell=True)
 #!pip install python-igraph
 
