@@ -22,7 +22,7 @@
 
 ---
 ## `TEANAPS` Tutorial
-- [튜토리얼 문서](./document/teanaps_user_guide-turorial.md)를 참조해주세요.
+- [튜토리얼 문서](./document/teanaps_user_guide-tutorial.md)를 참조해주세요.
 - `TEANAPS`를 활용한 텍스트 분석 방법은 텍스트 마이닝 강의자료를 참고해주세요. [(Link)](https://github.com/fingeredman/text-mining-for-practice)
 
 ---
