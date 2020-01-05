@@ -278,7 +278,7 @@
     > [('teanaps', 'OL', (0, 7)), ('는', 'JX', (7, 8)), ('텍스트', 'NNG', (9, 12)), ('마이닝', 'NNP', (13, 16)), ('을', 'JKO', (16, 17)), ('위한', 'VV+ETM', (18, 20)), ('python', 'OL', (21, 27)), ('패키지', 'NNG', (28, 31)), ('입니다', 'VCP+EF', (32, 35)), ('.', 'SW', (35, 36))]
     > ```
 
-##### 2.2. `teanaps.nlp.NamedEntityRecognizer `
+##### 2.2. `teanaps.nlp.NamedEntityRecognizer`
 
 > Python Code (in Jupyter Notebook) :
 > ```python
