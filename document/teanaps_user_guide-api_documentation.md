@@ -31,7 +31,7 @@
 │     │ 
 │     ├─ text_analysis 
 │     │     ├─ TfidfCalculator 
-│     │     ├─ DocumentClustering]
+│     │     ├─ DocumentClustering
 │     │     ├─ TopicClustering 
 │     │     ├─ CoWordCalculator
 │     │     ├─ SentimentAnalysis
@@ -70,7 +70,7 @@
 > fh = FileHandler()
 > ```
 
-- `teanaps.handler.FileHandler.fh.save_data(file_name, data)` [[Top]](#teanaps-architecture)
+- `teanaps.handler.FileHandler.save_data(file_name, data)` [[Top]](#teanaps-architecture)
   - 데이터(변수, Pandas Dataframe 등)을 바이너리 파일로 저장합니다.
   - Parameters
     - *file_name (str) : 저장할 파일 경로 및 파일명. 최대 128자.*
@@ -89,7 +89,7 @@
     > fh.save_data("california_housing", df)
     > ```
 
-- `teanaps.handler.FileHandler.fh.load_data(file_name)` [[Top]](#teanaps-architecture)
+- `teanaps.handler.FileHandler.load_data(file_name)` [[Top]](#teanaps-architecture)
   - 데이터(변수, Pandas Dataframe 등)가 저장된 바이너리 파일을 불러와 그 결과를 반환합니다.
   - Parameters
     - *file_name (str) : 저장할 파일 경로 및 파일명. 최대 128자.*
@@ -307,11 +307,11 @@
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
-    > [('teanaps', 'ORG', (0, 7)), ('python 패키지', 'CVL', (18, 31))]
+    > [('teanaps', 'OG', (0, 7)), ('python 패키지', 'CV', (18, 31))]
     > ```
 
     > Notes :  
-    > - `TEANAPS`의 개체명 태그는 [총 16종](http://)으로 구분됩니다. 태그 종류 및 구분은 [정보통신단체표준(TTAS)](http://committee.tta.or.kr/data/standard_view.jsp?nowPage=32&pk_num=TTAK.KO-10.0852&nowSu=318&rn=1)을 따릅니다.
+    > - `TEANAPS`의 개체명 태그는 총 16종으로 구분됩니다. 태그 종류 및 구분은 [정보통신단체표준 (TTAS)](http://committee.tta.or.kr/data/standard_view.jsp?nowPage=32&pk_num=TTAK.KO-10.0852&nowSu=318&rn=1)을 따릅니다.
     > - 개체명 태그표는 [Appendix](./teanaps_user_guide-appendix.md#teanaps-개체명-태그표)를 참고해주세요.
 
 - `teanaps.nlp.NamedEntityRecognizer.parse_sentence(sentence)` [[Top]](#teanaps-architecture)
@@ -330,7 +330,7 @@
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
-    > "<TEANAPS:ORG>는 텍스트 마이닝을 위한 <python 패키지:CVL> 입니다."
+    > "<TEANAPS:OG>는 텍스트 마이닝을 위한 <python 패키지:CV> 입니다."
     > ```
 
 - `teanaps.nlp.NamedEntityRecognizer.draw_weight(sentence)` [[Top]](#teanaps-architecture)
@@ -390,13 +390,13 @@
     > ```python
     > #sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다."
     > #ma_result = [('teanaps', 'OL', (0, 7)), ('는', 'JX', (7, 8)), ('텍스트', 'NNG', (9, 12)), ('마이닝', 'NNP', (13, 16)), ('을', 'JKO', (16, 17)), ('위한', 'VV+ETM', (18, 20)), ('python', 'OL', (21, 27)), ('패키지', 'NNG', (28, 31)), ('입니다', 'VCP+EF', (32, 35)), ('.', 'SW', (35, 36))]
-    > #ner_result = [('teanaps', 'ORG', (0, 7)), ('python 패키지', 'CVL', (18, 31))]
+    > #ner_result = [('teanaps', 'OG', (0, 7)), ('python 패키지', 'CV', (18, 31))]
     > result = sa.parse(ma_result, ner_result)
     > print(result)
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
-    > [('teanaps', 'NNP', 'POH', (0, 7)), ('는', 'JX', 'UNK', (7, 8)), ('텍스트', 'NNG', 'UNK', (9, 12)), ('마이닝', 'NNP', 'UNK', (13, 16)), ('을', 'JKO', 'UNK', (16, 17)), ('python 패키지', 'NNP', 'POH', (18, 31)), ('입니다', 'VCP+EF', 'UNK', (32, 35)), ('.', 'SW', 'UNK', (35, 36))]
+    > [('teanaps', 'NNP', 'OG', (0, 7)), ('는', 'JX', 'UNK', (7, 8)), ('텍스트', 'NNG', 'UNK', (9, 12)), ('마이닝', 'NNP', 'UNK', (13, 16)), ('을', 'JKO', 'UNK', (16, 17)), ('python 패키지', 'NNP', 'CV', (18, 31)), ('입니다', 'VCP+EF', 'UNK', (32, 35)), ('.', 'SW', 'UNK', (35, 36))]
     > ```
 
 - `teanaps.nlp.SyntaxAnalyzer.get_sentence_tree(sentence, sa_result)` [[Top]](#teanaps-architecture)
@@ -412,14 +412,14 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > #sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다."
-    > #sa_result = [('teanaps', 'NNP', 'POH', (0, 7)), ('는', 'JX', 'UNK', (7, 8)), ('텍스트', 'NNG', 'UNK', (9, 12)), ('마이닝', 'NNP', 'UNK', (13, 16)), ('을', 'JKO', 'UNK', (16, 17)), ('python 패키지', 'NNP', 'POH', (18, 31)), ('입니다', 'VCP+EF', 'UNK', (32, 35)), ('.', 'SW', 'UNK', (35, 36))]
+    > #sa_result = [('teanaps', 'NNP', 'OG', (0, 7)), ('는', 'JX', 'UNK', (7, 8)), ('텍스트', 'NNG', 'UNK', (9, 12)), ('마이닝', 'NNP', 'UNK', (13, 16)), ('을', 'JKO', 'UNK', (16, 17)), ('python 패키지', 'NNP', 'CV', (18, 31)), ('입니다', 'VCP+EF', 'UNK', (32, 35)), ('.', 'SW', 'UNK', (35, 36))]
     > label_list, edge_list = sa.get_sentence_tree(sentence, sa_result)
     > print(label_list)
     > print(edge_list)
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
-    > ['TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다.<br>/SENTENCE', 'TEANAPS는<br>/SUBJECT', '텍스트 마이닝을<br>/OBJECT', '위한 Python 패키지 입니다.<br>/EF', 'TEANAPS<br>/N', '는<br>/J', '텍스트 마이닝<br>/N', '을<br>/J', '위한 Python 패키지<br>/N', '입니다.<br>/S', 'teanaps<br>/NNP<br>/POH', '는<br>/JX<br>/UNK', '텍스트<br>/NNG<br>/UNK', '마이닝<br>/NNP<br>/UNK', '을<br>/JKO<br>/UNK', 'python 패키지<br>/NNP<br>/POH', '입니다<br>/VCP+EF<br>/UNK', '.<br>/SW<br>/UNK']
+    > ['TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다.<br>/SENTENCE', 'TEANAPS는<br>/SUBJECT', '텍스트 마이닝을<br>/OBJECT', '위한 Python 패키지 입니다.<br>/EF', 'TEANAPS<br>/N', '는<br>/J', '텍스트 마이닝<br>/N', '을<br>/J', '위한 Python 패키지<br>/N', '입니다.<br>/S', 'teanaps<br>/NNP<br>/OG', '는<br>/JX<br>/UNK', '텍스트<br>/NNG<br>/UNK', '마이닝<br>/NNP<br>/UNK', '을<br>/JKO<br>/UNK', 'python 패키지<br>/NNP<br>/CV', '입니다<br>/VCP+EF<br>/UNK', '.<br>/SW<br>/UNK']
     > [(0, 1), (1, 4), (4, 10), (1, 5), (5, 11), (0, 2), (2, 6), (6, 12), (6, 13), (2, 7), (7, 14), (0, 3), (3, 8), (8, 15), (3, 9), (9, 16), (9, 17)]
     > ```
 
@@ -436,7 +436,7 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > #sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다."
-    > #label_list = ['TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다.<br>/SENTENCE', 'TEANAPS는<br>/SUBJECT', '텍스트 마이닝을<br>/OBJECT', '위한 Python 패키지 입니다.<br>/EF', 'TEANAPS<br>/N', '는<br>/J', '텍스트 마이닝<br>/N', '을<br>/J', '위한 Python 패키지<br>/N', '입니다.<br>/S', 'teanaps<br>/NNP<br>/POH', '는<br>/JX<br>/UNK', '텍스트<br>/NNG<br>/UNK', '마이닝<br>/NNP<br>/UNK', '을<br>/JKO<br>/UNK', 'python 패키지<br>/NNP<br>/POH', '입니다<br>/VCP+EF<br>/UNK', '.<br>/SW<br>/UNK']
+    > #label_list = ['TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다.<br>/SENTENCE', 'TEANAPS는<br>/SUBJECT', '텍스트 마이닝을<br>/OBJECT', '위한 Python 패키지 입니다.<br>/EF', 'TEANAPS<br>/N', '는<br>/J', '텍스트 마이닝<br>/N', '을<br>/J', '위한 Python 패키지<br>/N', '입니다.<br>/S', 'teanaps<br>/NNP<br>/OG', '는<br>/JX<br>/UNK', '텍스트<br>/NNG<br>/UNK', '마이닝<br>/NNP<br>/UNK', '을<br>/JKO<br>/UNK', 'python 패키지<br>/NNP<br>/CV', '입니다<br>/VCP+EF<br>/UNK', '.<br>/SW<br>/UNK']
     > #edge_list = [(0, 1), (1, 4), (4, 10), (1, 5), (5, 11), (0, 2), (2, 6), (6, 12), (6, 13), (2, 7), (7, 14), (0, 3), (3, 8), (8, 15), (3, 9), (9, 16), (9, 17)]
     > sa.draw_sentence_tree(sentence, label_list, edge_list)
     > ```
