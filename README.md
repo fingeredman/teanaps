@@ -14,7 +14,7 @@
 
 ### Contents
 - [Install `TEANAPS`](./document/teanaps_user_guide-install_teanaps.md)
-- [API Documentation](./document/teanaps_user_guide-api_documentation.md)
+- [API Documentation](./document/teanaps_user_guide-api_documentation-handler.md)
 - [Tutorial](./document/teanaps_user_guide-tutorial.md)
 - [References](./document/teanaps_user_guide-references_journal_project.md)
 - [Journal & Project](./document/teanaps_user_guide-references_journal_project.md)
@@ -36,6 +36,7 @@
 > 2019.12.07. `teanaps v0.0.7`  
 > 2019.12.21. `teanaps v0.0.8`  
 > 2020.01.04. `teanaps v0.0.9`  
+> 2020.01.11. `teanaps v0.0.10`  
 
 ---
 ## Update History
@@ -50,3 +51,4 @@
 > 2019.12.07. `teanaps v0.0.7` 업데이트  
 > 2019.12.21. `teanaps v0.0.8` 업데이트  
 > 2020.01.04. `teanaps v0.0.9` 업데이트, `User Guide` 업로드  
+> 2020.01.11. `teanaps v0.0.10`, `Documentation` 업데이트  
