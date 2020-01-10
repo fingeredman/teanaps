@@ -57,12 +57,10 @@ class NamedEntityRecognizer():
         weight_list = []
         for token_index in range(len(token_list)):
             weight_list.append(attn_data["attn"][11][11][token_index][token_index])
-        return {"token_list": token_list, "weight_list": weight_list}
+        return token_list, weight_list
     
     def draw_sentence_weight(self, sentence):
-        weight = self.get_weight(sentence)
-        token_list = weight["token_list"]
-        weight_list = weight["weight_list"]
+        token_list, weight_list = self.get_weight(sentence)
         tv = TextVisualizer()
         return tv.draw_sentence_attention(token_list, weight_list)
     
