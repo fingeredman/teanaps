@@ -51,7 +51,9 @@ class TextVisualizer():
     def draw_sentence_attention(self, token_list, weight_list):
         # Normalize
         max_len = 50
-        normalized_weight_list = [weight/max(weight_list) for weight in weight_list]
+        polarity_list = [1 if weight > 0 else -1 for weight in weight_list]
+        weight_list = [abs(weight) for weight in weight_list]
+        normalized_weight_list = [(weight)/(max(weight_list)) for weight in weight_list]
         temp_len = 0
         temp_token_list = []
         tokenized_token_list = []
@@ -70,10 +72,13 @@ class TextVisualizer():
         annotations = []
         for tokenized_index, token_list in enumerate(tokenized_token_list):
             tokenized_weight_list = normalized_weight_list[:len(token_list)]
+            tokenized_polarity_list = polarity_list[:len(token_list)]
             normalized_weight_list = normalized_weight_list[len(token_list):]
+            polarity_list = polarity_list[len(token_list):]
             token_len_list = [len(token) for token in token_list]
             token_len_list += [1 for i in range(max_len-sum(token_len_list))]
             tokenized_weight_list += [0 for i in range(len(token_len_list) - len(tokenized_weight_list))]
+            tokenized_polarity_list += [0 for i in range(len(token_len_list) - len(tokenized_polarity_list))]
             xaxis = "x" + str(tokenized_index + 1)
             yaxis = "y" + str(tokenized_index + 1)
             char_list = []
@@ -84,12 +89,19 @@ class TextVisualizer():
                                         x=char_index+0.5, y=1, text=char, align="left",
                                         font=dict(family="Arial", size=14, color="black"), showarrow=False))
             data = []
-            for token_len, weight in zip(token_len_list, tokenized_weight_list):
-                block = go.Bar(
-                    y=[1], x=[token_len], orientation="h", width=0.5,                    
-                    text=round(weight, 1) if weight != 0 else "", hoverinfo='text',
-                    marker=dict(color="rgb(" + str(255) + ", " + str(255-(weight*200)) + ", " + str(255-(weight*200)) + ")")
-                )
+            for token_len, weight, polarity in zip(token_len_list, tokenized_weight_list, tokenized_polarity_list):
+                if polarity < 0:
+                    block = go.Bar(
+                        y=[1], x=[token_len], orientation="h", width=0.5,                    
+                        text=str(round(weight, 2)) if weight != 0 else "", hoverinfo='text',
+                        marker=dict(color="rgb(" + str(255) + ", " + str(255-(abs(weight)*150)) + ", " + str(255-(abs(weight)*150)) + ")")
+                    )
+                else:
+                    block = go.Bar(
+                        y=[1], x=[token_len], orientation="h", width=0.5,                    
+                        text=str(round(weight, 2)) if weight != 0 else "", hoverinfo='text',
+                        marker=dict(color="rgb(" + str(255-(abs(weight)*200)) + ", " + str(255-(abs(weight)*100)) + ", " + str(255) + ")")
+                    )
                 data.append(block)
             for trace in data:
                 trace["xaxis"] = xaxis

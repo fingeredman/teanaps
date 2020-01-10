@@ -20,7 +20,7 @@ class MorphologicalAnalyzer():
         sentence = self.processing.iteration_remover(sentence)
         # Korean
         if language == "ko":
-            sentence = sentence.lower()
+            #sentence = sentence.lower()
             word_tagged_pos_list = self.__parse(sentence)
         # English
         else:
@@ -45,6 +45,21 @@ class MorphologicalAnalyzer():
             word_tagged_pos_list = self.processing.get_token_position(sentence_org, word_tagged_pos_list)
         return word_tagged_pos_list
     
+    def set_tagger(self, tagger):
+        self.tagger = tagger
+        if tagger == "mecab":
+            from konlpy.tag import Mecab
+            self.mecab = Mecab()
+        elif tagger == "mecab-ko":
+            import MeCab
+            self.mecab_ko = MeCab.Tagger()
+        elif tagger == "kkma":
+            from konlpy.tag import Kkma
+            self.kkma = Kkma()
+        elif tagger == "okt":
+            from konlpy.tag import Okt
+            self.okt = Okt()
+            
     def __parse(self, sentence):
         sentence_org = sentence
         word_tagged_pos_list = []
@@ -99,18 +114,3 @@ class MorphologicalAnalyzer():
                 word_tagged_pos_list.append(tagged_set)
         word_tagged_pos_list = self.processing.get_token_position(sentence_org, word_tagged_pos_list)
         return word_tagged_pos_list
-    
-    def set_tagger(self, tagger):
-        self.tagger = tagger
-        if tagger == "mecab":
-            from konlpy.tag import Mecab
-            self.mecab = Mecab()
-        elif tagger == "mecab-ko":
-            import MeCab
-            self.mecab_ko = MeCab.Tagger()
-        elif tagger == "kkma":
-            from konlpy.tag import Kkma
-            self.kkma = Kkma()
-        elif tagger == "okt":
-            from konlpy.tag import Okt
-            self.okt = Okt()

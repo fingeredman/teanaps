@@ -81,7 +81,7 @@ class Processing():
             else:
                 start = 0
                 end = 0
-            word_tagged_pos_loc_list.append((word, pos, (start, end)))
+            word_tagged_pos_loc_list.append((sentence_org[start:end], pos, (start, end)))
         return word_tagged_pos_loc_list
         
     def language_detector(self, sentence):

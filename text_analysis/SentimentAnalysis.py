@@ -1,5 +1,9 @@
 from teanaps import configure as con
 from teanaps.visualization import GraphVisualizer
+from teanaps.visualization import TextVisualizer
+from teanaps.nlp import MorphologicalAnalyzer
+from teanaps.nlp import NamedEntityRecognizer
+from teanaps.nlp import SyntaxAnalyzer
 
 from gluonnlp.model import BERTModel, BERTEncoder
 import gluonnlp as nlp
@@ -18,8 +22,12 @@ class SentimentAnalysis():
         self.model.load_parameters(model_path, ctx=self.ctx)
         tokenizer_path = con.SENTIMENT_UTIL_PATH["tokenizer"]
         self.tok = nlp.data.BERTSPTokenizer(tokenizer_path, vocab, lower=False)
+        self.ma = MorphologicalAnalyzer()
+        self.ma.set_tagger("mecab")
+        self.ner = NamedEntityRecognizer()
+        self.sa = SyntaxAnalyzer()
     
-    def tag(self, sentence, neutral_th=1.8):
+    def tag(self, sentence, neutral_th=0.3):
         sentence_list =  [[sentence, '0']]
         bert_sentence_list = BERTDataset(sentence_list, 0, 1, self.tok, 
                                          con.SENTIMENT_MODEL_CONFIG["max_len"], True, False)
@@ -32,25 +40,56 @@ class SentimentAnalysis():
             label = label.as_in_context(self.ctx)
             _, output = self.model(token_ids, segment_ids, valid_length.astype("float32"))
             for r in output:
-                '''
-                r = list(r)
-                predict_value = r[0] if r[0] > r[1] else r[1]
-                sentiment = r.index(predict_value)
-                '''
-                neg = np.exp(r[0].asnumpy())[0]
-                pos = np.exp(r[1].asnumpy())[0]
+                #neg = np.exp(r[0].asnumpy())[0]
+                #pos = np.exp(r[1].asnumpy())[0]
+                neg = 1/(1 + np.exp(-r[0].asnumpy()))[0]
+                pos = 1/(1 + np.exp(-r[1].asnumpy()))[0]
                 sentiment_label = "positive" if neg < pos else "negative"
                 if abs(neg - pos) < neutral_th:
                     sentiment_label = "neutral"
-                #return [r.index(predict_value), sentiment_label, (neg, pos)]
-                return [(neg, pos), sentiment_label]
+                return ((round(neg, 4), round(pos, 4)), sentiment_label)
+    
+    def get_weight(self, sentence):
+        attn_data = self.__get_attention(self.model, sentence)
+        token_list = attn_data["text"]
+        weight_list = []
+        for token_index in range(len(token_list)):
+            if token_list[token_index].strip() == "":
+                weight_list.append(0)
+            else:
+                weight_list.append(attn_data["attn"][token_index])
+        return token_list, weight_list
+    
+    def get_sentiment_parse(self, sentence, neutral_th=0.3):
+        pos_result = self.ma.parse(sentence)
+        ner_result = self.ner.parse(sentence)
+        sa_result = self.sa.parse(pos_result, ner_result) 
+        phrase_sa_list, phrase_list = self.sa.get_phrase(sentence, sa_result)  
+        token_list = []
+        weight_list = []
+        phrase_token_weight_list = []
+        for sentence_piece, phrase_sa in zip(phrase_list, phrase_sa_list):
+            sentiment_score, sentiment_tag = self.tag(sentence_piece, neutral_th=neutral_th)
+            phrase_token_weight_list.append(((sentiment_score, sentiment_tag), sentence_piece.strip(), phrase_sa))
+            sub_token_list, sub_weight_list = self.get_weight(sentence_piece)
+            token_list += sub_token_list
+            if sentiment_tag == "negative":
+                weight_list += [-weight for weight in sub_weight_list]
+            elif sentiment_tag == "neutral":
+                weight_list += [0 for weight in sub_weight_list]
+            else:
+                weight_list += sub_weight_list
+        return phrase_token_weight_list, token_list, weight_list
+    
+    def draw_sentiment_parse(self, token_list, weight_list):
+        tv = TextVisualizer()
+        return tv.draw_sentence_attention(token_list, weight_list)
             
     def draw_sentence_weight(self, sentence):
-        weight = self.get_weight(sentence)
-        token_list = weight["token_list"]
-        weight_list = [w**3 for w in weight["weight_list"]]
-        gv = GraphVisualizer()
-        return gv.draw_sentence_attention(token_list, weight_list)
+        token_list, weight_list = self.get_weight(sentence)
+        weight_list = [w**3 for w in weight_list]
+        tv = TextVisualizer()
+        return tv.draw_sentence_attention(token_list, weight_list)
         
     def draw_weight(self, sentence):
         attn_data = self.__get_attention(self.model, sentence)
@@ -73,7 +112,7 @@ class SentimentAnalysis():
         }
         data_meta_list.append(data_meta)
         graph_meta = {
-            "title": "BERT SENTIMENT WEIGHT",
+            "title": "SENTIMENT WEIGHT",
             "x_tickangle": -45,
             "y1_tickangle": 0,
             "y2_tickangle": 0,
@@ -82,16 +121,6 @@ class SentimentAnalysis():
             "y2_name": "WEIGHT",
         }
         return gv.draw_histogram(data_meta_list, graph_meta)
-    
-    def get_weight(self, sentence):
-        attn_data = self.__get_attention(self.model, sentence)
-        token_list = attn_data["text"]
-        weight_list = []
-        for token_index in range(len(token_list)):
-            if token_list[token_index].strip() == "":
-                continue
-            weight_list.append(attn_data["attn"][token_index])
-        return {"token_list": token_list, "weight_list": weight_list}
     
     def __remove_char(self, tokens):
         return [t.replace('Ġ', ' ').replace('▁', ' ') for t in tokens]

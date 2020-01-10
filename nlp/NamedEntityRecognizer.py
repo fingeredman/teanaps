@@ -31,24 +31,33 @@ class NamedEntityRecognizer():
         self.__load_ner_model()
         
     def parse(self, input_text):
-        input_text = input_text.lower()
-        list_of_input_ids = self.__sentence_to_token_index_list([input_text])
+        input_text_lower = input_text.lower()
+        list_of_input_ids = self.__sentence_to_token_index_list([input_text_lower])
         x_input = torch.tensor(list_of_input_ids).long()
         list_of_pred_ids, _ = self.model(x_input)
-        list_of_ner_word, _ = self.__ner_decoder(input_text=input_text, 
+        list_of_ner_word, _ = self.__ner_decoder(input_text=input_text, input_text_lower=input_text_lower, 
                                                  list_of_input_ids=list_of_input_ids, 
                                                  list_of_pred_ids=list_of_pred_ids)
         list_of_ner_word.sort(key=lambda elem: len(elem[2]), reverse=True)
         return list_of_ner_word
     
     def parse_sentence(self, input_text):
-        list_of_input_ids = self.__sentence_to_token_index_list([input_text])
+        input_text_lower = input_text.lower()
+        list_of_input_ids = self.__sentence_to_token_index_list([input_text_lower])
         x_input = torch.tensor(list_of_input_ids).long()
         list_of_pred_ids, _ = self.model(x_input)
-        _, decoding_ner_sentence = self.__ner_decoder(input_text=input_text, 
+        _, decoding_ner_sentence = self.__ner_decoder(input_text=input_text, input_text_lower=input_text_lower, 
                                                       list_of_input_ids=list_of_input_ids,
                                                       list_of_pred_ids=list_of_pred_ids)
         return decoding_ner_sentence
+    
+    def get_weight(self, sentence):
+        attn_data = self.__get_attention(self.model, sentence)
+        token_list = attn_data["text"]
+        weight_list = []
+        for token_index in range(len(token_list)):
+            weight_list.append(attn_data["attn"][11][11][token_index][token_index])
+        return {"token_list": token_list, "weight_list": weight_list}
     
     def draw_sentence_weight(self, sentence):
         weight = self.get_weight(sentence)
@@ -85,14 +94,6 @@ class NamedEntityRecognizer():
             "y2_name": "WEIGHT",
         }
         return gv.draw_histogram(data_meta_list, graph_meta)
-    
-    def get_weight(self, sentence):
-        attn_data = self.__get_attention(self.model, sentence)
-        token_list = attn_data["text"]
-        weight_list = []
-        for token_index in range(len(token_list)):
-            weight_list.append(attn_data["attn"][11][11][token_index][token_index])
-        return {"token_list": token_list, "weight_list": weight_list}
     
     def __token_list_to_index_list(self, token_list):
         index_list = []
@@ -139,11 +140,14 @@ class NamedEntityRecognizer():
 
     def __get_token_position(self, sentence_org, token_list):
         token_list = [token.replace("▁", "") for token in token_list[1:-1]]
-        content_ = sentence_org
+        content_ = sentence_org.lower()
         position = 0
         token_loc_list = []
-        for token in token_list:
-            loc = content_.find(token)
+        for i, token in enumerate(token_list):
+            if token == "":
+                loc = content_.find(token_list[i+1])
+            else:
+                loc = content_.find(token)
             if loc != -1:
                 position += loc
                 content_ = content_[loc:]
@@ -152,6 +156,7 @@ class NamedEntityRecognizer():
             else:
                 start = 0
                 end = 0
+            
             token_loc_list.append((token, (start, end)))
         return [('[CLS]', (0, 0))] + token_loc_list + [('[SEP]', (0, 0))]
         
@@ -203,8 +208,8 @@ class NamedEntityRecognizer():
             formatted_tokens.append(t)
         return formatted_tokens
     
-    def __ner_decoder(self, input_text, list_of_input_ids, list_of_pred_ids):
-        list_of_tokens = self.__sentence_to_token_list([input_text])
+    def __ner_decoder(self, input_text, input_text_lower, list_of_input_ids, list_of_pred_ids):
+        list_of_tokens = self.__sentence_to_token_list([input_text_lower])
         input_token = []
         for i, token in enumerate(self.__index_list_to_token_list(list_of_input_ids)[0]):
             if token == "[UNK]":
@@ -212,7 +217,7 @@ class NamedEntityRecognizer():
             else:
                 input_token.append(token)
         pred_ner_tag = [self.index_to_entity[pred_id] for pred_id in list_of_pred_ids[0]]
-        loc_list = self.__get_token_position(input_text, input_token)
+        loc_list = self.__get_token_position(input_text_lower, input_token)
         list_of_ner_word = []        
         temp_loc_a = loc_list[1][1][0]
         temp_loc_b = loc_list[1][1][1]
@@ -222,11 +227,14 @@ class NamedEntityRecognizer():
         for token, ner_tag, loc in zip(input_token, pred_ner_tag, loc_list):
             if ner_tag[:2] == "B-":
                 if temp_entity != "":
-                    list_of_ner_word.append((temp_entity.replace("▁", " ").strip(), 
+                    #list_of_ner_word.append((temp_entity.replace("▁", " ").strip(), 
+                    #                         temp_ner_tag, (temp_loc_a, temp_loc_b)))
+                    list_of_ner_word.append((input_text[temp_loc_a:temp_loc_b], 
                                              temp_ner_tag, (temp_loc_a, temp_loc_b)))
                     if temp_entity[0] == "▁":
                         temp_sentence += " "
-                    temp_sentence += "<" + temp_entity.replace("▁", " ").strip() + ":" + temp_ner_tag + ">"
+                    #temp_sentence += "<" + temp_entity.replace("▁", " ").strip() + ":" + temp_ner_tag + ">"
+                    temp_sentence += "<" + input_text[temp_loc_a:temp_loc_b] + ":" + temp_ner_tag + ">"
                 temp_entity = ""
                 temp_loc_a = loc[1][0]
                 temp_loc_b = loc[1][1]
@@ -235,14 +243,19 @@ class NamedEntityRecognizer():
             elif ner_tag[:2] == "I-":
                 temp_loc_b = loc[1][1]
                 temp_ner_tag = ner_tag[2:]
-                temp_entity += token
-            else:
                 if temp_entity != "":
-                    list_of_ner_word.append((temp_entity.replace("▁", " ").strip(), 
+                    temp_entity += token
+            else:
+                
+                if temp_entity != "":
+                    #list_of_ner_word.append((temp_entity.replace("▁", " ").strip(), 
+                    #                         temp_ner_tag, (temp_loc_a, temp_loc_b)))
+                    list_of_ner_word.append((input_text[temp_loc_a:temp_loc_b], 
                                              temp_ner_tag, (temp_loc_a, temp_loc_b)))
                     if temp_entity[0] == "▁":
                         temp_sentence += " "
-                    temp_sentence += "<" + temp_entity.replace("▁", " ").strip() + ":" + temp_ner_tag + ">"
+                    #temp_sentence += "<" + temp_entity.replace("▁", " ").strip() + ":" + temp_ner_tag + ">"
+                    temp_sentence += "<" + input_text[temp_loc_a:temp_loc_b] + ":" + temp_ner_tag + ">"
                 if token not in ["[CLS]", "[SEP]"]:
                     temp_sentence += token.replace("▁", " ")
                 temp_entity = ""

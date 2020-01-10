@@ -100,6 +100,7 @@ BERT_CONFIG = {
     "type_vocab_size": 2,
     "vocab_size": 8002
 }
+
 MODEL_CONFIG = {
     "hidden_size": 768,
     "dropout": 0.1,
