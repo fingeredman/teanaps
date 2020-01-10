@@ -8,7 +8,7 @@
   - [NLP](./teanaps_user_guide-api_documentation-nlp.md)
   - [Text Analysis](./teanaps_user_guide-api_documentation-text_analysis.md)
   - [Visualization](./teanaps_user_guide-api_documentation-visualization.md)
-  - [Machine Learning](./teanaps_user_guide-api_documentation-visualization.md)
+  - [Machine Learning](./teanaps_user_guide-api_documentation-machine-learning.md)
 - [Tutorial](./teanaps_user_guide-tutorial.md)
 - [References](./teanaps_user_guide-references_journal_project.md)
 - [Journal & Project](./teanaps_user_guide-references_journal_project.md)
@@ -62,7 +62,7 @@
 | [nlp](./teanaps_user_guide-api_documentation-nlp.md#2-teanapsnlp)    | [MorphologicalAnalyzer](./teanaps_user_guide-api_documentation-nlp.md#21-teanapsnlpmorphologicalanalyzer), [NamedEntityRecognizer](./teanaps_user_guide-api_documentation-nlp.md#22-teanapsnlpnamedentityrecognizer), [SyntaxAnalyzer](./teanaps_user_guide-api_documentation-nlp.md#23-teanapsnlpsyntaxanalyzer), [Processing](./teanaps_user_guide-api_documentation-nlp.md#24-teanapsnlpprocessing), [Embedding](./teanaps_user_guide-api_documentation-nlp.md#25-teanapsnlpembedding)    |
 | [text_analysis](./teanaps_user_guide-api_documentation-text_analysis.md#3-teanapstext_analysis)    | [TfidfCalculator](./teanaps_user_guide-api_documentation-text_analysis.md#31-teanapstext_analysistfidfcalculator), [DocumentClustering](./teanaps_user_guide-api_documentation-text_analysis.md#32-teanapstext_analysisdocumentclustering), [TopicClustering](./teanaps_user_guide-api_documentation-text_analysis.md#33-teanapstext_analysistopicclustering), [CoWordCalculator](./teanaps_user_guide-api_documentation-text_analysis.md#34-teanapstext_analysiscowordcalculator), [SentimentAnalysis](./teanaps_user_guide-api_documentation-text_analysis.md#35-teanapstext_analysissentimentanalysis), [DocumentSummarizer](./teanaps_user_guide-api_documentation-text_analysis.md#36-teanapstext_analysisdocumentsummarizer), [KeyphraseExtraction](./teanaps_user_guide-api_documentation-text_analysis.md#37-teanapstext_analysiskeyphraseextraction)    |
 | [visualization](./teanaps_user_guide-api_documentation-visualization.md#4-teanapsvisualization)    | [GraphVisualizer](./teanaps_user_guide-api_documentation-visualization.md#41-teanapsvisualizationgraphvisualizer), [TextVisualizer](./teanaps_user_guide-api_documentation-visualization.md#42-teanapsvisualizationtextvisualizer)    |
-| [machine_learning](./teanaps_user_guide-api_documentation-visualization.md#5-teanapsmachine_learning)    | [Regression](./teanaps_user_guide-api_documentation-visualization.md#51-teanapsmachine_learningregression), [Classification](./teanaps_user_guide-api_documentation-visualization.md#52-teanapsmachine_learningclassification), [Clustering](./teanaps_user_guide-api_documentation-visualization.md#53-teanapsmachine_learningclustering)    |
+| [machine_learning](./teanaps_user_guide-api_documentation-machine-learning.md#5-teanapsmachine_learning)    | [Regression](./teanaps_user_guide-api_documentation-machine-learning.md#51-teanapsmachine_learningregression), [Classification](./teanaps_user_guide-api_documentation-machine-learning.md#52-teanapsmachine_learningclassification), [Clustering](./teanaps_user_guide-api_documentation-machine-learning.md#53-teanapsmachine_learningclustering)    |
 
 ### Manual
 #### 4. `teanaps.visualization`
@@ -390,13 +390,3 @@
     > ```
     > Output (in Jupyter Notebook) :
     > ![network](../data/sample_image/network.png)
-
-#### 5. `teanaps.machine_learning`
-##### 5.1. `teanaps.machine_learning.Regression`
-  - TBU
-
-##### 5.2. `teanaps.machine_learning.Classification`
-  - TBU
-
-##### 5.3. `teanaps.machine_learning.Clustering`
-  - TBU

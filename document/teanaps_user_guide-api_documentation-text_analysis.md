@@ -8,7 +8,7 @@
   - [NLP](./teanaps_user_guide-api_documentation-nlp.md)
   - [Text Analysis](./teanaps_user_guide-api_documentation-text_analysis.md)
   - [Visualization](./teanaps_user_guide-api_documentation-visualization.md)
-  - [Machine Learning](./teanaps_user_guide-api_documentation-visualization.md)
+  - [Machine Learning](./teanaps_user_guide-api_documentation-machine-learning.md)
 - [Tutorial](./teanaps_user_guide-tutorial.md)
 - [References](./teanaps_user_guide-references_journal_project.md)
 - [Journal & Project](./teanaps_user_guide-references_journal_project.md)
@@ -62,7 +62,7 @@
 | [nlp](./teanaps_user_guide-api_documentation-nlp.md#2-teanapsnlp)    | [MorphologicalAnalyzer](./teanaps_user_guide-api_documentation-nlp.md#21-teanapsnlpmorphologicalanalyzer), [NamedEntityRecognizer](./teanaps_user_guide-api_documentation-nlp.md#22-teanapsnlpnamedentityrecognizer), [SyntaxAnalyzer](./teanaps_user_guide-api_documentation-nlp.md#23-teanapsnlpsyntaxanalyzer), [Processing](./teanaps_user_guide-api_documentation-nlp.md#24-teanapsnlpprocessing), [Embedding](./teanaps_user_guide-api_documentation-nlp.md#25-teanapsnlpembedding)    |
 | [text_analysis](./teanaps_user_guide-api_documentation-text_analysis.md#3-teanapstext_analysis)    | [TfidfCalculator](./teanaps_user_guide-api_documentation-text_analysis.md#31-teanapstext_analysistfidfcalculator), [DocumentClustering](./teanaps_user_guide-api_documentation-text_analysis.md#32-teanapstext_analysisdocumentclustering), [TopicClustering](./teanaps_user_guide-api_documentation-text_analysis.md#33-teanapstext_analysistopicclustering), [CoWordCalculator](./teanaps_user_guide-api_documentation-text_analysis.md#34-teanapstext_analysiscowordcalculator), [SentimentAnalysis](./teanaps_user_guide-api_documentation-text_analysis.md#35-teanapstext_analysissentimentanalysis), [DocumentSummarizer](./teanaps_user_guide-api_documentation-text_analysis.md#36-teanapstext_analysisdocumentsummarizer), [KeyphraseExtraction](./teanaps_user_guide-api_documentation-text_analysis.md#37-teanapstext_analysiskeyphraseextraction)    |
 | [visualization](./teanaps_user_guide-api_documentation-visualization.md#4-teanapsvisualization)    | [GraphVisualizer](./teanaps_user_guide-api_documentation-visualization.md#41-teanapsvisualizationgraphvisualizer), [TextVisualizer](./teanaps_user_guide-api_documentation-visualization.md#42-teanapsvisualizationtextvisualizer)    |
-| [machine_learning](./teanaps_user_guide-api_documentation-visualization.md#5-teanapsmachine_learning)    | [Regression](./teanaps_user_guide-api_documentation-visualization.md#51-teanapsmachine_learningregression), [Classification](./teanaps_user_guide-api_documentation-visualization.md#52-teanapsmachine_learningclassification), [Clustering](./teanaps_user_guide-api_documentation-visualization.md#53-teanapsmachine_learningclustering)    |
+| [machine_learning](./teanaps_user_guide-api_documentation-machine-learning.md#5-teanapsmachine_learning)    | [Regression](./teanaps_user_guide-api_documentation-machine-learning.md#51-teanapsmachine_learningregression), [Classification](./teanaps_user_guide-api_documentation-machine-learning.md#52-teanapsmachine_learningclassification), [Clustering](./teanaps_user_guide-api_documentation-machine-learning.md#53-teanapsmachine_learningclustering)    |
 
 ### Manual
 #### 3. `teanaps.text_analysis`
@@ -126,36 +126,35 @@
   - Parameters
     - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
   - Returns
-    - *result (dict) : {"token_list", "weight_list"}가 포함된 딕셔너리.*
+    - *token_list (list) : 문장의 각 형태소를 포함하는 리스트.*
+    - *weight_list (list) : 문장의 각 형태소 별 가중치를 포함하는 리스트.*
   - Examples
 
     > Python Code (in Jupyter Notebook) :
     > ```python
     > sentence = "늘 배우고 배푸는 자세가 필요합니다."
     > result = senti.get_weight(sentence)
-    > print(result)
+    > print(token_list)
+    > print(weight_list)
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
-    > {
-    >   'token_list': [' 늘', ' 배우', '고', ' 배', '푸', '는', ' 자세', '가', ' 필요', '합니다', ' ', '.'],
-    >   'weight_list': [0.072522074, 0.08697342, 0.052703843, 0.051040735, 0.0606895, 0.05134341, 0.05213573, 0.08644837, 0.078125894, 0.079360135, 0, 0.079488374]
-    > }
+    > [' 늘', ' 배우', '고', ' 배', '푸', '는', ' 자세', '가', ' 필요', '합니다', ' ', '.']
+    > [0.072522074, 0.08697342, 0.052703843, 0.051040735, 0.0606895, 0.05134341, 0.05213573, 0.08644837, 0.078125894, 0.079360135, 0, 0.079488374]
     > ```
 
     > Python Code (in Jupyter Notebook) :
     > ```python
     > sentence = "과한 욕심은 주변 사람들에게 피해를 줍니다."
-    > result = senti.get_weight(sentence)
-    > print(result)
+    > token_list, weight_list = senti.get_weight(sentence)
+    > print(token_list)
+    > print(weight_list)
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
     > ```python
-    > {
-    >   'token_list': [' ', '과', '한', ' 욕심', '은', ' 주변', ' 사람들', '에게', ' 피해를', ' ', '줍', '니다', ' ', '.'],
-    >   'weight_list': [0, 0.020344315, 0.024879746, 0.02612342, 0.03615231, 0.048542265, 0.06707654, 0.0936653, 0.07649707, 0, 0.08189902, 0.08962273, 0, 0.07841993]
-    > }
+    > [' ', '과', '한', ' 욕심', '은', ' 주변', ' 사람들', '에게', ' 피해를', ' ', '줍', '니다', ' ', '.']
+    > [0, 0.020344315, 0.024879746, 0.02612342, 0.03615231, 0.048542265, 0.06707654, 0.0936653, 0.07649707, 0, 0.08189902, 0.08962273, 0, 0.07841993]
     > ```
 
 - `teanaps.text_analysis.SentimentAnalysis.draw_weight(self, sentence)` [[Top]](#teanaps-architecture)

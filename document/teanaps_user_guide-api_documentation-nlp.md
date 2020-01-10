@@ -8,7 +8,7 @@
   - [NLP](./teanaps_user_guide-api_documentation-nlp.md)
   - [Text Analysis](./teanaps_user_guide-api_documentation-text_analysis.md)
   - [Visualization](./teanaps_user_guide-api_documentation-visualization.md)
-  - [Machine Learning](./teanaps_user_guide-api_documentation-visualization.md)
+  - [Machine Learning](./teanaps_user_guide-api_documentation-machine-learning.md)
 - [Tutorial](./teanaps_user_guide-tutorial.md)
 - [References](./teanaps_user_guide-references_journal_project.md)
 - [Journal & Project](./teanaps_user_guide-references_journal_project.md)
@@ -62,7 +62,7 @@
 | [nlp](./teanaps_user_guide-api_documentation-nlp.md#2-teanapsnlp)    | [MorphologicalAnalyzer](./teanaps_user_guide-api_documentation-nlp.md#21-teanapsnlpmorphologicalanalyzer), [NamedEntityRecognizer](./teanaps_user_guide-api_documentation-nlp.md#22-teanapsnlpnamedentityrecognizer), [SyntaxAnalyzer](./teanaps_user_guide-api_documentation-nlp.md#23-teanapsnlpsyntaxanalyzer), [Processing](./teanaps_user_guide-api_documentation-nlp.md#24-teanapsnlpprocessing), [Embedding](./teanaps_user_guide-api_documentation-nlp.md#25-teanapsnlpembedding)    |
 | [text_analysis](./teanaps_user_guide-api_documentation-text_analysis.md#3-teanapstext_analysis)    | [TfidfCalculator](./teanaps_user_guide-api_documentation-text_analysis.md#31-teanapstext_analysistfidfcalculator), [DocumentClustering](./teanaps_user_guide-api_documentation-text_analysis.md#32-teanapstext_analysisdocumentclustering), [TopicClustering](./teanaps_user_guide-api_documentation-text_analysis.md#33-teanapstext_analysistopicclustering), [CoWordCalculator](./teanaps_user_guide-api_documentation-text_analysis.md#34-teanapstext_analysiscowordcalculator), [SentimentAnalysis](./teanaps_user_guide-api_documentation-text_analysis.md#35-teanapstext_analysissentimentanalysis), [DocumentSummarizer](./teanaps_user_guide-api_documentation-text_analysis.md#36-teanapstext_analysisdocumentsummarizer), [KeyphraseExtraction](./teanaps_user_guide-api_documentation-text_analysis.md#37-teanapstext_analysiskeyphraseextraction)    |
 | [visualization](./teanaps_user_guide-api_documentation-visualization.md#4-teanapsvisualization)    | [GraphVisualizer](./teanaps_user_guide-api_documentation-visualization.md#41-teanapsvisualizationgraphvisualizer), [TextVisualizer](./teanaps_user_guide-api_documentation-visualization.md#42-teanapsvisualizationtextvisualizer)    |
-| [machine_learning](./teanaps_user_guide-api_documentation-visualization.md#5-teanapsmachine_learning)    | [Regression](./teanaps_user_guide-api_documentation-visualization.md#51-teanapsmachine_learningregression), [Classification](./teanaps_user_guide-api_documentation-visualization.md#52-teanapsmachine_learningclassification), [Clustering](./teanaps_user_guide-api_documentation-visualization.md#53-teanapsmachine_learningclustering)    |
+| [machine_learning](./teanaps_user_guide-api_documentation-machine-learning.md#5-teanapsmachine_learning)    | [Regression](./teanaps_user_guide-api_documentation-machine-learning.md#51-teanapsmachine_learningregression), [Classification](./teanaps_user_guide-api_documentation-machine-learning.md#52-teanapsmachine_learningclassification), [Clustering](./teanaps_user_guide-api_documentation-machine-learning.md#53-teanapsmachine_learningclustering)    |
 
 ### Manual
 #### 2. `teanaps.nlp`
@@ -189,15 +189,14 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다."
-    > result = ner.get_weight(sentence)
-    > print(result)
+    > token_list, weight_list = ner.get_weight(sentence)
+    > print(token_list)
+    > print(weight_list)
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
-    > {
-    >   'token_list': ['[CLS]', ' T', 'E', 'A', 'NA', 'PS', '는', ' ', '텍', '스트', ' 마', '이닝', '을', ' 위한', ' P', 'y', 'th', 'on', ' 패키지', ' ', '입니다', '.', '[SEP]'], 
-    >   'weight_list': [0.3576193153858185, 0.41024893522262573, 0.08311055600643158, 0.1084287092089653, 0.1453726887702942, 0.25153452157974243, 0.004453524947166443, 0.0038948641158640385, 0.0018726392881944776, 0.0029991772025823593, 0.0017985135782510042, 0.001928122597746551, 0.0021339845843613148, 0.0020090234465897083, 0.14324823021888733, 0.20584315061569214, 0.11403589695692062, 0.14470143616199493, 0.09357250481843948, 0.0024957722052931786, 0.0019250106997787952, 0.004643643740564585, 0.004450325388461351]
-    > }
+    > ['[CLS]', ' T', 'E', 'A', 'NA', 'PS', '는', ' ', '텍', '스트', ' 마', '이닝', '을', ' 위한', ' P', 'y', 'th', 'on', ' 패키지', ' ', '입니다', '.', '[SEP]'] 
+    > [0.3576193153858185, 0.41024893522262573, 0.08311055600643158, 0.1084287092089653, 0.1453726887702942, 0.25153452157974243, 0.004453524947166443, 0.0038948641158640385, 0.0018726392881944776, 0.0029991772025823593, 0.0017985135782510042, 0.001928122597746551, 0.0021339845843613148, 0.0020090234465897083, 0.14324823021888733, 0.20584315061569214, 0.11403589695692062, 0.14470143616199493, 0.09357250481843948, 0.0024957722052931786, 0.0019250106997787952, 0.004643643740564585, 0.004450325388461351]
     > ```
 
 - `teanaps.nlp.NamedEntityRecognizer.draw_sentence_weight(sentence)` [[Top]](#teanaps-architecture)
