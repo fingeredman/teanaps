@@ -10,20 +10,26 @@
 - **Contact : FINGEREDMAN(fingeredman@gmail.com)**
 
 ---
+## What can you do with `TEANAPS`?
+> ![what_can_you_do](./data/sample_image/what_can_you_do.png)
+
+> `#teanaps` `티냅스_라고_불러주세요` `#텍스트분석` `#텍스트마이닝` `#자연어처리` `#텍스트전처리` `#띄어쓰기_보정` `#불용어` `#언어식별` `#임베딩` `#형태소분석` `#개체명인식` `#구문분석` `#TF-IDF` `#감성분석` `#긍부정` `#감성표현` `#클러스터링` `#군집화` `#문서_군집` `#유사도_분석` `#네트워크` `#중심성` `#연관어` `#키워드추출`
+ 
+---
 ## `TEANAPS` User Guide
 
 ### Contents
-- [Install `TEANAPS`](./document/teanaps_user_guide-install_teanaps.md)
-- [API Documentation](./document/teanaps_user_guide-api_documentation-handler.md)
-- [Tutorial](./document/teanaps_user_guide-tutorial.md)
-- [References](./document/teanaps_user_guide-references_journal_project.md)
-- [Journal & Project](./document/teanaps_user_guide-references_journal_project.md)
-- [Appendix](./document/teanaps_user_guide-appendix.md)
+- [Install `TEANAPS`](./teanaps_user_guide-install_teanaps.md#teanaps-user-guide)
+- [API Documentation](./teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
+- [Tutorial](./teanaps_user_guide-tutorial.md#teanaps-user-guide)
+- [References](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
+- [Journal & Project](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
+- [Appendix](./teanaps_user_guide-appendix.md#teanaps-user-guide)
 
 ---
 ## `TEANAPS` Tutorial
 - [튜토리얼 문서](./document/teanaps_user_guide-tutorial.md)를 참조해주세요.
-- `TEANAPS`를 활용한 텍스트 분석 방법은 텍스트 마이닝 강의자료를 참고해주세요. [(Link)](https://github.com/fingeredman/text-mining-for-practice)
+- `TEANAPS`를 활용한 텍스트 분석 방법은 [텍스트 마이닝 강의자료](https://github.com/fingeredman/text-mining-for-practice)를 참고해주세요.
 
 ---
 ## Release history
@@ -52,3 +58,7 @@
 > 2019.12.21. `teanaps v0.0.8` 업데이트  
 > 2020.01.04. `teanaps v0.0.9` 업데이트, `User Guide` 업로드  
 > 2020.01.11. `teanaps v0.0.10`, `Documentation` 업데이트  
+
+<br><br>
+---
+<center>ⓒ 2020. FINGEREDMAN all rights reserved.</center>
