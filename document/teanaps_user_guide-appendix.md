@@ -2,12 +2,17 @@
 
 ---
 ## Contents
-- [Install `TEANAPS`](./teanaps_user_guide-install_teanaps.md)
-- [API Documentation](./teanaps_user_guide-api_documentation-handler.md)
-- [Tutorial](./teanaps_user_guide-tutorial.md)
-- [References](./teanaps_user_guide-references_journal_project.md)
-- [Journal & Project](./teanaps_user_guide-references_journal_project.md)
-- [Appendix](./teanaps_user_guide-appendix.md)
+- [Install `TEANAPS`](./teanaps_user_guide-install_teanaps.md#teanaps-user-guide)
+- [API Documentation](./teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
+  - [Handler](./teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
+  - [NLP](./teanaps_user_guide-api_documentation-nlp.md#teanaps-user-guide)
+  - [Text Analysis](./teanaps_user_guide-api_documentation-text_analysis.md#teanaps-user-guide)
+  - [Visualization](./teanaps_user_guide-api_documentation-visualization.md#teanaps-user-guide)
+  - [Machine Learning](./teanaps_user_guide-api_documentation-machine-learning.md#teanaps-user-guide)
+- [Tutorial](./teanaps_user_guide-tutorial.md#teanaps-user-guide)
+- [References](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
+- [Journal & Project](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
+- [Appendix](./teanaps_user_guide-appendix.md#teanaps-user-guide)
 
 ---
 ## Appendix
@@ -87,3 +92,7 @@
 | 14 | 물질(Meterial)          | MT   | 원소, 금속, 암석, 화학물질                                                |
 | 15 | 용어(Term)              | TM   | 색, 방향, 기후, 모양/형태, 증상, 약품, 용어, URL, 이메일 주소, 모델, 부품, 프로젝트  |
 | 16 | 알 수 없음               | UN   | 특정 개체명 분류에 해당하지 않는 단어                                         |
+
+<br><br>
+---
+<center>ⓒ 2020. FINGEREDMAN all rights reserved.</center>
