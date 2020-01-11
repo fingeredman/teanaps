@@ -57,7 +57,7 @@ class NamedEntityRecognizer():
         weight_list = []
         for token_index in range(len(token_list)):
             weight_list.append(attn_data["attn"][11][11][token_index][token_index])
-        return token_list, weight_list
+        return token_list[1:-1], weight_list[1:-1]
     
     def draw_sentence_weight(self, sentence):
         token_list, weight_list = self.get_weight(sentence)
@@ -65,14 +65,10 @@ class NamedEntityRecognizer():
         return tv.draw_sentence_attention(token_list, weight_list)
     
     def draw_weight(self, sentence):
-        attn_data = self.__get_attention(self.model, sentence)
         gv = GraphVisualizer()
-        x = attn_data["text"]
-        x_data = []
-        z_data = []
-        for x_index in range(len(x)):
-            x_data.append("(" + str(x_index) + ")" + x[x_index])
-            z_data.append(attn_data["attn"][11][11][x_index][x_index])
+        token_list, weight_list = self.get_weight(sentence)
+        x_data = ["(" + str(token_index) + ")" + token for token_index, token in enumerate(token_list)]
+        z_data = [weight for weight in weight_list]
         data_meta_list = []
         data_meta = {
             "graph_type": "histogram",

@@ -6,7 +6,7 @@
 - [API Documentation](./teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
   - [Handler](./teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
   - [NLP](./teanaps_user_guide-api_documentation-nlp.md#teanaps-user-guide)
-  - [Text Analysis](./teanaps_user_guide-api_documentation-text_analysis.md#teanaps-user-guide)
+  - Text Analysis
   - [Visualization](./teanaps_user_guide-api_documentation-visualization.md#teanaps-user-guide)
   - [Machine Learning](./teanaps_user_guide-api_documentation-machine-learning.md#teanaps-user-guide)
 - [Tutorial](./teanaps_user_guide-tutorial.md#teanaps-user-guide)
@@ -151,7 +151,6 @@
     > print(weight_list)
     > ```
     > Output (in Jupyter Notebook) :
-    > ```python
     > ```python
     > [' ', '과', '한', ' 욕심', '은', ' 주변', ' 사람들', '에게', ' 피해를', ' ', '줍', '니다', ' ', '.']
     > [0, 0.020344315, 0.024879746, 0.02612342, 0.03615231, 0.048542265, 0.06707654, 0.0936653, 0.07649707, 0, 0.08189902, 0.08962273, 0, 0.07841993]

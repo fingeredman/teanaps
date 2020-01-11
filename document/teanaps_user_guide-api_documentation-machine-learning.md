@@ -8,7 +8,7 @@
   - [NLP](./teanaps_user_guide-api_documentation-nlp.md#teanaps-user-guide)
   - [Text Analysis](./teanaps_user_guide-api_documentation-text_analysis.md#teanaps-user-guide)
   - [Visualization](./teanaps_user_guide-api_documentation-visualization.md#teanaps-user-guide)
-  - [Machine Learning](./teanaps_user_guide-api_documentation-machine-learning.md#teanaps-user-guide)
+  - Machine Learning
 - [Tutorial](./teanaps_user_guide-tutorial.md#teanaps-user-guide)
 - [References](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
 - [Journal & Project](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)

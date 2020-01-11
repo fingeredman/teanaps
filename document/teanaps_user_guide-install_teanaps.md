@@ -2,7 +2,7 @@
 
 ---
 ## Contents
-- [Install `TEANAPS`](./teanaps_user_guide-install_teanaps.md#teanaps-user-guide)
+- Install `TEANAPS`
 - [API Documentation](./teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
   - [Handler](./teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
   - [NLP](./teanaps_user_guide-api_documentation-nlp.md#teanaps-user-guide)

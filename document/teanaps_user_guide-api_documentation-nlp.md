@@ -5,7 +5,7 @@
 - [Install `TEANAPS`](./teanaps_user_guide-install_teanaps.md#teanaps-user-guide)
 - [API Documentation](./teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
   - [Handler](./teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
-  - [NLP](./teanaps_user_guide-api_documentation-nlp.md#teanaps-user-guide)
+  - NLP
   - [Text Analysis](./teanaps_user_guide-api_documentation-text_analysis.md#teanaps-user-guide)
   - [Visualization](./teanaps_user_guide-api_documentation-visualization.md#teanaps-user-guide)
   - [Machine Learning](./teanaps_user_guide-api_documentation-machine-learning.md#teanaps-user-guide)
@@ -210,7 +210,7 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다."
-    > result = ner.draw_weight(sentence)
+    > ner.draw_sentence_weight(sentence)
     > ```
     > Output (in Jupyter Notebook) :  
     > ![sentence_weight](../data/sample_image/sentence_weight.png)
@@ -226,7 +226,7 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다."
-    > result = ner.draw_weight(sentence)
+    > ner.draw_weight(sentence)
     > ```
     > Output (in Jupyter Notebook) :  
     > ![sentence_weight_histogram](../data/sample_image/sentence_weight_histogram.png)

@@ -7,7 +7,7 @@
   - [Handler](./teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
   - [NLP](./teanaps_user_guide-api_documentation-nlp.md#teanaps-user-guide)
   - [Text Analysis](./teanaps_user_guide-api_documentation-text_analysis.md#teanaps-user-guide)
-  - [Visualization](./teanaps_user_guide-api_documentation-visualization.md#teanaps-user-guide)
+  - Visualization
   - [Machine Learning](./teanaps_user_guide-api_documentation-machine-learning.md#teanaps-user-guide)
 - [Tutorial](./teanaps_user_guide-tutorial.md#teanaps-user-guide)
 - [References](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
@@ -75,7 +75,7 @@
 > gv = GraphVisualizer()
 > ```
 
-- `teanaps.visualization.GraphVisualizer.draw_histogram(self, data_meta_list, graph_meta)` [[Top]](#teanaps-architecture)
+- `teanaps.visualization.GraphVisualizer.draw_histogram(data_meta_list, graph_meta)` [[Top]](#teanaps-architecture)
   - 입력된 그래프 메타정보를 바탕으로 생성된 히스토그램 그래프를 출력합니다.
   - Parameters
     - *data_meta_list (list) : 그래프에 표현할 데이터 딕셔너리를 포함하는 리스트. Examples 참고.*
@@ -125,7 +125,7 @@
     > Output (in Jupyter Notebook) :
     > ![histogram](../data/sample_image/histogram.png)
 
-- `teanaps.visualization.GraphVisualizer.draw_line_graph(self, data_meta_list, graph_meta)` [[Top]](#teanaps-architecture)
+- `teanaps.visualization.GraphVisualizer.draw_line_graph(data_meta_list, graph_meta)` [[Top]](#teanaps-architecture)
   - 입력된 그래프 메타정보를 바탕으로 생성된 라인 그래프를 출력합니다.
   - Parameters
     - *data_meta_list (list) : 그래프에 표현할 데이터 딕셔너리를 포함하는 리스트. Examples 참고.*
@@ -175,7 +175,7 @@
     > Output (in Jupyter Notebook) :
     > ![line_graph](../data/sample_image/line_graph.png)
 
-- `teanaps.visualization.GraphVisualizer.draw_matrix(self, data_meta_list, graph_meta)` [[Top]](#teanaps-architecture)
+- `teanaps.visualization.GraphVisualizer.draw_matrix(data_meta_list, graph_meta)` [[Top]](#teanaps-architecture)
   - 입력된 그래프 메타정보를 바탕으로 생성된 매트릭스 그래프를 출력합니다.
   - Parameters
     - *data_meta (dict) : 그래프에 표현할 데이터 딕셔너리. Examples 참고.*
@@ -219,7 +219,7 @@
     > Output (in Jupyter Notebook) :
     > ![matrix](../data/sample_image/matrix.png)
 
-- `teanaps.visualization.GraphVisualizer.draw_scatter(self, data_meta_list, graph_meta)` [[Top]](#teanaps-architecture)
+- `teanaps.visualization.GraphVisualizer.draw_scatter(data_meta_list, graph_meta)` [[Top]](#teanaps-architecture)
   - 입력된 그래프 메타정보를 바탕으로 생성된 산점도 그래프를 출력합니다.
   - Parameters
     - *data_meta_list (list) : 그래프에 표현할 데이터 딕셔너리를 포함하는 리스트. Examples 참고.*

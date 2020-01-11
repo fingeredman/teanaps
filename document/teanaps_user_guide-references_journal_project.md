@@ -10,8 +10,8 @@
   - [Visualization](./teanaps_user_guide-api_documentation-visualization.md#teanaps-user-guide)
   - [Machine Learning](./teanaps_user_guide-api_documentation-machine-learning.md#teanaps-user-guide)
 - [Tutorial](./teanaps_user_guide-tutorial.md#teanaps-user-guide)
-- [References](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
-- [Journal & Project](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
+- References
+- Journal & Project
 - [Appendix](./teanaps_user_guide-appendix.md#teanaps-user-guide)
 
 ---
