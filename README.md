@@ -1,7 +1,8 @@
 # `TEANAPS`: Text Analysis APIs
 > ![teanaps_logo_wide](./data/logo/teanaps_logo_wide.png)
 
-> 본 자료는 텍스트 마이닝(text mining)을 보다 간단히 접근할 수 있도록 도와주는 `Python` 패키지 입니다. `Python` 언어를 배운 후에도 텍스트 마이닝을 위해서는 다양한 외부 패키지들을 활용할 줄 알아야합니다. 하지만 배워야하는 외부 패키지들이 적지않아 `Python` 언어에 충분히 익숙하지 않으신 분들은 접근하기가 쉽지 않습니다. 본 자료는 텍스트 마이닝과 관련된 외부 패키지들을 하나로 통합하고 `Google Colabotory`를 활용해 설치환경을 통일하여, 텍스트 마이닝을 위한 사전작업을 최소화하고 필요한 프로그래밍 코드를 최소화 할 수 있도록 도와줍니다. 본 패키지를 활용하기 전 `Python` 기초문법과 텍스트 마이닝에 필요한 필수 사전지식을 먼저 공부하시기를 추천드리며, `User Guide` `Tutorial`을 참조하시어 따라해보시길 권장드립니다.
+> 본 자료는 텍스트 마이닝(text mining)에 보다 쉽게 접근할 수 있도록 도와주는 `Python` 라이브러리 입니다. 텍스트 마이닝을 위해서는 `Python` 언어를 배운 후에도 다양한 라이브러리를 활용할 줄 알아야합니다(e.g., KoNLPy, NLTK, Gensim). 하지만 배워야하는 외부 라이브러리가 적지않고 난이도도 높아 `Python` 언어에 충분히 익숙하지 않으신 분들은 접근하기가 쉽지 않습니다.  
+이에 `TEANAPS`는 텍스트 마이닝과 관련된 외부 라이브러리들을 하나의 인터페이스(API) 형태로 통합하고 `Google Colabotory`를 활용해 설치환경을 통일하여, 텍스트 마이닝을 위한 사전작업을 최소화하고 필요한 프로그래밍 코드를 최소화 할 수 있도록 도와줍니다. 본 패키지를 활용하기 전 `Python` 기초문법과 텍스트 마이닝에 필요한 필수 사전지식을 먼저 학습하시기를 추천드리며, [`User Guide`](./document/teanaps_user_guide-install_teanaps.md#teanaps-user-guide), [`Tutorial`](./document/teanaps_user_guide-tutorial.md)을 참조하시어 `TEANAPS` 활용법을 따라해보시길 권장드립니다.
 
 - 본 패키지는 텍스트 마이닝을 활용한 연구 및 강의를 위한 목적으로 제작되었습니다.
 - 본 패키지를 강의 또는 연구 목적으로 활용하고자 하시는 경우 꼭 아래 메일주소로 연락주세요.
