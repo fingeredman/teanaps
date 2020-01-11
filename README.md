@@ -11,7 +11,7 @@
 
 ---
 ## What can you do with `TEANAPS`?
-> ![what_can_you_do](./data/sample_image/what_can_you_do.png)
+> ![what_can_you_do](./data/logo/what_can_you_do.png)
 
 > `#teanaps` `티냅스_라고_불러주세요` `#텍스트분석` `#텍스트마이닝` `#자연어처리` `#텍스트전처리` `#띄어쓰기_보정` `#불용어` `#언어식별` `#임베딩` `#형태소분석` `#개체명인식` `#구문분석` `#TF-IDF` `#감성분석` `#긍부정` `#감성표현` `#클러스터링` `#군집화` `#문서_군집` `#유사도_분석` `#네트워크` `#중심성` `#연관어` `#키워드추출`
  
@@ -19,12 +19,12 @@
 ## `TEANAPS` User Guide
 
 ### Contents
-- [Install `TEANAPS`](./teanaps_user_guide-install_teanaps.md#teanaps-user-guide)
-- [API Documentation](./teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
-- [Tutorial](./teanaps_user_guide-tutorial.md#teanaps-user-guide)
-- [References](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
-- [Journal & Project](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
-- [Appendix](./teanaps_user_guide-appendix.md#teanaps-user-guide)
+- [Install `TEANAPS`](./document/teanaps_user_guide-install_teanaps.md#teanaps-user-guide)
+- [API Documentation](./document/teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
+- [Tutorial](./document/teanaps_user_guide-tutorial.md#teanaps-user-guide)
+- [References](./document/teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
+- [Journal & Project](./document/teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
+- [Appendix](./document/teanaps_user_guide-appendix.md#teanaps-user-guide)
 
 ---
 ## `TEANAPS` Tutorial
