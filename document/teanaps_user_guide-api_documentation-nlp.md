@@ -133,7 +133,7 @@
 > ```
 
 > Notes :  
-> - 모델 파일을 별도로 [다운로드](https://drive.google.com/open?id=1qZ5qttjvRhHiQesECRQc6JgB4_kAcVBr)하여 파일 경로를 `model_path` 변수에 포함해야합니다.
+> - 모델 파일을 별도로 [다운로드](https://drive.google.com/file/d/1uqiT7S8AnUbcKYTlrVflaRBurhffEG3f/view?usp=sharing)하여 파일 경로를 `model_path` 변수에 포함해야합니다.
 > - import시 최초 1회 경고메시지 (Warnning)가 출력될 수 있습니다. 무시하셔도 좋습니다.
 
 - `teanaps.nlp.NamedEntityRecognizer.parse(sentence)` [[Top]](#teanaps-architecture)
