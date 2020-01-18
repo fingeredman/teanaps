@@ -2,6 +2,7 @@ from teanaps import configure as con
 PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
 from teanaps.visualization import GraphVisualizer
+from teanaps.visualization import TextVisualizer
 
 import plotly 
 from plotly.offline import init_notebook_mode
@@ -80,7 +81,7 @@ class TfidfCalculator():
             </script>
             '''))
     
-    def get_plotly_graph(self, max_words=100):
+    def draw_tfidf(self, max_words=100):
         gv = GraphVisualizer()
         x = self.get_word_list()[:max_words]
         y = [score for _, score in self.get_tf_list()][:max_words]
@@ -114,7 +115,7 @@ class TfidfCalculator():
         return gv.draw_histogram(data_meta_list, graph_meta)
     
     def get_wordcloud(self, weight_dict):
-        gv = GraphVisualizer()
+        tv = TextVisualizer()
         data_meta = {
             "weight_dict": weight_dict,
         }
@@ -126,4 +127,4 @@ class TfidfCalculator():
             "margin": 10,
             "background_color": "white"
         }
-        gv.draw_wordcloud(data_meta, graph_meta)
+        tv.draw_wordcloud(data_meta, graph_meta)

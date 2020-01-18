@@ -67,7 +67,262 @@
 ### Manual
 #### 3. `teanaps.text_analysis`
 ##### 3.1. `teanaps.text_analysis.TfidfCalculator`
-  - TBU
+
+> Python Code (in Jupyter Notebook) :
+> ```python
+> from teanaps.text_analysis import TfidfCalculator
+>
+> tfidf = TfidfCalculator()
+> ```
+
+- `teanaps.text_analysis.TfidfCalculator.calculation_tfidf(tokenized_sentence_list)` [[Top]](#teanaps-architecture)
+  - 문서에서 단어의 TF-IDF 값을 계산합니다.
+  - Parameters
+    - *tokenized_sentence_list (str) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+  - Returns
+    - *None*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #tokenized_sentence_list = ['비트코인 가능성 결함 전제 규제 정비',
+    > #                           '워렌 버핏 비트코인 망상 하버드대 교수 망상',
+    > #                           '가상 화폐 인터넷 수준 비트코인 캐시 선두 주자 것',
+    > #                           ...,
+    > #                           '자산 투부 통산 대신 자산 부동산 신탁 업 예비 승인',
+    > #                           '한국 부자 부동산 침체 부동산 안',
+    > #                           '금투협 부동산 투자자 인력 과정 기 개설']
+    > #                          ]
+    > tfidf.calculation_tfidf(tokenized_sentence_list)
+    > ```
+
+- `teanaps.text_analysis.TfidfCalculator.get_tf_matrix()` [[Top]](#teanaps-architecture)
+  - 문서별 단어의 TF (Term Frequency) 값이 저장된 DataFrame을 반환합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *Pandas DataFrame (dataframe) : 문서별 단어의 TF 값이 저장된 DataFrame.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #tfidf.calculation_tfidf(tokenized_sentence_list)
+    > result = tfidf.get_tf_matrix()
+    > print(type(result))
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > pandas.core.frame.DataFrame
+    > ```
+
+- `teanaps.text_analysis.TfidfCalculator.get_tfidf_matrix()` [[Top]](#teanaps-architecture)
+  - 문서별 단어의 TF-IDF 값이 저장된 DataFrame을 반환합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *Pandas DataFrame (dataframe) : 문서별 단어의 TF-IDF 값이 저장된 DataFrame.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #tfidf.calculation_tfidf(tokenized_sentence_list)
+    > result = tfidf.get_tfidf_matrix()
+    > print(type(result))
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > pandas.core.frame.DataFrame
+    > ```
+
+- `teanaps.text_analysis.TfidfCalculator.get_result()` [[Top]](#teanaps-architecture)
+  - 전체 문서에서 단어의 TF, TF-IDF 값이 저장된 딕셔너리를 반환합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *result (dict) : 단어별 TF, TF-IDF 값이 저장된 딕셔너리.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #tfidf.calculation_tfidf(tokenized_sentence_list)
+    > result = tfidf.get_result()
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > {'가격': {'tf': 3, 'tfidf': 1.1424359882788366},
+    >  '가능': {'tf': 1, 'tfidf': 0.509179564909753},
+    >  '가능성': {'tf': 1, 'tfidf': 0.45665731260262726},
+    >  ...,
+    >  '효과': {'tf': 2, 'tfidf': 1.0165526804723384},
+    >  '흐름': {'tf': 1, 'tfidf': 0.473637588408657},
+    >  '흡수': {'tf': 1, 'tfidf': 0.5177879851919405}
+    > }
+    > ```
+
+- `teanaps.text_analysis.TfidfCalculator.get_tf_dict()` [[Top]](#teanaps-architecture)
+  - 전체 문서에서 단어의 TF 값이 저장된 딕셔너리를 반환합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *result (dict) : 단어별 TF 값이 저장된 딕셔너리.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #tfidf.calculation_tfidf(tokenized_sentence_list)
+    > result = tfidf.get_tf_dict()
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > {'가격': 3,
+    >  '가능': 1,
+    >  '가능성': 1,
+    >  ...,
+    >  '효과': 2,
+    >  '흐름': 1,
+    >  '흡수': 1
+    > }
+    > ```
+
+- `teanaps.text_analysis.TfidfCalculator.get_tf_list()` [[Top]](#teanaps-architecture)
+  - 전체 문서에서 단어의 TF 값이 저장된 리스트를 반환합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *result (list) : 단어별 TF 값이 저장된 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #tfidf.calculation_tfidf(tokenized_sentence_list)
+    > result = tfidf.get_tf_list()
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > [['금리', 40],
+    >  ['부동산', 34],
+    >  ['금융', 34],
+    >  ...,
+    >  ['추상화', 1],
+    >  ['시스템', 1],
+    >  ['흡수', 1]
+    > ]
+    > ```
+
+- `teanaps.text_analysis.TfidfCalculator.get_tfidf_dict()` [[Top]](#teanaps-architecture)
+  - 전체 문서에서 단어의 TF 값이 저장된 딕셔너리를 반환합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *result (dict) : 단어별 TF-IDF 값이 저장된 딕셔너리.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #tfidf.calculation_tfidf(tokenized_sentence_list)
+    > result = tfidf.get_tfidf_dict()
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > {'가격': 1.1424359882788366,
+    >  '가능': 0.509179564909753,
+    >  '가능성': 0.45665731260262726,
+    >  ...,
+    >  '효과': 1.0165526804723384,
+    >  '흐름': 0.473637588408657,
+    >  '흡수': 0.5177879851919405}
+    > }
+    > ```
+
+- `teanaps.text_analysis.TfidfCalculator.get_tfidf_list()` [[Top]](#teanaps-architecture)
+  - 전체 문서에서 단어의 TF-IDF 값이 저장된 리스트를 반환합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *result (list) : 단어별 TF-IDF 값이 저장된 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #tfidf.calculation_tfidf(tokenized_sentence_list)
+    > result = tfidf.get_tfidf_list()
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > [['금리', 9.231975802297294],
+    >  ['금융', 7.963616858955622],
+    >  ['부동산', 7.727053435662074],
+    >  ...,
+    >  ['데이터', 0.3291698807669874],
+    >  ['거래소', 0.3291698807669874],
+    >  ['투명', 0.3291698807669874]
+    > ]
+    > ```
+
+- `teanaps.text_analysis.TfidfCalculator.get_word_list()` [[Top]](#teanaps-architecture)
+  - 전체 문서에 포함된 단어 리스트를 반환합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *result (list) : 단어별 TF-IDF 값이 저장된 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #tfidf.calculation_tfidf(tokenized_sentence_list)
+    > result = tfidf.get_word_list()
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > ['금리',
+    >  '금융',
+    >  '부동산',
+    >  ...,
+    >  '데이터',
+    >  '거래소',
+    >  '투명'
+    > ]
+    > ```
+
+- `teanaps.text_analysis.TfidfCalculator.draw_tfidf(max_words=100)` [[Top]](#teanaps-architecture)
+  - 전체 문서에서 단어의 TF, TF-IDF 값을 표현한 그래프를 반환합니다.
+  - Parameters
+    - *max_words (int) : TF, TF-IDF 값을 표현할 단어 개수 (TF-IDF 상위 기준).*
+  - Returns
+    - *plotly graph (graph object) : TF, TF-IDF 그래프.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #tfidf.calculation_tfidf(tokenized_sentence_list)
+    > tfidf.draw_tfidf(100)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ![tfidf_histogram](../data/sample_image/tfidf_histogram.png)
+
+- `teanaps.text_analysis.TfidfCalculator.get_wordcloud(weight_dict)` [[Top]](#teanaps-architecture)
+  - 단어의 TF, TF-IDF 값을 표현한 워드클라우드를 반환합니다.
+  - Parameters
+    - *weight_dict (dict) : TF, TF-IDF 값을 저장한 딕셔너리. `teanaps.text_analysis.TfidfCalculator.get_tf_dict()`, `teanaps.text_analysis.TfidfCalculator.get_tfidf_dict()` 참고.*
+  - Returns
+    - *figure (matplotlib.pyplot.plt) : 워드클리우드.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #tfidf.calculation_tfidf(tokenized_sentence_list)
+    > result = tfidf.get_tfidf_dict()
+    > #result = tfidf.get_tfidf_dict()
+    > tfidf.get_wordcloud(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ![tfidf_wordcloud](../data/sample_image/tfidf_wordcloud.png)
 
 ##### 3.2. `teanaps.text_analysis.DocumentClustering`
   - TBU

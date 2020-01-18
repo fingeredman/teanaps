@@ -95,7 +95,7 @@
     > ```
 
 - `teanaps.handler.FileHandler.load_data(file_name)` [[Top]](#teanaps-architecture)
-  - 데이터(변수, Pandas Dataframe 등)가 저장된 바이너리 파일을 불러와 그 결과를 반환합니다.
+  - 데이터(변수, Pandas Dataframe 등)가 저장된 바이너리 파일을 불러와 변수에 저장합니다.
   - Parameters
     - *file_name (str) : 저장할 파일 경로 및 파일명. 최대 128자.*
   - Returns
@@ -117,6 +117,59 @@
     > ```python
     > pandas.core.frame.DataFrame
     > ```
+
+- `teanaps.handler.FileHandler.save_txt(file_name, line_list, encoding="utf-8", separator="\t")` [[Top]](#teanaps-architecture)
+  - 리스트에 저장된 텍스트를 텍스트 파일(.txt)로 저장합니다.
+  - Parameters
+    - *file_name (str) : 저장할 파일 경로 및 파일명. 최대 128자.*
+    - *line_list (str) : 파일에 쓸 내용이 저장된 MxN 리스트.*
+    - *encoding (str) : 파일 인코딩 형식. 최대 128자.*
+    - *separator (str) : 파일에 쓸 라인의 컬럼 구분자.*
+  - Returns
+    - *None*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > line_list = [["A", "B", "C", "D"],     # Col Name (list)
+    >              ["a1", "b1", "c1", "d1"], # Line 1 (list)
+    >              ["a2", "b2", "c2", "d2"], # Line 2 (list)
+    >              ["a3", "b3", "c3", "d3"]  # Line 3 (list)
+    >             ]
+    > 
+    > fh.save_txt("file_name.txt", line_list[0], encoding="utf-8", separator="\t")
+    > ```
+
+- `teanaps.handler.FileHandler.load_txt(file_name, encoding="utf-8", separator="\t")` [[Top]](#teanaps-architecture)
+  - 리스트에 저장된 텍스트를 텍스트 파일(.txt)로 저장합니다.
+  - Parameters
+    - *file_name (str) : 저장할 파일 경로 및 파일명. 최대 128자.*
+    - *encoding (str) : 파일 인코딩 형식. 최대 128자.*
+    - *separator (str) : 파일에 쓸 라인의 컬럼 구분자.*
+  - Returns
+    - *line_list (str) : 파일 내용이 저장된 MxN 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > line_list = [["A", "B", "C", "D"],     # Col Name (list)
+    >              ["a1", "b1", "c1", "d1"], # Line 1 (list)
+    >              ["a2", "b2", "c2", "d2"], # Line 2 (list)
+    >              ["a3", "b3", "c3", "d3"]  # Line 3 (list)
+    >             ]
+    > 
+    > line_list  = fh.load_txt("file_name.txt", encoding="utf-8", separator="\t")
+    > print(line_list)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > [['A', 'B', 'C', 'D'],     # Col Name (list)
+    >  ['a1', 'b1', 'c1', 'd1'], # Line 1 (list)
+    >  ['a2', 'b2', 'c2', 'd2'], # Line 2 (list)
+    >  ['a3', 'b3', 'c3', 'd3']  # Line 3 (list)
+    > ]
+    > ```
+
 
 ##### 1.2. `teanaps.handler.MessageHandler`
 
