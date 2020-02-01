@@ -561,17 +561,105 @@
     > TEANAPS는 텍스트마이닝을 위한 Python 패키지입니다.
     > ```
 
-- `teanaps.nlp.Processing.get_token_position(sentence_org, word_tagged_pos_list)` [[Top]](#teanaps-architecture)
-  - TBU
+- `teanaps.nlp.Processing.get_token_position(sentence, tag_list)` [[Top]](#teanaps-architecture)
+  - 문장의 띄어쓰기 오류를 보정하고 그 결과를 반환합니다.
+  - Parameters
+    - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
+    - *tag_list (str) : (단어, 태그) 구조의 Tuple을 포함하는 리스트.*
+  - Returns
+    - *result (str) : (단어, 태그, 위치) 구조의 Tuple을 포함하는 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지입니다."
+    > tag_list = [("TEANAPS", "UN"), ("Python", "UN")]
+    > result = pro.get_token_position(sentence, tag_list)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > [('TEANAPS', 'UN', (0, 7)), ('Python', 'UN', (21, 27))]
+    > ```
 
 - `teanaps.nlp.Processing.language_detector(sentence)` [[Top]](#teanaps-architecture)
-  - TBU
+  - 문장의 언어를 식별하고 그 결과를 반환합니다.
+  - Parameters
+    - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
+  - Returns
+    - *result (str) : 식별된 언어 유형. 한국어는 "ko", 영어는 "en".*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지입니다."
+    > result = pro.language_detector(sentence)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > ko
+    > ```
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > sentence = "If it is to be, it's up to me."
+    > result = pro.language_detector(sentence)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > en
+    > ```
 
 - `teanaps.nlp.Processing.iteration_remover(sentence)` [[Top]](#teanaps-architecture)
-  - TBU
+  - 문장에서 무의미하게 반복되는 패턴을 찾아내 "."으로 치환한 문장을 반환합니다.
+  - Parameters
+    - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
+  - Returns
+    - *result (str) : 반복된 패턴이 치환된 문장.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지입니다ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ"
+    > result = pro.iteration_remover(sentence)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > TEANAPS는 텍스트 마이닝을 위한 Python 패키지입니다ㅋ........
+    > ```
 
 - `teanaps.nlp.Processing.get_plain_text(sentence, pos_list=[], word_index=0, pos_index=1, tag_index=1, tag=True)` [[Top]](#teanaps-architecture)
-  - TBU
+  - 형태소 또는 개체명 태그를 "/"로 그분해 태깅하여 문장 형태로 생성하고 그 결과를 반환합니다.
+  - Parameters
+    - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
+    - *pos_list (list) : 필터링할 태그가 포함된 튜플의 인덱스.*
+    - *word_index (str) : 단어가 포함된 튜플의 인덱스.*
+    - *pos_index (int) : 필터링할 태그가 포함된 튜플의 인덱스.*
+    - *tag_index (int) : 태깅할 태그가 포함된 튜플의 인덱스.*
+    - *tag (bool) : 태그 포함여부.*
+  - Returns
+    - *result (str) : 반복된 패턴이 치환된 문장.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #from teanaps.nlp import MorphologicalAnalyzer
+    > #ma = MorphologicalAnalyzer()
+    > #ma.set_tagger("mecab")
+    >
+    > #sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지입니다."
+    > #ma_result = ma.parse(sentence)
+    > ma_result = [('TEANAPS', 'OL', (0, 7)), ('는', 'JX', (7, 8)), ('텍스트', 'NNG', (9, 12)), ('마이닝', 'NNP', (13, 16)), ('을', 'JKO', (16, 17)), ('위한', 'VV+ETM', (18, 20)), ('Python', 'OL', (21, 27)), ('패키지', 'NNG', (28, 31)), ('입니다', 'VCP+EF', (31, 34)), ('.', 'SW', (34, 35))]
+    > result = pro.get_plain_text(ma_result)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > TEANAPS/OL 는/JX 텍스트/NNG 마이닝/NNP 을/JKO 위한/VV+ETM Python/OL 패키지/NNG 입니다/VCP+EF ./SW
+    > ```
 
 - `teanaps.nlp.Processing.replacer(sentence)` [[Top]](#teanaps-architecture)
   - 문장에서 축약된 표현을 찾아 원래의 표현으로 수정하고 그 결과를 반환합니다.
