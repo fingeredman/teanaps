@@ -1,4 +1,5 @@
 from teanaps.text_analysis import TfidfCalculator
+from teanaps.visualization import GraphVisualizer
 from teanaps import configure as con
 PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
@@ -30,6 +31,19 @@ class DocumentClustering():
     def __init__(self):
         self.stopword_list = self.__get_stopwords()
         self.tfidf = TfidfCalculator()
+        self.watermark_image = [{
+            "source": con.WATERMARK_URL,
+            "xref": "paper",
+            "yref": "paper",
+            "x": 0.5,
+            "y": 0.6,
+            "sizex": 0.7,
+            "sizey": 0.7,
+            "xanchor": "center",
+            "yanchor": "center",
+            "opacity": 0.3,
+            "layer": "above"
+        }]
     
     def __get_tfidf_matrix(self, document_list):
         self.tfidf.calculation_tfidf(document_list)
@@ -76,6 +90,8 @@ class DocumentClustering():
         names = [str(i) for i in range(len(similarity_matrix))]
         fig = ff.create_dendrogram(similarity_matrix, orientation='left', labels=names)
         fig['layout'].update({'width':1000, 'height':1500})
+        fig['layout']["images"] = self.watermark_image
+        fig['layout']["title"] = "DENDOGRAM GRAPH"
         return iplot(fig, filename='dendrogram_with_labels')
     
     def get_pair_wize_matrix(self, document_list):
@@ -95,27 +111,28 @@ class DocumentClustering():
         layout = go.Layout(width=1000, height=1000)
         data=[trace]
         fig = go.Figure(data=data, layout=layout)
+        fig['layout']["images"] = self.watermark_image
+        fig['layout']["title"] = "PAIR-WIZE MATRIX"
         return  iplot(fig, filename='HEATMAP')
     
     def get_kmeans_graph(self, df_result, label):
-        fig = {
-            "data": [
-                {
-                    "x": df_result[df_result[label]==predict]["x"],
-                    "y": df_result[df_result[label]==predict]["y"],
-                    "name": predict, "mode": "markers",
-                } for predict in list(OrderedDict.fromkeys(df_result[label]))
-            ],
-            "layout": {
-                "title": "K-Means Clutering Graph - " + label,
-                "xaxis": {"title": "TSNE X"},#, 'type': 'log'},
-                "yaxis": {"title": "TSNE Y"},
-                "width": 500,
-                "height": 500,
+        gv = GraphVisualizer()
+        data_meta_list = []
+        for predict in list(OrderedDict.fromkeys(df_result[label])):
+            data_meta = {
+                "data_name": predict,
+                "x_data": df_result[df_result[label]==predict]["x"],
+                "y_data": df_result[df_result[label]==predict]["y"],
+                "label": predict
             }
+            data_meta_list.append(data_meta)
+        graph_meta = {
+            "title": "K-Means Clutering Graph - " + label,
+            "x_name": "TSNE X",
+            "y_name": "TSNE Y"
         }
-        return iplot(fig, filename='GROUPED-SCATTER')
-    
+        return gv.draw_scatter(data_meta_list, graph_meta)
+        
     def get_tfidf_tsne(self, document_list, predict_list, df_document_list):
         tfidf_matrix = self.__get_tfidf_matrix(document_list)
         tsne = TSNE(n_components=2)
@@ -201,49 +218,29 @@ class DocumentClustering():
             fig['layout']['xaxis2'].update(title='Feature space for the 1st feature', zeroline=False)
             fig['layout']['yaxis2'].update(title='Feature space for the 2nd feature', zeroline=False)
             fig['layout'].update(title="Silhouette Analysis for KMeans Clustering - " + str(num_clusters) + " Cluster")
+            fig['layout']["images"] = self.watermark_image
         return iplot(fig, filename='basic-line')
     
     def get_inertia_transition_graph(self, inertia_list):
-        trace = go.Scatter(
-            x = [i for i in range(1, len(inertia_list)+1)],
-            y = inertia_list,
-        )
-        layout = go.Layout(
-                    title='K-Means Clutering Inertia Transition Graph',
-                    xaxis=dict(
-                        title='NUMBER of CLUSTER',
-                        titlefont=dict(
-                            size=10,
-                            color='black'
-                        ),
-                        showticklabels=True,
-                        tickangle=0,
-                        tickfont=dict(
-                            size=10,
-                            color='black'
-                        ),
-                        dtick = 1,
-                        exponentformat='e',
-                        showexponent='all'
-                    ),
-                    yaxis=dict(
-                        title='INERTIA',
-                        titlefont=dict(
-                            size=10,
-                            color='black'
-                        ),
-                        showticklabels=True,
-                        tickangle=0,
-                        tickfont=dict(
-                            size=10,
-                            color='black'
-                        ),
-                        exponentformat='e',
-                        showexponent='all',
-                    ),
-            width=1000,
-            height=500,
-        )
-        data = [trace]
-        fig = go.Figure(data=data, layout=layout)
-        return iplot(fig, filename='basic-line')
+        gv = GraphVisualizer()
+        x = [i for i in range(1, len(inertia_list)+1)]
+        y = inertia_list
+        data_meta_list = []
+        data_meta = {
+            "graph_type": "scatter",
+            "data_name": "Y",
+            "x_data": x,
+            "y_data": y,
+            "y_axis": "y1",
+        }
+        data_meta_list.append(data_meta)
+        graph_meta = {
+            "title": "K-Means Clutering Inertia Transition Graph",
+            "x_tickangle": 0,
+            "y1_tickangle": 0,
+            "y2_tickangle": 0,
+            "x_name": "NUMBER of CLUSTER",
+            "y1_name": "INERTIA",
+            "y2_name": "Y2",
+        }
+        return gv.draw_line_graph(data_meta_list, graph_meta)
