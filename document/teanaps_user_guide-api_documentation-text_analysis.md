@@ -75,10 +75,10 @@
 > tfidf = TfidfCalculator()
 > ```
 
-- `teanaps.text_analysis.TfidfCalculator.calculation_tfidf(tokenized_sentence_list)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.TfidfCalculator.calculation_tfidf(document_list)` [[Top]](#teanaps-architecture)
   - 문서에서 단어의 TF-IDF 값을 계산합니다.
   - Parameters
-    - *tokenized_sentence_list (str) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+    - *document_list (list) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
   - Returns
     - *None*
   - Examples
@@ -325,7 +325,162 @@
     > ![tfidf_wordcloud](../data/sample_image/tfidf_wordcloud.png)
 
 ##### 3.2. `teanaps.text_analysis.DocumentClustering`
-  - TBU
+
+> Python Code (in Jupyter Notebook) :
+> ```python
+> from teanaps.text_analysis import DocumentClustering
+>
+> dc = DocumentClustering()
+> ```
+
+- `teanaps.text_analysis.DocumentClustering.kmeans_clustering(document_list, num_cluters, num_init, max_iterations)` [[Top]](#teanaps-architecture)
+  - 문서를 군집화하여 그 결과를 반환합니다.
+  - Parameters
+    - *document_list (list) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+    - *num_cluters (int) : 생성할 군집의 개수.*
+    - *max_iterations (int) : 군집화를 반복해서 수행할 횟수.*
+  - Returns
+    - *result (dict) : 군집의 Inertia 값과 문서별 군집 레이블을 포함하는 딕셔너리.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > result = dc.kmeans_clustering(document_list, 3, 300)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > {'inertia': 64.11752014008104,
+    >  'predict_list': array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], dtype=int32)}
+    > ```
+
+- `teanaps.text_analysis.DocumentClustering.inertia_transition(document_list, max_cluters, max_iterations)` [[Top]](#teanaps-architecture)
+  - 군집의 개수를 변경하며 문서를 군집화하고 각각의 Inertial 값을 반환합니다.
+  - Parameters
+    - *document_list (list) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+    - *max_cluters (int) : Intertia 값을 계산할 최대 군집의 개수.*
+    - *max_iterations (int) : 군집화를 반복해서 수행할 횟수.*
+  - Returns
+    - *result (dict) : 군집의 Inertia 값과 문서별 군집 레이블을 포함하는 딕셔너리.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > result = dc.inertia_transition(tokenized_sentence_list, 10, 300)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > [85.29314909321171, 73.22892942068657, 64.11752014008104, 60.672117244161946, 57.24561408281322, 55.125181445741525, 53.74440369290694, 52.262356865901175, 50.26148838373041, 48.480517037436805]
+    > ```
+
+- `teanaps.text_analysis.DocumentClustering.get_inertia_transition_graph(inertia_list)` [[Top]](#teanaps-architecture)
+  - 각각의 Inertial 값을 표현한 그래프를 반환합니다.
+  - Parameters
+    - *inertia_list (list) : Inertial 값이 포함된 리스트.*
+  - Returns
+    - *plotly graph (graph object) : 각각의 군집의 개수별 Inertial 그래프.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > inertia_list = dc.inertia_transition(tokenized_sentence_list, 10, 300)
+    > dc.get_inertia_transition_graph(inertia_list)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ![clustering_inertia_line_graph](../data/sample_image/clustering_inertia_line_graph.png)
+
+- `teanaps.text_analysis.DocumentClustering.get_tfidf_tsne(document_list, predict_list, df_article)` [[Top]](#teanaps-architecture)
+  - 각 문서의 레이블과 군집, 그리고 문서를 TF-IDF 임베딩하여 차원축소한 2차원 좌표를 포함하는 DataFrame을 반환합니다.
+  - Parameters
+    - *document_list (str) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+    - *predict_list (str) : 군집화 결과 레이블을 포함하는 리스트.*
+    - *df_article (str) : 문서와 레이블을 포함하는 DataFrame.*
+  - Returns
+    - *Pandas DataFrame (dataframe) : 각 문서의 레이블과 군집, 그리고 문서를 TF-IDF 임베딩하여 차원축소한 2차원 좌표를 포함하는 DataFrame.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > import pandas as pd
+    > clustering_result = dc.kmeans_clustering(document_list, 3, 300)
+    > predict_list  = clustering_result["predict_list"]
+    > df_article = pd.DataFrame(document_list, columns = ["label", "source", "datetime", "title", "content"])
+    > result = dc.get_tfidf_tsne(document_list, predict_list, df_article)
+    > print(type(result))
+    > ```
+    > Output (in Jupyter Notebook) :
+    > pandas.core.frame.DataFrame
+
+- `teanaps.text_analysis.DocumentClustering.get_kmeans_graph(df_tfidf_tsne, label_type)` [[Top]](#teanaps-architecture)
+  - 군집화 결과를 2차원으로 표현한 그래프를 반환합니다.
+  - Parameters
+    - *df_tfidf_tsne (DataFrame) : 각 문서의 레이블과 군집, 그리고 문서를 TF-IDF 임베딩하여 차원축소한 2차원 좌표를 포함하는 DataFrame.*
+    - *label_type (str) : 그래프에 표시할 레이블 유형. {"predict", "labe"} 중 하나.*
+  - Returns
+    - *plotly graph (graph object) : 군집화 결과 그래프.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > dc.get_kmeans_graph(df_result, "predict")
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ![clustering_predict_scatter](../data/sample_image/clustering_predict_scatter.png)
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > dc.get_kmeans_graph(df_result, "label")
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ![clustering_label_scatter](../data/sample_image/clustering_label_scatter.png)
+
+- `teanaps.text_analysis.DocumentClustering.get_silhouette_graph(document_list, df_tfidf_tsne, num_cluters)` [[Top]](#teanaps-architecture)
+  - 군집화 결과에 대한 실루엣 그래프를 반환합니다.
+  - Parameters
+    - *document_list (str) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+    - *df_tfidf_tsne (DataFrame) : 각 문서의 레이블과 군집, 그리고 문서를 TF-IDF 임베딩하여 차원축소한 2차원 좌표를 포함하는 DataFrame.*
+    - *num_cluters (int) : 생성할 군집의 개수.*
+  - Returns
+    - *plotly graph (graph object) : 군집화 결과와 실루엣 그래프.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > dc.get_silhouette_graph(document_list, df_tfidf_tsne, 3)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ![clustering_silhouette_graph](../data/sample_image/clustering_silhouette_graph.png)
+
+- `teanaps.text_analysis.DocumentClustering.get_pair_wize_matrix(document_list)` [[Top]](#teanaps-architecture)
+  - 각 문서간의 유사도를 매트릭스로 표현한 그래프를 반환합니다.
+  - Parameters
+    - *document_list (str) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+  - Returns
+    - *plotly graph (graph object) : 각 문서간의 유사도를 매트릭스로 표현한 그래프.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > dc.get_pair_wize_matrix(document_list)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ![clustering_pair_wize_matrix](../data/sample_image/clustering_pair_wize_matrix.png)
+
+- `teanaps.text_analysis.DocumentClustering.get_dendrogram_graph(document_list)` [[Top]](#teanaps-architecture)
+  - 각 문서간의 유사도를 덴도그램으로 표현한 그래프를 반환합니다.
+  - Parameters
+    - *document_list (str) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+  - Returns
+    - *plotly graph (graph object) : 각 문서간의 유사도를 덴도그램으로 표현한 그래프.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > dc.get_dendrogram_graph(document_list)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ![clustering_get_dendrogram_graph](../data/sample_image/clustering_get_dendrogram_graph.png)
 
 ##### 3.3. `teanaps.text_analysis.TopicClustering`
   - TBU

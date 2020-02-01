@@ -213,7 +213,7 @@
     > ner.draw_sentence_weight(sentence)
     > ```
     > Output (in Jupyter Notebook) :  
-    > ![sentence_weight](../data/sample_image/sentence_weight.png)
+    > ![ner_weight](../data/sample_image/ner_weight.png)
 
 - `teanaps.nlp.NamedEntityRecognizer.draw_weight(sentence)` [[Top]](#teanaps-architecture)
   - 문장에서 개체로 인식된 형태소에 대한 가중치를 히스토그램으로 출력합니다.
@@ -229,7 +229,7 @@
     > ner.draw_weight(sentence)
     > ```
     > Output (in Jupyter Notebook) :  
-    > ![sentence_weight_histogram](../data/sample_image/sentence_weight_histogram.png)
+    > ![ner_weight_histogram](../data/sample_image/ner_weight_histogram.png)
 
 ##### 2.3. `teanaps.nlp.SyntaxAnalyzer`
 
@@ -330,9 +330,9 @@
     > sa.draw_sentence_tree(sentence, label_list, edge_list)
     > ```
     > Output (in Jupyter Notebook) :  
-    > ![sentence_tree](../data/sample_image/sentence_tree.png)
+    > ![sa_sentence_tree](../data/sample_image/sa_sentence_tree.png)
 
-##### 2.4. `teanaps.nlp.Processing` (pre-processing)
+##### 2.4. `teanaps.nlp.Processing`
 
 > Python Code (in Jupyter Notebook) :
 > ```python

@@ -67,11 +67,11 @@ class Processing():
             sentence = spacing(sentence)
         return sentence
     
-    def get_token_position(self, sentence_org, word_tagged_pos_list):
+    def get_token_position(self, sentence_org, tag_list):
         content_ = sentence_org
         position = 0
-        word_tagged_pos_loc_list = []
-        for word, pos in word_tagged_pos_list:
+        loc_list = []
+        for word, pos in tag_list:
             loc = content_.find(word)
             if loc != -1:
                 position += loc
@@ -81,8 +81,8 @@ class Processing():
             else:
                 start = 0
                 end = 0
-            word_tagged_pos_loc_list.append((sentence_org[start:end], pos, (start, end)))
-        return word_tagged_pos_loc_list
+            loc_list.append((sentence_org[start:end], pos, (start, end)))
+        return loc_list
         
     def language_detector(self, sentence):
         len_ko = len(re.sub("[^가-힇]", "", sentence))

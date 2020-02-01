@@ -40,18 +40,18 @@ class DocumentClustering():
         stopword_list = open(con.STOPWORD_PATH, encoding="utf-8").read().strip().split("\n")
         return stopword_list
     
-    def kmeans_clustering(self, document_list, num_cluters, num_init, max_iterations):
+    def kmeans_clustering(self, document_list, num_cluters, max_iterations):
         tfidf_matrix = self.__get_tfidf_matrix(document_list)
-        km = KMeans(n_clusters = num_cluters, init="k-means++", n_init=num_init, max_iter=max_iterations, random_state=0)
+        km = KMeans(n_clusters = num_cluters, init="k-means++", n_init=10, max_iter=max_iterations, random_state=0)
         predict_list = km.fit_predict(tfidf_matrix)
         inertia = km.inertia_
         return {"inertia": inertia, "predict_list": predict_list}
     
-    def inertia_transition(self, document_list, max_cluters, num_init, max_iterations):
+    def inertia_transition(self, document_list, max_cluters, max_iterations):
         tfidf_matrix = self.__get_tfidf_matrix(document_list)
         inertia_list = []
         for num_clutsers in range(1, max_cluters+1):
-            km = KMeans(n_clusters = num_clutsers, init="k-means++", n_init=num_init, max_iter=max_iterations, random_state=0)
+            km = KMeans(n_clusters = num_clutsers, init="k-means++", n_init=10, max_iter=max_iterations, random_state=0)
             km.fit(tfidf_matrix)
             inertia_list.append(km.inertia_)
         return inertia_list
