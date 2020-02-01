@@ -480,7 +480,7 @@
     > dc.get_dendrogram_graph(document_list)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![clustering_get_dendrogram_graph](../data/sample_image/clustering_get_dendrogram_graph.png)
+    > ![clustering_dendrogram_graph](../data/sample_image/clustering_dendrogram_graph.png)
 
 ##### 3.3. `teanaps.text_analysis.TopicClustering`
   - TBU
