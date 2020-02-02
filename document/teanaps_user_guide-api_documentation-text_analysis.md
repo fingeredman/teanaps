@@ -677,7 +677,69 @@
     > ![sentiment_parse](../data/sample_image/sentiment_parse.png)
 
 ##### 3.6. `teanaps.text_analysis.DocumentSummarizer`
-  - TBU
+
+> Python Code (in Jupyter Notebook) :
+> ```python
+> from teanaps.text_analysis import DocumentSummarizer
+>
+> ds = DocumentSummarizer()
+> ```
+
+- `teanaps.text_analysis.DocumentSummarizer.set_document(document_path)` [[Top]](#teanaps-architecture)
+  - 요약할 문서를 불러옵니다.
+  - Parameters
+    - *document_path (str) : 요약할 문서가 저장된 텍스트 파일(.txt) 경로.*
+  - Returns
+    - *None*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > document_path = "article.txt"
+    > ds.set_document(document_path)
+    > ```
+
+- `teanaps.text_analysis.DocumentSummarizer.summarize(type, max_sentence)` [[Top]](#teanaps-architecture)
+  - 감성수준 분류에 참조된 각 각 형태소별 가중치를 하이라이트한 형태의 문장 그래프로 출력합니다.
+  - Parameters
+    - *type (str) : 텍스트 요약 알고리즘 유형. {"textrank", "lsa"} 중 하나.*
+    - *max_sentence (int) : 요약을 통해 추출할 문장의 개수.*
+  - Returns
+    - *sentence_list (list) : 요약 추출된 문장을 포함하는 리스트.*
+  - Examples
+
+    > Text File (in "article.txt") : 
+    > - ‘손세이셔널’ 손흥민(28, 토트넘 홋스퍼)이 팀 승리의 결승골을 넣었으나 높은 평점을 받지 못했다. 전체적으로 경기력이 좋지 않았다. 토트넘은 23일(이하 한국시각) 오전 영국 런던에 위치한 토트넘 홋스퍼 스타디움에서 열린 노리치시티와의 잉글리시 프리미어리그 24라운드 홈경기에서 2-1로 승리했다. 이날 토트넘은 전반 38분 델리 알리가 선제골을 넣은 뒤 후반 25분 테무 푸키에게 페널티킥 골을 허용해 동점을 내줬다. 이후 토트넘은 후반 34분 손흥민이 균형을 깨는 헤더골을 터뜨렸고, 결국 2-1 승리를 거뒀다. 프리미어리그 8위에서 6위로 올라섰다. 하지만 결승골의 주인공 손흥민은 높은 평점을 받지 못했다. 영국 축구 통계 전문사이트 후스코어드닷컴은 손흥민에게 비교적 낮은 평점인 6.8점을 부여했다. 손흥민은 알리의 선제골의 기점 역할을 했고, 결승골을 넣었으나 다른 장면에서는 이렇다 할 모습을 보이지 못했다. 토트넘에서는 오리에가 8점으로 가장 높았고, 로 셀소가 7.9점 그리고 알리가 7.6점으로 뒤를 이었다. [동아닷컴, 조성운 기자, 2020.1.23., [본문보기](https://sports.donga.com/3/all/20200123/99372798/1)]
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #document_path = "article.txt"
+    > #ds.set_document(document_path)
+    > result = ds.summarize("textrank", 3)
+    > print(token_list)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > ['‘손세이셔널’ 손흥민(28, 토트넘 홋스퍼)이 팀 승리의 결승골을 넣었으나 높은 평점을 받지 못했다.',
+    >  '토트넘은 23일(이하 한국시각) 오전 영국 런던에 위치한 토트넘 홋스퍼 스타디움에서 열린 노리치시티와의 잉글리시 프리미어리그 24라운드 홈경기에서 2-1로 승리했다.',
+    >  '이날 토트넘은 전반 38분 델리 알리가 선제골을 넣은 뒤 후반 25분 테무 푸키에게 페널티킥 골을 허용해 동점을 내줬다.'
+    > ]
+    > ```
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #document_path = "article.txt"
+    > #ds.set_document(document_path)
+    > result = ds.summarize("lsa", 3)
+    > print(token_list)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > ['토트넘은 23일(이하 한국시각) 오전 영국 런던에 위치한 토트넘 홋스퍼 스타디움에서 열린 노리치시티와의 잉글리시 프리미어리그 24라운드 홈경기에서 2-1로 승리했다.',
+    >  '이날 토트넘은 전반 38분 델리 알리가 선제골을 넣은 뒤 후반 25분 테무 푸키에게 페널티킥 골을 허용해 동점을 내줬다.',
+    >  '손흥민은 알리의 선제골의 기점 역할을 했고, 결승골을 넣었으나 다른 장면에서는 이렇다 할 모습을 보이지 못했다.'
+    > ]
+    > ```
 
 ##### 3.7. `teanaps.text_analysis.KeyphraseExtraction`
   - TBU
