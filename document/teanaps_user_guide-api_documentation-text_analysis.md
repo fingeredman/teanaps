@@ -435,6 +435,26 @@
     > Output (in Jupyter Notebook) :
     > ![clustering_label_scatter](../data/sample_image/clustering_label_scatter.png)
 
+- `teanaps.text_analysis.DocumentClustering.get_silhouette_score(document_list, df_tfidf_tsne, num_clusters)` [[Top]](#teanaps-architecture)
+  - 군집화 결과에 대한 실루엣 스코어를 계산하고 그 결과를 반환합니다.
+  - Parameters
+    - *document_list (list) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+    - *df_tfidf_tsne (DataFrame) : 각 문서의 레이블과 군집, 그리고 문서를 TF-IDF 임베딩하여 차원축소한 2차원 좌표를 포함하는 DataFrame.*
+    - *num_cluters (int) : 생성할 군집의 개수.*
+  - Returns
+    - *result (float) : 군집화 결과에 대한 실루엣 스코어.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > result = dc.get_silhouette_score(document_list, df_tfidf_tsne, 3)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > 0.1772473694643886
+    > ```
+
 - `teanaps.text_analysis.DocumentClustering.get_silhouette_graph(document_list, df_tfidf_tsne, num_cluters)` [[Top]](#teanaps-architecture)
   - 군집화 결과에 대한 실루엣 그래프를 반환합니다.
   - Parameters
@@ -500,7 +520,7 @@
 > Notes :  
 > - 모델과 KoBERT 파일을 별도로 다운로드([모델](https://drive.google.com/file/d/11zkNQ0i9MUlqWVG_y7Ynrpt1yv5jabsx/view?usp=sharing)/[KoBERT](https://drive.google.com/file/d/11RBCiWkNblT26qAASvYTA4MmkwuE5gGe/view?usp=sharing))하여 파일 경로를 각각 `model_path`, `kobert_path` 변수에 포함해야합니다.
 
-- `teanaps.text_analysis.SentimentAnalysis.tag(self, sentence, neutral_th=0.5)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.SentimentAnalysis.tag(sentence, neutral_th=0.5)` [[Top]](#teanaps-architecture)
   - 문장의 감성수준을 긍정 또는 부정으로 분류하고 그 결과를 반환합니다.
   - Parameters
     - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
@@ -531,7 +551,7 @@
     > ((0.8715, 0.1076), 'negative')
     > ```
 
-- `teanaps.text_analysis.SentimentAnalysis.get_weight(self, sentence)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.SentimentAnalysis.get_weight(sentence)` [[Top]](#teanaps-architecture)
   - 감성수준 분류에 참조된 각 각 형태소별 가중치를 하이라이트한 형태의 문장 그래프로 출력합니다.
   - Parameters
     - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
@@ -566,7 +586,7 @@
     > [0, 0.020344315, 0.024879746, 0.02612342, 0.03615231, 0.048542265, 0.06707654, 0.0936653, 0.07649707, 0, 0.08189902, 0.08962273, 0, 0.07841993]
     > ```
 
-- `teanaps.text_analysis.SentimentAnalysis.draw_weight(self, sentence)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.SentimentAnalysis.draw_weight(sentence)` [[Top]](#teanaps-architecture)
   - 감성수준 분류에 참조된 각 각 형태소별 가중치를 히스토그램으로 출력합니다.
   - Parameters
     - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
@@ -590,7 +610,7 @@
     > Output (in Jupyter Notebook) :
     > ![sentiment_neg_histogram](../data/sample_image/sentiment_neg_histogram.png)
 
-- `teanaps.text_analysis.SentimentAnalysis.draw_sentence_weight(self, sentence)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.SentimentAnalysis.draw_sentence_weight(sentence)` [[Top]](#teanaps-architecture)
   - 감성수준 분류에 참조된 각 각 형태소별 가중치를 하이라이트한 형태의 문장 그래프로 출력합니다.
   - Parameters
     - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
