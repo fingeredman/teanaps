@@ -6,7 +6,7 @@ from gensim.summarization.summarizer import summarize
 
 from sumy.parsers.html import HtmlParser
 from sumy.nlp.tokenizers import Tokenizer
-from sumy import summarizers
+from sumy.summarizers.lsa import LsaSummarizer
 from sumy.nlp.stemmers import Stemmer
 from sumy.utils import get_stop_words
 
@@ -22,7 +22,7 @@ class DocumentSummarizer():
         elif summarizer_type == "lsa":
             parser = HtmlParser.from_string(self.document, None,tokenizer=Tokenizer("english"))
             stemmer = Stemmer("english")
-            summarizer = summarizers.lsa.LsaSummarizer(stemmer)
+            summarizer = LsaSummarizer(stemmer)
             summarizer.stop_words = get_stop_words("english")
             summarized_sentence_list = summarizer(parser.document, max_sentences)
             self.result_list = [str(sentence) for sentence in summarized_sentence_list]
