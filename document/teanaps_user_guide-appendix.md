@@ -93,7 +93,7 @@
       - `TEANAPS` 개체명인식 모델 학습 결과, Validation 셋에 대해 <U>약 97.8%의 인식률</U>을 보입니다.
       - 학습데이터 도메인 제한으로 개체명 구간이 정상 인식되었으나 분류가 알수없음(UN)인 경우가 발생할 수 있습니다.
     - 개체명인식 모델 학습결과
-      > ![validation_ner](./data/sample_image/validation_ner.png)
+      > ![validation_ner](../data/sample_image/validation_ner.png)
 
 	- 출력 결과 샘플
       > **Input 1 \:**  
