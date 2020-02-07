@@ -6,7 +6,7 @@
 
 - 본 자료는 텍스트 마이닝을 활용한 연구 및 강의를 위한 목적으로 제작되었습니다.
 - 본 자료를 강의 또는 연구 목적으로 활용하고자 하시는 경우 꼭 아래 메일주소로 연락주세요.
-- 본 자료에 대한 허가되지 않은 배포를 금지합니다.
+- 본 자료에 대한 <U>상업적 활용과 허가되지 않은 배포를 금지</U>합니다.
 - 강의, 저작권, 출판, 특허, 공동저자에 관련해서는 문의 바랍니다.
 - **Contact : FINGEREDMAN(fingeredman@gmail.com)**
 
@@ -16,6 +16,16 @@
 
 > `#teanaps` `#티냅스_라고_불러주세요` `#텍스트분석` `#텍스트마이닝` `#자연어처리` `#텍스트전처리` `#띄어쓰기_보정` `#불용어` `#언어식별` `#임베딩` `#형태소분석` `#개체명인식` `#구문분석` `#TF-IDF` `#감성분석` `#긍부정` `#긍부정_키워드` `#클러스터링` `#군집화` `#문서분류` `#유사도분석` `#네트워크` `#중심성` `#연관키워드` `#키워드추출`
  
+---
+## Why `TEANAPS`?
+
+- `TEANAPS`를 활용하면 최대 70% 까지 <U>**분석코드를 간소화**</U>할 수 있습니다. ([분석코드 살펴보기](./teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide))
+- `TEANAPS`는 최신 언어모델(BERT)을 적용해 오픈소스 패키지 대비 <U>**높은 퍼포먼스**</U>를 제공합니다. ([성능평가 결과 살펴보기](./teanaps_user_guide-appendix.md#teanaps-성능평가-결과))
+- `TEANAPS`는 분석결과를 효과적으로 표현하기 위한 <U>**다양한 시각화**</U>를 제공합니다. ([시각화 기능 살펴보기](./teanaps_user_guide-api_documentation-visualization.md#4-teanapsvisualization))
+- `TEANAPS`는 <U>**OPEN API**</U>를 통해 다양한 환경에서 텍스트 분석을 지원합니다.
+- `TEANAPS`는 텍스트 분석을 위한 <U>**[`User Guide`](./document/teanaps_user_guide-install_teanaps.md#teanaps-user-guide), [강의 및 실습자료](https://github.com/fingeredman/text-mining-for-practice)**</U>를 무료로 제공합니다.
+- `TEANAPS`는 다양한 도메인의 <U>**프로젝트/연구**</U>를 무료로 지원합니다. (Contact : FINGEREDMAN, fingeredman@gmail.com)
+
 ---
 ## `TEANAPS` User Guide
 
@@ -60,6 +70,7 @@
 > 2020.01.04. `teanaps v0.0.9` 업데이트, `User Guide` 업로드  
 > 2020.01.11. `teanaps v0.0.10`, `Documentation` 업데이트  
 > 2020.02.02. `Documentation` 업데이트  
+> 2020.02.08. `Documentation` 업데이트  
 
 <br><br>
 ---
