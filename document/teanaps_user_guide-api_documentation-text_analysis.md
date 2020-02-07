@@ -503,10 +503,337 @@
     > ![clustering_dendrogram_graph](../data/sample_image/clustering_dendrogram_graph.png)
 
 ##### 3.3. `teanaps.text_analysis.TopicClustering`
-  - TBU
+
+> Python Code (in Jupyter Notebook) :
+> ```python
+> from teanaps.text_analysis import TopicClustering
+>
+> tc = TopicClustering()
+> ```
+
+- `teanaps.text_analysis.TopicClustering.topic_modeling(modeling_type, document_list, topic_count, keyword_count)` [[Top]](#teanaps-architecture)
+  - 문서에서 N개의 주제에 대해 각 군집별 키워드를 군집화하고 그 결과를 반환합니다.
+  - Parameters
+    - *modeling_type (str) : 주제 군집화 알고리즘 유형. {"lsa", "lda", "hdp"} 중 하나.*
+    - *document_list (list) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+    - *topic_count (int) : 주제 군집 개수.*
+    - *keyword_count (int) : 각 주제 군집별 키워드 개수.*
+  - Returns
+    - *result (list) : 각 군집별 키워드를 포함하는 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > result = tc.topic_modeling("lda", document_list, 3, 5)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > [(0,
+    >  [('금리', 0.6542361201136048),
+    >   ('대출', 0.4330323607960353),
+    >   ('금융', 0.3083228589169829),
+    >   ('은행', 0.22088983702295698),
+    >   ('코픽스', 0.173373240489713)]),
+    > (1,
+    >  [('비트코인', 0.6987330564487386),
+    >   ('금리', -0.25924223777122957),
+    >   ('화폐', 0.218391247175097),
+    >   ('금융', 0.20393479642923928),
+    >   ('암호', 0.18284477353567058)]),
+    > (2,
+    >  [('부동산', -0.6584326085475736),
+    >   ('금융', -0.40842310832729234),
+    >   ('비트코인', 0.36212229767170806),
+    >   ('금리', 0.19995317435138174),
+    >   ('신탁', -0.18356626669622753)])
+    > ]
+    > ```
+
+- `teanaps.text_analysis.TopicClustering.get_model_validation_result()` [[Top]](#teanaps-architecture)
+  - 주제 군집화 결과에 대해 Perplexity, Coherence 값을 계산하고 그 결과를 반환합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *result (tuple) : 주제 군집의 Perplexity, Coherence 값을 저장한 Tuple.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #result = tc.topic_modeling("lda", document_list, 3, 5)
+    > perplexity, coherence = tc.get_model_validation_result()
+    > print(perplexity)
+    > print(coherence)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > -6.633342221630287
+    > 0.5127122691849578
+    > ```
+
+- `teanaps.text_analysis.TopicClustering.display_model_result()` [[Top]](#teanaps-architecture)
+  - 주제 군집화 결과를 시각화하여 표현합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *result (IPython.core.display.HTML) : 주제 군집 시각화 결과.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #result = tc.topic_modeling("lda", document_list, 3, 5)
+    > tc.display_model_result()
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ![topic_clustering_lda_vis](../data/sample_image/topic_clustering_lda_vis.png)
+
+- `teanaps.text_analysis.TopicClustering.get_topics_sentences(document_list)` [[Top]](#teanaps-architecture)
+  - 주제 군집화 결과에 대해 각 주제에 해당하는 문서를 찾아내고 그 결과를 반환합니다.
+  - Parameters
+    - *document_list (str) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+  - Returns
+    - *Pandas DataFrame (dataframe) : 각 주제에 해당하는 문서를 포함하는 DataFrame.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #result = tc.topic_modeling("lda", document_list, 3, 5)
+    > result = tc.get_topics_sentences(document_list)
+    > print(type(result))
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > pandas.core.frame.DataFrame
+    > ```
+
+- `teanaps.text_analysis.TopicClustering.get_model_validation_graph(modeling_type, document_list, mac_topic_count)` [[Top]](#teanaps-architecture)
+  - 주제의 개수별 주제 군집화 결과에 대해 Perplexity, Coherence 값을 계산하고 그 결과를 라인그래프로 표현합니다.
+  - Parameters
+    - *modeling_type (str) : 주제 군집화 알고리즘 유형. {"lsa", "lda", "hdp"} 중 하나.*
+    - *document_list (list) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+    - *max_topic_count (int) : 최대 주제 군집 개수.*
+  - Returns
+    - *plotly graph (graph object) : 각 주제 군집별 Perplexity, Coherence 값을 표현한 라인그래프.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > result = tc.get_model_validation_graph("lda", document_list, 10)
+    > print(type(result))
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ![topic_clustering_find_topic_count](../data/sample_image/topic_clustering_find_topic_count.png)
+
+- `teanaps.text_analysis.sequence_lda_topic_modeling(document_list, time_slice, topic_count)` [[Top]](#teanaps-architecture)
+  - 문서에서 N개의 주제에 대해 각 군집의 기간별 변화 추이를 계산하고 그 결과를 반환합니다.
+  - Parameters
+    - *document_list (list) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+    - *time_slice (list) : 전체 문서를 기간으로 그분하는 단위*
+    - *topic_count (int) : 주제 군집 개수.*
+  - Returns
+    - *result (list) : 각 기간/군집별 키워드를 포함하는 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > result = tc.sequence_lda_topic_modeling(document_list, [100, 100, ..., 100]], 5)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > [(0,
+    >  [[('주식', 0.021218330732594246),
+    >    ('종목', 0.018796542321031225),
+    >    ('시장', 0.01679681367262934),
+    >    ...],
+    >   [('주식', 0.02193776754354376),
+    >    ('종목', 0.01936867384889522),
+    >    ('시장', 0.016617304727897478),
+    >    ...,
+    >   ],
+    >   ...,
+    >  ],
+    >  ...,
+    > ]
+    > ```
+
+- `teanaps.text_analysis.get_sequence_topic_graph()` [[Top]](#teanaps-architecture)
+  - 문서에서 N개의 주제에 대해 각 군집의 기간별 변화 추이를 계산하고 이를 그래프로 표현합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *plotly graph (graph object) : 군집의 기간별 변화 추이를 표한한 라인그래프.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > tc.get_sequence_topic_graph()
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ![topic_clustering_topic_trend](../data/sample_image/topic_clustering_topic_trend.png)
 
 ##### 3.4. `teanaps.text_analysis.CoWordCalculator`
-  - TBU
+
+> Python Code (in Jupyter Notebook) :
+> ```python
+> from teanaps.text_analysis import CoWordCalculator
+>
+> co = CoWordCalculator()
+> ```
+
+- `teanaps.text_analysis.CoWordCalculator.calculation_co_matrix(document_list, node_list=[])` [[Top]](#teanaps-architecture)
+  - 문서에 포함된 단어의 동시출현빈도를 계산합니다.
+  - Parameters
+    - *document_list (list) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
+    - *node_list (list) : 동시출현빈도를 계산할 단어 리스트.*
+  - Returns
+    - *None*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
+    > co.calculation_co_matrix(document_list, node_list=node_list)
+    > ```
+
+- `teanaps.text_analysis.CoWordCalculator.get_edge_list()` [[Top]](#teanaps-architecture)
+  - 문서에 포함된 단어의 동시출현 순서쌍과 출현빈도를 반환합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *result (list) : ((단어, 단어), 동시출현빈도) 구조의 Tuple을 포함하는 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
+    > #co.calculation_co_matrix(document_list, node_list=node_list)
+    > result = co.get_edge_list()
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > [(('금리', '금리'), 905),
+    >  (('금융', '금융'), 791),
+    >  (('대출', '대출'), 580),
+    >  (('비트코인', '비트코인'), 565),
+    >  (('부동산', '부동산'), 555),
+    >  ...,
+    >  (('대출', '신탁'), 1),
+    >  (('금리', '자산'), 1),
+    >  (('자산', '금리'), 1),
+    >  (('신탁', '투자'), 1),
+    >  (('투자', '신탁'), 1)
+    > ]
+    > ```
+
+- `teanaps.text_analysis.CoWordCalculator.get_node_list()` [[Top]](#teanaps-architecture)
+  - 동시출현빈도 계산에 포함된 모든 단어를 반환합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *result (list) : 동시출현빈도 계산에 포함된 모든 단어 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
+    > #co.calculation_co_matrix(document_list, node_list=node_list)
+    > result = co.get_node_list()
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > ['금리', '금융', '대출', '비트코인', '부동산', '은행', '코픽스', '자산', '시장', '신탁', '그림자', '투자', '거래', '정부', '상품', '신용', '리스크']
+    > ```
+
+- `teanaps.text_analysis.CoWordCalculator.get_co_word(word)` [[Top]](#teanaps-architecture)
+  - 특정 단어를 기준으로 다른 단어들과의 동시출현빈도를 반환합니다.
+  - Parameters
+    - *word (str) : 동시출현빈도를 계산할 때 기준이 되는 단어.*
+  - Returns
+    - *result (list) : (단어, 동시출현빈도) 구조의 Tuple을 포함하는 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
+    > #co.calculation_co_matrix(document_list, node_list=node_list)
+    > result = co.get_co_word("금리")
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > [('대출', 341),
+    >  ('코픽스', 105),
+    >  ('은행', 82),
+    >  ...,
+    >  ('정부', 2),
+    >  ('비트코인', 1),
+    >  ('자산', 1)
+    > ]
+    > ```
+
+- `teanaps.text_analysis.CoWordCalculator.get_centrality(centrality_type)` [[Top]](#teanaps-architecture)
+  - 단어의 동시출현 정보를 바탕으로 네트워크 중심성을 계산하고 그 결과를 반환합니다.
+  - Parameters
+    - *centrality_type (str) : 네트워크 중심성 유형. {"d_cent", "b_cent", "c_cent"} 중 하나.*
+  - Returns
+    - *result (dict) : 단어와 단어의 중심성을 포함하는 딕셔너리.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
+    > #co.calculation_co_matrix(document_list, node_list=node_list)
+    > result = co.get_centrality("d_cent")
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > {'거래': 0.625,
+    >  '그림자': 0.5625,
+    >  '금리': 0.9375,
+    >  ...,
+    >  '정부': 0.75,
+    >  '코픽스': 0.5625,
+    >  '투자': 0.625
+    > }
+    > ```
+
+- `teanaps.text_analysis.CoWordCalculator.get_co_matrix_graph(max_count)` [[Top]](#teanaps-architecture)
+  - 단어의 동시출현빈도 상위 N개를 매트릭스 그래프로 표현합니다.
+  - Parameters
+    - *max_count (int) : 매트릭스 그래프로 표현할 단어의 개수.*
+  - Returns
+    - *plotly graph (graph object) : 동시출현빈도를 표현한 매트릭스 그래프.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
+    > #co.calculation_co_matrix(document_list, node_list=node_list)
+    > co.get_co_matrix_graph(max_count)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ![coword_matrix](../data/sample_image/coword_matrix.png)
+
+- `teanaps.text_analysis.CoWordCalculator.get_word_network_graph(centrality_dict)` [[Top]](#teanaps-architecture)
+  - 단어의 동시출현 관계를 네트워크 그래프로 표현합니다.
+  - Parameters
+    - *centrality_dict (dict) : 단어와 단어의 중심성을 포함하는 딕셔너리. `teanaps.text_analysis.CoWordCalculator.get_centrality`참고.*
+  - Returns
+    - *plotly graph (graph object) : 동시출현빈도를 표현한 네트워크 그래프.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
+    > #co.calculation_co_matrix(document_list, node_list=node_list)
+    > co.get_co_matrix_graph(max_count)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ![coword_network](../data/sample_image/coword_network.png)
 
 ##### 3.5. `teanaps.text_analysis.SentimentAnalysis`
 
