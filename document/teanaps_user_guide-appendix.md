@@ -22,7 +22,7 @@
 
     - 특징
       - `TEANAPS`의 형태소 분리(tokenizing) 기능은 <U>고유명사(인물, 장소, 상품명 등)를 하나의 형태소로 매우 잘 구분</U>합니다.
-      - `TEANAPS`의 형태소 분리 및 품사태깅(PoS tagging) 속도는 <U>`Okt`에 비해 300~400% 빠르며</U>, 이는 공개된 형태소분석기 중 가장 빠른 <U>`MeCab`의 약 80% 수준의 속도</U>입니다.
+      - `TEANAPS`의 형태소 분리 및 품사태깅(PoS tagging) 속도는 <U>`Okt`에 비해 300~400% 빠르며</U>, 이는 공개된 형태소분석기 중 가장 빠른 <U>`MeCab`의 약 80% 수준 속도</U>입니다.
 
     - 처리속도 비교
       > ![validation_pos](../data/sample_image/validation_pos.png)
@@ -34,11 +34,11 @@
 
       > | Token             | MeCab with `TEANAPS`| MeCab           | Okt             | KKMA       |
       > |-------------------|---------------------|-----------------|-----------------|------------|
-      > | 손흥민(28)이        | 손흥민/NNP/PS         |  손흥민/NNP/PS   | 손흥민/Noun       | 손/NNG      |
+      > | 손흥민(28)이        | 손흥민/NNP/PS         |  손흥민/NNP      | 손흥민/Noun       | 손/NNG      |
       > |                   |                     |                 |                 | 흥/NNG     |
       > |                   |                     |                 |                 | 민/NNG     |
       > |                   | (/SW                |  (/SW           | (/Punctuation   | (/SS       |
-      > |                   | 28/NNP/QT           |  28/NNP/QT      | 28/Number       | 28/NR      |
+      > |                   | 28/NNP/QT           |  28/NNP         | 28/Number       | 28/NR      |
       > |                   | )/SW                |  )/SW           | )/Punctuation   | )/SS       |
       > |                   | 이/JKS              |  이/JKS          | 이/Noun         | 이/MDT      |
       > | 4경기 연속 골이자     | 4경기/NNP/QT         |  4/SN           | 4/Number        | 4/NR       |
@@ -98,27 +98,27 @@
 	- 출력 결과 샘플
       > **Input 1 \:**  
       > "*TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다.*"  
-      > \>> "*<TEANAPS\:UN>는 텍스트 마이닝을 위한 <Python\:UN> 패키지 입니다.*"  
+      > **>>** "*<TEANAPS\:UN>는 텍스트 마이닝을 위한 <Python\:UN> 패키지 입니다.*"  
       > ![validation_ner_ex1](../data/sample_image/validation_ner_ex1.png)
      
       > **Input 2 \:**  
       > "*영국 매체 스카이 스포츠는 25일 맨유 미드필더 폴 포그바가 여름 이적시장 실패 후, 1월 레알 마드리드로 이적할 수 있다고 전했다.*"  
-      > \>> "*<영국\:LC> 매체 <스카이 스포츠\:UN>는 <25일\:DT> <맨유\:OG> 미드필더 <폴 포그바\:PS>가 여름 이적시장 실패 후, <1월\:DT> <레알 마드리드\:OG>로 이적할 수 있다고 전했다.*"  
+      > **>>** "*<영국\:LC> 매체 <스카이 스포츠\:UN>는 <25일\:DT> <맨유\:OG> 미드필더 <폴 포그바\:PS>가 여름 이적시장 실패 후, <1월\:DT> <레알 마드리드\:OG>로 이적할 수 있다고 전했다.*"  
       > ![validation_ner_ex2](../data/sample_image/validation_ner_ex2.png)
 
       > **Input 3 \:**  
       > "*최근 코로나 바이러스의 여파로 연세대학교 제 768회 졸업식이 취소되었음을 알려드립니다.*"  
-      > \>> "*최근 <코로나 바이러스\:UN>의 여파로 <연세대학교\:OG> <제 768회\:QT> 졸업식이 취소되었음을 알려드립니다.*"  
+      > **>>** "*최근 <코로나 바이러스\:UN>의 여파로 <연세대학교\:OG> <제 768회\:QT> 졸업식이 취소되었음을 알려드립니다.*"  
       > ![validation_ner_ex3](../data/sample_image/validation_ner_ex3.png)
 
       > **Input 4 \:**  
       > "*오늘 출시된 V60 ThinkQ는 LG전자의 핵심 제품입니다.*"  
-      > \>> "*오늘 출시된 <V60 ThinkQ\:UN>는 <LG전자\:OG>의 핵심 제품입니다.*"    
-      >> ![validation_ner_ex4](../data/sample_image/validation_ner_ex4.png)
+      > **>>** "*오늘 출시된 <V60 ThinkQ\:UN>는 <LG전자\:OG>의 핵심 제품입니다.*"    
+      > ![validation_ner_ex4](../data/sample_image/validation_ner_ex4.png)
 
       > **Input 5 \:**  
       > "*충청북도 청주는 교육의 도시입니다.*"  
-      > \>> "*<충청북도\:LC> <청주\:LC>는 교육의 도시입니다.*"  
+      > **>>** "*<충청북도\:LC> <청주\:LC>는 교육의 도시입니다.*"  
       > ![validation_ner_ex5](../data/sample_image/validation_ner_ex5.png)
 
 ### `TEANAPS` 형태소 품사태그표
