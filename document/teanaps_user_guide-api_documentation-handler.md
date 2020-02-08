@@ -68,7 +68,7 @@
 #### 1. `teanaps.handler`
 ##### 1.1. `teanaps.handler.FileHandler`
 
-> Python Code (in Jupyter Notebook) :
+> Python Code (in Jupyter Notebook) : 
 > ```python
 > from teanaps.handler import FileHandler
 > 
@@ -123,7 +123,7 @@
   - Parameters
     - *file_name (str) : 저장할 파일 경로 및 파일명. 최대 128자.*
     - *line_list (str) : 파일에 쓸 내용이 저장된 MxN 리스트.*
-    - *encoding (str) : 파일 인코딩 형식. 최대 128자.*
+    - *encoding (str) : 파일 인코딩 형식.*
     - *separator (str) : 파일에 쓸 라인의 컬럼 구분자.*
   - Returns
     - *None*

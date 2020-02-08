@@ -269,7 +269,7 @@
   - Parameters
     - *None*
   - Returns
-    - *result (list) : 단어별 TF-IDF 값이 저장된 리스트.*
+    - *result (list) : 전체 문서에 포함된 단어 리스트가 저장된 리스트.*
   - Examples
 
     > Python Code (in Jupyter Notebook) :
@@ -410,7 +410,9 @@
     > print(type(result))
     > ```
     > Output (in Jupyter Notebook) :
+    > ```python
     > pandas.core.frame.DataFrame
+    > ```
 
 - `teanaps.text_analysis.DocumentClustering.get_kmeans_graph(df_tfidf_tsne, label_type)` [[Top]](#teanaps-architecture)
   - 군집화 결과를 2차원으로 표현한 그래프를 반환합니다.
@@ -606,7 +608,7 @@
     > pandas.core.frame.DataFrame
     > ```
 
-- `teanaps.text_analysis.TopicClustering.get_model_validation_graph(modeling_type, document_list, mac_topic_count)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.TopicClustering.get_model_validation_graph(modeling_type, document_list, max_topic_count)` [[Top]](#teanaps-architecture)
   - 주제의 개수별 주제 군집화 결과에 대해 Perplexity, Coherence 값을 계산하고 그 결과를 라인그래프로 표현합니다.
   - Parameters
     - *modeling_type (str) : 주제 군집화 알고리즘 유형. {"lsa", "lda", "hdp"} 중 하나.*

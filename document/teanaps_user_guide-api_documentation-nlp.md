@@ -98,7 +98,9 @@
     > ```
 
     > Notes :  
-    > - `TEANAPS`의 품사태그는 세종말뭉치 품사태그를 기본으로 사용합니다. 품사태그표는 [Appendix](./teanaps_user_guide-appendix.md#teanaps-형태소-품사태그표)를 참고해주세요.
+    > - `TEANAPS` 형태소분석기의 품사태그는 세종말뭉치 품사태그를 기본으로 사용합니다. 품사태그표는 [Appendix](./teanaps_user_guide-appendix.md#teanaps-형태소-품사태그표)를 참고해주세요.
+    > - `TEANAPS` 형태소분석기 성능은 선택한 오픈소스 형태소분석기와 동일합니다.
+    > - `TEANAPS` [개체명인식기](#22-teanapsnlpnamedentityrecognizer)와 [구문분석기](#23-teanapsnlpsyntaxanalyzer)를 활용하면 더 높은 정확도로 형태소분석을 수행할 수 있습니다. ([성능평가 결과 살펴보기](./teanaps_user_guide-appendix.md#teanaps-성능평가-결과))
 
 - `teanaps.nlp.MorphologicalAnalyzer.set_tagger(tagger)` [[Top]](#teanaps-architecture)
   - 형태소 분석기를 선택합니다. 형태소 분석기는 `MeCab`, `Okt (Twitter)`, `Kkma`, `NLTK` 총 4가지를 지원합니다. 형태소 분석기를 선택하지 않으면 기본으로 한국어는 `OKt`, 영어는 `NLTK` 형태소 분석기를 사용합니다.
@@ -156,8 +158,9 @@
     > ```
 
     > Notes :  
-    > - `TEANAPS`의 개체명 태그는 총 16종으로 구분됩니다. 태그 종류 및 구분은 [정보통신단체표준 (TTAS)](http://committee.tta.or.kr/data/standard_view.jsp?nowPage=32&pk_num=TTAK.KO-10.0852&nowSu=318&rn=1)을 따릅니다.
+    > - `TEANAPS` 개체명인식기의 개체명 태그는 총 16종으로 구분됩니다. 태그 종류 및 구분은 [정보통신단체표준 (TTAS)](http://committee.tta.or.kr/data/standard_view.jsp?nowPage=32&pk_num=TTAK.KO-10.0852&nowSu=318&rn=1)을 따릅니다.
     > - 개체명 태그표는 [Appendix](./teanaps_user_guide-appendix.md#teanaps-개체명-태그표)를 참고해주세요.
+    > - `TEANAPS` 개체명인식기의 성능 및 특징은 [성능평가 결과](./teanaps_user_guide-appendix.md#teanaps-성능평가-결과)를 참고해주세요.
 
 - `teanaps.nlp.NamedEntityRecognizer.parse_sentence(sentence)` [[Top]](#teanaps-architecture)
   - 문장에서 개체명을 인식하고 그 결과를 반환합니다.
