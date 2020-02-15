@@ -2,7 +2,7 @@ from teanaps import configure as con
 
 import re
 import time
-from pykospacing import spacing
+#from pykospacing import spacing
 
 class Processing():  
     def __init__(self):
@@ -62,10 +62,12 @@ class Processing():
         self.lab.append((len(self.lab)+1, round(time.time() - self.start, 4)))
         return self.lab
     
+    '''
     def get_spacing(self, sentence):
         if len(sentence) < 195:
             sentence = spacing(sentence)
         return sentence
+    '''
     
     def get_token_position(self, sentence_org, tag_list):
         content_ = sentence_org
