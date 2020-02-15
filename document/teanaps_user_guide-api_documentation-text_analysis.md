@@ -115,6 +115,26 @@
     > pandas.core.frame.DataFrame
     > ```
 
+- `teanaps.text_analysis.TfidfCalculator.get_tf_vector(sentence)` [[Top]](#teanaps-architecture)
+  - 형태소 단위로 분리된 문장을 TF (Term Frequency) 값으로 구성된 벡터 리스트로 반환합니다.
+  - Parameters
+    - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
+  - Returns
+    - *result (list) : TF (Term Frequency) 값으로 구성된 벡터 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #tfidf.calculation_tfidf(tokenized_sentence_list)
+    > tokenized_sentence = "비트코인 가능성 결함 전제 규제 정비"
+    > result = tfidf.get_tf_vector(sentence)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > [0, 0, 1, 0, 0, 0, 0, 0, 0, ...]
+    > ```
+
 - `teanaps.text_analysis.TfidfCalculator.get_tfidf_matrix()` [[Top]](#teanaps-architecture)
   - 문서별 단어의 TF-IDF 값이 저장된 DataFrame을 반환합니다.
   - Parameters
@@ -132,6 +152,26 @@
     > Output (in Jupyter Notebook) :
     > ```python
     > pandas.core.frame.DataFrame
+    > ```
+
+- `teanaps.text_analysis.TfidfCalculator.get_tfidf_vector(sentence)` [[Top]](#teanaps-architecture)
+  - 형태소 단위로 분리된 문장을 TF-IDF 값으로 구성된 벡터 리스트로 반환합니다.
+  - Parameters
+    - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
+  - Returns
+    - *result (list) : TF-IDF 값으로 구성된 벡터 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #tfidf.calculation_tfidf(tokenized_sentence_list)
+    > tokenized_sentence = "비트코인 가능성 결함 전제 규제 정비"
+    > result = tfidf.get_tfidf_vector(sentence)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > [0., 0., 0.45665731, 0., 0., ...]
     > ```
 
 - `teanaps.text_analysis.TfidfCalculator.get_result()` [[Top]](#teanaps-architecture)
