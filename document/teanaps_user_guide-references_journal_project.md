@@ -27,7 +27,16 @@
 - TBU
 
 ### Project
-- TBU
+- [Chat-bot with `TEANAPS`](https://github.com/fingeredman/chatbot-with-teanaps#teanaps를-활용한-챗봇-구현)
+  - `TEANAPS`를 활용해 하루만에 챗봇 구축하기
+  - 날씨, 미세먼지 정보, 날짜/시간, 뉴스, 인물, 번역 등 제공
+  - `Slack` 메신저 연동 채팅 구현
+
+- 해외축구 이적시장 분석 with `TEANAPS`
+  - `TEANAPS`를 활용한 해외축구 이적시장 분석 프로젝트
+  - 해외축구 뉴스기사에서 선수 이적설 추출하기
+  - 해외축구 이적 예측하기 (이적설 진위여부 판별)
+  - `Slack` 메신저 연동 해외축구 이슈 알리미 구현
 
 <br><br>
 ---
