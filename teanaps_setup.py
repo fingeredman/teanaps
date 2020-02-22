@@ -7,7 +7,7 @@ subprocess.call("pip install gensim --upgrade", shell=True)
 #!pip install gensim --upgrade
 
 # 2) Glove (https://pypi.org/project/glove_python/)
-subprocess.call("pip install glove_python", shell=True)
+#subprocess.call("pip install glove_python", shell=True)
 #!pip install glove_python
 
 # 3) NLTK (https://www.nltk.org/install.html)

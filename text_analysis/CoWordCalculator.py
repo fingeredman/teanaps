@@ -1,6 +1,7 @@
 from teanaps import configure as con
 PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
+from teanaps.visualization import TextVisualizer
 from teanaps.visualization import GraphVisualizer
 
 import plotly 
@@ -58,10 +59,10 @@ class CoWordCalculator():
     def calculation_co_matrix(self, tokenized_sentence_list, node_list=[]):
         word_pair_list = self.__calculation_co_word(tokenized_sentence_list)
         if len(node_list) == 0:
-            self.result_list = [[(first_word, second_word), count] 
+            self.result_list = [((first_word, second_word), count) 
                                 for (first_word, second_word), count in Counter(word_pair_list).items()]    
         else:
-            self.result_list = [[(first_word, second_word), count] 
+            self.result_list = [((first_word, second_word), count) 
                                 for (first_word, second_word), count in Counter(word_pair_list).items() 
                                 if first_word in node_list and second_word in node_list]
         self.result_list.sort(key=lambda elem: elem[1], reverse=True)
@@ -78,7 +79,7 @@ class CoWordCalculator():
         return node_list
     
     def get_co_word(self, word):
-        co_word_list = [[first_word, count] 
+        co_word_list = [(first_word, count) 
                         for (first_word, second_word), count in self.result_list 
                         if second_word == word]
         co_word_list.sort(key=lambda elem: elem[1], reverse=True)
@@ -150,7 +151,7 @@ class CoWordCalculator():
     
     
     def get_word_network_graph(self, centrality_dict):
-        gv = GraphVisualizer()
+        tv = TextVisualizer()
         
         data_meta = {
             "node_list": self.get_node_list(),
@@ -165,7 +166,7 @@ class CoWordCalculator():
             "weight_name": "Word Centrality",
         }
 
-        return gv.draw_network(data_meta, graph_meta)
+        return tv.draw_network(data_meta, graph_meta)
         
     '''
     from multiprocessing import Pool

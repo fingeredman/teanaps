@@ -3,6 +3,7 @@ PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
 from teanaps.visualization import GraphVisualizer
 from teanaps.visualization import TextVisualizer
+from teanaps.handler import FileHandler
 
 import plotly 
 from plotly.offline import init_notebook_mode
@@ -18,23 +19,33 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 class TfidfCalculator():  
     def __init__(self):
-        None
+        self.fh = FileHandler()
     
     def calculation_tfidf(self, tokenized_sentence_list):
         # TF-IDF Vector
-        tfidf_vectorizer = TfidfVectorizer()
-        self.tfidf_matrix = tfidf_vectorizer.fit_transform(tokenized_sentence_list).todense()
-        self.tfidf_matrix = pd.DataFrame(self.tfidf_matrix, columns=tfidf_vectorizer.get_feature_names())
+        self.tfidf_vectorizer = TfidfVectorizer()
+        self.tfidf_matrix = self.tfidf_vectorizer.fit_transform(tokenized_sentence_list).todense()
+        self.tfidf_matrix = pd.DataFrame(self.tfidf_matrix, columns=self.tfidf_vectorizer.get_feature_names())
         self.tfidf_dict = dict(self.tfidf_matrix.sum(axis=0).sort_values(ascending=False).items())
         # TF Vector
-        tf_vectorizer = CountVectorizer()
-        self.tf_matrix = tf_vectorizer.fit_transform(tokenized_sentence_list).todense()
-        self.tf_matrix = pd.DataFrame(self.tf_matrix, columns=tf_vectorizer.get_feature_names())
+        self.tf_vectorizer = CountVectorizer()
+        self.tf_matrix = self.tf_vectorizer.fit_transform(tokenized_sentence_list).todense()
+        self.tf_matrix = pd.DataFrame(self.tf_matrix, columns=self.tf_vectorizer.get_feature_names())
         self.tf_dict = dict(self.tf_matrix.sum(axis=0).sort_values(ascending=False).items())
         # Make Result Dictionary
         self.result_dict = {}
         for word in self.tf_dict.keys():
             self.result_dict[word] = {"tf": self.tf_dict[word], "tfidf": self.tfidf_dict[word]}
+        self.fh.save_data(con.TFIDF_VECTORIZER_PATH, self.tfidf_vectorizer)
+        self.fh.save_data(con.TF_VECTORIZER_PATH, self.tf_vectorizer)
+            
+    def get_tf_vector(self, sentence, tf_vectorizer_path=con.TF_VECTORIZER_PATH):
+        self.tf_vectorizer = self.fh.load_data(con.TF_VECTORIZER_PATH)        
+        return self.tf_vectorizer.transform([sentence]).todense().tolist()[0]
+    
+    def get_tfidf_vector(self, sentence, tfidf_vectorizer_path=con.TFIDF_VECTORIZER_PATH):
+        self.tfidf_vectorizer = self.fh.load_data(con.TFIDF_VECTORIZER_PATH)
+        return self.tfidf_vectorizer.transform([sentence]).todense().tolist()[0]
     
     def __get_stopwords(self):
         stopword_list = open(con.STOPWORD_PATH, encoding="utf-8").read().strip().split("\n")

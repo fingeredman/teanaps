@@ -30,6 +30,6 @@ class FileHandler():
         line_list = []
         f = open(file_name, encoding=encoding)
         for line in f:
-            line = line.replace("\n", " ").split(separator)
+            line = line.replace("\n", "").split(separator)
             line_list.append(line)
         return line_list
