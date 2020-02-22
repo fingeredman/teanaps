@@ -117,6 +117,12 @@ VOCAB = {
 # -----------------------------------------
 
 # -----------------------------------------
+# teanaps.text_analysis.TfidfCalculator
+# -----------------------------------------
+TFIDF_VECTORIZER_PATH = "tfidf_vectorizer"
+TF_VECTORIZER_PATH = "tf_vectorizer"
+
+# -----------------------------------------
 # teanaps.text_analysis.SentimentAnalysis
 # -----------------------------------------
 SENTIMENT_MODEL_PATH = "teanaps/model/sentiment/senti_model"
