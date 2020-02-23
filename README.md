@@ -11,6 +11,12 @@
 - **Contact : FINGEREDMAN(fingeredman@gmail.com)**
 
 ---
+## Notice!
+> - [`TEANAPS`를 활용해 하루만에 챗봇 구현하기](https://github.com/fingeredman/chatbot-with-teanaps#teanaps를-활용해-하루만에-챗봇-구축하기) 프로젝트가 업로드 되었습니다.
+> - 카카오톡 채널 `TEANAPS Chatbot` 친구추가 통해 실제로 사용해보실 수 있습니다.
+> - 많은 관심 부탁드립니다.
+
+---
 ## What can you do with `TEANAPS`?
 > ![what_can_you_do](./data/sample_image/what_can_you_do.png)
 
@@ -40,7 +46,7 @@
 ---
 ## `TEANAPS` Tutorial
 - [튜토리얼 문서](./document/teanaps_user_guide-tutorial.md#teanaps-user-guide)를 참조해주세요.
-- `TEANAPS`를 활용한 텍스트 분석 방법은 [텍스트 마이닝 강의자료](https://github.com/fingeredman/text-mining-for-practice)를 참고해주세요.
+- `TEANAPS`를 활용한 다양한 텍스트 분석 방법은 [텍스트 마이닝 강의자료](https://github.com/fingeredman/text-mining-for-practice)를 참고해주세요.
 
 ---
 ## Release history
