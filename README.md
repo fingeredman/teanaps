@@ -12,7 +12,7 @@
 
 ---
 ## Notice!
-> - [`TEANAPS`를 활용해 하루만에 챗봇 구현하기](https://github.com/fingeredman/chatbot-with-teanaps#teanaps를-활용해-하루만에-챗봇-구현하기) 프로젝트가 업로드 되었습니다.
+> - [`TEANAPS`를 활용해 하루만에 챗봇 구현하기](http://chat.teanaps.com) 프로젝트가 업로드 되었습니다.
 > - 카카오톡 채널 `TEANAPS Chatbot` 친구추가 통해 실제로 사용해보실 수 있습니다.
 > - 많은 관심 부탁드립니다.
 
@@ -60,6 +60,7 @@
 > 2019.12.21. `teanaps v0.0.8`  
 > 2020.01.04. `teanaps v0.0.9`  
 > 2020.01.11. `teanaps v0.0.10`  
+> 2020.02.29. `teanaps v0.0.11`
 
 ---
 ## Update History
@@ -77,6 +78,7 @@
 > 2020.01.11. `teanaps v0.0.10`, `Documentation` 업데이트  
 > 2020.02.02. `Documentation` 업데이트  
 > 2020.02.08. `Documentation` 업데이트  
+> 2020.02.29. `teanaps v0.0.11` 업데이트
 
 <br><br>
 ---
