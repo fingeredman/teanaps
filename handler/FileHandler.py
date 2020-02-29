@@ -21,7 +21,7 @@ class FileHandler():
             else:
                 new_line = ""
                 for col in line:
-                    new_line += col.replace("\n", " ") + separator
+                    new_line += str(col).replace("\n", " ") + separator
                 f.write(new_line.strip())
             f.write("\n")
         f.close()

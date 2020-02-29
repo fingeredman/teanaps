@@ -21,7 +21,8 @@ class TfidfCalculator():
     def __init__(self):
         self.fh = FileHandler()
     
-    def calculation_tfidf(self, tokenized_sentence_list):
+    def calculation_tfidf(self, tokenized_sentence_list, 
+                          tf_vectorizer_path=con.TF_VECTORIZER_PATH, tfidf_vectorizer_path=con.TFIDF_VECTORIZER_PATH):
         # TF-IDF Vector
         self.tfidf_vectorizer = TfidfVectorizer()
         self.tfidf_matrix = self.tfidf_vectorizer.fit_transform(tokenized_sentence_list).todense()
@@ -36,15 +37,15 @@ class TfidfCalculator():
         self.result_dict = {}
         for word in self.tf_dict.keys():
             self.result_dict[word] = {"tf": self.tf_dict[word], "tfidf": self.tfidf_dict[word]}
-        self.fh.save_data(con.TFIDF_VECTORIZER_PATH, self.tfidf_vectorizer)
-        self.fh.save_data(con.TF_VECTORIZER_PATH, self.tf_vectorizer)
+        self.fh.save_data(tfidf_vectorizer_path, self.tfidf_vectorizer)
+        self.fh.save_data(tf_vectorizer_path, self.tf_vectorizer)
             
     def get_tf_vector(self, sentence, tf_vectorizer_path=con.TF_VECTORIZER_PATH):
-        self.tf_vectorizer = self.fh.load_data(con.TF_VECTORIZER_PATH)        
+        self.tf_vectorizer = self.fh.load_data(tf_vectorizer_path)        
         return self.tf_vectorizer.transform([sentence]).todense().tolist()[0]
     
     def get_tfidf_vector(self, sentence, tfidf_vectorizer_path=con.TFIDF_VECTORIZER_PATH):
-        self.tfidf_vectorizer = self.fh.load_data(con.TFIDF_VECTORIZER_PATH)
+        self.tfidf_vectorizer = self.fh.load_data(tfidf_vectorizer_path)
         return self.tfidf_vectorizer.transform([sentence]).todense().tolist()[0]
     
     def __get_stopwords(self):
