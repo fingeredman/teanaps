@@ -29,7 +29,7 @@
 
 ### `TEANAPS` OPEN API List
 
-> `TEANAPS` OPEN API는 `TEANAPS`에서 지원하는 텍스트 분석 기능을 REST API로 제공합니다. 모든 API는 비로그인 방식의 OPEN API로, 호출시 관리자 문의를 통해 발급받은 `ACCESS TOKEN`을 HTTP Header에 같이 전송해주셔야 합니다. 
+> `TEANAPS` OPEN API는 `TEANAPS`에서 지원하는 텍스트 분석 기능을 REST API로 제공합니다. 모든 API는 비로그인 방식의 OPEN API로, 호출시 관리자 문의를 통해 발급받은 `ACCESS TOKEN`을 BODY에 포함해 전송해주셔야 합니다. 
 
 - 기본정보
 
@@ -45,12 +45,18 @@
 #### [T01-01] API 응답체크
 > REST API 동작여부와 ACCESS TOKEN의 유효성을 확인합니다.  
 
+- 요청 파라미터 (Request Parameter)
+
+  > | 파라미터        |  필수 |  유형 |  설명          | 샘플                       |
+  > |--------------|------|------|---------------|---------------------------|
+  > | access_token | V | str | ACCESS TOKEN | ODMFKGLDICK20190601132625 |
+
 - 응답 파라미터 (Response Parameter)
 
   > | 파라미터      |  유형 |  설명         | 샘플        |
   > |------------|------|--------------|------------|
   > | code | int | 응답코드 | 200 |
-  > | api_status | str | API 상태 | free |
+  > | api_condition | str | API 상태 | free |
   > | access_token_info | list | ACCESS TOKEN 상태 | |
   > | ㄴcreated_at | str | 생성일자 | 2019-06-01 |
   > | ㄴexpiration_in | str | 생성일자 | 2019-09-06 |
@@ -64,13 +70,12 @@
     > URL = "http://api.teanaps.com"
     > VERSION = "/v1"
     > URL_PATTERN = "/alive"
-    > ACCESS_TOKEN = "req_to_admin"
-    > headers = {
-    >     "access_token": ACCESS_TOKEN
+    > data = {
+    >     "access_token": "ODMFKGLDICK20190601132625"
     > } 
-    > 
+    >
     > url = URL + VERSION + URL_PATTERN
-    > r = requests.post(url, headers=headers)
+    > r = requests.post(url, data=data)
     > j = r.json()
     > print(j)
     > ```
@@ -79,10 +84,11 @@
     > ```python
     > {
     >   'code': 200,
-    >   'api_condition'
+    >   'api_condition': 'free',
     >   'access_token_info': {
+    >     'access_token': 'ODMFKGLDICK20190601132625',
     >     'created_at': '2019-06-01',
-    >     'expiration_in': '2019-09-06',
+    >     'expiration_in': '2019-09-06'
     >   }
     > }
     > ```
@@ -94,6 +100,7 @@
 
   > | 파라미터        |  필수 |  유형 |  설명          | 샘플                       |
   > |--------------|------|------|---------------|---------------------------|
+  > | access_token | V | str | ACCESS TOKEN | ODMFKGLDICK20190601132625 |
   > | sentence | V | str | 한국어 또는 영어로 구성된 문장. 최대 128자. | 손흥민은 2015년 레버쿠젠에서 토트넘 핫스퍼로 이적했다. |
 
 - 응답 파라미터 (Response Parameter)
@@ -101,6 +108,7 @@
   > | 파라미터      |  유형 |  설명         | 샘플        |
   > |------------|------|--------------|------------|
   > | code | int | 응답코드 | 200 |
+  > | sentence | str | 요청문장 | 손흥민은 2015년 레버쿠젠에서 토트넘 핫스퍼로 이적했다. |
   > | pos_list | list | 형태소분석 결과 | |
   > | ㄴpos | str | 형태소 | 손흥민 |
   > | ㄴpos_tag | str | 품사 태그 | NNP |
@@ -116,16 +124,13 @@
     > URL = "http://api.teanaps.com"
     > VERSION = "/v1"
     > URL_PATTERN = "/nlp/pos"
-    > ACCESS_TOKEN = "req_to_admin"
-    > headers = {
-    >     "access_token": ACCESS_TOKEN
-    > } 
     > data = {
+    >     "access_token": "ODMFKGLDICK20190601132625",
     >     "sentence": "손흥민은 2015년 레버쿠젠에서 토트넘 핫스퍼로 이적했다."
     > } 
     > 
     > url = URL + VERSION + URL_PATTERN
-    > r = requests.post(url, headers=headers, data=data)
+    > r = requests.post(url, data=data)
     > j = r.json()
     > print(j)
     > ```
@@ -134,6 +139,7 @@
     > ```python
     > {
     >   'code': 200,
+    >   'sentence': '손흥민은 2015년 레버쿠젠에서 토트넘 핫스퍼로 이적했다.',
     >   'pos_list': [
     >     {
     >       'pos': '손흥민',
@@ -171,6 +177,7 @@
 
   > | 파라미터        |  필수 |  유형 |  설명          | 샘플                       |
   > |--------------|------|------|---------------|---------------------------|
+  > | access_token | V | str | ACCESS TOKEN | ODMFKGLDICK20190601132625 |
   > | sentence | V | str | 한국어 또는 영어로 구성된 문장. 최대 128자. | 손흥민은 2015년 레버쿠젠에서 토트넘 핫스퍼로 이적했다. |
 
 - 응답 파라미터 (Response Parameter)
@@ -178,6 +185,7 @@
   > | 파라미터      |  유형 |  설명         | 샘플        |
   > |------------|------|--------------|------------|
   > | code | int | 응답코드 | 200 |
+  > | sentence | str | 요청문장 | 손흥민은 2015년 레버쿠젠에서 토트넘 핫스퍼로 이적했다. |
   > | ner_list | list | 형태소분석 결과 | |
   > | ㄴentity | str | 개체명 | 손흥민 |
   > | ㄴner_tag | str | 개체명 태그 | PS |
@@ -192,16 +200,13 @@
     > URL = "http://api.teanaps.com"
     > VERSION = "/v1"
     > URL_PATTERN = "/nlp/ner"
-    > ACCESS_TOKEN = "req_to_admin"
-    > headers = {
-    >     "access_token": ACCESS_TOKEN
-    > } 
     > data = {
+    >     "access_token": "ODMFKGLDICK20190601132625",
     >     "sentence": "손흥민은 2015년 레버쿠젠에서 토트넘 핫스퍼로 이적했다."
     > } 
     > 
     > url = URL + VERSION + URL_PATTERN
-    > r = requests.post(url, headers=headers, data=data)
+    > r = requests.post(url, data=data)
     > j = r.json()
     > print(j)
     > ```
@@ -210,6 +215,7 @@
     > ```python
     > {
     >   'code': 200,
+    >   'sentence': '손흥민은 2015년 레버쿠젠에서 토트넘 핫스퍼로 이적했다.',
     >   'ner_list': [
     >     {
     >       'entity': '손흥민',
@@ -242,6 +248,7 @@
 
   > | 파라미터        |  필수 |  유형 |  설명          | 샘플                       |
   > |--------------|------|------|---------------|---------------------------|
+  > | access_token | V | str | ACCESS TOKEN | ODMFKGLDICK20190601132625 |
   > | sentence | V | str | 한국어 또는 영어로 구성된 문장. 최대 128자. | 손흥민이 이번 퇴장으로 1년 동안 3번째 퇴장을 기록했다. |
 
 - 응답 파라미터 (Response Parameter)
@@ -249,6 +256,7 @@
   > | 파라미터      |  유형 |  설명         | 샘플        |
   > |------------|------|--------------|------------|
   > | code | int | 응답코드 | 200 |
+  > | sentence | str | 요청문장 | 손흥민은 이번 퇴장으로 1년 동안 3번째 퇴장을 기록했다. |
   > | sentiment | str | 감성수준 | negative |
   > | sentiment_score | dict | | |
   > | ㄴpositive | float | 긍정 스코어 | 0.0339 |
@@ -263,16 +271,13 @@
     > URL = "http://api.teanaps.com"
     > VERSION = "/v1"
     > URL_PATTERN = "/text_analysis/sentiment"
-    > ACCESS_TOKEN = "req_to_admin"
-    > headers = {
-    >     "access_token": ACCESS_TOKEN
-    > } 
     > data = {
-    >     "sentence": "손흥민이 이번 퇴장으로 1년 동안 3번째 퇴장을 기록했다."
+    >     "access_token": "ODMFKGLDICK20190601132625",
+    >     "sentence": "손흥민은 이번 퇴장으로 1년 동안 3번째 퇴장을 기록했다."
     > } 
     > 
     > url = URL + VERSION + URL_PATTERN
-    > r = requests.post(url, headers=headers, data=data)
+    > r = requests.post(url, data=data)
     > j = r.json()
     > print(j)
     > ```
@@ -281,6 +286,7 @@
     > ```python
     > {
     >   'code': 200,
+    >   'sentence': '손흥민은 이번 퇴장으로 1년 동안 3번째 퇴장을 기록했다.',
     >   'sentiment': 'negative',
     >   'sentiment_score': {
     >     'positive': 0.0339,
@@ -293,10 +299,11 @@
 
 - 공통 응답코드입니다.
 
-  > | 응답코드 |  메시지         | 설명        |
-  > |--------|---------------|---------------|
-  > | 200 | 응답성공 | |
-  > | 301 | Invalid ACCESS TOKEN | ACCESS TOKEN이 유효하지 않습니다. |
+  > | Code |  Message         | DESC         |
+  > |------|------------------|---------------|
+  > | 200 | Success | 요청이 정상 처리되었습니다. |
+  > | 401 | Incorrect request | 요청 파라미터가 잘못되었습니다. |
+  > | 402 | Invalid ACCESS TOKEN | ACCESS TOKEN이 유효하지 않습니다. |
 
 <br><br>
 ---
