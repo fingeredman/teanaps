@@ -77,7 +77,7 @@
 > 2020.01.11. `teanaps v0.0.10`, `Documentation` 업데이트  
 > 2020.02.02. `Documentation` 업데이트  
 > 2020.02.08. `Documentation` 업데이트  
-> 2020.02.29. `teanaps v0.0.11` 업데이트
+> 2020.02.29. `teanaps v0.0.11` 업데이트  
 > 2020.03.07. `REST API` 문서 업데이트  
 
 <br><br>
