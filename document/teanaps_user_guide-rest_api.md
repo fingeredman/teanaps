@@ -19,13 +19,13 @@
 ## `TEANAPS` OPEN API
 
 ### ACCESS TOKEN 발급
-- 무분별한 API 사용 방지을 위해 `ACCESS TOKEN`을 발급을 통해 API 접근권한을 부여합니다.
-- API 호출시 관리자 문의를 통해 발급받은 `ACCESS TOKEN`을 HTTP Header에 같이 전송해주셔야 합니다. 
+- 무분별한 API 사용을 방지하고자 `ACCESS TOKEN` 발급을 통해 API 접근권한을 관리합니다.
+- API 호출시 관리자 문의를 통해 발급받은 `ACCESS TOKEN`을 BODY에 포함해 요청해야 합니다. 
 - `ACCESS TOKEN` 발급은 관리자 이메일(fingeredman@gmail.com)로 아래 내용을 포함해 문의 바랍니다.
 
   - 이름 : 홍길동
   - 소속 : 회사/대학교/연구소/그룹 등
-  - 사용목적 : "~ 분석 및 구축 프로젝트" 수행시 감성분석 활용 등
+  - 사용목적 : "~ 분석/구축 프로젝트" 수행시 감성분석 활용 등
 
 ### `TEANAPS` OPEN API List
 
@@ -40,7 +40,7 @@
   > | T02-02 | HTTP (POST) | JSON | [개체명인식](./teanaps_user_guide-rest_api.md#t02-02-개체명인식) | http://api.teanaps.com/v1/nlp/ner |
   > | T03-01 | HTTP (POST) | JSON | [감성분석](./teanaps_user_guide-rest_api.md#t03-01-감성분석) | http://api.teanaps.com/v1/text_analysis/sentiment |
 
-### API 상세정보
+### 상세정보
 
 #### [T01-01] API 응답체크
 > REST API 동작여부와 ACCESS TOKEN의 유효성을 확인합니다.  
@@ -170,6 +170,11 @@
     > }
     > ```
 
+    > Notes :  
+    > - `TEANAPS` 형태소분석 API의 품사태그는 세종말뭉치 품사태그를 기본으로 사용합니다. 품사태그표는 [Appendix](./teanaps_user_guide-appendix.md#teanaps-형태소-품사태그표)를 참고해주세요.
+    > - `TEANAPS` 형태소분석 API의 성능 및 특징은 [성능평가 결과](./teanaps_user_guide-appendix.md#teanaps-성능평가-결과)를 참고해주세요.
+
+
 #### [T02-02] 개체명인식
 > 문장에서 개체명을 인식하고 그 결과를 반환합니다.  
 
@@ -241,6 +246,11 @@
     > }
     > ```
 
+    > Notes :  
+    > - `TEANAPS` 개체명인식 API의 개체명 태그는 총 16종으로 구분됩니다. 태그 종류 및 구분은 [정보통신단체표준 (TTAS)](http://committee.tta.or.kr/data/standard_view.jsp?nowPage=32&pk_num=TTAK.KO-10.0852&nowSu=318&rn=1)을 따릅니다.
+    > - 개체명 태그표는 [Appendix](./teanaps_user_guide-appendix.md#teanaps-개체명-태그표)를 참고해주세요.
+    > - `TEANAPS` 개체명인식 API의 성능 및 특징은 [성능평가 결과](./teanaps_user_guide-appendix.md#teanaps-성능평가-결과)를 참고해주세요.
+
 #### [T03-01] 감성분석
 > 문장의 감성수준을 긍정 또는 부정으로 분류하고 그 결과를 반환합니다.  
 
@@ -295,7 +305,7 @@
     > }
     > ```
 
-### 응답코드
+#### 응답코드
 
 - 공통 응답코드입니다.
 
@@ -304,6 +314,7 @@
   > | 200 | Success | 요청이 정상 처리되었습니다. |
   > | 401 | Incorrect request | 요청 파라미터가 잘못되었습니다. |
   > | 402 | Invalid ACCESS TOKEN | ACCESS TOKEN이 유효하지 않습니다. |
+
 
 <br><br>
 ---
