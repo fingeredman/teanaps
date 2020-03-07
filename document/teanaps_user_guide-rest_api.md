@@ -35,14 +35,14 @@
 
   > | API ID  | 호출방식        | 응답형식 | 역할                        | 요청 URL              |
   > |---------|--------------|--------|----------------------------|----------------------|
-  > | T01-01 | HTTP (POST) | JSON | [API 응답체크](./teanaps_user_guide-rest_api.md#1-teanapshandler) | http://api.teanaps.com/v1/alive |
-  > | T02-01 | HTTP (POST) | JSON | [형태소분석](./teanaps_user_guide-rest_api.md#1-teanapshandler) | http://api.teanaps.com/v1/nlp/pos |
-  > | T02-02 | HTTP (POST) | JSON | [개체명인식](./teanaps_user_guide-rest_api.md#1-teanapshandler) | http://api.teanaps.com/v1/nlp/ner |
-  > | T03-01 | HTTP (POST) | JSON | [감성분석](./teanaps_user_guide-rest_api.md#1-teanapshandler) | http://api.teanaps.com/v1/text_analysis/sentiment |
+  > | T01-01 | HTTP (POST) | JSON | [API 응답체크](./teanaps_user_guide-rest_api.md#1-api-응답체크) | http://api.teanaps.com/v1/alive |
+  > | T02-01 | HTTP (POST) | JSON | [형태소분석](./teanaps_user_guide-rest_api.md#2-형태소분석) | http://api.teanaps.com/v1/nlp/pos |
+  > | T02-02 | HTTP (POST) | JSON | [개체명인식](./teanaps_user_guide-rest_api.md#3-개체명인식) | http://api.teanaps.com/v1/nlp/ner |
+  > | T03-01 | HTTP (POST) | JSON | [감성분석](./teanaps_user_guide-rest_api.md#4-감성분석) | http://api.teanaps.com/v1/text_analysis/sentiment |
 
 ### 상세정보
 
-#### 1. API 응답체크
+#### [T01-01] API 응답체크
 > REST API 동작여부와 ACCESS TOKEN의 유효성을 확인합니다.  
 
 - 응답 파라미터 (Response Parameter)
@@ -87,7 +87,7 @@
     > }
     > ```
 
-#### 2. 형태소분석
+#### [T02-01] 형태소분석
 > 문장을 형태소분석하고 그 결과를 반환합니다.  
 
 - 요청 파라미터 (Request Parameter)
@@ -164,7 +164,7 @@
     > }
     > ```
 
-#### 3. 개체명인식
+#### [T02-02] 개체명인식
 > 문장에서 개체명을 인식하고 그 결과를 반환합니다.  
 
 - 요청 파라미터 (Request Parameter)
@@ -235,7 +235,7 @@
     > }
     > ```
 
-#### 4. 감성분석
+#### [T03-01] 감성분석
 > 문장의 감성수준을 긍정 또는 부정으로 분류하고 그 결과를 반환합니다.  
 
 - 요청 파라미터 (Request Parameter)
