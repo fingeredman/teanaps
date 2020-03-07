@@ -40,7 +40,7 @@
   > | T02-02 | HTTP (POST) | JSON | [개체명인식](./teanaps_user_guide-rest_api.md#t02-02-개체명인식) | http://api.teanaps.com/v1/nlp/ner |
   > | T03-01 | HTTP (POST) | JSON | [감성분석](./teanaps_user_guide-rest_api.md#t03-01-감성분석) | http://api.teanaps.com/v1/text_analysis/sentiment |
 
-### 상세정보
+### API 상세정보
 
 #### [T01-01] API 응답체크
 > REST API 동작여부와 ACCESS TOKEN의 유효성을 확인합니다.  
@@ -295,7 +295,7 @@
     > }
     > ```
 
-#### 응답코드
+### 응답코드
 
 - 공통 응답코드입니다.
 
