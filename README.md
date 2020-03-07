@@ -13,8 +13,6 @@
 ---
 ## Notice!
 > - [`TEANAPS`를 활용해 하루만에 챗봇 구현하기](http://chat.teanaps.com) 프로젝트가 업로드 되었습니다.
-> - 카카오톡 채널 `TEANAPS Chatbot` 친구추가 통해 실제로 사용해보실 수 있습니다.
-> - 많은 관심 부탁드립니다.
 
 ---
 ## What can you do with `TEANAPS`?
@@ -38,6 +36,7 @@
 ### Contents
 - [Install `TEANAPS`](./document/teanaps_user_guide-install_teanaps.md#teanaps-user-guide)
 - [API Documentation](./document/teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
+- [`TEANAPS` OPEN API](./teanaps_user_guide-rest_api.md#teanaps-user-guide)
 - [Tutorial](./document/teanaps_user_guide-tutorial.md#teanaps-user-guide)
 - [References](./document/teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
 - [Journal & Project](./document/teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
@@ -79,6 +78,7 @@
 > 2020.02.02. `Documentation` 업데이트  
 > 2020.02.08. `Documentation` 업데이트  
 > 2020.02.29. `teanaps v0.0.11` 업데이트
+> 2020.03.07. `REST API` 문서 업데이트  
 
 <br><br>
 ---
