@@ -35,10 +35,10 @@
 
   > | API ID  | 호출방식        | 응답형식 | 역할                        | 요청 URL              |
   > |---------|--------------|--------|----------------------------|----------------------|
-  > | T01-01 | HTTP (POST) | JSON | [API 응답체크](./teanaps_user_guide-rest_api.md#1-api-응답체크) | http://api.teanaps.com/v1/alive |
-  > | T02-01 | HTTP (POST) | JSON | [형태소분석](./teanaps_user_guide-rest_api.md#2-형태소분석) | http://api.teanaps.com/v1/nlp/pos |
-  > | T02-02 | HTTP (POST) | JSON | [개체명인식](./teanaps_user_guide-rest_api.md#3-개체명인식) | http://api.teanaps.com/v1/nlp/ner |
-  > | T03-01 | HTTP (POST) | JSON | [감성분석](./teanaps_user_guide-rest_api.md#4-감성분석) | http://api.teanaps.com/v1/text_analysis/sentiment |
+  > | T01-01 | HTTP (POST) | JSON | [API 응답체크](./teanaps_user_guide-rest_api.md#t01-01-api-응답체크) | http://api.teanaps.com/v1/alive |
+  > | T02-01 | HTTP (POST) | JSON | [형태소분석](./teanaps_user_guide-rest_api.md#t02-01-형태소분석) | http://api.teanaps.com/v1/nlp/pos |
+  > | T02-02 | HTTP (POST) | JSON | [개체명인식](./teanaps_user_guide-rest_api.md#t02-02-개체명인식) | http://api.teanaps.com/v1/nlp/ner |
+  > | T03-01 | HTTP (POST) | JSON | [감성분석](./teanaps_user_guide-rest_api.md#t03-01-감성분석) | http://api.teanaps.com/v1/text_analysis/sentiment |
 
 ### 상세정보
 
@@ -293,10 +293,10 @@
 
 - 공통 응답코드입니다.
 
-  > | 응답코드 |  메시지         | 조치사항        |
+  > | 응답코드 |  메시지         | 설명        |
   > |--------|---------------|---------------|
   > | 200 | 응답성공 | |
-  > | 301 | Invalid ACCESS TOKEN | ACCESS TOKEN이 유효하지 않습니다. 문제가 계속되면 관리자에게 문의하세요.|
+  > | 301 | Invalid ACCESS TOKEN | ACCESS TOKEN이 유효하지 않습니다. |
 
 <br><br>
 ---
