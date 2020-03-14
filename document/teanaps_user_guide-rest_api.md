@@ -31,14 +31,18 @@
 
 > `TEANAPS` OPEN API는 `TEANAPS`에서 지원하는 텍스트 분석 기능을 REST API로 제공합니다. 모든 API는 비로그인 방식의 OPEN API로, 호출시 관리자 문의를 통해 발급받은 `ACCESS TOKEN`을 BODY에 포함해 전송해주셔야 합니다. 
 
-- 기본정보
+- 기본 요청 URL : http://api.teanaps.com/
+- API 버전 : v1 (2019.7.12 ~)
 
-  > | API ID  | 호출방식        | 응답형식 | 역할                        | 요청 URL              |
-  > |---------|--------------|--------|----------------------------|----------------------|
-  > | T01-01 | HTTP (POST) | JSON | [API 응답체크](./teanaps_user_guide-rest_api.md#t01-01-api-응답체크) | http://api.teanaps.com/v1/alive |
-  > | T02-01 | HTTP (POST) | JSON | [형태소분석](./teanaps_user_guide-rest_api.md#t02-01-형태소분석) | http://api.teanaps.com/v1/nlp/pos |
-  > | T02-02 | HTTP (POST) | JSON | [개체명인식](./teanaps_user_guide-rest_api.md#t02-02-개체명인식) | http://api.teanaps.com/v1/nlp/ner |
-  > | T03-01 | HTTP (POST) | JSON | [감성분석](./teanaps_user_guide-rest_api.md#t03-01-감성분석) | http://api.teanaps.com/v1/text_analysis/sentiment |
+  > | API ID  | 호출방식        | 응답형식 | 역할                        | 요청 URL              | 평균응답속도 |
+  > |---------|--------------|--------|----------------------------|----------------------|-----------|
+  > | T01-01 | HTTP (POST) | JSON | [API 응답체크](./teanaps_user_guide-rest_api.md#t01-01-api-응답체크) | /alive | 0.029s |
+  > | T02-01 | HTTP (POST) | JSON | [형태소분석](./teanaps_user_guide-rest_api.md#t02-01-형태소분석) | /nlp/pos | 0.154s |
+  > | T02-02 | HTTP (POST) | JSON | [개체명인식](./teanaps_user_guide-rest_api.md#t02-02-개체명인식) | /nlp/ner | 0.150s |
+  > | T03-01 | HTTP (POST) | JSON | [감성분석](./teanaps_user_guide-rest_api.md#t03-01-감성분석) | /text_analysis/sentiment | 0.676s |
+
+    > Notes :  
+    > - 평균응답속도는 무선 네트워크 환경에서 API를 요청하고 응답을 받는데 까지 걸리는 시간을 의미하며, 해당 시험결과는 1,000회 연속 API요청에 대한 응답속도의 평균입니다.
 
 ### 상세정보
 
