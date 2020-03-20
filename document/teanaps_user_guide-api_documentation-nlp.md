@@ -616,10 +616,11 @@
     > en
     > ```
 
-- `teanaps.nlp.Processing.iteration_remover(sentence)` [[Top]](#teanaps-architecture)
+- `teanaps.nlp.Processing.iteration_remover(sentence, replace_char=".")` [[Top]](#teanaps-architecture)
   - 문장에서 무의미하게 반복되는 패턴을 찾아내 "."으로 치환한 문장을 반환합니다.
   - Parameters
     - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
+    - *replace_char (str) : 반복되는 패턴을 대체할 문자열.*
   - Returns
     - *result (str) : 반복된 패턴이 치환된 문장.*
   - Examples
@@ -682,6 +683,27 @@
     > Output (in Jupyter Notebook) :
     > ```python
     > If it is to be, it is up to me.
+    > ```
+
+- `teanaps.nlp.Processing.masking(sentence, replace_char="*", ner_tag_list=[])` [[Top]](#teanaps-architecture)
+  - 문장에서 추출된 개체명을 다른 문자열로 치환하고 그 결과를 반환합니다.
+  - Parameters
+    - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
+    - *replace_char (str) : 개체명을 치환할 문자열.*
+    - *ner_tag_list (list) : 치환 대상 개체명 태그 리스트.*
+  - Returns
+    - *result (str) : 개체명을 다른 문자열로 치환한 문장.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > sentence = "제 이름은 제임스 포터이고 연락처는 010-1234-5678 입니다."
+    > result = pro.masking(sentence)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > 제 이름은 ******이고 연락처는 ************* 입니다.
     > ```
 
 ##### 2.5. `teanaps.nlp.Embedding`
