@@ -637,7 +637,7 @@
     > ```
 
 - `teanaps.nlp.Processing.get_plain_text(sentence, pos_list=[], word_index=0, pos_index=1, tag_index=1, tag=True)` [[Top]](#teanaps-architecture)
-  - 형태소 또는 개체명 태그를 "/"로 그분해 태깅하여 문장 형태로 생성하고 그 결과를 반환합니다.
+  - 형태소 또는 개체명 태그를 "/"로 구분해 태깅하여 문장 형태로 생성하고 그 결과를 반환합니다.
   - Parameters
     - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
     - *pos_list (list) : 필터링할 태그가 포함된 튜플의 인덱스.*
