@@ -1,4 +1,5 @@
 from teanaps import configure as con
+from teanaps.nlp import NamedEntityRecognizer
 
 import re
 import time
@@ -8,6 +9,7 @@ class Processing():
     def __init__(self):
         self.stopword_path = con.STOPWORD_PATH
         self.stopword_org_path = con.STOPWORD_ORG_PATH
+        self.ner = NamedEntityRecognizer()
     
     def get_stopword(self):
         stopword_list = []
@@ -91,14 +93,14 @@ class Processing():
         len_en = len(re.sub("[^a-zA-Z]", "", sentence))
         return "ko" if len_ko >= len_en else "en"
 
-    def iteration_remover(self, sentence):
+    def iteration_remover(self, sentence, replace_char="."):
         pattern_list = [r'(.)\1{5,}', r'(..)\1{5,}', r'(...)\1{5,}']
         for pattern in pattern_list:
             matcher= re.compile(pattern)
             iteration_term_list = [match.group() for match in matcher.finditer(sentence)]
             for iteration_term in iteration_term_list:
                 sentence = sentence.replace(iteration_term, 
-                                            iteration_term[:pattern.count(".")] + "."*(len(iteration_term)-pattern.count(".")))
+                                            iteration_term[:pattern.count(".")] + replace_char*(len(iteration_term)-pattern.count(".")))
         return sentence
     
     def get_plain_text(self, sentence, pos_list=[], word_index=0, pos_index=1, tag_index=1, tag=True):
@@ -119,7 +121,7 @@ class Processing():
                     plain_text_sentence += " "
         return plain_text_sentence.strip()
     
-    def replacer(self, text):
+    def replacer(self, sentence):
         patterns = [
             (r'won\'t', 'will not'),
             (r'can\'t', 'cannot'),
@@ -133,7 +135,13 @@ class Processing():
             (r'(\w+)\'d', '\g<1> would'),
         ]
         self.patterns = [(re.compile(regex), repl) for (regex, repl) in patterns]
-        s = text
         for (pattern, repl) in self.patterns:
-            s = re.sub(pattern, repl, s)
-        return s
+            sentence = re.sub(pattern, repl, sentence)
+        return sentence
+    
+    def masking(self, sentence, replace_char="*", ner_tag_list=[]):
+        ner_result = self.ner.parse(sentence)
+        for word, ner_tag, loc in ner_result:
+            if len(ner_tag_list) == 0 or ner_tag in ner_tag_list:
+                sentence = sentence[:loc[0]] + replace_char*len(word) + sentence[loc[1]:]
+        return sentence
