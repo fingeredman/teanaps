@@ -97,7 +97,14 @@ class NamedEntityRecognizer():
 
     def __sentence_to_token_list(self, sentence):
         token_list = [self.tokenizer(char) for char in sentence]
-        return token_list
+        token_list_ = []
+        for token in token_list[0]:
+            if len(token) > 1 and token[-1] in ["은", "는", "로", "를", "을"]:
+                token_list_.append(token[:-1])
+                token_list_.append(token[-1])
+            else:
+                token_list_.append(token)
+        return [token_list_]
 
     def __token_list_to_token_index_list(self, token_list):
         index_list = []
@@ -134,8 +141,10 @@ class NamedEntityRecognizer():
 
     def __get_token_position(self, sentence_org, token_list):
         token_list = [token.replace("▁", "") for token in token_list[1:-1]]
+        content_org = sentence_org.lower()
         content_ = sentence_org.lower()
         position = 0
+        end = 0
         token_loc_list = []
         for i, token in enumerate(token_list):
             if token == "":
@@ -143,14 +152,13 @@ class NamedEntityRecognizer():
             else:
                 loc = content_.find(token)
             if loc != -1:
-                position += loc
-                content_ = content_[loc:]
-                start = position
-                end = position + len(token)
+                start = end+loc
+                end += loc + len(token)
+                content_ = content_org[end:]
             else:
-                start = 0
-                end = 0
-            
+                start = end
+                end += len(token)
+
             token_loc_list.append((token, (start, end)))
         return [('[CLS]', (0, 0))] + token_loc_list + [('[SEP]', (0, 0))]
         
@@ -221,13 +229,10 @@ class NamedEntityRecognizer():
         for token, ner_tag, loc in zip(input_token, pred_ner_tag, loc_list):
             if ner_tag[:2] == "B-":
                 if temp_entity != "":
-                    #list_of_ner_word.append((temp_entity.replace("▁", " ").strip(), 
-                    #                         temp_ner_tag, (temp_loc_a, temp_loc_b)))
                     list_of_ner_word.append((input_text[temp_loc_a:temp_loc_b], 
                                              temp_ner_tag, (temp_loc_a, temp_loc_b)))
                     if temp_entity[0] == "▁":
                         temp_sentence += " "
-                    #temp_sentence += "<" + temp_entity.replace("▁", " ").strip() + ":" + temp_ner_tag + ">"
                     temp_sentence += "<" + input_text[temp_loc_a:temp_loc_b] + ":" + temp_ner_tag + ">"
                 temp_entity = ""
                 temp_loc_a = loc[1][0]
@@ -239,19 +244,25 @@ class NamedEntityRecognizer():
                 temp_ner_tag = ner_tag[2:]
                 if temp_entity != "":
                     temp_entity += token
+                if token not in ["[CLS]", "[SEP]"]:
+                    if temp_entity == "":
+                        temp_sentence += input_text[loc[1][0]:loc[1][1]]
             else:
-                
                 if temp_entity != "":
-                    #list_of_ner_word.append((temp_entity.replace("▁", " ").strip(), 
-                    #                         temp_ner_tag, (temp_loc_a, temp_loc_b)))
                     list_of_ner_word.append((input_text[temp_loc_a:temp_loc_b], 
                                              temp_ner_tag, (temp_loc_a, temp_loc_b)))
                     if temp_entity[0] == "▁":
                         temp_sentence += " "
-                    #temp_sentence += "<" + temp_entity.replace("▁", " ").strip() + ":" + temp_ner_tag + ">"
                     temp_sentence += "<" + input_text[temp_loc_a:temp_loc_b] + ":" + temp_ner_tag + ">"
                 if token not in ["[CLS]", "[SEP]"]:
-                    temp_sentence += token.replace("▁", " ")
+                    if token == "▁":
+                        temp_sentence += " "
+                    elif token[0] == "▁":
+                        temp_sentence += " " + input_text[loc[1][0]:loc[1][1]]
+                    elif token[-1] == "▁":
+                        temp_sentence += input_text[loc[1][0]:loc[1][1]] + " "
+                    else:
+                        temp_sentence += input_text[loc[1][0]:loc[1][1]]
                 temp_entity = ""
         return list_of_ner_word, temp_sentence.strip()
         
