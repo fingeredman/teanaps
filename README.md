@@ -12,7 +12,8 @@
 
 ---
 ## Notice!
-> - [`TEANAPS`를 활용해 하루만에 챗봇 구현하기](http://chat.teanaps.com) 프로젝트가 업로드 되었습니다.
+> - 2020.4.29 ~ 5.5, 6일간 `TEANAPS` 서버 이전 관계로 [`TEANAPS` OPEN API](./document/teanaps_user_guide-rest_api.md#teanaps-user-guide) 제공이 어렵습니다.  
+> - [`TEANAPS`를 활용해 하루만에 챗봇 구현하기](http://chat.teanaps.com) 프로젝트가 업로드 되었습니다.  
 
 ---
 ## What can you do with `TEANAPS`?
