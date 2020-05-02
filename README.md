@@ -11,8 +11,7 @@
 - **Contact : FINGEREDMAN(fingeredman@gmail.com)**
 
 ---
-## Notice!
-> - 2020.4.29 ~ 5.5, 6일간 `TEANAPS` 서버 이전 관계로 [`TEANAPS` OPEN API](./document/teanaps_user_guide-rest_api.md#teanaps-user-guide) 제공이 어렵습니다.  
+## Notice! 
 > - [`TEANAPS`를 활용해 하루만에 챗봇 구현하기](http://chat.teanaps.com) 프로젝트가 업로드 되었습니다.  
 
 ---
@@ -80,6 +79,7 @@
 > 2020.02.08. `Documentation` 업데이트  
 > 2020.02.29. `teanaps v0.0.11` 업데이트  
 > 2020.03.07. `REST API` 문서 업데이트  
+> 2020.05.02. `TEANAPS` API 서버 안정화 및 업데이트  
 
 <br><br>
 ---
