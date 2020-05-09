@@ -49,37 +49,37 @@
 
 ---
 ## Release history
-> 2019.07.12. `teanaps v0.0.1`  
-> 2019.08.21. `teanaps v0.0.2`  
-> 2019.09.22. `teanaps v0.0.3`  
-> 2019.10.13. `teanaps v0.0.4`  
-> 2019.11.09. `teanaps v0.0.5`  
-> 2019.11.23. `teanaps v0.0.6`  
-> 2019.12.07. `teanaps v0.0.7`  
-> 2019.12.21. `teanaps v0.0.8`  
-> 2020.01.04. `teanaps v0.0.9`  
+> 2020.02.29. `teanaps v0.0.11`  
 > 2020.01.11. `teanaps v0.0.10`  
-> 2020.02.29. `teanaps v0.0.11`
+> 2020.01.04. `teanaps v0.0.9`  
+> 2019.12.21. `teanaps v0.0.8`  
+> 2019.12.07. `teanaps v0.0.7`  
+> 2019.11.23. `teanaps v0.0.6`  
+> 2019.11.09. `teanaps v0.0.5`  
+> 2019.10.13. `teanaps v0.0.4`  
+> 2019.09.22. `teanaps v0.0.3`  
+> 2019.08.21. `teanaps v0.0.2`  
+> 2019.07.12. `teanaps v0.0.1`  
 
 ---
 ## Update History
-> 2019.06.12. 기본 구성 입력  
-> 2019.07.12. `teanaps v0.0.1` 업데이트  
-> 2019.08.21. `teanaps v0.0.2` 업데이트, `install.ipynb` 업로드  
-> 2019.08.24. `install.ipynb` 업데이트  
-> 2019.09.22. `teanaps v0.0.3` 업데이트  
-> 2019.10.13. `teanaps v0.0.4` 업데이트  
-> 2019.11.09. `teanaps v0.0.5` 업데이트, `REST API` 문서 초안 업로드  
-> 2019.11.23. `teanaps v0.0.6` 업데이트  
-> 2019.12.07. `teanaps v0.0.7` 업데이트  
-> 2019.12.21. `teanaps v0.0.8` 업데이트  
-> 2020.01.04. `teanaps v0.0.9` 업데이트, `User Guide` 업로드  
-> 2020.01.11. `teanaps v0.0.10`, `Documentation` 업데이트  
-> 2020.02.02. `Documentation` 업데이트  
-> 2020.02.08. `Documentation` 업데이트  
-> 2020.02.29. `teanaps v0.0.11` 업데이트  
-> 2020.03.07. `REST API` 문서 업데이트  
 > 2020.05.02. `TEANAPS` API 서버 안정화 작업 및 업데이트  
+> 2020.03.07. `REST API` 문서 업데이트  
+> 2020.02.29. `teanaps v0.0.11` 업데이트  
+> 2020.02.08. `Documentation` 업데이트  
+> 2020.02.02. `Documentation` 업데이트  
+> 2020.01.11. `teanaps v0.0.10`, `Documentation` 업데이트  
+> 2020.01.04. `teanaps v0.0.9` 업데이트, `User Guide` 업로드  
+> 2019.12.21. `teanaps v0.0.8` 업데이트  
+> 2019.12.07. `teanaps v0.0.7` 업데이트  
+> 2019.11.23. `teanaps v0.0.6` 업데이트  
+> 2019.11.09. `teanaps v0.0.5` 업데이트, `REST API` 문서 초안 업로드  
+> 2019.10.13. `teanaps v0.0.4` 업데이트  
+> 2019.09.22. `teanaps v0.0.3` 업데이트  
+> 2019.08.24. `install.ipynb` 업데이트  
+> 2019.08.21. `teanaps v0.0.2` 업데이트, `install.ipynb` 업로드  
+> 2019.07.12. `teanaps v0.0.1` 업데이트  
+> 2019.06.12. 기본 구성 입력  
 
 <br><br>
 ---
