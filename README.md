@@ -12,6 +12,7 @@
 
 ---
 ## Notice! 
+> - `TEANAPS` 라이브러리 사용법은 [`User Guide`](./document/teanaps_user_guide-install_teanaps.md#teanaps-user-guide)를 참조해주시기 바랍니다.
 > - [`TEANAPS`를 활용해 하루만에 챗봇 구현하기](http://chat.teanaps.com) 프로젝트가 업로드 되었습니다.  
 
 ---
