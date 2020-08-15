@@ -8,7 +8,7 @@
 - 본 자료를 강의 또는 연구 목적으로 활용하고자 하시는 경우 꼭 아래 메일주소로 연락주세요.
 - 본 자료에 대한 <U>상업적 활용과 허가되지 않은 배포를 금지</U>합니다.
 - 강의, 저작권, 출판, 특허, 공동저자에 관련해서는 문의 바랍니다.
-- **Contact : FINGEREDMAN(fingeredman@gmail.com)**
+- **Contact : ADMIN(admin@teanaps.com)**
 
 ---
 ## Notice! 
