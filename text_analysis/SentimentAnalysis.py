@@ -59,8 +59,8 @@ class SentimentAnalysis():
                 weight_list.append(attn_data["attn"][token_index])
         return token_list, weight_list
     
-    def get_sentiment_parse(self, sentence, neutral_th=0.3):
-        ner = NamedEntityRecognizer()
+    def get_sentiment_parse(self, sentence, neutral_th=0.3, model_path=con.NER_MODEL_PATH):
+        ner = NamedEntityRecognizer(model_path=model_path)
         pos_result = self.ma.parse(sentence)
         ner_result = ner.parse(sentence)
         sa_result = self.sa.parse(pos_result, ner_result) 
