@@ -24,7 +24,6 @@ class SentimentAnalysis():
         self.tok = nlp.data.BERTSPTokenizer(tokenizer_path, vocab, lower=False)
         self.ma = MorphologicalAnalyzer()
         self.ma.set_tagger("mecab")
-        self.ner = NamedEntityRecognizer()
         self.sa = SyntaxAnalyzer()
     
     def tag(self, sentence, neutral_th=0.3):
@@ -61,8 +60,9 @@ class SentimentAnalysis():
         return token_list, weight_list
     
     def get_sentiment_parse(self, sentence, neutral_th=0.3):
+        ner = NamedEntityRecognizer()
         pos_result = self.ma.parse(sentence)
-        ner_result = self.ner.parse(sentence)
+        ner_result = ner.parse(sentence)
         sa_result = self.sa.parse(pos_result, ner_result) 
         phrase_sa_list, phrase_list = self.sa.get_phrase(sentence, sa_result)  
         token_list = []
