@@ -3,14 +3,14 @@ from teanaps.visualization import GraphVisualizer
 from teanaps.visualization import TextVisualizer
 from teanaps.nlp import MorphologicalAnalyzer
 from teanaps.nlp import NamedEntityRecognizer
-from teanaps.nlp import SyntaxAnalyzer
-
+from teanaps.nlp import SyntaxAnalyzer  
+   
 from gluonnlp.model import BERTModel, BERTEncoder
 import gluonnlp as nlp
 from mxnet.gluon import nn
-import mxnet as mx
-from mxnet import gluon
-
+import mxnet as mx 
+from mxnet import gluon 
+ 
 import numpy as np
 
 class SentimentAnalysis():  
@@ -144,7 +144,7 @@ class SentimentAnalysis():
             'attn': attn_list,
             'text': token_list,
         }
-        return results
+        return results 
     
     def __get_kobert_model(self):
         use_pooler=True
@@ -153,21 +153,22 @@ class SentimentAnalysis():
         vocab_path = con.SENTIMENT_UTIL_PATH["tokenizer"]
         vocab_b_obj = nlp.vocab.BERTVocab.from_sentencepiece(vocab_path, padding_token="[PAD]")
         predefined_args = con.SENTIMENT_BERT_CONFIG
-        encoder = BERTEncoder(attention_cell=predefined_args["attention_cell"],
+        encoder = BERTEncoder(#attention_cell=predefined_args["attention_cell"],
                               num_layers=predefined_args["num_layers"],
                               units=predefined_args["units"],
                               hidden_size=predefined_args["hidden_size"],
                               max_length=predefined_args["max_length"],
                               num_heads=predefined_args["num_heads"],
-                              scaled=predefined_args["scaled"],
+                              #scaled=predefined_args["scaled"],
                               dropout=predefined_args["dropout"],
                               output_attention=True, output_all_encodings=False,
-                              use_residual=predefined_args["use_residual"])
+                              #use_residual=predefined_args["use_residual"])
+        )
         net = BERTModel(encoder, len(vocab_b_obj.idx_to_token),
                         token_type_vocab_size=predefined_args["token_type_vocab_size"],
                         units=predefined_args["units"],
                         embed_size=predefined_args["embed_size"],
-                        embed_dropout=predefined_args["embed_dropout"],
+                        #embed_dropout=predefined_args["embed_dropout"],
                         word_embed=predefined_args["word_embed"],
                         use_pooler=use_pooler, use_decoder=use_decoder, use_classifier=use_classifier)
         net.initialize(ctx=self.ctx)
