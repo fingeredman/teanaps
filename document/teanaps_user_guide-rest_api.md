@@ -21,7 +21,7 @@
 ### ACCESS TOKEN 발급
 - 무분별한 API 사용을 방지하고자 `ACCESS TOKEN` 발급을 통해 API 접근권한을 관리합니다.
 - API 호출시 관리자 문의를 통해 발급받은 `ACCESS TOKEN`을 BODY에 포함해 요청해야 합니다. 
-- `ACCESS TOKEN` 발급은 관리자 이메일(fingeredman@gmail.com)로 아래 내용을 포함해 문의 바랍니다.
+- `ACCESS TOKEN` 발급은 관리자 이메일(admin@teanaps.com)로 아래 내용을 포함해 문의 바랍니다.
 
   - 이름 : 홍길동
   - 소속 : 회사/대학교/연구소/그룹 등

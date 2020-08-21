@@ -9,7 +9,6 @@ class Processing():
     def __init__(self):
         self.stopword_path = con.STOPWORD_PATH
         self.stopword_org_path = con.STOPWORD_ORG_PATH
-        self.ner = NamedEntityRecognizer()
     
     def get_stopword(self):
         stopword_list = []
@@ -140,7 +139,8 @@ class Processing():
         return sentence
     
     def masking(self, sentence, replace_char="*", ner_tag_list=[]):
-        ner_result = self.ner.parse(sentence)
+        ner = NamedEntityRecognizer()
+        ner_result = ner.parse(sentence)
         for word, ner_tag, loc in ner_result:
             if len(ner_tag_list) == 0 or ner_tag in ner_tag_list:
                 sentence = sentence[:loc[0]] + replace_char*len(word) + sentence[loc[1]:]

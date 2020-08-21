@@ -85,18 +85,19 @@ class MorphologicalAnalyzer():
                 if word in con.SKIP_WORD_LIST:
                     continue
                 pos_tag = word_tagged[1][0]
-                pos_tag_split = word_tagged[1][7]
+                pos_tag_split = word_tagged[1][7] 
                 if "+" not in pos_tag:
                     pos_tag = con.POS_TAG_MAP[pos_tag]
                     tagged_set = (word, pos_tag)
                     word_tagged_pos_list.append(tagged_set)
-                else:
+                else: 
                     tagged_set_list = [(tag_split.split("/")[:2][0], tag_split.split("/")[:2][1]) 
                                        for tag_split in pos_tag_split.split("+")]
                     word_tagged_pos_list.extend(tagged_set_list)
         elif self.tagger == "kkma":
             word_tagged_total_list = self.kkma.pos(sentence)
             for word_tagged in word_tagged_total_list:
+                #word = str(word_tagged[0])
                 word = word_tagged[0]
                 if word in con.SKIP_WORD_LIST:
                     continue
