@@ -83,17 +83,20 @@ class SentimentAnalysis():
     
     def draw_sentiment_parse(self, token_list, weight_list):
         tv = TextVisualizer()
+        tv.set_plotly()
         return tv.draw_sentence_attention(token_list, weight_list)
             
     def draw_sentence_weight(self, sentence):
         token_list, weight_list = self.get_weight(sentence)
         weight_list = [w**3 for w in weight_list]
         tv = TextVisualizer()
+        tv.set_plotly()
         return tv.draw_sentence_attention(token_list, weight_list)
         
     def draw_weight(self, sentence):
         attn_data = self.__get_attention(self.model, sentence)
         gv = GraphVisualizer()
+        gv.set_plotly()
         x = attn_data["text"]
         x_data = []
         z_data = []

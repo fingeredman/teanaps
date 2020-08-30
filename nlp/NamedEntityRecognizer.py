@@ -62,10 +62,12 @@ class NamedEntityRecognizer():
     def draw_sentence_weight(self, sentence):
         token_list, weight_list = self.get_weight(sentence)
         tv = TextVisualizer()
+        tv.set_plotly()
         return tv.draw_sentence_attention(token_list, weight_list)
     
     def draw_weight(self, sentence):
         gv = GraphVisualizer()
+        gv.set_plotly()
         token_list, weight_list = self.get_weight(sentence)
         x_data = ["(" + str(token_index) + ")" + token for token_index, token in enumerate(token_list)]
         z_data = [weight for weight in weight_list]

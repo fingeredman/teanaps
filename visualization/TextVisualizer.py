@@ -120,6 +120,7 @@ class TextVisualizer():
         graph_meta["annotations"] = annotations
         graph_meta["height"] = 30 + (50*len(tokenized_token_list))
         graph_meta["images"] = self.watermark_image
+        self.set_plotly()
         return iplot(fig, filename="SENTENCE ATTENTION")
     
     def draw_wordcloud(self, data_meta, graph_meta):
@@ -180,4 +181,5 @@ class TextVisualizer():
                                          width=graph_meta["width"], height=graph_meta["height"],margin=dict(b=20,l=5,r=5,t=40),
                                          xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
                                          yaxis=dict(showgrid=False, zeroline=False, showticklabels=False)))
+        self.set_plotly()
         return iplot(fig, filename='WORD NETWORK')

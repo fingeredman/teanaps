@@ -95,6 +95,7 @@ class TfidfCalculator():
     
     def draw_tfidf(self, max_words=100):
         gv = GraphVisualizer()
+        gv.set_plotly()
         x = self.get_word_list()[:max_words]
         y = [score for _, score in self.get_tf_list()][:max_words]
         z = [score for _, score in self.get_tfidf_list()][:max_words]
@@ -128,6 +129,7 @@ class TfidfCalculator():
     
     def get_wordcloud(self, weight_dict):
         tv = TextVisualizer()
+        tv.set_plotly()
         data_meta = {
             "weight_dict": weight_dict,
         }

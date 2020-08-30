@@ -119,6 +119,7 @@ class TopicClustering():
                 showexponent='all',
             ),
         )
+        self.set_plotly()
         fig = go.Figure(data=data, layout=layout)
         return iplot(fig, filename='TF-IDF Graph')
     
@@ -235,6 +236,7 @@ class TopicClustering():
                 side='right'
             )
         )
+        self.set_plotly()
         fig = go.Figure(data=data, layout=layout)
         return iplot(fig, filename='TF-IDF Graph')
 

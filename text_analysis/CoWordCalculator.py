@@ -101,6 +101,7 @@ class CoWordCalculator():
         
     def get_co_matrix_graph(self, max_words):
         gv = GraphVisualizer()
+        gv.set_plotly()
         co_word_list = self.result_list
         x_data = []
         max_freq = 0
@@ -152,7 +153,7 @@ class CoWordCalculator():
     
     def get_word_network_graph(self, centrality_dict):
         tv = TextVisualizer()
-        
+        tv.set_plotly()
         data_meta = {
             "node_list": self.get_node_list(),
             "edge_list": [(a, b, w) for (a, b), w in self.get_edge_list()],

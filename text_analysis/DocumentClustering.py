@@ -113,10 +113,12 @@ class DocumentClustering():
         fig = go.Figure(data=data, layout=layout)
         fig['layout']["images"] = self.watermark_image
         fig['layout']["title"] = "PAIR-WIZE MATRIX"
+        self.set_plotly()
         return  iplot(fig, filename='HEATMAP')
     
     def get_kmeans_graph(self, df_result, label):
         gv = GraphVisualizer()
+        gv.set_plotly()
         data_meta_list = []
         for predict in list(OrderedDict.fromkeys(df_result[label])):
             data_meta = {
@@ -219,10 +221,12 @@ class DocumentClustering():
             fig['layout']['yaxis2'].update(title='Feature space for the 2nd feature', zeroline=False)
             fig['layout'].update(title="Silhouette Analysis for KMeans Clustering - " + str(num_clusters) + " Cluster")
             fig['layout']["images"] = self.watermark_image
+        self.set_plotly()
         return iplot(fig, filename='basic-line')
     
     def get_inertia_transition_graph(self, inertia_list):
         gv = GraphVisualizer()
+        gv.set_plotly()
         x = [i for i in range(1, len(inertia_list)+1)]
         y = inertia_list
         data_meta_list = []

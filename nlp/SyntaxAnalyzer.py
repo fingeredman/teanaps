@@ -5,7 +5,6 @@ class SyntaxAnalyzer():
         None
     
     def parse(self, word_tagged_pos_list, word_tagged_ner_list):
-        sentence = "TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다."
         sa_result = []
         ner_pos = "NNP"
         word_tagged_ner_list.sort(key=lambda elem: len(elem[0]), reverse=True)
@@ -114,4 +113,5 @@ class SyntaxAnalyzer():
     
     def draw_sentence_tree(self, sentence, label_list, edge_list):
         gv = GraphVisualizer()
+        gv.set_plotly()
         return gv.draw_sentence_tree(sentence, label_list, edge_list)

@@ -94,6 +94,7 @@ class GraphVisualizer():
             "images": self.watermark_image
         }
         fig = go.Figure(data=data_list, layout=graph_meta)
+        self.set_plotly()
         return iplot(fig, filename=graph_meta["title"])
     
     def draw_line_graph(self, data_meta_list, graph_meta):
@@ -142,6 +143,7 @@ class GraphVisualizer():
             "images": self.watermark_image
         }
         fig = go.Figure(data=data_list, layout=graph_meta)
+        self.set_plotly()
         return iplot(fig, filename=graph_meta["title"])
 
     def draw_matrix(self, data_meta, graph_meta):
@@ -176,6 +178,7 @@ class GraphVisualizer():
             "images": self.watermark_image
         }
         fig = go.Figure(data=data_list, layout=graph_meta)
+        self.set_plotly()
         return iplot(fig, filename='labelled-heatmap')
     
     def draw_scatter(self, data_meta_list, graph_meta, mode="markers"):
@@ -210,6 +213,7 @@ class GraphVisualizer():
             "images": self.watermark_image
         }
         fig = go.Figure(data=data_list, layout=layout)
+        self.set_plotly()
         return iplot(fig, filename=graph_meta["title"])
     
     def draw_sentence_tree(self, sentence, label_list, edge_list):
@@ -260,5 +264,6 @@ class GraphVisualizer():
         graph_meta["margin"] = {"b": 30, "l": 20, "r": 20, "t": 10}
         graph_meta["images"] = self.watermark_image
         fig = go.Figure(data=[edge_data, node_data], layout=graph_meta)
+        self.set_plotly()
         return iplot(fig, filename="SENTENCE TREE")
     
