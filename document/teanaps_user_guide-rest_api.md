@@ -61,9 +61,6 @@
   > |------------|------|--------------|------------|
   > | code | int | 응답코드 | 200 |
   > | api_condition | str | API 상태 | free |
-  > | access_token_info | list | ACCESS TOKEN 상태 | |
-  > | ㄴcreated_at | str | 생성일자 | 2019-06-01 |
-  > | ㄴexpiration_in | str | 생성일자 | 2019-09-06 |
 
 - 호출예시
 
@@ -88,12 +85,7 @@
     > ```python
     > {
     >   'code': 200,
-    >   'api_condition': 'free',
-    >   'access_token_info': {
-    >     'access_token': 'ODMFKGLDICK20190601132625',
-    >     'created_at': '2019-06-01',
-    >     'expiration_in': '2019-09-06'
-    >   }
+    >   'api_condition': 'free'
     > }
     > ```
 
