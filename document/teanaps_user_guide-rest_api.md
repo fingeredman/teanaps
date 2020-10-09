@@ -29,8 +29,9 @@
   - 개인정보수집 및 정보활용 동의여부 : Y
 
     > Notes :  
-    > - TEANAPS는 API를 통해 분석요청한 데이터는 TEANAPS 교육자료 및 API 성능개선을 위한 학습데이터로 활용됩니다.
+    > - TEANAPS는 API를 통해 분석요청한 데이터는 TEANAPS 교육자료 및 API 성능개선을 위한 학습데이터로 활용됩니다.  
     > - TEANAPS는 API 서비스 제공을 위해 아래와 같이 개인정보를 수집/이용합니다(행정안전부 "개인정보 수집 최소화 가이드라인"에 의한 최소항목만 수집 - [LINK](https://www.mois.go.kr/frt/bbs/type001/commonSelectBoardArticle.do%3Bjsessionid=viG8P9wYaXEU3JwkXoFrdcJXxQU52RFKhR8azOAoKahnOw6h9cPBnbmykK1EsBFm.mopwas54_servlet_engine1?bbsId=BBSMSTR_000000000015&nttId=56837)).
+    
     > | 수집목적        | 수집항목     | 저장기간                | 수집근거                   | 
     > |---------------|-------------|------------------------|--------------------------|
     > | API 서비스 제공 | 이메일, 소속 | ACCESS TOKEN 만료일 까지 | 개인정보 보호법 제15조 제1항 |
