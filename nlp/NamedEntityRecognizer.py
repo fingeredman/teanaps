@@ -5,7 +5,9 @@ from teanaps.visualization import TextVisualizer
 import torch
 from torch import nn
 from torchcrf import CRF
-from transformers import BertModel, BertConfig
+#from transformers import BertModel, BertConfig
+from pytorch_pretrained_bert import BertModel, BertConfig
+
 from gluonnlp.data import SentencepieceTokenizer
 
 import pickle
@@ -283,7 +285,9 @@ class KobertCRF(nn.Module):
 
     def forward(self, input_ids, token_type_ids=None, tags=None):
         attention_mask = input_ids.ne(self.token_to_index[self.vocab["padding_token"]]).float()
-        outputs = self.bert(input_ids=input_ids, token_type_ids=token_type_ids, attention_mask=attention_mask)
+        #outputs = self.bert(input_ids=input_ids, token_type_ids=token_type_ids, attention_mask=attention_mask)
+        outputs = self.bert(input_ids=input_ids, token_type_ids=token_type_ids, 
+                            attention_mask=attention_mask, output_all_encoded_layers=False)
         last_encoder_layer = outputs[0]
         last_encoder_layer = self.dropout(last_encoder_layer)
         emissions = self.position_wise_ff(last_encoder_layer)        
