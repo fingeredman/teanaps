@@ -73,7 +73,11 @@ subprocess.call("pip install gluonnlp", shell=True)
 subprocess.call("pip install --upgrade mxnet>=1.5.0", shell=True)
 #!pip install --upgrade mxnet>=1.5.0
 
-# 17) iGraph (https://pypi.org/project/igraph-python/)
+# 17) pytorch_pretrained_bert
+subprocess.call("pip install pytorch_pretrained_bert", shell=True)
+#!pip install python-igraph
+
+# 18) iGraph (https://pypi.org/project/igraph-python/)
 subprocess.call("pip install python-igraph", shell=True)
 #!pip install python-igraph
 
