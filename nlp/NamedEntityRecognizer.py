@@ -58,7 +58,8 @@ class NamedEntityRecognizer():
         token_list = attn_data["text"]
         weight_list = []
         for token_index in range(len(token_list)):
-            weight_list.append(attn_data["attn"][11][11][token_index][token_index])
+            #weight_list.append(attn_data["attn"][11][11][token_index][token_index])
+            weight_list.append(abs(attn_data["attn"][token_index]))
         return token_list[1:-1], weight_list[1:-1]
     
     def draw_sentence_weight(self, sentence):
@@ -188,7 +189,7 @@ class NamedEntityRecognizer():
         tokens_tensor = torch.tensor(token_ids).unsqueeze(0)
         model.eval()
         _, output = model(tokens_tensor)
-        attn_data_list = output[-1]
+        attn_data_list = output[0][0]
         attn_dict = defaultdict(list)
         for attn_data in attn_data_list:
             attn = attn_data[0]
@@ -287,6 +288,7 @@ class KobertCRF(nn.Module):
         attention_mask = input_ids.ne(self.token_to_index[self.vocab["padding_token"]]).float()
         #outputs = self.bert(input_ids=input_ids, token_type_ids=token_type_ids, attention_mask=attention_mask)
         outputs = self.bert(input_ids=input_ids, token_type_ids=token_type_ids, 
+                            #attention_mask=attention_mask, output_all_encoded_layers=True)
                             attention_mask=attention_mask, output_all_encoded_layers=False)
         last_encoder_layer = outputs[0]
         last_encoder_layer = self.dropout(last_encoder_layer)
