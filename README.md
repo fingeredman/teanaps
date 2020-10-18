@@ -51,6 +51,8 @@
 
 ---
 ## Release history
+> 2020.10.17. `teanaps v0.1.2`  
+> 2020.10.10. `teanaps v0.1.1`  
 > 2020.08.22. `teanaps v0.1.0`  
 > 2020.02.29. `teanaps v0.0.11`  
 > 2020.01.11. `teanaps v0.0.10`  
@@ -66,6 +68,7 @@
 
 ---
 ## Update History
+> 2020.10.17. `teanaps v0.1.2` 업데이트  
 > 2020.10.10. `TEANAPS` API 서버 안정화 작업 및 업데이트  
 > 2020.08.22. `teanaps v0.1.1` 업데이트  
 > 2020.08.22. `teanaps v0.1.0` 업데이트  
