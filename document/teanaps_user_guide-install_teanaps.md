@@ -33,7 +33,6 @@
 
 ### Requirements
 - [Gensim](https://pypi.org/project/gensim/) - *pip install gensim --upgrade*
-- [Glove](https://pypi.org/project/glove_python/) - *pip install glove_python*
 - [NLTK](https://www.nltk.org/install.html) - *pip install nltk*
 
   > Python Code (in Jupyter Notebook) :
@@ -57,6 +56,7 @@
 - [PyTorch-Transformers](https://pypi.org/project/pytorch-transformers/) - *pip install pytorch-transformers*
 - [Transformers](https://pypi.org/project/transformers/) - *pip install transformers*
 - [GluonNLP](https://pypi.org/project/gluonnlp/) - *pip install gluonnlp*
+- [pytorch-pretrained-bert](https://pypi.org/project/pytorch-pretrained-bert/) - *pip install pytorch-pretrained-bert*
 - [mxnet](https://pypi.org/project/mxnet/) - *pip install --upgrade mxnet>=1.5.0*
 - [iGraph](https://pypi.org/project/igraph-python/) - *pip install python-igraph*
 - [mecab](https://bitbucket.org/eunjeon/mecab-ko/src/master/) - *Install MeCab for [Mac/Linux](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/), or [Windows](https://cleancode-ws.tistory.com/97)*
