@@ -138,8 +138,11 @@ class Processing():
             sentence = re.sub(pattern, repl, sentence)
         return sentence
     
-    def masking(self, sentence, replace_char="*", ner_tag_list=[]):
-        ner = NamedEntityRecognizer()
+    def masking(self, sentence, replace_char="*", ner_tag_list=[], model_path=""):
+        if model_path == "":
+            ner = NamedEntityRecognizer()
+        else:
+            ner = NamedEntityRecognizer(model_path=model_path)
         ner_result = ner.parse(sentence)
         for word, ner_tag, loc in ner_result:
             if len(ner_tag_list) == 0 or ner_tag in ner_tag_list:
