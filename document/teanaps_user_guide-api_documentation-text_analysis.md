@@ -254,7 +254,7 @@
     > ```
 
 - `teanaps.text_analysis.TfidfCalculator.get_tfidf_dict()` [[Top]](#teanaps-architecture)
-  - 전체 문서에서 단어의 TF 값이 저장된 딕셔너리를 반환합니다.
+  - 전체 문서에서 단어의 TF-IDF 값이 저장된 딕셔너리를 반환합니다.
   - Parameters
     - *None*
   - Returns
