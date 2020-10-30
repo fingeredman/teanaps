@@ -81,6 +81,10 @@ subprocess.call("pip install pytorch_pretrained_bert", shell=True)
 subprocess.call("pip install python-igraph", shell=True)
 #!pip install python-igraph
 
+# 19) botocore (https://pypi.org/project/botocore/)
+subprocess.call("pip install awscli awsebcli botocore==1.18.18 --upgrade", shell=True)
+#!pip install awscli awsebcli botocore==1.18.18 --upgrade
+
 os_type = platform.platform()
 if "Windows" not in os_type:
     # MeCab
