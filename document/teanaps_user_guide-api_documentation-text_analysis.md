@@ -933,7 +933,7 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > sentence = "늘 배우고 배푸는 자세가 필요합니다."
-    > result = senti.get_weight(sentence)
+    > token_list, weight_list = senti.get_weight(sentence)
     > print(token_list)
     > print(weight_list)
     > ```
