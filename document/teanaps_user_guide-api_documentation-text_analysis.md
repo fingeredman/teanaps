@@ -1018,7 +1018,10 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > sentence = "욕심쟁이에게 스트레스 받으며 살다가 떠나고나니 너무 행복해요!"
-    > senti.get_sentiment_parse(sentence, neutral_th=0.5)
+    > phrase_token_weight_list, token_list, weight_list = senti.get_sentiment_parse(sentence, neutral_th=0.5)
+    > print(phrase_token_weight_list)
+    > print(token_list)
+    > print(weight_list)
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
