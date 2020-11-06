@@ -59,6 +59,9 @@
 - [pytorch-pretrained-bert](https://pypi.org/project/pytorch-pretrained-bert/) - *pip install pytorch-pretrained-bert*
 - [mxnet](https://pypi.org/project/mxnet/) - *pip install --upgrade mxnet>=1.5.0*
 - [iGraph](https://pypi.org/project/igraph-python/) - *pip install python-igraph*
+- [pdfminer](https://pypi.org/project/pdfminer/) - *pip install pdfminer*
+- [docx2txt](https://pypi.org/project/docx2txt/) - *pip install docx2txt*
+- [python-pptx](https://python-pptx.readthedocs.io/en/latest/) - *pip install python-pptx*
 - [mecab](https://bitbucket.org/eunjeon/mecab-ko/src/master/) - *Install MeCab for [Mac/Linux](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/), or [Windows](https://cleancode-ws.tistory.com/97)*
 
 <br><br>
