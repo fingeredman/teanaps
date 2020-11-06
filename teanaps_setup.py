@@ -89,11 +89,11 @@ subprocess.call("pip install awscli awsebcli botocore==1.18.18 --upgrade", shell
 subprocess.call("pip install pdfminer", shell=True)
 #!pip install pdfminer
 
-# 20) docx2txt (https://pypi.org/project/docx2txt/)
+# 21) docx2txt (https://pypi.org/project/docx2txt/)
 subprocess.call("pip install docx2txt", shell=True)
 #!pip install docx2txt
 
-# 20) python-pptx (https://python-pptx.readthedocs.io/en/latest/)
+# 22) python-pptx (https://python-pptx.readthedocs.io/en/latest/)
 subprocess.call("pip install python-pptx", shell=True)
 #!pip install python-pptx
 
