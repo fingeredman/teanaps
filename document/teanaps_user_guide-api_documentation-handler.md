@@ -177,7 +177,7 @@
     - *input_filename (str) : 텍스트를 추출할 PDF 파일명. 최대 128자.*
     - *output_filename (str) : 추출한 텍스트를 저장할 텍스트 파일명. 최대 128자.*
   - Returns
-    - *line_list (str) : 파일 내용이 저장된 MxN 리스트.*
+    - *None*
   - Examples
 
     > Python Code (in Jupyter Notebook) :
@@ -193,7 +193,7 @@
     - *input_filename (str) : 텍스트를 추출할 MS-Word 파일명. 최대 128자.*
     - *output_filename (str) : 추출한 텍스트를 저장할 텍스트 파일명. 최대 128자.*
   - Returns
-    - *line_list (str) : 파일 내용이 저장된 MxN 리스트.*
+    - *None*
   - Examples
 
     > Python Code (in Jupyter Notebook) :
@@ -209,7 +209,7 @@
     - *input_filename (str) : 텍스트를 추출할 MS-PowerPoint 파일명. 최대 128자.*
     - *output_filename (str) : 추출한 텍스트를 저장할 텍스트 파일명. 최대 128자.*
   - Returns
-    - *line_list (str) : 파일 내용이 저장된 MxN 리스트.*
+    - *None*
   - Examples
 
     > Python Code (in Jupyter Notebook) :
