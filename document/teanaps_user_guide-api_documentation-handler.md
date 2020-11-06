@@ -171,6 +171,53 @@
     > ]
     > ```
 
+- `teanaps.handler.FileHandler.pdf_converter(input_filename, output_filename)` [[Top]](#teanaps-architecture)
+  - PDF 형식(.pdf)의 파일에서 텍스트 정보만 추출하여 텍스트 파일(.txt)로 저장합니다.
+  - Parameters
+    - *input_filename (str) : 텍스트를 추출할 PDF 파일명. 최대 128자.*
+    - *output_filename (str) : 추출한 텍스트를 저장할 텍스트 파일명. 최대 128자.*
+  - Returns
+    - *line_list (str) : 파일 내용이 저장된 MxN 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > input_filename  = "sample_pdf.pdf"
+    > output_filename  = "sample_pdf.txt"
+    > fh.pdf_converter(input_filename, output_filename)
+    > ```
+
+- `teanaps.handler.FileHandler.docx_converter(input_filename, output_filename)` [[Top]](#teanaps-architecture)
+  - MS-Word 형식(.docx)의 파일에서 텍스트 정보만 추출하여 텍스트 파일(.txt)로 저장합니다.
+  - Parameters
+    - *input_filename (str) : 텍스트를 추출할 MS-Word 파일명. 최대 128자.*
+    - *output_filename (str) : 추출한 텍스트를 저장할 텍스트 파일명. 최대 128자.*
+  - Returns
+    - *line_list (str) : 파일 내용이 저장된 MxN 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > input_filename  = "sample_docx.pdf"
+    > output_filename  = "sample_docx.txt"
+    > fh.pdf_converter(input_filename, output_filename)
+    > ```
+
+- `teanaps.handler.FileHandler.pptx_converter(input_filename, output_filename)` [[Top]](#teanaps-architecture)
+  - MS-PowerPoint 형식(.pptx)의 파일에서 텍스트 정보만 추출하여 텍스트 파일(.txt)로 저장합니다.
+  - Parameters
+    - *input_filename (str) : 텍스트를 추출할 MS-PowerPoint 파일명. 최대 128자.*
+    - *output_filename (str) : 추출한 텍스트를 저장할 텍스트 파일명. 최대 128자.*
+  - Returns
+    - *line_list (str) : 파일 내용이 저장된 MxN 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > input_filename  = "sample_pptxx.pdf"
+    > output_filename  = "sample_pptxx.txt"
+    > fh.pdf_converter(input_filename, output_filename)
+    > ```
 
 ##### 1.2. `teanaps.handler.MessageHandler`
 
