@@ -1,6 +1,7 @@
 from teanaps import configure as con
 from teanaps.nlp import NamedEntityRecognizer
-
+from konlpy.tag import Kkma
+      
 import re
 import time
 #from pykospacing import spacing
@@ -9,6 +10,7 @@ class Processing():
     def __init__(self):
         self.stopword_path = con.STOPWORD_PATH
         self.stopword_org_path = con.STOPWORD_ORG_PATH
+        self.kkma = Kkma()
     
     def get_stopword(self):
         stopword_list = []
@@ -107,13 +109,13 @@ class Processing():
         for token in sentence:
             if len(pos_list) > 0:
                 if token[pos_index] in pos_list:
-                    plain_text_sentence += token[word_index].replace(" ", "_")
+                    plain_text_sentence += token[word_index].replace(" ", "")
                     if tag:
                         plain_text_sentence += "/" + token[tag_index] + " "
                     else:
                         plain_text_sentence += " "
             else:
-                plain_text_sentence += token[word_index].replace(" ", "_")
+                plain_text_sentence += token[word_index].replace(" ", "")
                 if tag:
                     plain_text_sentence += "/" + token[tag_index] + " "
                 else:
@@ -148,3 +150,7 @@ class Processing():
             if len(ner_tag_list) == 0 or ner_tag in ner_tag_list:
                 sentence = sentence[:loc[0]] + replace_char*len(word) + sentence[loc[1]:]
         return sentence
+    
+    def sentence_splitter(self, paragraph):
+        sentence_list = self.kkma.sentences(paragraph)
+        return sentence_list
