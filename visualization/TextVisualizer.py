@@ -144,7 +144,7 @@ class TextVisualizer():
         plt.axis("off")
         plt.show()
         
-    def draw_network(self, data_meta, graph_meta):
+    def draw_network(self, data_meta, graph_meta, mode="markers"):
         # Generate Graph
         node_list = data_meta["node_list"]
         edge_list = data_meta["edge_list"]
@@ -160,7 +160,7 @@ class TextVisualizer():
             x1, y1 = pos[edge[1]]
             edge_trace['x'] += tuple([x0, x1, None])
             edge_trace['y'] += tuple([y0, y1, None])
-        node_trace = go.Scatter(x=[], y=[], text=[], mode='markers', hoverinfo='text', 
+        node_trace = go.Scatter(x=[], y=[], text=[], mode=mode, hoverinfo='text', 
                                 marker=dict(showscale=True, colorscale='YlOrRd', reversescale=True, color=[],
                                             size=[math.sqrt(weight_dict[node])*100 for node in node_list],
                                             colorbar=dict(thickness=15, title=graph_meta["weight_name"], xanchor='left', 
