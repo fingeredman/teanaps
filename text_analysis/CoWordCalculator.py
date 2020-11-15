@@ -151,7 +151,7 @@ class CoWordCalculator():
         return centrality_dict  
     
     
-    def get_word_network_graph(self, centrality_dict):
+    def get_word_network_graph(self, centrality_dict, mode="markers"):
         tv = TextVisualizer()
         tv.set_plotly()
         data_meta = {
@@ -167,7 +167,7 @@ class CoWordCalculator():
             "weight_name": "Word Centrality",
         }
 
-        return tv.draw_network(data_meta, graph_meta)
+        return tv.draw_network(data_meta, graph_meta, mode=mode)
         
     '''
     from multiprocessing import Pool
