@@ -51,6 +51,7 @@
 
 ---
 ## Release history
+> 2020.11.15. `teanaps v0.1.2.2` 업데이트  
 > 2020.11.07. `teanaps v0.1.2.1`  
 > 2020.10.17. `teanaps v0.1.2`  
 > 2020.10.10. `teanaps v0.1.1`  
