@@ -17,7 +17,7 @@ class DocumentSummarizer():
     def summarize(self, summarizer_type, max_sentences):
         # TextRank
         if summarizer_type == "textrank":
-            self.result_list = summarize(self.document, ratio=0.3, word_count=None, split=True)
+            self.result_list = summarize(self.document, ratio=0.3, word_count=None, split=True)[:max_sentences]
         # PyTextRank
         elif summarizer_type == "lsa":
             parser = HtmlParser.from_string(self.document, None,tokenizer=Tokenizer("english"))
