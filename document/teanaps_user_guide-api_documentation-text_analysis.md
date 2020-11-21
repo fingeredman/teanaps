@@ -1004,11 +1004,13 @@
     > Output (in Jupyter Notebook) :
     > ![sentiment_weight_neg](../data/sample_image/sentiment_weight_neg.png)
 
-- `teanaps.text_analysis.SentimentAnalysis.get_sentiment_parse(sentence, neutral_th=0.3)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.SentimentAnalysis.get_sentiment_parse(sentence, neutral_th=0.3, , tagger="mecab", model_path="/model")` [[Top]](#teanaps-architecture)
   - 문장의 각 어절에 대한 감성수준을 긍정 또는 부정으로 분류하고 그 가중치를 반환합니다.
   - Parameters
     - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
     - *neutral_th (float) : 긍정 또는 부정의 강도 차이에서 중립으로 판단하는 범위. 0~1.*
+    - *tagger (str) : 형태소 분석기 {"okt", "mecab", "mecab-ko", "kkma"} 중 하나 입력. `teanaps.nlp.ma.set_tagger` 참고.*
+    - *model_path (str) : 개체명인식 모델 파일 경로. `teanaps.nlp.ner.parse` 참고.*
   - Returns
     - *phrase_token_weight_list (list) : 어절과 각 어절에 대한 감성분석 결과를 포함하는 리스트.*
     - *token_list (list) : 문장의 각 형태소를 포함하는 리스트.*

@@ -106,7 +106,7 @@
 - `teanaps.nlp.MorphologicalAnalyzer.set_tagger(tagger)` [[Top]](#teanaps-architecture)
   - 형태소 분석기를 선택합니다. 형태소 분석기는 `MeCab`, `Okt (Twitter)`, `Kkma`, `NLTK` 총 4가지를 지원합니다. 형태소 분석기를 선택하지 않으면 기본으로 한국어는 `OKt`, 영어는 `NLTK` 형태소 분석기를 사용합니다.
   - Parameters
-    - *tagger (str) : 형태소 분석기 {"okt", "mecab", "kkma"} 중 하나 입력.*
+    - *tagger (str) : 형태소 분석기 {"okt", "mecab", "mecab-ko", "kkma"} 중 하나 입력.*
   - Returns
     - *None*
   - Examples
@@ -250,8 +250,8 @@
 - `teanaps.nlp.SyntaxAnalyzer.parse(ma_result, ner_result)` [[Top]](#teanaps-architecture)
   - 형태소 분석과 개체명 인식 결과를 바탕으로 문장 구조를 파악하고 그 결과를 반환합니다.
   - Parameters
-    - *ma_result (list) : (형태소, 품사, 단어위치) 구조의 Tuple을 포함하는 리스트. `teanaps.nlp.ma.parse`참고.*
-    - *ner_result (list) : (개체명, 개체명 태그, 개체명위치) 구조의 Tuple을 포함하는 리스트. `teanaps.nlp.ner.parse`참고.*
+    - *ma_result (list) : (형태소, 품사, 단어위치) 구조의 Tuple을 포함하는 리스트. `teanaps.nlp.ma.parse` 참고.*
+    - *ner_result (list) : (개체명, 개체명 태그, 개체명위치) 구조의 Tuple을 포함하는 리스트. `teanaps.nlp.ner.parse` 참고.*
   - Returns
     - *result (list) : (형태소, 형태소 태그, 개체명 태그, 개체명위치) 구조의 Tuple을 포함하는 리스트.*
   - Examples
@@ -296,7 +296,7 @@
   - 형태소 분석과 개체명 인식 결과를 바탕으로 문장 구조를 트리 구조로 생성하고 그 결과를 반환합니다.
   - Parameters
     - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
-    - *sa_result (list) : (형태소, 개체명, 개체명 태그, 개체명위치) 구조의 Tuple을 포함하는 리스트. `teanaps.nlp.sa.parse`참고.*
+    - *sa_result (list) : (형태소, 개체명, 개체명 태그, 개체명위치) 구조의 Tuple을 포함하는 리스트. `teanaps.nlp.sa.parse` 참고.*
   - Returns
     - *label_list (list) : 트리구조 문장의 각 인덱스에 해당하는 라벨을 포함하는 리스트.*
     - *edge_list (list) : 트리구조 문장의 각 라벨 인덱스 간의 연결된 엣지를 포함하는 리스트.*
@@ -320,8 +320,8 @@
   - 형태소 분석과 개체명 인식 결과를 바탕으로 생성된 트리 구조의 문장을 트리 그래프로 출력합니다.
   - Parameters
     - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
-    - *label_list (list) : 트리구조 문장의 각 인덱스에 해당하는 라벨을 포함하는 리스트. `teanaps.nlp.sa.get_sentence_tree`참고.*
-    - *edge_list (list) : 트리구조 문장의 각 라벨 인덱스 간의 연결된 엣지를 포함하는 리스트. `teanaps.nlp.sa.get_sentence_tree`참고.*
+    - *label_list (list) : 트리구조 문장의 각 인덱스에 해당하는 라벨을 포함하는 리스트. `teanaps.nlp.sa.get_sentence_tree` 참고.*
+    - *edge_list (list) : 트리구조 문장의 각 라벨 인덱스 간의 연결된 엣지를 포함하는 리스트. `teanaps.nlp.sa.get_sentence_tree` 참고.*
   - Returns
     - *plotly graph (graph object) : 트리구조 문장에 대한 트리 그래프.*
   - Examples
