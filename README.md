@@ -47,7 +47,7 @@
 ---
 ## `TEANAPS` Tutorial
 - [튜토리얼 문서](./document/teanaps_user_guide-tutorial.md#teanaps-user-guide)를 참조해주세요.
-- `TEANAPS`를 활용한 다양한 텍스트 분석 방법은 [`ADVANCED TEXT MINING`](https://github.com/fingeredman/advanced-text-mining), [`TEXT MINING for PRACTICE`](https://github.com/fingeredman/text-mining-for-practice) 자료를 참고해주세요.
+- `TEANAPS`를 활용한 다양한 텍스트 분석 방법은 [`ADVANCED TEXT MINING`](https://github.com/fingeredman/advanced-text-mining#advanced-text-mining), [`TEXT MINING for PRACTICE`](https://github.com/fingeredman/text-mining-for-practice#text-mining-for-practice) 자료를 참고해주세요.
 
 ---
 ## Release history
