@@ -48,6 +48,28 @@ class GraphVisualizer():
                 </script>
                 '''))
 
+    def draw_radar(self, data_meta, graph_meta):
+        # Data
+        data = [{
+            'type': 'scatterpolar',
+            'fill': 'toself',
+            'r': data_meta["r"],
+            'theta': data_meta["label"]
+        }]
+        layout = {
+            "title": graph_meta["title"],
+            "polar": {
+                "radialaxis": {
+                    "visible": True, 
+                    "range": [min(data_meta["r"])*0, max(data_meta["r"])*1.05]
+                    }
+                },
+                "showlegend": False
+             }
+        fig = go.Figure(data=data, layout=layout)
+        self.set_plotly()
+        iplot(fig, filename=graph_meta["title"])
+
     def draw_histogram(self, data_meta_list, graph_meta):
         # Data
         data_list = []
