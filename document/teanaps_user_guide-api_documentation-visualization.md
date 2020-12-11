@@ -297,44 +297,6 @@
     > Output (in Jupyter Notebook) :
     > ![visualization_scatter](../data/sample_image/visualization_radar.png)
 
-
-    > x1 = [1, 2, 3, 4, -5, 6]
-    > y1 = [-4, 6, 3, 4, 2, 9]
-    > label1 = ["a", "b", "c", "d", "e", "f"]
-    > 
-    > x2 = [6, 7, 2, -4, 5, 2]
-    > y2 = [1, 3, 5, 2, -7, 9]
-    > label2 = ["A", "B", "C", "D", "E", "F"]
-    > 
-    > data_meta_list = []
-    > 
-    > data_meta = {
-    >     "data_name": "COORDINATES1",
-    >     "x_data": x1,
-    >     "y_data": y1,
-    >     "label": label1
-    > }
-    > data_meta_list.append(data_meta)
-    > 
-    > data_meta = {
-    >     "data_name": "COORDINATES2",
-    >     "x_data": x2,
-    >     "y_data": y2,
-    >     "label": label2
-    > }
-    > data_meta_list.append(data_meta)
-    > 
-    > graph_meta = {
-    >     "title": "SCATTER",
-    >     "x_name": "X",
-    >     "y_name": "Y"
-    > }
-    > 
-    > gv.draw_scatter(data_meta_list, graph_meta)
-    > ```
-    > Output (in Jupyter Notebook) :
-    > ![visualization_scatter](../data/sample_image/visualization_scatter.png)
-
 ##### 4.2. `teanaps.visualization.TextVisualizer`
 
 > Python Code (in Jupyter Notebook) :
