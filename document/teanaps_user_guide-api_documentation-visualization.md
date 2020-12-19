@@ -71,7 +71,7 @@
 
 > Python Code (in Jupyter Notebook) :
 > ```python
-> from teanaps.vis import GraphVisualizer
+> from teanaps.visualization import GraphVisualizer
 >
 > gv = GraphVisualizer()
 > ```
