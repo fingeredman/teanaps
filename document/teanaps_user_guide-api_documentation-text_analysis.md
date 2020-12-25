@@ -671,7 +671,7 @@
   - 문서에서 N개의 주제에 대해 각 군집의 기간별 변화 추이를 계산하고 그 결과를 반환합니다.
   - Parameters
     - *document_list (list) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
-    - *time_slice (list) : 전체 문서를 기간으로 그분하는 단위*
+    - *time_slice (list) : 전체 문서를 기간으로 구분하는 단위*
     - *topic_count (int) : 주제 군집 개수.*
   - Returns
     - *result (list) : 각 기간/군집별 키워드를 포함하는 리스트.*

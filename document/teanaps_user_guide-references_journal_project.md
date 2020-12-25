@@ -22,10 +22,11 @@
 - MeCab PoS tagger for Windows [(Link)](https://cleancode-ws.tistory.com/97)  
 - KoBERT [(Link)](https://github.com/sktbrain/kobert)  
 - Pytorch-BERT-CRF-NER [(Link)](https://github.com/eagle705/pytorch-bert-crf-ner)  
+- Korean Sentence Splitter [(Link)](https://github.com/hyunwoongko/kss?fbclid=IwAR2G4Ym3OwQOeouTokpjTMXo49vpZGuF5mYS7GUsmTSpKehXvDrCqSj-Zhk#korean-sentence-splitter)  
 
 ## Journal & Project
 ### Journal
-- TBU
+- _이소현, 김진솔, 윤상혁, & 김희웅. (2020). 텍스트마이닝 기법을 이용한 모바일 피트니스 애플리케이션 주요 요인 분석. 한국 IT 서비스학회지, 19, 117-137._ [(Link)](http://www.koreascience.or.kr/article/JAKO202021741261139.pdf)
 
 ### Project
 - [Chat-bot with `TEANAPS`](https://github.com/fingeredman/chatbot-with-teanaps#teanaps를-활용한-챗봇-구현)
@@ -38,6 +39,19 @@
   - 해외축구 뉴스기사에서 선수 이적설 추출하기
   - 해외축구 이적 예측하기 (이적설 진위여부 판별)
   - `Slack` 메신저 연동 해외축구 이슈 알리미 구현
+
+- 연세대학교 <텍스트 마이닝: 비정형 데이터 분석> (2020 가을학기)
+  - _텍스트마이닝 기법과 ARIMA 모델을 활용한 '배달의 민족' 앱 리뷰 주제 분류 및 이상치 탐지_
+  - _코로나-19로 인한 심리방역 현황 및 향후 대응방안을 위한 제언_
+  - _뱅샐과 토스의 사용자는 무슨 생각을 할까?_
+  - _재테크 관련 소셜데이터 분석을 통한 사회 초년생의 금융 생활 분석_
+  - _플랫폼 별 콘텐츠 댓글 소비 행태 비교_
+  - _소비자 리뷰와 휴대폰 판매량 간의 비교연구_
+  - _웹툰 아마추어 작가의 게시글 분석_
+  - _토픽모델링 & 감성분석을 통한 간편걸제 앱 서비스 비교분석: Big-bank vs. Big-tech 중심으로_
+
+- 연세대학교 <롯데칠성음료 데이터분석 아카데미: 비정형 데이터 분석> (2020)
+  - _일본 불매 관련 비정형 데이터 분석을 통한 당사 제품군 판매 영향력 분석_
 
 <br><br>
 ---

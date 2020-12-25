@@ -565,6 +565,25 @@
     > TEANAPS는 텍스트마이닝을 위한 Python 패키지입니다.
     > ```
 
+- `teanaps.nlp.Processing.sentence_splitter(paragraph)` [[Top]](#teanaps-architecture)
+  - 여러개 문장이 포함된 문단을 문장 단위로 구분하고 그 결과를 반환합니다.
+  - Parameters
+    - *paragraph (str) : 한국어 또는 영어로 구성된 문단*
+  - Returns
+    - *result (list) : 문단에 포함된 문장을 포함하는 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > paragraph = "어머나...안녕하세요. TEANAPS를 다시 찾아주셨군요!"
+    > result = pro.sentence_splitter(paragraph)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > ['어머나...', '안녕하세요.', 'TEANAPS를 다시 찾아주셨군요!']
+    > ```
+
 - `teanaps.nlp.Processing.get_token_position(sentence, tag_list)` [[Top]](#teanaps-architecture)
   - 문장의 띄어쓰기 오류를 보정하고 그 결과를 반환합니다.
   - Parameters

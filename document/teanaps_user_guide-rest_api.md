@@ -26,15 +26,6 @@
   - 이름 : 홍길동
   - 소속 : 회사/대학교/연구소/그룹 등
   - 사용목적 : "~ 분석/구축 프로젝트" 수행시 감성분석 활용 등
-  - 개인정보수집 및 정보활용 동의여부 : Y
-
-    > Notes :  
-    > - TEANAPS는 API를 통해 분석요청한 데이터는 TEANAPS 교육자료 및 API 성능개선을 위한 학습데이터로 활용됩니다.  
-    > - TEANAPS는 API 서비스 제공을 위해 아래와 같이 개인정보를 수집/이용합니다(행정안전부 "개인정보 수집 최소화 가이드라인"에 의한 최소항목만 수집 - [LINK](https://www.mois.go.kr/frt/bbs/type001/commonSelectBoardArticle.do%3Bjsessionid=viG8P9wYaXEU3JwkXoFrdcJXxQU52RFKhR8azOAoKahnOw6h9cPBnbmykK1EsBFm.mopwas54_servlet_engine1?bbsId=BBSMSTR_000000000015&nttId=56837)).
-    
-    > | 수집목적        | 수집항목     | 저장기간                | 수집근거                   | 
-    > |---------------|-------------|------------------------|--------------------------|
-    > | API 서비스 제공 | 이메일, 소속 | ACCESS TOKEN 만료일 까지 | 개인정보 보호법 제15조 제1항 |
 
 ### `TEANAPS` OPEN API List
 
@@ -45,10 +36,10 @@
 
   > | API ID  | 호출방식        | 응답형식 | 역할                        | 요청 URL              | 평균응답속도 |
   > |---------|--------------|--------|----------------------------|----------------------|-----------|
-  > | T01-01 | HTTP (POST) | JSON | [API 응답체크](./teanaps_user_guide-rest_api.md#t01-01-api-응답체크) | /alive | 0.035s |
-  > | T02-01 | HTTP (POST) | JSON | [형태소분석](./teanaps_user_guide-rest_api.md#t02-01-형태소분석) | /nlp/pos | 0.156s |
-  > | T02-02 | HTTP (POST) | JSON | [개체명인식](./teanaps_user_guide-rest_api.md#t02-02-개체명인식) | /nlp/ner | 0.146s |
-  > | T03-01 | HTTP (POST) | JSON | [감성분석](./teanaps_user_guide-rest_api.md#t03-01-감성분석) | /text_analysis/sentiment | 0.641s |
+  > | T01-01 | HTTP (POST) | JSON | [API 응답체크](./teanaps_user_guide-rest_api.md#t01-01-api-응답체크) | /alive | 0.029s |
+  > | T02-01 | HTTP (POST) | JSON | [형태소분석](./teanaps_user_guide-rest_api.md#t02-01-형태소분석) | /nlp/pos | 0.154s |
+  > | T02-02 | HTTP (POST) | JSON | [개체명인식](./teanaps_user_guide-rest_api.md#t02-02-개체명인식) | /nlp/ner | 0.150s |
+  > | T03-01 | HTTP (POST) | JSON | [감성분석](./teanaps_user_guide-rest_api.md#t03-01-감성분석) | /text_analysis/sentiment | 0.676s |
 
     > Notes :  
     > - 평균응답속도는 무선 네트워크 환경에서 API를 요청하고 응답을 받는데 까지 걸리는 시간을 의미하며, 해당 시험결과는 1,000회 연속 API요청에 대한 응답속도의 평균입니다.
@@ -70,6 +61,9 @@
   > |------------|------|--------------|------------|
   > | code | int | 응답코드 | 200 |
   > | api_condition | str | API 상태 | free |
+  > | access_token_info | list | ACCESS TOKEN 상태 | |
+  > | ㄴcreated_at | str | 생성일자 | 2019-06-01 |
+  > | ㄴexpiration_in | str | 생성일자 | 2019-09-06 |
 
 - 호출예시
 
@@ -94,7 +88,12 @@
     > ```python
     > {
     >   'code': 200,
-    >   'api_condition': 'free'
+    >   'api_condition': 'free',
+    >   'access_token_info': {
+    >     'access_token': 'ODMFKGLDICK20190601132625',
+    >     'created_at': '2019-06-01',
+    >     'expiration_in': '2019-09-06'
+    >   }
     > }
     > ```
 

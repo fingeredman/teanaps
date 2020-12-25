@@ -62,6 +62,7 @@
 - [pdfminer](https://pypi.org/project/pdfminer/) - *pip install pdfminer*
 - [docx2txt](https://pypi.org/project/docx2txt/) - *pip install docx2txt*
 - [python-pptx](https://python-pptx.readthedocs.io/en/latest/) - *pip install python-pptx*
+- [Korean Sentence Splitter](https://github.com/hyunwoongko/kss?fbclid=IwAR2G4Ym3OwQOeouTokpjTMXo49vpZGuF5mYS7GUsmTSpKehXvDrCqSj-Zhk#korean-sentence-splitter) - *pip install kss*
 - [mecab](https://bitbucket.org/eunjeon/mecab-ko/src/master/) - *Install MeCab for [Mac/Linux](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/), or [Windows](https://cleancode-ws.tistory.com/97)*  
 	- Windows 운영체제 설치 시 현재 파이썬 버전이 3.8인 경우 *.whl 파일 다운로드 [(Link)](https://github.com/Pusnow/mecab-python-msvc/releases)
 

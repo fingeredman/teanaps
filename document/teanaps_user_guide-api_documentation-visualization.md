@@ -94,7 +94,6 @@
     > data_meta_list = []
     > 
     > data_meta = {
-    >     "graph_type": "histogram",
     >     "data_name": "Y",
     >     "x_data": x,
     >     "y_data": y,
@@ -103,7 +102,6 @@
     > data_meta_list.append(data_meta)
     > 
     > data_meta = {
-    >     "graph_type": "histogram",
     >     "data_name": "Z",
     >     "x_data": x,
     >     "y_data": z,
@@ -144,7 +142,6 @@
     > data_meta_list = []
     > 
     > data_meta = {
-    >     "graph_type": "scatter",
     >     "data_name": "Y",
     >     "x_data": x,
     >     "y_data": y,
@@ -153,7 +150,6 @@
     > data_meta_list.append(data_meta)
     > 
     > data_meta = {
-    >     "graph_type": "scatter",
     >     "data_name": "Z",
     >     "x_data": x,
     >     "y_data": z,
@@ -306,7 +302,7 @@
 > gv = TextVisualizer()
 > ```
 
-- `teanaps.visualization.Textisualizer.draw_sentence_attention(token_list, weight_list)` [[Top]](#teanaps-architecture)
+- `teanaps.visualization.Textvisualizer.draw_sentence_attention(token_list, weight_list)` [[Top]](#teanaps-architecture)
   - 형태소 단위로 분리된 문장과 각 형태소별 가중치를 바탕으로 문장의 특정 부분을 하이라이트한 형태의 문장 그래프로 출력합니다.
   - Parameters
     - *token_list (list) : 형태소 단위로 분리된 문장의 각 형태소를 포함하는 리스트.*
@@ -339,7 +335,7 @@
     > Output (in Jupyter Notebook) :
     > ![visualization_sentence_attention_pn](../data/sample_image/visualization_sentence_attention_pn.png)
 
-- `teanaps.visualization.Textisualizer.draw_wordcloud(data_meta, graph_meta)` [[Top]](#teanaps-architecture)
+- `teanaps.visualization.Textvisualizer.draw_wordcloud(data_meta, graph_meta)` [[Top]](#teanaps-architecture)
   - 단어와 그 가중치를 바탕으로 생성된 워드클라우드 이미지를 출력합니다.
   - Parameters
     - *data_meta (dict) : 그래프에 표현할 데이터 딕셔너리. Examples 참고.*
@@ -384,7 +380,7 @@
     > Output (in Jupyter Notebook) :
     > ![visualization_wordcloud](../data/sample_image/visualization_wordcloud.png)
 
-- `teanaps.visualization.Textisualizer.draw_network(data_meta, graph_meta)` [[Top]](#teanaps-architecture)
+- `teanaps.visualization.Textvisualizer.draw_network(data_meta, graph_meta)` [[Top]](#teanaps-architecture)
   - 단어와 그 가중치, 그리고 순서쌍을 바탕으로 생성된 네트워크 이미지를 출력합니다.
   - Parameters
     - *data_meta (dict) : 그래프에 표현할 데이터 딕셔너리. Examples 참고.*
