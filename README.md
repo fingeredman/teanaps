@@ -52,6 +52,7 @@
 
 ---
 ## Release history
+> 2020.12.12. `teanaps v0.9.4` 업데이트  
 > 2020.12.12. `teanaps v0.9.3` 업데이트  
 > 2020.11.15. `teanaps v0.9.2` 업데이트  
 > 2020.11.07. `teanaps v0.9.1` 업데이트  
@@ -86,4 +87,4 @@
 
 <br><br>
 ---
-<center>ⓒ 2020. FINGEREDMAN rights reserved.</center>
+<center>ⓒ 2021. TEANAPS rights reserved.</center>
