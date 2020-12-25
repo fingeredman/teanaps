@@ -31,7 +31,7 @@
 - `TEANAPS`는 분석결과를 효과적으로 표현하기 위한 <U>**다양한 시각화**</U>를 제공합니다. ([시각화 기능 살펴보기](./document/teanaps_user_guide-api_documentation-visualization.md#4-teanapsvisualization))
 - `TEANAPS`는 <U>**OPEN API**</U>를 통해 다양한 환경에서 텍스트 분석을 지원합니다.
 - `TEANAPS`는 텍스트 분석을 위한 <U>**[`User Guide`](./document/teanaps_user_guide-install_teanaps.md#teanaps-user-guide), [강의 및 실습자료](https://github.com/fingeredman/text-mining-for-practice)**</U>를 무료로 제공합니다.
-- `TEANAPS`는 다양한 도메인의 <U>**`프로젝트/연구`**</U>를 무료로 지원합니다. (Contact : ADMIN(admin@teanaps.com))
+- `TEANAPS`는 다양한 도메인의 <U>**`프로젝트/연구`**</U>를 무료로 지원합니다. (***Contact : admin@teanaps.com***)  
 
 ---
 ## `TEANAPS` User Guide
