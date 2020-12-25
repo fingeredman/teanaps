@@ -97,6 +97,10 @@ subprocess.call("pip install docx2txt", shell=True)
 subprocess.call("pip install python-pptx", shell=True)
 #!pip install python-pptx
 
+# 23) kss (https://github.com/hyunwoongko/kss?fbclid=IwAR2G4Ym3OwQOeouTokpjTMXo49vpZGuF5mYS7GUsmTSpKehXvDrCqSj-Zhk#korean-sentence-splitter)
+subprocess.call("pip install kss", shell=True)
+#!pip install kss
+
 os_type = platform.platform()
 if "Windows" not in os_type:
     # MeCab
