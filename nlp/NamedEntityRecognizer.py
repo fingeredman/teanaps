@@ -41,7 +41,7 @@ class NamedEntityRecognizer():
                                                  list_of_input_ids=list_of_input_ids, 
                                                  list_of_pred_ids=list_of_pred_ids)
         list_of_ner_word.sort(key=lambda elem: len(elem[2]), reverse=True)
-        return list_of_ner_word
+        return [ner_word for ner_word in list_of_ner_word if ner_word[0] != ""]
     
     def parse_sentence(self, input_text):
         input_text_lower = input_text.lower()

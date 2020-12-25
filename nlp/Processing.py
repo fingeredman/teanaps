@@ -1,6 +1,7 @@
 from teanaps import configure as con
 from teanaps.nlp import NamedEntityRecognizer
-from konlpy.tag import Kkma
+#from konlpy.tag import Kkma
+from kss import split_sentences
       
 import re
 import time
@@ -10,7 +11,7 @@ class Processing():
     def __init__(self):
         self.stopword_path = con.STOPWORD_PATH
         self.stopword_org_path = con.STOPWORD_ORG_PATH
-        self.kkma = Kkma()
+        #self.kkma = Kkma()
     
     def get_stopword(self):
         stopword_list = []
@@ -152,5 +153,7 @@ class Processing():
         return sentence
     
     def sentence_splitter(self, paragraph):
-        sentence_list = self.kkma.sentences(paragraph)
+        #sentence_list = self.kkma.sentences(paragraph)
+        sentence_list = split_sentences(paragraph)
         return sentence_list
+    
