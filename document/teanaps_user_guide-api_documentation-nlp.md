@@ -730,4 +730,4 @@
 
 <br><br>
 ---
-<center>ⓒ 2020. FINGEREDMAN all rights reserved.</center>
+<center>ⓒ 2021. TEANAPS all rights reserved.</center>
