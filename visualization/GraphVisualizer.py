@@ -76,13 +76,13 @@ class GraphVisualizer():
         for data_meta in data_meta_list:
             data = {
                 "name": data_meta["data_name"],
-                "type": data_meta["graph_type"],
+                "type": "histogram",
                 "x": data_meta["x_data"],
                 "y": data_meta["y_data"],
                 "yaxis": data_meta["y_axis"],
             }
-            if data["type"] == "histogram":
-                data["histfunc"] = "sum"
+            #if data["type"] == "histogram":
+            #    data["histfunc"] = "sum"
             data_list.append(data)
         # Graph
         graph_meta = {
@@ -125,13 +125,11 @@ class GraphVisualizer():
         for data_meta in data_meta_list:
             data = {
                 "name": data_meta["data_name"],
-                "type": data_meta["graph_type"],
+                "type": "scatter",
                 "x": data_meta["x_data"],
                 "y": data_meta["y_data"],
                 "yaxis": data_meta["y_axis"],
             }
-            if data["type"] == "histogram":
-                data["histfunc"] = "sum"
             data_list.append(data)
         # Graph
         graph_meta = {
