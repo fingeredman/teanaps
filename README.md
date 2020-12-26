@@ -12,7 +12,8 @@
 
 ---
 ## Notice! 
-> - `TEANAPS`를 활용한 **프로젝트 사례 공유가 가능하신 분** 또는 **프로젝트 지원이 필요하신 분**의 연락을 기다립니다. (***Contact : admin@teanaps.com***)  
+> - `TEANAPS`를 활용한 실무/연구 프로젝트 **사례 공유가 가능하신 분** 또는 **지원이 필요하신 분들**의 연락을 기다립니다.  
+(***Contact : admin@teanaps.com***)  
 > - 본 자료는 2019년 부터 연세대학교 <데이터분석 아카데미: 비정형 데이터 분석>, <텍스트 마이닝: 비정형 데이터 분석> 강의 실습자료로 활용되고 있습니다.
 > - `TEANAPS` 라이브러리 사용법은 [`User Guide`](./document/teanaps_user_guide-install_teanaps.md#teanaps-user-guide)를 참조해주시기 바랍니다.
 > - [`TEANAPS`를 활용해 하루만에 챗봇 구현하기](http://chat.teanaps.com) 프로젝트가 업로드 되었습니다.  
@@ -31,7 +32,8 @@
 - `TEANAPS`는 분석결과를 효과적으로 표현하기 위한 <U>**다양한 시각화**</U>를 제공합니다. ([시각화 기능 살펴보기](./document/teanaps_user_guide-api_documentation-visualization.md#4-teanapsvisualization))
 - `TEANAPS`는 <U>**OPEN API**</U>를 통해 다양한 환경에서 텍스트 분석을 지원합니다.
 - `TEANAPS`는 텍스트 분석을 위한 <U>**[`User Guide`](./document/teanaps_user_guide-install_teanaps.md#teanaps-user-guide), [강의 및 실습자료](https://github.com/fingeredman/text-mining-for-practice)**</U>를 무료로 제공합니다.
-- `TEANAPS`는 다양한 도메인의 <U>**`프로젝트/연구`**</U>를 무료로 지원합니다. (***Contact : admin@teanaps.com***)  
+- `TEANAPS`는 다양한 도메인의 <U>**`프로젝트/연구`**</U>를 무료로 지원합니다.  
+(***Contact : admin@teanaps.com***)  
 
 ---
 ## `TEANAPS` User Guide
