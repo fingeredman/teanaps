@@ -22,7 +22,7 @@
 ## What can you do with `TEANAPS`?
 > ![what_can_you_do](./data/sample_image/what_can_you_do.png)
 
-> `#teanaps` `#티냅스_라고_불러주세요` `#텍스트분석` `#텍스트마이닝` `#자연어처리` `#텍스트전처리` `#띄어쓰기_보정` `#불용어` `#언어식별` `#임베딩` `#형태소분석` `#개체명인식` `#구문분석` `#TF-IDF` `#감성분석` `#긍부정` `#긍부정_키워드` `#클러스터링` `#군집화` `#문서분류` `#유사도분석` `#네트워크` `#중심성` `#연관키워드` `#키워드추출`
+> `#TEANAPS` `#티냅스_라고_불러주세요` `#텍스트분석` `#text_analysis` `#텍스트마이닝` `#text_mining` `#자연어처리` `#nlp` `#텍스트전처리` `#text_pre-processing` `#띄어쓰기_보정` `#불용어` `#stopwords` `#언어식별` `#language_detection` `#임베딩` `#embedding` `#형태소분석` `#pos_tagging` `#개체명인식` `#ner` `#구문분석` `#syntax_analysis` `#TF-IDF` `#감성분석` `#sentiment_analysis` `#긍부정` `#긍부정_키워드` `#클러스터링` `#문서군집화` `#text_clustering` `#문서분류` `#text_classification` `#문서유사도` `#text_similarity` `#네트워크분석` `#network_analysis` `#네트워크중심성` `#network_centrality` `#연관어분석` `#co-word_analysis` `#키워드추출` `#keyword_extraction`
  
 ---
 ## Why `TEANAPS`?
@@ -75,6 +75,7 @@
 
 ---
 ## Update History
+> 2020.12.27. `Documentation` 업데이트  
 > 2020.10.10. `TEANAPS` API 서버 안정화 작업 및 업데이트  
 > 2020.05.02. `TEANAPS` API 서버 안정화 작업 및 업데이트  
 > 2020.03.07. `REST API` 문서 업데이트  
