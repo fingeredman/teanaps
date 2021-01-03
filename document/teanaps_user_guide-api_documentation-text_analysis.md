@@ -374,19 +374,22 @@
 > dc = DocumentClustering()
 > ```
 
-- `teanaps.text_analysis.DocumentClustering.kmeans_clustering(document_list, num_cluters, num_init, max_iterations)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.DocumentClustering.clustering(alg, document_list, num_cluters=3, max_iterations=300, eps=0.5, min_samples=5)` [[Top]](#teanaps-architecture)
   - 문서를 군집화하여 그 결과를 반환합니다.
   - Parameters
+    - *alg (str) : 클러스터링 알고리즘. {"kmeans", "dbscan", "hdbscan"} 중 하나.*
     - *document_list (list) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
     - *num_cluters (int) : 생성할 군집의 개수.*
     - *max_iterations (int) : 군집화를 반복해서 수행할 횟수.*
+    - *eps (float) : DBSCAN 알고리즘 하이퍼파라미터.*
+    - *min_samples (int) : 클러스터에 포함할 최소 데이터 개수.*
   - Returns
     - *result (dict) : 군집의 Inertia 값과 문서별 군집 레이블을 포함하는 딕셔너리.*
   - Examples
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > result = dc.kmeans_clustering(document_list, 3, 300)
+    > result = dc.clustering("kmeans", document_list, num_cluters=3, max_iterations=300)
     > print(result)
     > ```
     > Output (in Jupyter Notebook) :
@@ -395,8 +398,30 @@
     >  'predict_list': array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], dtype=int32)}
     > ```
 
-- `teanaps.text_analysis.DocumentClustering.inertia_transition(document_list, max_cluters, max_iterations)` [[Top]](#teanaps-architecture)
-  - 군집의 개수를 변경하며 문서를 군집화하고 각각의 Inertial 값을 반환합니다.
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > result = dc.clustering("dbscan", document_list, eps=0.5, min_samples=5)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > {'inertia': 64.11752014008104,
+    >  'predict_list': array([-1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, -1, 1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, -1, -1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], dtype=int32)}
+    > ```
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > result = dc.clustering("hdbscan", document_list, min_samples=5)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > {'inertia': 64.11752014008104,
+    >  'predict_list': array([-1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, -1, 1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, -1, -1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], dtype=int32)}
+    > ```
+
+- `teanaps.text_analysis.DocumentClustering.kmeans_inertia_transition(document_list, max_cluters, max_iterations)` [[Top]](#teanaps-architecture)
+  - K-MEANS 알고리즘의 군집 개수를 변경하며 문서를 군집화하고 각각의 Inertial 값을 반환합니다.
   - Parameters
     - *document_list (list) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
     - *max_cluters (int) : Intertia 값을 계산할 최대 군집의 개수.*
@@ -415,7 +440,7 @@
     > [85.29314909321171, 73.22892942068657, 64.11752014008104, 60.672117244161946, 57.24561408281322, 55.125181445741525, 53.74440369290694, 52.262356865901175, 50.26148838373041, 48.480517037436805]
     > ```
 
-- `teanaps.text_analysis.DocumentClustering.get_inertia_transition_graph(inertia_list)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.DocumentClustering.get_kmeans_inertia_transition_graph(inertia_list)` [[Top]](#teanaps-architecture)
   - 각각의 Inertial 값을 표현한 그래프를 반환합니다.
   - Parameters
     - *inertia_list (list) : Inertial 값이 포함된 리스트.*
@@ -455,7 +480,7 @@
     > pandas.core.frame.DataFrame
     > ```
 
-- `teanaps.text_analysis.DocumentClustering.get_kmeans_graph(df_tfidf_tsne, label_type)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.DocumentClustering.get_cluster_graph(df_tfidf_tsne, label_type)` [[Top]](#teanaps-architecture)
   - 군집화 결과를 2차원으로 표현한 그래프를 반환합니다.
   - Parameters
     - *df_tfidf_tsne (DataFrame) : 각 문서의 레이블과 군집, 그리고 문서를 TF-IDF 임베딩하여 차원축소한 2차원 좌표를 포함하는 DataFrame.*
@@ -478,19 +503,21 @@
     > Output (in Jupyter Notebook) :
     > ![clustering_label_scatter](../data/sample_image/clustering_label_scatter.png)
 
-- `teanaps.text_analysis.DocumentClustering.get_silhouette_score(document_list, df_tfidf_tsne, num_clusters)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.DocumentClustering.get_silhouette_score2(alg, document_list, df_tfidf_tsne,  num_clusters=3, eps=0.5, min_samples=5)` [[Top]](#teanaps-architecture)
   - 군집화 결과에 대한 실루엣 스코어를 계산하고 그 결과를 반환합니다.
   - Parameters
     - *document_list (list) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
     - *df_tfidf_tsne (DataFrame) : 각 문서의 레이블과 군집, 그리고 문서를 TF-IDF 임베딩하여 차원축소한 2차원 좌표를 포함하는 DataFrame.*
     - *num_cluters (int) : 생성할 군집의 개수.*
+    - *eps (float) : DBSCAN 알고리즘 하이퍼파라미터.*
+    - *min_samples (int) : 클러스터에 포함할 최소 데이터 개수.*
   - Returns
     - *result (float) : 군집화 결과에 대한 실루엣 스코어.*
   - Examples
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > result = dc.get_silhouette_score(document_list, df_tfidf_tsne, 3)
+    > result = dc.get_silhouette_score2("kmeans", document_list, df_tfidf_tsne, num_clusters=3)
     > print(result)
     > ```
     > Output (in Jupyter Notebook) :
@@ -498,7 +525,7 @@
     > 0.1772473694643886
     > ```
 
-- `teanaps.text_analysis.DocumentClustering.get_silhouette_graph(document_list, df_tfidf_tsne, num_cluters)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.DocumentClustering.get_silhouette_graph2(alg, document_list, df_result, num_clusters=3, eps=0.5, min_samples=5)` [[Top]](#teanaps-architecture)
   - 군집화 결과에 대한 실루엣 그래프를 반환합니다.
   - Parameters
     - *document_list (str) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
@@ -510,7 +537,7 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > dc.get_silhouette_graph(document_list, df_tfidf_tsne, 3)
+    > dc.get_silhouette_graph2("kmeans", document_list, df_tfidf_tsne, num_clusters=3)
     > ```
     > Output (in Jupyter Notebook) :
     > ![clustering_silhouette_graph](../data/sample_image/clustering_silhouette_graph.png)
