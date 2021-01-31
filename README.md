@@ -27,7 +27,7 @@
 ---
 ## Why `TEANAPS`?
 
-- `TEANAPS`를 활용하면 최대 70% 까지 <U>**분석코드를 간소화**</U>할 수 있습니다. ([분석코드 살펴보기](./document/teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide))
+- `TEANAPS`를 활용하면 <U>**분석코드를 최대 70% 까지 간소화**</U>할 수 있습니다. ([분석코드 살펴보기](./document/teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide))
 - `TEANAPS`는 최신 언어모델을 적용해 오픈소스 패키지 대비 <U>**높은 퍼포먼스**</U>를 제공합니다. ([성능평가 결과 살펴보기](./document/teanaps_user_guide-appendix.md#teanaps-성능평가-결과))
 - `TEANAPS`는 분석결과를 효과적으로 표현하기 위한 <U>**다양한 시각화**</U>를 제공합니다. ([시각화 기능 살펴보기](./document/teanaps_user_guide-api_documentation-visualization.md#4-teanapsvisualization))
 - `TEANAPS`는 <U>**OPEN API**</U>를 통해 다양한 환경에서 텍스트 분석을 지원합니다.
