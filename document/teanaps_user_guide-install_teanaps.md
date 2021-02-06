@@ -36,7 +36,7 @@
 > 1. 가이드 문서를 참조하여 Python Anaconda, Java 환경 설치 [(LINK)](https://github.com/fingeredman/text-mining-for-beginner/blob/master/lecture-note/text-mining-for-beginner-appendix1.pdf)
 > 2. 아래 Requirements에 명시된 Python 라이브러리 설치
 > 3. TEANAPS [메인페이지](http://teanaps.com) [Code > Download ZIP]을 통해 TEANAPS 라이브러리 다운로드
-> 4. 다운로드한 파일 압축해제 후 폴더이름을 teanaps로 변경하여 분석을 수행하는 Jupyter Notebook 파일(*.ipynb)과 같은 폴더로 이동
+> 4. 다운로드한 파일 압축해제 후 폴더이름을 [teanaps-master > teanaps]로 변경하여 분석을 수행하는 Jupyter Notebook 파일(*.ipynb)과 같은 폴더로 이동
 
 #### Requirements
 - [PyTorch](https://pytorch.org/) - *conda install pytorch*
