@@ -101,6 +101,10 @@ subprocess.call("pip install python-pptx", shell=True)
 subprocess.call("pip install kss", shell=True)
 #!pip install kss
 
+# 23) hdbscan (https://hdbscan.readthedocs.io/en/latest/)
+subprocess.call("pip install hdbscan", shell=True)
+#!pip install hdbscan
+
 os_type = platform.platform()
 if "Windows" not in os_type:
     # MeCab
