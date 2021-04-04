@@ -74,6 +74,7 @@
 
 ---
 ## Update History
+> 2021.02.20. Install 스크립트 업데이트  
 > 2020.12.27. `Documentation` 업데이트  
 > 2020.10.10. `TEANAPS` API 서버 안정화 작업 및 업데이트  
 > 2020.05.02. `TEANAPS` API 서버 안정화 작업 및 업데이트  
