@@ -2,7 +2,7 @@ from teanaps import configure as con
 PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
 
-#from gensim.summarization.summarizer import summarize
+from gensim.summarization.summarizer import summarize
 
 from sumy.parsers.html import HtmlParser
 from sumy.nlp.tokenizers import Tokenizer

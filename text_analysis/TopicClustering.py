@@ -15,7 +15,7 @@ import gensim
 from gensim import corpora
 from gensim.models import ldaseqmodel
 from gensim.models import CoherenceModel
-#import pyLDAvis.gensim
+import pyLDAvis.gensim
 
 import pandas as pd
 pd.set_option('display.max_columns', None)
