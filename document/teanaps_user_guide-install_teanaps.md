@@ -52,7 +52,7 @@
   > ```
 
 - [Plotly](https://plot.ly/python/getting-started/) - *pip install plotly==2.7.0*
-- [PyLDAvis](https://pypi.org/project/pyLDAvis/) - *pip install pyldavis*
+- [PyLDAvis](https://pypi.org/project/pyLDAvis/) - *pip install pyldavis==2.1.2*
 - [Wordcloud](https://pypi.org/project/wordcloud/) - *pip install wordcloud*
 - [xlwt](https://pypi.org/project/xlwt/) - *pip install xlwt*
 - [KoNLPy](http://konlpy.org/en/latest/#getting-started) - *pip install konlpy==0.5.1*
