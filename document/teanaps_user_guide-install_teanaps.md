@@ -40,7 +40,7 @@
 
 #### Requirements
 - [PyTorch](https://pytorch.org/) - *conda install pytorch*
-- [Gensim](https://pypi.org/project/gensim/) - *pip install gensim --upgrade*
+- [Gensim](https://pypi.org/project/gensim/) - *pip install gensim==3.8.3*
 - [NLTK](https://www.nltk.org/install.html) - *pip install nltk*
 
   > Python Code (in Jupyter Notebook) :
