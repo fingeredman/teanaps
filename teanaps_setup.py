@@ -3,8 +3,10 @@ import platform
 import os
 
 # 1) Gensim (https://pypi.org/project/gensim/)
-subprocess.call("pip install gensim --upgrade", shell=True)
+#subprocess.call("pip install gensim --upgrade", shell=True)
+subprocess.call("pip install gensim==3.8.3", shell=True)
 #!pip install gensim --upgrade
+#!pip install gensim==3.8.3
 
 # 2) Glove (https://pypi.org/project/glove_python/)
 #subprocess.call("pip install glove_python", shell=True)
