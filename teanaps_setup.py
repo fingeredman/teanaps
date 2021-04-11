@@ -26,8 +26,8 @@ subprocess.call("pip install plotly==2.7.0", shell=True)
 #!pip install plotly==2.7.0
 
 # 5) PyLDAvis (https://pypi.org/project/pyLDAvis/)
-subprocess.call("pip install pyldavis", shell=True)
-#!pip install pyldavis
+subprocess.call("pip install pyldavis==2.1.2", shell=True)
+#!pip install pyldavis==2.1.2
 
 # 6) Wordcloud (https://pypi.org/project/wordcloud/)
 subprocess.call("pip install wordcloud", shell=True)
