@@ -204,15 +204,17 @@ class GraphVisualizer():
         return iplot(fig, filename='labelled-heatmap')
     
     def draw_scatter(self, data_meta_list, graph_meta, mode="markers"):
+        color_list = con.COLOR_CODE_LIST
         # Data
         data_list = []
-        for data_meta in data_meta_list:
+        for i, data_meta in enumerate(data_meta_list):
             data = {
                 "name": data_meta["data_name"],
                 "mode": mode,
                 "x": data_meta["x_data"],
                 "y": data_meta["y_data"],
-                "text": data_meta['label']
+                "text": data_meta['label'],
+                "marker": {"color": color_list[i], "size": 10}
             }
             data_list.append(data)
         # Graph
