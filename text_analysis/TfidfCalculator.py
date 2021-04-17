@@ -128,6 +128,11 @@ class TfidfCalculator():
         return gv.draw_histogram(data_meta_list, graph_meta)
     
     def get_wordcloud(self, weight_dict):
+        temp_dict = {}
+        if type(weight_dict) == list:
+            for word, weight in weight_dict:
+                temp_dict[word] = weight
+            weight_dict = temp_dict
         tv = TextVisualizer()
         tv.set_plotly()
         data_meta = {

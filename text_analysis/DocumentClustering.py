@@ -172,12 +172,12 @@ class DocumentClustering():
         gv = GraphVisualizer()
         gv.set_plotly()
         data_meta_list = []
-        for predict in list(OrderedDict.fromkeys(df_result[label])):
+        for i in OrderedDict.fromkeys(df_result[label]):
             data_meta = {
-                "data_name": predict,
-                "x_data": df_result[df_result[label]==predict]["x"],
-                "y_data": df_result[df_result[label]==predict]["y"],
-                "label": predict
+                "data_name": i,
+                "x_data": df_result[df_result[label]==i]["x"],
+                "y_data": df_result[df_result[label]==i]["y"],
+                "label": df_result[df_result[label]==i]["content"]
             }
             data_meta_list.append(data_meta)
         graph_meta = {
@@ -193,7 +193,9 @@ class DocumentClustering():
         X_tsne = tsne.fit_transform(tfidf_matrix)
         df_tfidf_matrix_tsne = pd.DataFrame(X_tsne, columns=['x', 'y'])
         df_predict = pd.DataFrame(predict_list, columns=['predict'])
-        df_result = df_document_list[["label"]].join(df_predict).join(df_tfidf_matrix_tsne)
+        df_token = pd.DataFrame(document_list)
+        df_content = pd.DataFrame(df_document_list, columns=['content'])
+        df_result = df_document_list[["label"]].join(df_predict).join(df_content).join(df_token).join(df_tfidf_matrix_tsne)
         return df_result
     
     # .get_silhouette_score() Will be replaced by .get_silhouette_score2()
@@ -212,10 +214,12 @@ class DocumentClustering():
         return silhouette_avg
     
     # .get_silhouette_score2() Will be replaced by .get_silhouette_score()
-    def get_silhouette_score2(self, alg, document_list, df_result, num_clusters=3, eps=0.5, min_samples=5):
+    #def get_silhouette_score2(self, alg, document_list, df_document_list, num_clusters=3, eps=0.5, min_samples=5):
+    def get_silhouette_score2(self, document_list, df_result):
         print(".get_silhouette_score2() Will be replaced by .get_silhouette_score()")
         X = self.__get_tfidf_matrix(document_list)
         fig = tools.make_subplots(rows=1, cols=2, print_grid=False, subplot_titles=('Silhouette Graph', 'Clutering Graph'))
+        '''
         if alg == "kmeans":
             # Compute K-Means Cluster
             clusterer = KMeans(n_clusters=num_clusters, random_state=10)
@@ -224,8 +228,6 @@ class DocumentClustering():
             fig["layout"]["xaxis1"].update(title="Silhouette Coefficient", range=[-0.1, 1])
             fig["layout"]["yaxis1"].update(title="Cluster Label", showticklabels=False, 
                                            range=[0, len(X) + (num_clusters + 1) * 10])
-            # Compute Average Silhouette Score
-            silhouette_avg = silhouette_score(X, cluster_labels)
         if alg == "dbscan":
             # Compute DBSCAN Cluster
             clusterer = DBSCAN(eps=eps, min_samples=min_samples)
@@ -235,8 +237,6 @@ class DocumentClustering():
             fig["layout"]["xaxis1"].update(title="Silhouette Coefficient", range=[-0.1, 1])
             fig["layout"]["yaxis1"].update(title="Cluster Label", showticklabels=False, 
                                            range=[0, len(X) + (num_clusters + 1) * 10])
-            # Compute Average Silhouette Score
-            silhouette_avg = silhouette_score(X, cluster_labels)
         if alg == "hdbscan":
             # Compute HDBSCAN Cluster
             clusterer = hdbscan.HDBSCAN(min_cluster_size=min_samples)
@@ -246,14 +246,25 @@ class DocumentClustering():
             fig["layout"]["xaxis1"].update(title="Silhouette Coefficient", range=[-0.1, 1])
             fig["layout"]["yaxis1"].update(title="Cluster Label", showticklabels=False, 
                                            range=[0, len(X) + (num_clusters + 1) * 10])
-            # Compute Average Silhouette Score
-            silhouette_avg = silhouette_score(X, cluster_labels)
-        return silhouette_avg
+        '''
+        # Compute Silhouette Score
+        cluster_labels = df_result["predict"]
+        silhouette_avg = silhouette_score(X, cluster_labels)
+        sample_silhouette_values = silhouette_samples(X, cluster_labels)
+        #df_result = self.get_tfidf_tsne(document_list, cluster_labels, df_document_list)
+        silhouette_result = {"silhouette_avg": silhouette_avg, "silhouette_score": []}
+        for label, content, predict, silhouette in zip(df_result['label'], df_result['content'], 
+                                  df_result['predict'], sample_silhouette_values):
+            silhouette_result["silhouette_score"].append([str(predict), str(silhouette)[:8], label, content])
+        return silhouette_result
     
     # .get_silhouette_graph2() Will be replaced by .get_silhouette_graph()
-    def get_silhouette_graph2(self, alg, document_list, df_result, num_clusters=3, eps=0.5, min_samples=5):
+    #def get_silhouette_graph2(self, alg, document_list, df_document_list, num_clusters=3, eps=0.5, min_samples=5, print_result=False):
+    def get_silhouette_graph2(self, document_list, df_result, print_result=False):
         print(".get_silhouette_graph2() Will be replaced by .get_silhouette_graph()")
         X = self.__get_tfidf_matrix(document_list)
+        color_list = con.COLOR_CODE_LIST
+        '''
         color_list = [
             '#1f77b4',  # muted blue
             '#ff7f0e',  # safety orange
@@ -266,12 +277,14 @@ class DocumentClustering():
             '#bcbd22',  # curry yellow-green
             '#17becf'   # blue-teal
         ]
+        '''
         cmap = cm.get_cmap("Spectral")
         fig = tools.make_subplots(rows=1, cols=2, print_grid=False, subplot_titles=('Silhouette Graph', 'Clutering Graph'))
         # Initialize Silhouette Graph
+        num_clusters = len(OrderedDict.fromkeys(df_result["predict"]))
         fig['layout']['xaxis1'].update(title='Silhouette Coefficient', range=[-0.1, 1])
         fig['layout']['yaxis1'].update(title='Cluster Label', showticklabels=False, range=[0, len(X) + (num_clusters + 1) * 10])
-
+        '''
         if alg == "kmeans":
             # Compute K-Means Cluster
             clusterer = KMeans(n_clusters=num_clusters, random_state=10)
@@ -293,39 +306,48 @@ class DocumentClustering():
             # Compute Average Silhouette Score
             silhouette_avg = silhouette_score(X, cluster_labels)
             print("For min_samples =", min_samples, "The average silhouette_score is :", silhouette_avg)
+        '''
         # Compute the Silhouette Scores for Each Sample
+        cluster_labels = df_result["predict"]
+        silhouette_avg = silhouette_score(X, cluster_labels)
+        print("For n_clusters =", num_clusters, "The average silhouette_score is :", silhouette_avg)
         sample_silhouette_values = silhouette_samples(X, cluster_labels)
+        #df_result = self.get_tfidf_tsne(document_list, cluster_labels, df_document_list)
         y_lower = 10
         for i in range(num_clusters):
             ith_cluster_silhouette_values = sample_silhouette_values[cluster_labels == i]
             ith_cluster_silhouette_values.sort()
             size_cluster_i = ith_cluster_silhouette_values.shape[0]
             y_upper = y_lower + size_cluster_i
-            colors = cmap(cluster_labels.astype(float) / num_clusters)
+            #colors = cmap(cluster_labels.astype(float) / num_clusters)
             filled_area = go.Scatter(y=np.arange(y_lower, y_upper),
                                      x=ith_cluster_silhouette_values,
                                      mode='lines',
+                                     text=ith_cluster_silhouette_values,
+                                     name=i,
                                      showlegend=False,
-                                     line=dict(width=0.5, color=colors),
+                                     #line=dict(width=0.5, color=colors),
+                                     line=dict(width=0.5, color=color_list[i]),
                                      fill='tozerox')
             fig.append_trace(filled_area, 1, 1)
             y_lower = y_upper + 10  # 10 for the 0 samples
             # Vertical Line for Average Silhouette Score
-            axis_line = go.Scatter(x=[silhouette_avg],
-                                   y=[0, len(X) + (num_clusters + 1) * 10],
+            axis_line = go.Scatter(x=[silhouette_avg, silhouette_avg],
+                                   y=[0, len(X)+(num_clusters + 1)*10],
                                    showlegend=False,
                                    mode='lines',
-                                   line=dict(color="red", dash='dash', width =1) )
+                                   line=dict(color="red", dash='dash', width =1))
             fig.append_trace(axis_line, 1, 1)
             # Cluster Graph
-            colors = matplotlib.colors.colorConverter.to_rgb(cmap(float(i) / num_clusters))
-            colors = 'rgb'+str(colors)
-            clusters = go.Scatter(x=df_result['x'], 
-                                  y=df_result['y'], 
-                                  showlegend=False,
+            #colors = matplotlib.colors.colorConverter.to_rgb(cmap(float(i) / num_clusters))
+            #colors = 'rgb'+str(colors)
+            clusters = go.Scatter(x=df_result[df_result.predict==i]['x'], 
+                                  y=df_result[df_result.predict==i]['y'], 
+                                  showlegend=True,
                                   mode='markers',
-                                  text=cluster_labels,
-                                  marker=dict(color=[color_list[cluster_label] for cluster_label in cluster_labels], size=10)
+                                  text=df_result[df_result.predict==i]["content"],
+                                  name=i,
+                                  marker=dict(color=color_list[i], size=10)
                                  )
             fig.append_trace(clusters, 1, 2)
             fig['layout']['xaxis2'].update(title='Feature space for the 1st feature', zeroline=False)
@@ -333,12 +355,18 @@ class DocumentClustering():
             fig['layout'].update(title="Silhouette Analysis for KMeans Clustering - " + str(num_clusters) + " Cluster")
             fig['layout']["images"] = self.watermark_image
         self.set_plotly()
+        if print_result == True:
+            for label, content, predict, silhouette in zip(df_result['label'], df_result['content'], 
+                                                           df_result['predict'], sample_silhouette_values):
+                print(str(predict) + "|" + str(silhouette)[:8] + "|" + label + "|" + content)
         return iplot(fig, filename='basic-line')
     
     # .get_silhouette_graph() Will be replaced by .get_silhouette_graph2()
     def get_silhouette_graph(self, document_list, df_result, num_clusters):
         print(".get_silhouette_graph() Will be replaced by .get_silhouette_graph2()")
         X = self.__get_tfidf_matrix(document_list)
+        color_list = con.COLOR_CODE_LIST
+        '''
         color_list = [
             '#1f77b4',  # muted blue
             '#ff7f0e',  # safety orange
@@ -351,6 +379,7 @@ class DocumentClustering():
             '#bcbd22',  # curry yellow-green
             '#17becf'   # blue-teal
         ]
+        '''
         cmap = cm.get_cmap("Spectral")
         fig = tools.make_subplots(rows=1, cols=2, print_grid=False, subplot_titles=('Silhouette Graph', 'Clutering Graph'))
         # Initialize Silhouette Graph
