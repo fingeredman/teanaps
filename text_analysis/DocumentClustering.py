@@ -313,8 +313,17 @@ class DocumentClustering():
         print("For n_clusters =", num_clusters, "The average silhouette_score is :", silhouette_avg)
         sample_silhouette_values = silhouette_samples(X, cluster_labels)
         #df_result = self.get_tfidf_tsne(document_list, cluster_labels, df_document_list)
+        
         y_lower = 10
         for i in range(num_clusters):
+            content_label_list = []
+            for content_label in df_result[df_result.predict==i]["content"]:
+                if len(content_label) > 30:
+                    content_label = content_label[:30]+"..."
+                    content_label_list.append(content_label)
+                else:
+                    content_label_list.append(content_label)
+                    
             ith_cluster_silhouette_values = sample_silhouette_values[cluster_labels == i]
             ith_cluster_silhouette_values.sort()
             size_cluster_i = ith_cluster_silhouette_values.shape[0]
@@ -345,7 +354,7 @@ class DocumentClustering():
                                   y=df_result[df_result.predict==i]['y'], 
                                   showlegend=True,
                                   mode='markers',
-                                  text=df_result[df_result.predict==i]["content"],
+                                  text=content_label_list,
                                   name=i,
                                   marker=dict(color=color_list[i], size=10)
                                  )
