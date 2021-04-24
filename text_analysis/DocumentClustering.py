@@ -168,16 +168,24 @@ class DocumentClustering():
         }
         return gv.draw_scatter(data_meta_list, graph_meta)
     
-    def get_cluster_graph(self, df_result, label):
+    def get_cluster_graph(self, df_result, label):        
         gv = GraphVisualizer()
         gv.set_plotly()
         data_meta_list = []
         for i in OrderedDict.fromkeys(df_result[label]):
+            content_label_list = []
+            for content_label in df_result[df_result.predict==i]["content"]:
+                if len(content_label) > 30:
+                    content_label = content_label[:30]+"..."
+                    content_label_list.append(content_label)
+                else:
+                    content_label_list.append(content_label)
+                
             data_meta = {
                 "data_name": i,
                 "x_data": df_result[df_result[label]==i]["x"],
                 "y_data": df_result[df_result[label]==i]["y"],
-                "label": df_result[df_result[label]==i]["content"]
+                "label": content_label_list
             }
             data_meta_list.append(data_meta)
         graph_meta = {
@@ -315,7 +323,7 @@ class DocumentClustering():
         #df_result = self.get_tfidf_tsne(document_list, cluster_labels, df_document_list)
         
         y_lower = 10
-        for i in range(num_clusters):
+        for i in OrderedDict.fromkeys(cluster_labels):
             content_label_list = []
             for content_label in df_result[df_result.predict==i]["content"]:
                 if len(content_label) > 30:
