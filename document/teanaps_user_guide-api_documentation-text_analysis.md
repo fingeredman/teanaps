@@ -42,7 +42,7 @@
 │     │     ├─ CoWordCalculator
 │     │     ├─ SentimentAnalysis
 │     │     ├─ DocumentSummarizer 
-│     │     └─ KeyphraseExtraction
+│     │     └─ KeywordExtractor
 │     │  
 │     ├─ visualization
 │     │     ├─ GraphVisualizer
@@ -61,7 +61,7 @@
 |-----------|-----------|
 | [handler](./teanaps_user_guide-api_documentation-handler.md#1-teanapshandler)    | [FileHandler](./teanaps_user_guide-api_documentation-handler.md#11-teanapshandlerfilehandler), [MessageHandler](./teanaps_user_guide-api_documentation-handler.md#12-teanapshandlermessagehandler), [QueueHandler](./teanaps_user_guide-api_documentation-handler.md#13-teanapshandlerqueuehandler)    |
 | [nlp](./teanaps_user_guide-api_documentation-nlp.md#2-teanapsnlp)    | [MorphologicalAnalyzer](./teanaps_user_guide-api_documentation-nlp.md#21-teanapsnlpmorphologicalanalyzer), [NamedEntityRecognizer](./teanaps_user_guide-api_documentation-nlp.md#22-teanapsnlpnamedentityrecognizer), [SyntaxAnalyzer](./teanaps_user_guide-api_documentation-nlp.md#23-teanapsnlpsyntaxanalyzer), [Processing](./teanaps_user_guide-api_documentation-nlp.md#24-teanapsnlpprocessing), [Embedding](./teanaps_user_guide-api_documentation-nlp.md#25-teanapsnlpembedding)    |
-| [text_analysis](./teanaps_user_guide-api_documentation-text_analysis.md#3-teanapstext_analysis)    | [TfidfCalculator](./teanaps_user_guide-api_documentation-text_analysis.md#31-teanapstext_analysistfidfcalculator), [DocumentClustering](./teanaps_user_guide-api_documentation-text_analysis.md#32-teanapstext_analysisdocumentclustering), [TopicClustering](./teanaps_user_guide-api_documentation-text_analysis.md#33-teanapstext_analysistopicclustering), [CoWordCalculator](./teanaps_user_guide-api_documentation-text_analysis.md#34-teanapstext_analysiscowordcalculator), [SentimentAnalysis](./teanaps_user_guide-api_documentation-text_analysis.md#35-teanapstext_analysissentimentanalysis), [DocumentSummarizer](./teanaps_user_guide-api_documentation-text_analysis.md#36-teanapstext_analysisdocumentsummarizer), [KeyphraseExtraction](./teanaps_user_guide-api_documentation-text_analysis.md#37-teanapstext_analysiskeyphraseextraction)    |
+| [text_analysis](./teanaps_user_guide-api_documentation-text_analysis.md#3-teanapstext_analysis)    | [TfidfCalculator](./teanaps_user_guide-api_documentation-text_analysis.md#31-teanapstext_analysistfidfcalculator), [DocumentClustering](./teanaps_user_guide-api_documentation-text_analysis.md#32-teanapstext_analysisdocumentclustering), [TopicClustering](./teanaps_user_guide-api_documentation-text_analysis.md#33-teanapstext_analysistopicclustering), [CoWordCalculator](./teanaps_user_guide-api_documentation-text_analysis.md#34-teanapstext_analysiscowordcalculator), [SentimentAnalysis](./teanaps_user_guide-api_documentation-text_analysis.md#35-teanapstext_analysissentimentanalysis), [DocumentSummarizer](./teanaps_user_guide-api_documentation-text_analysis.md#36-teanapstext_analysisdocumentsummarizer), [KeywordExtractor](./teanaps_user_guide-api_documentation-text_analysis.md#37-teanapstext_analysiskeywordextractor)    |
 | [visualization](./teanaps_user_guide-api_documentation-visualization.md#4-teanapsvisualization)    | [GraphVisualizer](./teanaps_user_guide-api_documentation-visualization.md#41-teanapsvisualizationgraphvisualizer), [TextVisualizer](./teanaps_user_guide-api_documentation-visualization.md#42-teanapsvisualizationtextvisualizer)    |
 | [machine_learning](./teanaps_user_guide-api_documentation-machine-learning.md#5-teanapsmachine_learning)    | [Regression](./teanaps_user_guide-api_documentation-machine-learning.md#51-teanapsmachine_learningregression), [Classification](./teanaps_user_guide-api_documentation-machine-learning.md#52-teanapsmachine_learningclassification), [Clustering](./teanaps_user_guide-api_documentation-machine-learning.md#53-teanapsmachine_learningclustering)    |
 
@@ -1143,8 +1143,38 @@
     > ]
     > ```
 
-##### 3.7. `teanaps.text_analysis.KeyphraseExtraction`
-  - TBU
+##### 3.7. `teanaps.text_analysis.KeywordExtractor`
+
+> Python Code (in Jupyter Notebook) :
+> ```python
+> from teanaps.text_analysis import KeywordExtractor
+>
+> ke = KeywordExtractor(model_path="/model")
+> ```
+
+> Notes :  
+> - 모델 파일을 별도로 [다운로드](https://drive.google.com/file/d/1uqiT7S8AnUbcKYTlrVflaRBurhffEG3f/view?usp=sharing)하여 파일 경로를 `model_path` 변수에 포함해야합니다.
+> - import시 최초 1회 경고메시지 (Warnning)가 출력될 수 있습니다. 무시하셔도 좋습니다.
+
+- `teanaps.text_analysis.KeywordExtractor.parse(sentence, max_keyword=5)` [[Top]](#teanaps-architecture)
+  - 문장에서 핵심 키워드를 구분하고 그 가중치를 반환합니다.
+  - Parameters
+    - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
+    - *max_keyword (int) : 추출할 최대 키워드 개수.*
+  - Returns
+    - *result (list) : (키워드, 가중치, 키워드 위치) 구조의 Tuple을 포함하는 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > sentence = "유플러스는 통신3사(SKT, LGU+, KT) 중에 5G 요금제를 최초로 선보였습니다."
+    > result = ke.parse(sentence)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > [('LGU+', 1.33617, (16, 20)), ('SKT', 0.81265, (11, 14)), ('KT', 0.79936, (22, 24)), ('5G', 0.74944, (29, 31)), ('유플러스', 0.37639, (0, 4))]
+    > ```
 
 <br><br>
 ---
