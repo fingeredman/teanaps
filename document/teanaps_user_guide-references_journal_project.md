@@ -28,7 +28,6 @@
 ### Journal
 - (2021.02) _Jung, J. H., Chung, H. I., & Lee, Z. K. (2021). An Analysis of Mobile Food Delivery App'Baemin'by Using Text Mining and ARIMA Model. 디지털콘텐츠학회논문지 (J. DCS), 22(2), 291-299._ [(Link)](http://journal.dcs.or.kr/xml/28233/28233.pdf)
 - (2020.12) _Son, A., Shin, W., & Lee, Z. (2020). An Analysis of Key Elements for FinTech Companies Based on Text Mining: From the User's Review. The Journal of Information Systems, 29(4), 137-151._ [(Link)](https://www.koreascience.or.kr/article/JAKO202009252092422.page)
-- (2020.06) _이소현, 김진솔, 윤상혁, & 김희웅. (2020). 텍스트마이닝 기법을 이용한 모바일 피트니스 애플리케이션 주요 요인 분석. 한국 IT 서비스학회지, 19, 117-137._ [(Link)](http://www.koreascience.or.kr/article/JAKO202021741261139.pdf)
 - (2020.06) _Lee, S. H., Kim, J., Yoon, S. H., & Kim, H. W. (2020). An Analysis on Key Factors of Mobile Fitness Application by Using Text Mining Techniques: User Experience Perspective. Journal of Information Technology Services, 19(3), 117-137._ [(Link)](https://www.koreascience.or.kr/article/JAKO202021741261139.page)
 - (2020.05) _최윤진, 이소현, 윤상혁, & 김희웅. (2020). Joint Sentiment 토픽모델링 기반 국내 여행 불만족 요인 연구. Korea Business Review, 24(2), 121-141._ [(Link)](https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE09348682)
 - (2020.04) _우유란, 이중정, & 이소현. (2020). 이커머스 유료회원제 가입자/비가입자 주요 이슈 비교: 텍스트마이닝 기법 활용. 인터넷전자상거래연구, 20(2), 107-125._ [(Link)](https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE09332620)

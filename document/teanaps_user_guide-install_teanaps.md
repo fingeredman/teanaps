@@ -31,16 +31,9 @@
 > !python "teanaps/teanaps_setup.py"
 > ```
 
-### 로컬환경 설치 가이드
-
-> 1. 가이드 문서를 참조하여 Python Anaconda, Java 환경 설치 [(LINK)](https://github.com/fingeredman/text-mining-for-beginner/blob/master/lecture-note/text-mining-for-beginner-appendix1.pdf)
-> 2. 아래 Requirements에 명시된 Python 라이브러리 설치
-> 3. TEANAPS [메인페이지](http://teanaps.com) [Code > Download ZIP]을 통해 TEANAPS 라이브러리 다운로드
-> 4. 다운로드한 파일 압축해제 후 폴더이름을 [teanaps-master > teanaps]로 변경하여 분석을 수행하는 Jupyter Notebook 파일(*.ipynb)과 같은 폴더로 이동
-
-#### Requirements
+### Requirements
 - [PyTorch](https://pytorch.org/) - *conda install pytorch*
-- [Gensim](https://pypi.org/project/gensim/) - *pip install gensim==3.8.3*
+- [Gensim](https://pypi.org/project/gensim/) - *pip install gensim --upgrade*
 - [NLTK](https://www.nltk.org/install.html) - *pip install nltk*
 
   > Python Code (in Jupyter Notebook) :
@@ -52,7 +45,7 @@
   > ```
 
 - [Plotly](https://plot.ly/python/getting-started/) - *pip install plotly==2.7.0*
-- [PyLDAvis](https://pypi.org/project/pyLDAvis/) - *pip install pyldavis==2.1.2*
+- [PyLDAvis](https://pypi.org/project/pyLDAvis/) - *pip install pyldavis*
 - [Wordcloud](https://pypi.org/project/wordcloud/) - *pip install wordcloud*
 - [xlwt](https://pypi.org/project/xlwt/) - *pip install xlwt*
 - [KoNLPy](http://konlpy.org/en/latest/#getting-started) - *pip install konlpy==0.5.1*

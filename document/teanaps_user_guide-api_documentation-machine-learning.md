@@ -42,7 +42,7 @@
 │     │     ├─ CoWordCalculator
 │     │     ├─ SentimentAnalysis
 │     │     ├─ DocumentSummarizer 
-│     │     └─ KeyphraseExtraction
+│     │     └─ KeywordExtractor
 │     │  
 │     ├─ visualization
 │     │     ├─ GraphVisualizer

@@ -42,7 +42,7 @@
 │     │     ├─ CoWordCalculator
 │     │     ├─ SentimentAnalysis
 │     │     ├─ DocumentSummarizer 
-│     │     └─ KeyphraseExtraction
+│     │     └─ KeywordExtractor
 │     │  
 │     ├─ visualization
 │     │     ├─ GraphVisualizer
@@ -546,25 +546,6 @@
     > [(1, 1.0033), (2, 3.0068)]
     > ```
 
-- `teanaps.nlp.Processing.get_spacing(sentence)` [[Top]](#teanaps-architecture)
-  - 문장의 띄어쓰기 오류를 보정하고 그 결과를 반환합니다.
-  - Parameters
-    - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
-  - Returns
-    - *result (str) : 띄어쓰기 오류가 보정된 문장.*
-  - Examples
-
-    > Python Code (in Jupyter Notebook) :
-    > ```python
-    > sentence = "TEANAPS는텍스트마이닝을위한Python패키지입니다."
-    > result = pro.get_spacing(sentence)
-    > print(result)
-    > ```
-    > Output (in Jupyter Notebook) :
-    > ```python
-    > TEANAPS는 텍스트마이닝을 위한 Python 패키지입니다.
-    > ```
-
 - `teanaps.nlp.Processing.sentence_splitter(paragraph)` [[Top]](#teanaps-architecture)
   - 여러개 문장이 포함된 문단을 문장 단위로 구분하고 그 결과를 반환합니다.
   - Parameters
@@ -723,6 +704,25 @@
     > Output (in Jupyter Notebook) :
     > ```python
     > 제 이름은 ******이고 연락처는 ************* 입니다.
+    > ```
+
+- `teanaps.nlp.Processing.sentence_splitter(paragraph)` [[Top]](#teanaps-architecture)
+  - 문단을 문장 단위로 구분하여 리스트로 변환하고 그 결과를 반환합니다.
+  - Parameters
+    - *paragraph (str) : 한국어 또는 영어로 구성된 문단.*
+  - Returns
+    - *result (list) : 문장 단위로 구분된 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > paragraph = "안녕하세요. TEANAPS를 다시 찾아주셨군요! 감사합니다~"
+    > result = pro.sentence_splitter(paragraph)
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > ['안녕하세요.', 'TEANAPS를 다시 찾아주셨군요!', '감사합니다~']
     > ```
 
 ##### 2.5. `teanaps.nlp.Embedding`
