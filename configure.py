@@ -23,6 +23,8 @@ PLOTLY_API_KEY = "7xQjXPiDYPi1iIrrT3ID"
 # -----------------------------------------
 STOPWORD_PATH = "teanaps/data/stopword/stopword.txt"
 STOPWORD_ORG_PATH = "teanaps/data/stopword/stopword_org.txt"
+CNOUN_PATH = "teanaps/data/stopword/cnoun.txt"
+CNOUN_ORG_PATH = "teanaps/data/stopword/cnoun_org.txt"
 
 # -----------------------------------------
 # teanaps.nlp.MorphologicalAnalyzer
