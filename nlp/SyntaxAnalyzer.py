@@ -1,3 +1,4 @@
+from teanaps import configure as con
 from teanaps.visualization import GraphVisualizer
 
 class SyntaxAnalyzer():  
@@ -22,7 +23,36 @@ class SyntaxAnalyzer():
                     break
             if not is_ner:
                 sa_result.append((name, pos, "UN", loc))
+                
+        # Compound Noun
+        max_window_size = 3
+        candidate_cnoun_list = []
+        cnoun_list = self.__get_cnoun_list()
+
+        for window_size in range(max_window_size, 1, -1):
+            for i in range(len(sa_result)-window_size):
+                candidate_list = [[word, loc] for word, pos_tag, ner_tag, loc in sa_result[i:i+window_size]]
+                candidate_word = ''.join([candidate[0] for candidate in candidate_list])
+                if candidate_word in cnoun_list:
+                    candidate_cnoun_list.append([candidate_word, (candidate_list[0][1][0], candidate_list[-1][1][1])])
+                    
+        remove_index_list = []
+        for candidate_cnoun in candidate_cnoun_list:
+            for i, syntax in enumerate(sa_result):
+                word, pos_tag, ner_tag, loc = syntax[0], syntax[1], syntax[2], syntax[3]
+                if loc[0] >= candidate_cnoun[1][0] and loc[1] <= candidate_cnoun[1][1]:
+                    remove_index_list.append(i)
+        remove_index_list.sort(reverse=True)
+        for remove_index in remove_index_list:
+            del sa_result[remove_index]
+        for word, loc in candidate_cnoun_list:
+            sa_result.append((word, "NNG", "UN", loc))
+        sa_result.sort(key=lambda elem: elem[3][0])
         return sa_result
+    
+    def __get_cnoun_list(self):
+        cnoun_list = open(con.CNOUN_PATH, encoding="utf-8").read().strip().split("\n")
+        return cnoun_list
     
     def get_phrase(self, sentence, sa_result):
         noun_list = ["NNP", "NNG", "NR", "NP", "MM", "XSN", "VA", "VV", "VX"]#, "NNB"]

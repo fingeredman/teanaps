@@ -11,7 +11,58 @@ class Processing():
     def __init__(self):
         self.stopword_path = con.STOPWORD_PATH
         self.stopword_org_path = con.STOPWORD_ORG_PATH
+        self.cnoun_path = con.CNOUN_PATH
+        self.cnoun_org_path = con.CNOUN_ORG_PATH
         #self.kkma = Kkma()
+        
+    def get_cnoun(self):
+        cnoun_list = []
+        f = open(self.cnoun_path, encoding="utf-8")
+        for line in f:
+            cnoun_list.append(line.strip())
+        f.close()
+        return cnoun_list
+    
+    def add_cnoun(self, add_list=[]):
+        f = open(self.cnoun_path, "a", encoding="utf-8")
+        if type(add_list) == type(""):
+            add_list = [add_list]
+        for cnoun in add_list:
+            f.write(cnoun + "\n")
+        f.close()
+        
+    def remove_cnoun(self, remove_list=[]):
+        cnoun_list = self.get_cnoun()
+        f = open(self.cnoun_path, "w", encoding="utf-8")
+        if type(remove_list) == type(""):
+            remove_list = [remove_list]
+        for cnoun in cnoun_list:
+            if cnoun not in remove_list:
+                f.write(cnoun + "\n")
+        f.close()
+        
+    def clear_cnoun(self):
+        f = open(self.cnoun_path, "w", encoding="utf-8")
+        f.close()
+        
+    def set_org_cnoun(self):
+        f = open(self.cnoun_path, "w", encoding="utf-8")
+        f_org = open(self.cnoun_org_path, encoding="utf-8")
+        for line in f_org:
+            f.write(line)
+        f_org.close()
+        f.close()
+        
+    def is_cnoun(self, cnoun):
+        cnoun_list = self.get_cnoun()
+        if cnoun in cnoun_list:
+            return True
+        else:
+            return False
+    
+    '''
+    
+    '''
     
     def get_stopword(self):
         stopword_list = []
