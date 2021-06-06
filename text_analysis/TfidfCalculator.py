@@ -21,22 +21,37 @@ class TfidfCalculator():
     def __init__(self):
         self.fh = FileHandler()
     
-    def calculation_tfidf(self, tokenized_sentence_list, 
+    def calculation_tfidf(self, tokenized_sentence_list, tfidf_count=100, ifidf_state=False,
                           tf_vectorizer_path=con.TF_VECTORIZER_PATH, tfidf_vectorizer_path=con.TFIDF_VECTORIZER_PATH):
-        # TF-IDF Vector
-        self.tfidf_vectorizer = TfidfVectorizer()
-        self.tfidf_matrix = self.tfidf_vectorizer.fit_transform(tokenized_sentence_list).todense()
-        self.tfidf_matrix = pd.DataFrame(self.tfidf_matrix, columns=self.tfidf_vectorizer.get_feature_names())
-        self.tfidf_dict = dict(self.tfidf_matrix.sum(axis=0).sort_values(ascending=False).items())
         # TF Vector
         self.tf_vectorizer = CountVectorizer()
         self.tf_matrix = self.tf_vectorizer.fit_transform(tokenized_sentence_list).todense()
         self.tf_matrix = pd.DataFrame(self.tf_matrix, columns=self.tf_vectorizer.get_feature_names())
-        self.tf_dict = dict(self.tf_matrix.sum(axis=0).sort_values(ascending=False).items())
+        #self.tf_dict = dict(self.tf_matrix.sum(axis=0).sort_values(ascending=False).items())
+        self.tf_dict = {}
+        for tokenized_sentence in tokenized_sentence_list:
+            word_list = tokenized_sentence.split(" ")
+            for word in word_list:
+                word = word.lower()
+                if word in self.tf_dict.keys():
+                    self.tf_dict[word] += 1
+                else:
+                    self.tf_dict[word] = 1
+        
+        # TF-IDF Vector
+        self.tfidf_vectorizer = TfidfVectorizer()
+        self.tfidf_matrix = self.tfidf_vectorizer.fit_transform(tokenized_sentence_list).todense()
+        self.tfidf_matrix = pd.DataFrame(self.tfidf_matrix, columns=self.tfidf_vectorizer.get_feature_names())
+        #self.tfidf_dict = dict(self.tfidf_matrix.sum(axis=0).sort_values(ascending=False).items())
+        if ifidf_state == True:
+            self.tfidf_dict = {}
+            tf_list = self.get_tf_list()[:tfidf_count]
+            tfidf_word_list = [word for word, count in tf_list if word in self.tfidf_matrix.keys()]
+            self.tfidf_dict = dict(self.tfidf_matrix[tfidf_word_list].sum())
         # Make Result Dictionary
-        self.result_dict = {}
-        for word in self.tf_dict.keys():
-            self.result_dict[word] = {"tf": self.tf_dict[word], "tfidf": self.tfidf_dict[word]}
+        #self.result_dict = {}
+        #for word in self.tf_dict.keys():
+        #    self.result_dict[word] = {"tf": self.tf_dict[word], "tfidf": self.tfidf_dict[word]}
         self.fh.save_data(tfidf_vectorizer_path, self.tfidf_vectorizer)
         self.fh.save_data(tf_vectorizer_path, self.tf_vectorizer)
             
@@ -51,10 +66,10 @@ class TfidfCalculator():
     def __get_stopwords(self):
         stopword_list = open(con.STOPWORD_PATH, encoding="utf-8").read().strip().split("\n")
         return stopword_list
-
+    '''
     def get_result(self):
         return self.result_dict
-    
+    '''
     def get_tf_matrix(self):
         return self.tf_matrix
     
@@ -63,6 +78,7 @@ class TfidfCalculator():
     
     def get_tf_list(self):
         tf_list = [[word, self.tf_dict[word]] for word in self.tf_dict.keys() if word not in self.__get_stopwords()]
+        tf_list.sort(key=lambda elem: elem[1], reverse=True)
         return tf_list
         
     def get_tfidf_matrix(self):
@@ -73,10 +89,11 @@ class TfidfCalculator():
     
     def get_tfidf_list(self):
         tfidf_list = [[word, self.tfidf_dict[word]] for word in self.tfidf_dict.keys() if word not in self.__get_stopwords()]
+        tfidf_list.sort(key=lambda elem: elem[1], reverse=True)
         return tfidf_list
         
     def get_word_list(self):
-        word_list = [word for word in self.tfidf_dict.keys() if word not in self.__get_stopwords()]
+        word_list = [word for word in self.tf_dict.keys() if word not in self.__get_stopwords()]
         return word_list
     
     def set_plotly(self):
@@ -98,7 +115,6 @@ class TfidfCalculator():
         gv.set_plotly()
         x = self.get_word_list()[:max_words]
         y = [score for _, score in self.get_tf_list()][:max_words]
-        z = [score for _, score in self.get_tfidf_list()][:max_words]
         data_meta_list = []
         data_meta = {
             "graph_type": "histogram",
@@ -108,14 +124,16 @@ class TfidfCalculator():
             "y_axis": "y1",
         }
         data_meta_list.append(data_meta)
-        data_meta = {
-            "graph_type": "scatter",
-            "data_name": "TF-IDF",
-            "x_data": x,
-            "y_data": z,
-            "y_axis": "y2"
-        }
-        data_meta_list.append(data_meta)
+        if max_words <= 100:
+            z = [score for _, score in self.get_tfidf_list()][:max_words]
+            data_meta = {
+                "graph_type": "scatter",
+                "data_name": "TF-IDF",
+                "x_data": x,
+                "y_data": z,
+                "y_axis": "y2"
+            }
+            data_meta_list.append(data_meta)
         graph_meta = {
             "title": "단어빈도 및 TF-IDF (TF & TF-IDF)",
             "x_tickangle": -45,

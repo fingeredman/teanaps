@@ -152,9 +152,9 @@ class TopicClustering():
         coherence = coherence_model.get_coherence()
         return perplexity, coherence
     
-    def display_model_result(self):
+    def display_model_result(self, model):
         pyLDAvis.enable_notebook()
-        lda_display = pyLDAvis.gensim.prepare(self.model, self.corpus, self.dictionary, sort_topics=True)
+        lda_display = pyLDAvis.gensim.prepare(model, self.corpus, self.dictionary, sort_topics=True)
         return pyLDAvis.display(lda_display)
     
     def get_model_validation_graph(self, model_type, document_list, max_topics):
