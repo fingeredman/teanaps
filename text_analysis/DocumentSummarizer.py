@@ -26,6 +26,7 @@ class DocumentSummarizer():
             summarizer.stop_words = get_stop_words("english")
             summarized_sentence_list = summarizer(parser.document, max_sentences)
             self.result_list = [str(sentence) for sentence in summarized_sentence_list]
+        return self.result_list
     
     def set_document(self, document_path):
         self.document = open(document_path, encoding="utf-8").read().strip()
