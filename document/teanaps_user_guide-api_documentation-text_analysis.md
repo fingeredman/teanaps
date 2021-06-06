@@ -524,7 +524,7 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > dc.get_pair_wize_matrix(document_list)
+    > dc.get_pair_wize_matrix(tokenized_sentence_list)
     > ```
     > Output (in Jupyter Notebook) :
     > ![clustering_pair_wize_matrix](../data/sample_image/clustering_pair_wize_matrix.png)
@@ -779,7 +779,7 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > #node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
-    > #co.calculation_co_matrix(document_list, node_list=node_list)
+    > #co.calculation_co_matrix(tokenized_sentence_list, node_list=node_list)
     > result = co.get_node_list()
     > print(result)
     > ```
@@ -799,7 +799,7 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > #node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
-    > #co.calculation_co_matrix(document_list, node_list=node_list)
+    > #co.calculation_co_matrix(tokenized_sentence_list, node_list=node_list)
     > result = co.get_co_word("금리")
     > print(result)
     > ```
@@ -826,7 +826,7 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > #node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
-    > #co.calculation_co_matrix(document_list, node_list=node_list)
+    > #co.calculation_co_matrix(tokenized_sentence_list, node_list=node_list)
     > result = co.get_centrality("d_cent")
     > print(result)
     > ```
@@ -853,7 +853,7 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > #node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
-    > #co.calculation_co_matrix(document_list, node_list=node_list)
+    > #co.calculation_co_matrix(tokenized_sentence_list, node_list=node_list)
     > co.get_co_matrix_graph(max_count)
     > ```
     > Output (in Jupyter Notebook) :
@@ -870,7 +870,7 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > #node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
-    > #co.calculation_co_matrix(document_list, node_list=node_list)
+    > #co.calculation_co_matrix(tokenized_sentence_list, node_list=node_list)
     > co.get_co_matrix_graph(100)
     > ```
     > Output (in Jupyter Notebook) :
