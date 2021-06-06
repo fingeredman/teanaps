@@ -348,6 +348,162 @@
 > Notes :  
 > - import시 최초 1회 경고메시지 (Warnning)가 출력될 수 있습니다. 무시하셔도 좋습니다.
 
+- `teanaps.nlp.Processing.get_cnoun()` [[Top]](#teanaps-architecture)
+  - `TEANAPS`에서 기본으로 제공하는 복합명사 리스트를 호출하고 그 결과를 반환합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *result (list) : 복합명사를 모두 포함하는 리스트.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > result = pro.get_cnoun()
+    > print(result[-10:])
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > ['텍스트마이닝', '텍스트분석', '자연어처리', '지능정보학회', '비정형데이터', '악성댓글', '걸그룹', '쇼케이스', '허위유포', '흔들의자']
+    > ```
+
+- `teanaps.nlp.Processing.add_cnoun(word/word_list)` [[Top]](#teanaps-architecture)
+  - `TEANAPS`에서 기본으로 제공하는 복합명사 리스트에 임의의 복합명사 또는 복합명사 리스트를 추가합니다.
+  - Parameters
+    - *word/word_list (str/list) : 복합명사 또는 복합명사를 포함하는 리스트*
+  - Returns
+    - *None*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > pro.add_cnoun("전기자동차")
+    >
+    > result = pro.get_cnoun()
+    > print(result[-10:])
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > #['텍스트마이닝', '텍스트분석', '자연어처리', '지능정보학회', '비정형데이터', '악성댓글', '걸그룹', '쇼케이스', '허위유포', '흔들의자']
+    > ['텍스트분석', '자연어처리', '지능정보학회', '비정형데이터', '악성댓글', '걸그룹', '쇼케이스', '허위유포', '흔들의자', '전기자동차']
+    > ```
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > pro.add_cnoun(["장난감자동차", "이차전지", "전동트렁크"])
+    >
+    > result = pro.get_cnoun()
+    > print(result[-10:])
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > #['텍스트분석', '자연어처리', '지능정보학회', '비정형데이터', '악성댓글', '걸그룹', '쇼케이스', '허위유포', '흔들의자', '전기자동차']
+    > ['비정형데이터', '악성댓글', '걸그룹', '쇼케이스', '허위유포', '흔들의자', '전기자동차', '장난감자동차', '이차전지', '전동트렁크']
+    > ```
+
+- `teanaps.nlp.Processing.remove_cnoun(word/word_list)` [[Top]](#teanaps-architecture)
+  - 전체 복합명사 리스트에서 복합명사 또는 복합명사 리스트를 모두 삭제합니다.
+  - Parameters
+    - *word/word_list (str/list) : 복합명사 또는 복합명사를 포함하는 리스트*
+  - Returns
+    - *None*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > pro.remove_cnoun("전동트렁크")
+    >
+    > result = pro.get_cnoun()
+    > print(result[-10:])
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > #['비정형데이터', '악성댓글', '걸그룹', '쇼케이스', '허위유포', '흔들의자', '전기자동차', '장난감자동차', '이차전지', '전동트렁크']
+    > ['지능정보학회', '비정형데이터', '악성댓글', '걸그룹', '쇼케이스', '허위유포', '흔들의자', '전기자동차', '장난감자동차', '이차전지']
+    > ```
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > pro.remove_cnoun(["전기자동차", "장난감자동차", "이차전지"])
+    >
+    > result = pro.get_cnoun()
+    > print(result[-10:])
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > #['지능정보학회', '비정형데이터', '악성댓글', '걸그룹', '쇼케이스', '허위유포', '흔들의자', '전기자동차', '이차전지']
+    > ['텍스트마이닝', '텍스트분석', '자연어처리', '지능정보학회', '비정형데이터', '악성댓글', '걸그룹', '쇼케이스', '허위유포', '흔들의자']
+    > ```
+
+- `teanaps.nlp.Processing.clear_cnoun()` [[Top]](#teanaps-architecture)
+  - 전체 복합명사 리스트에서 복합명사 또는 복합명사 리스트를 모두 삭제합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *None*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > pro.clear_cnoun()
+    >
+    > result = pro.get_cnoun()
+    > print(result[-10:])
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > #['텍스트마이닝', '텍스트분석', '자연어처리', '지능정보학회', '비정형데이터', '악성댓글', '걸그룹', '쇼케이스', '허위유포', '흔들의자']
+    > []
+    > ```
+
+- `teanaps.nlp.Processing.set_org_cnoun()` [[Top]](#teanaps-architecture)
+  - 복합명사 리스트를 `TEANAPS`에서 기본으로 제공하는 복합명사 리스트로 초기화합니다.
+  - Parameters
+    - *None*
+  - Returns
+    - *None*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > pro.set_org_cnoun()
+    >
+    > result = pro.get_cnoun()
+    > print(result[-10:])
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > #[]
+    > ['텍스트마이닝', '텍스트분석', '자연어처리', '지능정보학회', '비정형데이터', '악성댓글', '걸그룹', '쇼케이스', '허위유포', '흔들의자']
+    > ```
+
+- `teanaps.nlp.Processing.is_cnoun(word)` [[Top]](#teanaps-architecture)
+  - 단어가 복합명사 리스트에 포함되어있는지 여부를 확인하고 그 결과를 반환합니다.
+  - Parameters
+    - *word (str) : 복합명사*
+  - Returns
+    - *result (bool) : 복합명사 포함여부. True or False*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > result = pro.is_cnoun("텍스트마이닝")
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > True
+    > ```
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > result = pro.is_cnoun("전기자동차")
+    > print(result)
+    > ```
+    > Output (in Jupyter Notebook) :
+    > ```python
+    > False
+    > ```
+
 - `teanaps.nlp.Processing.get_stopword()` [[Top]](#teanaps-architecture)
   - `TEANAPS`에서 기본으로 제공하는 불용어를 호출하고 그 결과를 반환합니다.
   - Parameters

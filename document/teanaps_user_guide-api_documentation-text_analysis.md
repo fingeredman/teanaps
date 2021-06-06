@@ -175,32 +175,6 @@
     > [0., 0., 0.45665731, 0., 0., ...]
     > ```
 
-- `teanaps.text_analysis.TfidfCalculator.get_result()` [[Top]](#teanaps-architecture)
-  - 전체 문서에서 단어의 TF, TF-IDF 값이 저장된 딕셔너리를 반환합니다.
-  - Parameters
-    - *None*
-  - Returns
-    - *result (dict) : 단어별 TF, TF-IDF 값이 저장된 딕셔너리.*
-  - Examples
-
-    > Python Code (in Jupyter Notebook) :
-    > ```python
-    > #tfidf.calculation_tfidf(tokenized_sentence_list)
-    > result = tfidf.get_result()
-    > print(result)
-    > ```
-    > Output (in Jupyter Notebook) :
-    > ```python
-    > {'가격': {'tf': 3, 'tfidf': 1.1424359882788366},
-    >  '가능': {'tf': 1, 'tfidf': 0.509179564909753},
-    >  '가능성': {'tf': 1, 'tfidf': 0.45665731260262726},
-    >  ...,
-    >  '효과': {'tf': 2, 'tfidf': 1.0165526804723384},
-    >  '흐름': {'tf': 1, 'tfidf': 0.473637588408657},
-    >  '흡수': {'tf': 1, 'tfidf': 0.5177879851919405}
-    > }
-    > ```
-
 - `teanaps.text_analysis.TfidfCalculator.get_tf_dict()` [[Top]](#teanaps-architecture)
   - 전체 문서에서 단어의 TF 값이 저장된 딕셔너리를 반환합니다.
   - Parameters
