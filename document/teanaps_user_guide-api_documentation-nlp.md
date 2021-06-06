@@ -106,7 +106,7 @@
 - `teanaps.nlp.MorphologicalAnalyzer.set_tagger(tagger)` [[Top]](#teanaps-architecture)
   - 형태소 분석기를 선택합니다. 형태소 분석기는 `MeCab`, `Okt (Twitter)`, `Kkma`, `NLTK` 총 4가지를 지원합니다. 형태소 분석기를 선택하지 않으면 기본으로 한국어는 `OKt`, 영어는 `NLTK` 형태소 분석기를 사용합니다.
   - Parameters
-    - *tagger (str) : 형태소 분석기 {"okt", "mecab", "mecab-ko", "kkma"} 중 하나 입력.*
+    - *tagger (str) : 형태소 분석기 {"okt", "mecab", "kkma"} 중 하나 입력.*
   - Returns
     - *None*
   - Examples
@@ -841,12 +841,13 @@
     > If it is to be, it is up to me.
     > ```
 
-- `teanaps.nlp.Processing.masking(sentence, replace_char="*", ner_tag_list=[])` [[Top]](#teanaps-architecture)
+- `teanaps.nlp.Processing.masking(sentence, replace_char="*", ner_tag_list=[], model_path="")` [[Top]](#teanaps-architecture)
   - 문장에서 추출된 개체명을 다른 문자열로 치환하고 그 결과를 반환합니다.
   - Parameters
     - *sentence (str) : 한국어 또는 영어로 구성된 문장. 최대 128자.*
     - *replace_char (str) : 개체명을 치환할 문자열.*
     - *ner_tag_list (list) : 치환 대상 개체명 태그 리스트.*
+    - *model_path (str) : 개체명 인식 모델 파일 경로.*
   - Returns
     - *result (str) : 개체명을 다른 문자열로 치환한 문장.*
   - Examples

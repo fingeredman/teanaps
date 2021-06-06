@@ -94,6 +94,7 @@
     > data_meta_list = []
     > 
     > data_meta = {
+    >     "graph_type": "histogram",
     >     "data_name": "Y",
     >     "x_data": x,
     >     "y_data": y,
@@ -102,6 +103,7 @@
     > data_meta_list.append(data_meta)
     > 
     > data_meta = {
+    >     "graph_type": "histogram",
     >     "data_name": "Z",
     >     "x_data": x,
     >     "y_data": z,
@@ -297,9 +299,9 @@
 
 > Python Code (in Jupyter Notebook) :
 > ```python
-> from teanaps.vis import TextVisualizer
+> from teanaps.visualization import TextVisualizer
 >
-> gv = TextVisualizer()
+> tv = TextVisualizer()
 > ```
 
 - `teanaps.visualization.Textvisualizer.draw_sentence_attention(token_list, weight_list)` [[Top]](#teanaps-architecture)
@@ -328,7 +330,7 @@
     > sentence = "가중치가 양수면 파란색, 음수면 빨간색으로 음영을 표현합니다."
     > token_list = sentence.split(" ")
     > #token_list = ['가중치가', '양수면', '파란색,', "음수면", '빨간색으로', '표현합니다.']
-    > weight_list = [1, 5, 2, 1, 4, 2, 1, 1]
+    > weight_list = [0, 2, 5, -1, -4, 0, 0, 0]
     > 
     > tv.draw_sentence_attention(token_list, weight_list)
     > ```
@@ -380,11 +382,12 @@
     > Output (in Jupyter Notebook) :
     > ![visualization_wordcloud](../data/sample_image/visualization_wordcloud.png)
 
-- `teanaps.visualization.Textvisualizer.draw_network(data_meta, graph_meta)` [[Top]](#teanaps-architecture)
+- `teanaps.visualization.Textvisualizer.draw_network(data_meta, graph_meta, mode="text+markers")` [[Top]](#teanaps-architecture)
   - 단어와 그 가중치, 그리고 순서쌍을 바탕으로 생성된 네트워크 이미지를 출력합니다.
   - Parameters
     - *data_meta (dict) : 그래프에 표현할 데이터 딕셔너리. Examples 참고.*
     - *graph_meta (dict) : 그래프 속성을 정의한 딕셔너리. Examples 참고.*
+    - * mode (str) : 그래프에서 노드를 표현하는 옵션, {"text+markers", "markers", "text"} 중 하나 입력. Examples 참고.*
   - Returns
     - *plotly graph (graph object) : 네트워크 그래프.*
   - Examples

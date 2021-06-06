@@ -87,12 +87,8 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > from sklearn.datasets import fetch_california_housing
-    > import pandas as pd
-    > 
-    > data = fetch_california_housing()
-    > df = pd.DataFrame(data['data'], columns = data['feature_names'])
-    > fh.save_data("california_housing", df)
+    > sample_list = ["리스트", "딕셔너리", "문자열", "Pandas Dataframe", "등 변수를", "저장합니다."]
+    > fh.save_data("sample_list", sample_list)
     > ```
 
 - `teanaps.handler.FileHandler.load_data(file_name)` [[Top]](#teanaps-architecture)
@@ -105,18 +101,14 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > #from sklearn.datasets import fetch_california_housing
-    > #import pandas as pd
-    > 
-    > #data = fetch_california_housing()
-    > #df = pd.DataFrame(data['data'], columns = data['feature_names'])
-    > #fh.save_data("california_housing", df)
-    > df = fh.load_data("california_housing")
-    > print(type(df))
+    > #sample_list = ["리스트", "딕셔너리", "문자열", "Pandas Dataframe", "등 변수를", "저장합니다."]
+    > #fh.save_data("sample_list", sample_list)
+    > sample_list = fh.load_data("sample_list")
+    > print(sample_list)
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
-    > pandas.core.frame.DataFrame
+    > ['리스트', '딕셔너리', '문자열', 'Pandas Dataframe', '등 변수를', '저장합니다.']
     > ```
 
 - `teanaps.handler.FileHandler.save_txt(file_name, line_list, encoding="utf-8", separator="\t")` [[Top]](#teanaps-architecture)
@@ -198,9 +190,9 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > input_filename  = "sample_docx.pdf"
+    > input_filename  = "sample_docx.docx"
     > output_filename  = "sample_docx.txt"
-    > fh.pdf_converter(input_filename, output_filename)
+    > fh.docx_converter(input_filename, output_filename)
     > ```
 
 - `teanaps.handler.FileHandler.pptx_converter(input_filename, output_filename)` [[Top]](#teanaps-architecture)
@@ -214,9 +206,9 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > input_filename  = "sample_pptxx.pdf"
-    > output_filename  = "sample_pptxx.txt"
-    > fh.pdf_converter(input_filename, output_filename)
+    > input_filename  = "sample_pptx.pptx"
+    > output_filename  = "sample_pptx.txt"
+    > fh.pptx_converter(input_filename, output_filename)
     > ```
 
 ##### 1.2. `teanaps.handler.MessageHandler`

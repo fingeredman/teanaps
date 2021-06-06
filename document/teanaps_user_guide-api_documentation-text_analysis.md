@@ -332,7 +332,7 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > #tfidf.calculation_tfidf(tokenized_sentence_list)
-    > result = tfidf.get_tfidf_dict()
+    > result = tfidf.get_tf_dict()
     > #result = tfidf.get_tfidf_dict()
     > tfidf.get_wordcloud(result)
     > ```
@@ -363,7 +363,7 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > result = dc.clustering("kmeans", document_list, num_cluters=3, max_iterations=300)
+    > result = dc.clustering("kmeans", tokenized_sentence_list, num_cluters=3, max_iterations=300)
     > print(result)
     > ```
     > Output (in Jupyter Notebook) :
@@ -374,7 +374,7 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > result = dc.clustering("dbscan", document_list, eps=0.5, min_samples=5)
+    > result = dc.clustering("dbscan", tokenized_sentence_list, eps=0.5, min_samples=5)
     > print(result)
     > ```
     > Output (in Jupyter Notebook) :
@@ -385,7 +385,7 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > result = dc.clustering("hdbscan", document_list, min_samples=5)
+    > result = dc.clustering("hdbscan", tokenized_sentence_list, min_samples=5)
     > print(result)
     > ```
     > Output (in Jupyter Notebook) :
@@ -406,7 +406,7 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > result = dc.inertia_transition(tokenized_sentence_list, 10, 300)
+    > result = dc.kmeans_inertia_transition(tokenized_sentence_list, 10, 300)
     > print(result)
     > ```
     > Output (in Jupyter Notebook) :
@@ -424,8 +424,8 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > inertia_list = dc.inertia_transition(tokenized_sentence_list, 10, 300)
-    > dc.get_inertia_transition_graph(inertia_list)
+    > inertia_list = dc.kmeans_inertia_transition(tokenized_sentence_list, 10, 300)
+    > dc.get_kmeans_inertia_transition_graph(inertia_list)
     > ```
     > Output (in Jupyter Notebook) :
     > ![clustering_inertia_line_graph](../data/sample_image/clustering_inertia_line_graph.png)
@@ -443,11 +443,12 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > import pandas as pd
-    > clustering_result = dc.kmeans_clustering(document_list, 3, 300)
+    > 
+    > clustering_result = dc.kmeans_clustering(tokenized_sentence_list, 3, 300)
     > predict_list  = clustering_result["predict_list"]
-    > df_article = pd.DataFrame(document_list, columns = ["label", "source", "datetime", "title", "content"])
-    > result = dc.get_tfidf_tsne(document_list, predict_list, df_article)
-    > print(type(result))
+    > df_article = pd.DataFrame(tokenized_sentence_list, columns = ["label", "source", "datetime", "title", "content"])
+    > df_result = dc.get_tfidf_tsne(tokenized_sentence_list, predict_list, df_article)
+    > print(type(df_result))
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
@@ -465,33 +466,30 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > dc.get_kmeans_graph(df_result, "predict")
+    > dc. get_cluster_graph(df_result, "predict")
     > ```
     > Output (in Jupyter Notebook) :
     > ![clustering_predict_scatter](../data/sample_image/clustering_predict_scatter.png)
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > dc.get_kmeans_graph(df_result, "label")
+    > dc. get_cluster_graph(df_result, "label")
     > ```
     > Output (in Jupyter Notebook) :
     > ![clustering_label_scatter](../data/sample_image/clustering_label_scatter.png)
 
-- `teanaps.text_analysis.DocumentClustering.get_silhouette_score2(alg, document_list, df_tfidf_tsne,  num_clusters=3, eps=0.5, min_samples=5)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.DocumentClustering.get_silhouette_score2(document_list, df_result)` [[Top]](#teanaps-architecture)
   - 군집화 결과에 대한 실루엣 스코어를 계산하고 그 결과를 반환합니다.
   - Parameters
     - *document_list (list) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
-    - *df_tfidf_tsne (DataFrame) : 각 문서의 레이블과 군집, 그리고 문서를 TF-IDF 임베딩하여 차원축소한 2차원 좌표를 포함하는 DataFrame.*
-    - *num_cluters (int) : 생성할 군집의 개수.*
-    - *eps (float) : DBSCAN 알고리즘 하이퍼파라미터.*
-    - *min_samples (int) : 클러스터에 포함할 최소 데이터 개수.*
+    - *df_result (DataFrame) : 각 문서의 레이블과 군집, 그리고 문서를 TF-IDF 임베딩하여 차원축소한 2차원 좌표를 포함하는 DataFrame.*
   - Returns
     - *result (float) : 군집화 결과에 대한 실루엣 스코어.*
   - Examples
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > result = dc.get_silhouette_score2("kmeans", document_list, df_tfidf_tsne, num_clusters=3)
+    > result = dc.get_silhouette_score2(tokenized_sentence_list, df_result)
     > print(result)
     > ```
     > Output (in Jupyter Notebook) :
@@ -499,11 +497,11 @@
     > 0.1772473694643886
     > ```
 
-- `teanaps.text_analysis.DocumentClustering.get_silhouette_graph2(alg, document_list, df_result, num_clusters=3, eps=0.5, min_samples=5)` [[Top]](#teanaps-architecture)
+- `teanaps.text_analysis.DocumentClustering.get_silhouette_graph2(document_list, df_result)` [[Top]](#teanaps-architecture)
   - 군집화 결과에 대한 실루엣 그래프를 반환합니다.
   - Parameters
     - *document_list (str) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
-    - *df_tfidf_tsne (DataFrame) : 각 문서의 레이블과 군집, 그리고 문서를 TF-IDF 임베딩하여 차원축소한 2차원 좌표를 포함하는 DataFrame.*
+    - *df_result (DataFrame) : 각 문서의 레이블과 군집, 그리고 문서를 TF-IDF 임베딩하여 차원축소한 2차원 좌표를 포함하는 DataFrame.*
     - *num_cluters (int) : 생성할 군집의 개수.*
   - Returns
     - *plotly graph (graph object) : 군집화 결과와 실루엣 그래프.*
@@ -511,7 +509,7 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > dc.get_silhouette_graph2("kmeans", document_list, df_tfidf_tsne, num_clusters=3)
+    > dc.get_silhouette_graph2(tokenized_sentence_list, df_result)
     > ```
     > Output (in Jupyter Notebook) :
     > ![clustering_silhouette_graph](../data/sample_image/clustering_silhouette_graph.png)
@@ -530,21 +528,6 @@
     > ```
     > Output (in Jupyter Notebook) :
     > ![clustering_pair_wize_matrix](../data/sample_image/clustering_pair_wize_matrix.png)
-
-- `teanaps.text_analysis.DocumentClustering.get_dendrogram_graph(document_list)` [[Top]](#teanaps-architecture)
-  - 각 문서간의 유사도를 덴도그램으로 표현한 그래프를 반환합니다.
-  - Parameters
-    - *document_list (str) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
-  - Returns
-    - *plotly graph (graph object) : 각 문서간의 유사도를 덴도그램으로 표현한 그래프.*
-  - Examples
-
-    > Python Code (in Jupyter Notebook) :
-    > ```python
-    > dc.get_dendrogram_graph(document_list)
-    > ```
-    > Output (in Jupyter Notebook) :
-    > ![clustering_dendrogram_graph](../data/sample_image/clustering_dendrogram_graph.png)
 
 ##### 3.3. `teanaps.text_analysis.TopicClustering`
 
@@ -568,7 +551,7 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > result = tc.topic_modeling("lda", document_list, 3, 5)
+    > result = tc.topic_modeling("lda", tokenized_sentence_list, 3, 5)
     > print(result)
     > ```
     > Output (in Jupyter Notebook) :
@@ -604,7 +587,7 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > #result = tc.topic_modeling("lda", document_list, 3, 5)
+    > #result = tc.topic_modeling("lda", tokenized_sentence_list, 3, 5)
     > perplexity, coherence = tc.get_model_validation_result()
     > print(perplexity)
     > print(coherence)
@@ -615,18 +598,33 @@
     > 0.5127122691849578
     > ```
 
-- `teanaps.text_analysis.TopicClustering.display_model_result()` [[Top]](#teanaps-architecture)
-  - 주제 군집화 결과를 시각화하여 표현합니다.
+- `teanaps.text_analysis.TopicClustering.get_model()` [[Top]](#teanaps-architecture)
+  - 주제 군집화 결과 생성된 모델을 반환합니다.
   - Parameters
     - *None*
+  - Returns
+    - *result (model) : 주제 군집 결과 모델.*
+  - Examples
+
+    > Python Code (in Jupyter Notebook) :
+    > ```python
+    > #result = tc.topic_modeling("lda", tokenized_sentence_list, 3, 5)
+    > model = tc.get_model()
+    > ```
+
+- `teanaps.text_analysis.TopicClustering.display_model_resul(model)` [[Top]](#teanaps-architecture)
+  - 주제 군집화 결과를 시각화하여 표현합니다.
+  - Parameters
+    - * model (model) : 형태소 단위로 분리된 단어로 표현된 문서를 포함하는 리스트.*
   - Returns
     - *result (IPython.core.display.HTML) : 주제 군집 시각화 결과.*
   - Examples
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > #result = tc.topic_modeling("lda", document_list, 3, 5)
-    > tc.display_model_result()
+    > #result = tc.topic_modeling("lda", tokenized_sentence_list, 3, 5)
+    > model = tc.get_model()
+    > tc.display_model_result(model)
     > ```
     > Output (in Jupyter Notebook) :
     > ![topic_clustering_lda_vis](../data/sample_image/topic_clustering_lda_vis.png)
@@ -641,8 +639,8 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > #result = tc.topic_modeling("lda", document_list, 3, 5)
-    > result = tc.get_topics_sentences(document_list)
+    > #result = tc.topic_modeling("lda", tokenized_sentence_list, 3, 5)
+    > result = tc.get_topics_sentences(tokenized_sentence_list)
     > print(type(result))
     > ```
     > Output (in Jupyter Notebook) :
@@ -662,8 +660,7 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > result = tc.get_model_validation_graph("lda", document_list, 10)
-    > print(type(result))
+    > tc.get_model_validation_graph("lda", tokenized_sentence_list, 10)
     > ```
     > Output (in Jupyter Notebook) :
     > ![topic_clustering_find_topic_count](../data/sample_image/topic_clustering_find_topic_count.png)
@@ -680,7 +677,7 @@
 
     > Python Code (in Jupyter Notebook) :
     > ```python
-    > result = tc.sequence_lda_topic_modeling(document_list, [100, 100, ..., 100]], 5)
+    > result = tc.sequence_lda_topic_modeling(tokenized_sentence_list, [100, 100, ..., 100], 5)
     > print(result)
     > ```
     > Output (in Jupyter Notebook) :
@@ -737,7 +734,7 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
-    > co.calculation_co_matrix(document_list, node_list=node_list)
+    > co.calculation_co_matrix(tokenized_sentence_list, node_list=node_list)
     > ```
 
 - `teanaps.text_analysis.CoWordCalculator.get_edge_list()` [[Top]](#teanaps-architecture)
@@ -751,7 +748,7 @@
     > Python Code (in Jupyter Notebook) :
     > ```python
     > #node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
-    > #co.calculation_co_matrix(document_list, node_list=node_list)
+    > #co.calculation_co_matrix(tokenized_sentence_list, node_list=node_list)
     > result = co.get_edge_list()
     > print(result)
     > ```
@@ -874,7 +871,7 @@
     > ```python
     > #node_list = ["금리", "금융", "대출", "비트코인", "부동산", "은행", "코픽스", "자산", "시장", "신탁", "그림자", "투자", "거래", "정부", "상품", "신용", "리스크"]
     > #co.calculation_co_matrix(document_list, node_list=node_list)
-    > co.get_co_matrix_graph(max_count)
+    > co.get_co_matrix_graph(100)
     > ```
     > Output (in Jupyter Notebook) :
     > ![coword_network](../data/sample_image/coword_network.png)
@@ -1092,7 +1089,7 @@
     > #document_path = "article.txt"
     > #ds.set_document(document_path)
     > result = ds.summarize("textrank", 3)
-    > print(token_list)
+    > print(result)
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
@@ -1107,7 +1104,7 @@
     > #document_path = "article.txt"
     > #ds.set_document(document_path)
     > result = ds.summarize("lsa", 3)
-    > print(token_list)
+    > print(result)
     > ```
     > Output (in Jupyter Notebook) :
     > ```python
