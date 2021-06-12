@@ -16,7 +16,7 @@
 > - `TEANAPS`가 `v0.9.7` 버전으로 업데이트 되었습니다. 기존 설치하신 분들은 반드시 업데이트 후 사용 바랍니다.
 > - `TEANAPS`를 활용한 실무/연구 프로젝트 **지원이 필요하신 분들** 또는 **사례 공유가 가능하신 분**의 연락을 기다립니다.     
 (***Contact : admin@teanaps.com***)  
-> - 본 자료는 2019년 부터 연세대학교 `텍스트 마이닝`, `고급 텍스트 마이닝`, `비정형 데이터 분석` 강의 실습자료로 활용되고 있습니다.
+> - 본 자료는 국내 대학강의 및 학회, 세미나에 교육자료로 활용되고 있습니다.
 > - `TEANAPS` 라이브러리 사용법은 [`User Guide`](./document/teanaps_user_guide-install_teanaps.md#teanaps-user-guide)를 참조해주시기 바랍니다.
 
 ---
@@ -44,8 +44,7 @@
 - [API Documentation](./document/teanaps_user_guide-api_documentation-handler.md#teanaps-user-guide)
 - [`TEANAPS` OPEN API](./document/teanaps_user_guide-rest_api.md#teanaps-user-guide)
 - [Tutorial](./document/teanaps_user_guide-tutorial.md#teanaps-user-guide)
-- [References](./document/teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
-- [Journal & Project](./document/teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
+- [Use Cases](./document/teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
 - [Appendix](./document/teanaps_user_guide-appendix.md#teanaps-user-guide)
 
 ---
