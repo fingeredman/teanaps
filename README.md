@@ -12,7 +12,7 @@
 
 ---
 ## Notice! 
-> - [`TEANAPS` News Article Scrapper](https://github.com/fingeredman/news-article-scrapper#teanaps-news-article-scrapper)가 업로드 되었습니다. 뉴스기사 및 댓글을 직접 수집하고 `TEANAPS`를 활용해 분석해보세요.
+> - [`TEANAPS` News Article Scrapper](https://github.com/fingeredman/news-article-scrapper#teanaps-news-article-scrapper)로 뉴스기사 및 댓글을 직접 수집하고 `TEANAPS`를 활용해 분석해보세요.
 > - `TEANAPS`가 `v0.9.7` 버전으로 업데이트 되었습니다. 기존 설치하신 분들은 반드시 업데이트 후 사용 바랍니다.
 > - `TEANAPS`를 활용한 실무/연구 프로젝트 **지원이 필요하신 분들** 또는 **사례 공유가 가능하신 분**의 연락을 기다립니다.     
 (***Contact : admin@teanaps.com***)  
