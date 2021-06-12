@@ -18,7 +18,7 @@
 ## Use Cases
 
 ### Lectur & Seminar
-- (2021) _한국지능정보시스템학회 춘계학술대회 튜토리얼 <오픈소스 텍스트 분석 라이브러리: TEANAPS>_ ([(Link)](http://www.kiiss.or.kr/conference/conf/sub03.html)
+- (2021.06.) _한국지능정보시스템학회 춘계학술대회 튜토리얼 세션 <오픈소스 텍스트 분석 라이브러리: TEANAPS>_ ([(Link)](http://www.kiiss.or.kr/conference/conf/sub03.html)
 - (2021.05.) _IBK AI/빅데이터 과정 <텍스트 마이닝>_
 - (2021.05.) _연세대학교 정보대학원 SMBA 과정 <고급 텍스트 마이닝>_
 - (2021.03.) _연세대학교 정보대학원 SMBA 과정 <고급 텍스트 마이닝>_
