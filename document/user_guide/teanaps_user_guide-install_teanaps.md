@@ -18,11 +18,12 @@
 ## Install `TEANAPS`
 
 ### Quick Start
-- `install.ipynb` 파일을 참조해주세요.
-- 링크를 통해 설치용 `Jupyter Notebook` 파일을 `Google Colabotory`로 열 수 있습니다. [(Link)](https://colab.research.google.com/github/fingeredman/teanaps/blob/master/install.ipynb)
-- 로컬 환경에 철치가 필요하신 경우, [teanaps_install.py](https://github.com/fingeredman/teanaps/blob/master/teanaps_setup.py) 파일을 참고 바랍니다.
-- 본 패키지는 `pip`를 통한 설치를 지원하지 않습니다.
-- `Windows 운영체제`에서 일부 기능에 제한이 있을 수 있습니다.
+- `Google Colabotory` 환경에서 아래 코드를 실행하여 간단하게 `TEANAPS`를 설치하고 활용할 수 있습니다.
+- 링크를 통해 설치용 `Jupyter Notebook` 파일(install.ipynb)을 `Google Colabotory`로 열 수 있습니다. [(Link)](../../install.ipynb)
+- `Google Colabotory` 활용방법은 [가이드 문서](../../document/introduction/teanaps_with__google_coalb_20210611_v1.0.pdf)를 참고해주세요.
+- 로컬 환경에 철치가 필요하신 경우, [teanaps_install.py](../../teanaps_setup.py) 파일을 참고 바랍니다.
+- 본 라이브러리는 `pip`를 통한 설치를 지원하지 않습니다.
+- 본 라이브러리는 `Google Colabotory` 환경에 최적되어있으며, `Windows 운영체제`에서는 일부 기능에 제한이 있을 수 있습니다.
 
 > Python Code (in Jupyter Notebook) :
 > ```python
