@@ -318,7 +318,7 @@
     > tfidf.draw_tfidf(100)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![tfidf_histogram](../data/sample_image/tfidf_histogram.png)
+    > ![tfidf_histogram](../../data/sample_image/tfidf_histogram.png)
 
 - `teanaps.text_analysis.TfidfCalculator.get_wordcloud(weight_dict)` [[Top]](#teanaps-architecture)
   - 단어의 TF, TF-IDF 값을 표현한 워드클라우드를 반환합니다.
@@ -336,7 +336,7 @@
     > tfidf.get_wordcloud(result)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![tfidf_wordcloud](../data/sample_image/tfidf_wordcloud.png)
+    > ![tfidf_wordcloud](../../data/sample_image/tfidf_wordcloud.png)
 
 ##### 3.2. `teanaps.text_analysis.DocumentClustering`
 
@@ -427,7 +427,7 @@
     > dc.get_kmeans_inertia_transition_graph(inertia_list)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![clustering_inertia_line_graph](../data/sample_image/clustering_inertia_line_graph.png)
+    > ![clustering_inertia_line_graph](../../data/sample_image/clustering_inertia_line_graph.png)
 
 - `teanaps.text_analysis.DocumentClustering.get_tfidf_tsne(document_list, predict_list, df_article)` [[Top]](#teanaps-architecture)
   - 각 문서의 레이블과 군집, 그리고 문서를 TF-IDF 임베딩하여 차원축소한 2차원 좌표를 포함하는 DataFrame을 반환합니다.
@@ -468,14 +468,14 @@
     > dc. get_cluster_graph(df_result, "predict")
     > ```
     > Output (in Jupyter Notebook) :
-    > ![clustering_predict_scatter](../data/sample_image/clustering_predict_scatter.png)
+    > ![clustering_predict_scatter](../../data/sample_image/clustering_predict_scatter.png)
 
     > Python Code (in Jupyter Notebook) :
     > ```python
     > dc. get_cluster_graph(df_result, "label")
     > ```
     > Output (in Jupyter Notebook) :
-    > ![clustering_label_scatter](../data/sample_image/clustering_label_scatter.png)
+    > ![clustering_label_scatter](../../data/sample_image/clustering_label_scatter.png)
 
 - `teanaps.text_analysis.DocumentClustering.get_silhouette_score2(document_list, df_result)` [[Top]](#teanaps-architecture)
   - 군집화 결과에 대한 실루엣 스코어를 계산하고 그 결과를 반환합니다.
@@ -511,7 +511,7 @@
     > dc.get_silhouette_graph2(tokenized_sentence_list, df_result)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![clustering_silhouette_graph](../data/sample_image/clustering_silhouette_graph.png)
+    > ![clustering_silhouette_graph](../../data/sample_image/clustering_silhouette_graph.png)
 
 - `teanaps.text_analysis.DocumentClustering.get_pair_wize_matrix(document_list)` [[Top]](#teanaps-architecture)
   - 각 문서간의 유사도를 매트릭스로 표현한 그래프를 반환합니다.
@@ -526,7 +526,7 @@
     > dc.get_pair_wize_matrix(tokenized_sentence_list)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![clustering_pair_wize_matrix](../data/sample_image/clustering_pair_wize_matrix.png)
+    > ![clustering_pair_wize_matrix](../../data/sample_image/clustering_pair_wize_matrix.png)
 
 ##### 3.3. `teanaps.text_analysis.TopicClustering`
 
@@ -626,7 +626,7 @@
     > tc.display_model_result(model)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![topic_clustering_lda_vis](../data/sample_image/topic_clustering_lda_vis.png)
+    > ![topic_clustering_lda_vis](../../data/sample_image/topic_clustering_lda_vis.png)
 
 - `teanaps.text_analysis.TopicClustering.get_topics_sentences(document_list)` [[Top]](#teanaps-architecture)
   - 주제 군집화 결과에 대해 각 주제에 해당하는 문서를 찾아내고 그 결과를 반환합니다.
@@ -662,7 +662,7 @@
     > tc.get_model_validation_graph("lda", tokenized_sentence_list, 10)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![topic_clustering_find_topic_count](../data/sample_image/topic_clustering_find_topic_count.png)
+    > ![topic_clustering_find_topic_count](../../data/sample_image/topic_clustering_find_topic_count.png)
 
 - `teanaps.text_analysis.sequence_lda_topic_modeling(document_list, time_slice, topic_count)` [[Top]](#teanaps-architecture)
   - 문서에서 N개의 주제에 대해 각 군집의 기간별 변화 추이를 계산하고 그 결과를 반환합니다.
@@ -710,7 +710,7 @@
     > tc.get_sequence_topic_graph()
     > ```
     > Output (in Jupyter Notebook) :
-    > ![topic_clustering_topic_trend](../data/sample_image/topic_clustering_topic_trend.png)
+    > ![topic_clustering_topic_trend](../../data/sample_image/topic_clustering_topic_trend.png)
 
 ##### 3.4. `teanaps.text_analysis.CoWordCalculator`
 
@@ -856,7 +856,7 @@
     > co.get_co_matrix_graph(max_count)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![coword_matrix](../data/sample_image/coword_matrix.png)
+    > ![coword_matrix](../../data/sample_image/coword_matrix.png)
 
 - `teanaps.text_analysis.CoWordCalculator.get_word_network_graph(centrality_dict)` [[Top]](#teanaps-architecture)
   - 단어의 동시출현 관계를 네트워크 그래프로 표현합니다.
@@ -873,7 +873,7 @@
     > co.get_co_matrix_graph(100)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![coword_network](../data/sample_image/coword_network.png)
+    > ![coword_network](../../data/sample_image/coword_network.png)
 
 ##### 3.5. `teanaps.text_analysis.SentimentAnalysis`
 
@@ -967,7 +967,7 @@
     > senti.draw_weight(sentence)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![sentiment_pos_histogram](../data/sample_image/sentiment_pos_histogram.png)
+    > ![sentiment_pos_histogram](../../data/sample_image/sentiment_pos_histogram.png)
 
     > Python Code (in Jupyter Notebook) :
     > ```python
@@ -975,7 +975,7 @@
     > senti.draw_weight(sentence)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![sentiment_neg_histogram](../data/sample_image/sentiment_neg_histogram.png)
+    > ![sentiment_neg_histogram](../../data/sample_image/sentiment_neg_histogram.png)
 
 - `teanaps.text_analysis.SentimentAnalysis.draw_sentence_weight(sentence)` [[Top]](#teanaps-architecture)
   - 감성수준 분류에 참조된 각 각 형태소별 가중치를 하이라이트한 형태의 문장 그래프로 출력합니다.
@@ -991,7 +991,7 @@
     > senti.draw_sentence_weight(sentence)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![sentiment_weight_pos](../data/sample_image/sentiment_weight_pos.png)
+    > ![sentiment_weight_pos](../../data/sample_image/sentiment_weight_pos.png)
 
     > Python Code (in Jupyter Notebook) :
     > ```python
@@ -999,7 +999,7 @@
     > senti.draw_sentence_weight(sentence)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![sentiment_weight_neg](../data/sample_image/sentiment_weight_neg.png)
+    > ![sentiment_weight_neg](../../data/sample_image/sentiment_weight_neg.png)
 
 - `teanaps.text_analysis.SentimentAnalysis.get_sentiment_parse(sentence, neutral_th=0.3, , tagger="mecab", model_path="/model")` [[Top]](#teanaps-architecture)
   - 문장의 각 어절에 대한 감성수준을 긍정 또는 부정으로 분류하고 그 가중치를 반환합니다.
@@ -1046,7 +1046,7 @@
     > senti.draw_sentiment_parse(token_list, weight_list)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![sentiment_parse](../data/sample_image/sentiment_parse.png)
+    > ![sentiment_parse](../../data/sample_image/sentiment_parse.png)
 
 ##### 3.6. `teanaps.text_analysis.DocumentSummarizer`
 

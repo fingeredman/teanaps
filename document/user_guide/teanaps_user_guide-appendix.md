@@ -25,7 +25,7 @@
       - `TEANAPS`의 형태소 분리 및 품사태깅(PoS tagging) 속도는 <U>`Okt`에 비해 300~400% 빠르며</U>, 이는 공개된 형태소분석기 중 가장 빠른 <U>`MeCab`의 약 80% 수준 속도</U>입니다.
 
     - 처리속도 비교
-      > ![validation_pos](../data/sample_image/validation_pos.png)
+      > ![validation_pos](../../data/sample_image/validation_pos.png)
 
 	- 출력 결과 비교
       > **Input \:**    
@@ -93,33 +93,33 @@
       - `TEANAPS` 개체명인식 모델 학습 결과, Validation 셋에 대해 <U>약 97.8%의 인식률</U>을 보입니다.
       - 학습데이터 도메인 제한으로 개체명 구간이 정상 인식되었으나 분류가 알수없음(UN)인 경우가 발생할 수 있습니다.
     - 개체명인식 모델 학습결과
-      > ![validation_ner](../data/sample_image/validation_ner.png)
+      > ![validation_ner](../../data/sample_image/validation_ner.png)
 
 	- 출력 결과 샘플
       > **Input 1 \:**  
       > "*TEANAPS는 텍스트 마이닝을 위한 Python 패키지 입니다.*"  
       > **>>** "*<TEANAPS\:UN>는 텍스트 마이닝을 위한 <Python\:UN> 패키지 입니다.*"  
-      > ![validation_ner_ex1](../data/sample_image/validation_ner_ex1.png)
+      > ![validation_ner_ex1](../../data/sample_image/validation_ner_ex1.png)
      
       > **Input 2 \:**  
       > "*영국 매체 스카이 스포츠는 25일 맨유 미드필더 폴 포그바가 여름 이적시장 실패 후, 1월 레알 마드리드로 이적할 수 있다고 전했다.*"  
       > **>>** "*<영국\:LC> 매체 <스카이 스포츠\:UN>는 <25일\:DT> <맨유\:OG> 미드필더 <폴 포그바\:PS>가 여름 이적시장 실패 후, <1월\:DT> <레알 마드리드\:OG>로 이적할 수 있다고 전했다.*"  
-      > ![validation_ner_ex2](../data/sample_image/validation_ner_ex2.png)
+      > ![validation_ner_ex2](../../data/sample_image/validation_ner_ex2.png)
 
       > **Input 3 \:**  
       > "*최근 코로나 바이러스의 여파로 연세대학교 제 768회 졸업식이 취소되었음을 알려드립니다.*"  
       > **>>** "*최근 <코로나 바이러스\:UN>의 여파로 <연세대학교\:OG> <제 768회\:QT> 졸업식이 취소되었음을 알려드립니다.*"  
-      > ![validation_ner_ex3](../data/sample_image/validation_ner_ex3.png)
+      > ![validation_ner_ex3](../../data/sample_image/validation_ner_ex3.png)
 
       > **Input 4 \:**  
       > "*오늘 출시된 V60 ThinkQ는 LG전자의 핵심 제품입니다.*"  
       > **>>** "*오늘 출시된 <V60 ThinkQ\:UN>는 <LG전자\:OG>의 핵심 제품입니다.*"    
-      > ![validation_ner_ex4](../data/sample_image/validation_ner_ex4.png)
+      > ![validation_ner_ex4](../../data/sample_image/validation_ner_ex4.png)
 
       > **Input 5 \:**  
       > "*충청북도 청주는 교육의 도시입니다.*"  
       > **>>** "*<충청북도\:LC> <청주\:LC>는 교육의 도시입니다.*"  
-      > ![validation_ner_ex5](../data/sample_image/validation_ner_ex5.png)
+      > ![validation_ner_ex5](../../data/sample_image/validation_ner_ex5.png)
 
 ### `TEANAPS` 형태소 품사태그표
 - `TEANAPS` 형태소 분석기의 형태소 품사태그는 `세종말뭉치 품사태그`를 기본으로 하여 아래와 같이 통일하여 사용합니다.  

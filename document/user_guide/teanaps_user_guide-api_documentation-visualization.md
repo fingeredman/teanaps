@@ -123,7 +123,7 @@
     > gv.draw_histogram(data_meta_list, graph_meta)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![visualization_histogram](../data/sample_image/visualization_histogram.png)
+    > ![visualization_histogram](../../data/sample_image/visualization_histogram.png)
 
 - `teanaps.visualization.GraphVisualizer.draw_line_graph(data_meta_list, graph_meta)` [[Top]](#teanaps-architecture)
   - 입력된 그래프 메타정보를 바탕으로 생성된 라인 그래프를 출력합니다.
@@ -171,7 +171,7 @@
     > gv.draw_line_graph(data_meta_list, graph_meta)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![visualization_line_graph](../data/sample_image/visualization_line_graph.png)
+    > ![visualization_line_graph](../../data/sample_image/visualization_line_graph.png)
 
 - `teanaps.visualization.GraphVisualizer.draw_matrix(data_meta_list, graph_meta)` [[Top]](#teanaps-architecture)
   - 입력된 그래프 메타정보를 바탕으로 생성된 매트릭스 그래프를 출력합니다.
@@ -215,7 +215,7 @@
     > gv.draw_matrix(data_meta, graph_meta)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![visualization_matrix](../data/sample_image/visualization_matrix.png)
+    > ![visualization_matrix](../../data/sample_image/visualization_matrix.png)
 
 - `teanaps.visualization.GraphVisualizer.draw_scatter(data_meta_list, graph_meta)` [[Top]](#teanaps-architecture)
   - 입력된 그래프 메타정보를 바탕으로 생성된 산점도 그래프를 출력합니다.
@@ -263,7 +263,7 @@
     > gv.draw_scatter(data_meta_list, graph_meta)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![visualization_scatter](../data/sample_image/visualization_scatter.png)
+    > ![visualization_scatter](../../data/sample_image/visualization_scatter.png)
 
 - `teanaps.visualization.GraphVisualizer.draw_radar(data_meta, graph_meta)` [[Top]](#teanaps-architecture)
   - 입력된 그래프 메타정보를 바탕으로 생성된 레이다 그래프를 출력합니다.
@@ -292,7 +292,7 @@
     > gv.draw_radar(data_meta, graph_meta)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![visualization_scatter](../data/sample_image/visualization_radar.png)
+    > ![visualization_scatter](../../data/sample_image/visualization_radar.png)
 
 ##### 4.2. `teanaps.visualization.TextVisualizer`
 
@@ -322,7 +322,7 @@
     > tv.draw_sentence_attention(token_list, weight_list)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![visualization_sentence_attention](../data/sample_image/visualization_sentence_attention.png)
+    > ![visualization_sentence_attention](../../data/sample_image/visualization_sentence_attention.png)
 
 	> Python Code (in Jupyter Notebook) :
     > ```python
@@ -334,7 +334,7 @@
     > tv.draw_sentence_attention(token_list, weight_list)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![visualization_sentence_attention_pn](../data/sample_image/visualization_sentence_attention_pn.png)
+    > ![visualization_sentence_attention_pn](../../data/sample_image/visualization_sentence_attention_pn.png)
 
 - `teanaps.visualization.Textvisualizer.draw_wordcloud(data_meta, graph_meta)` [[Top]](#teanaps-architecture)
   - 단어와 그 가중치를 바탕으로 생성된 워드클라우드 이미지를 출력합니다.
@@ -379,7 +379,7 @@
     > tv.draw_wordcloud(data_meta, graph_meta)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![visualization_wordcloud](../data/sample_image/visualization_wordcloud.png)
+    > ![visualization_wordcloud](../../data/sample_image/visualization_wordcloud.png)
 
 - `teanaps.visualization.Textvisualizer.draw_network(data_meta, graph_meta, mode="text+markers")` [[Top]](#teanaps-architecture)
   - 단어와 그 가중치, 그리고 순서쌍을 바탕으로 생성된 네트워크 이미지를 출력합니다.
@@ -417,7 +417,7 @@
     > tv.draw_network(data_meta, graph_meta)
     > ```
     > Output (in Jupyter Notebook) :
-    > ![visualization_network](../data/sample_image/visualization_network.png)
+    > ![visualization_network](../../data/sample_image/visualization_network.png)
 
 <br><br>
 ---
