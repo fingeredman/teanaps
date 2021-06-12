@@ -17,14 +17,6 @@
 ---
 ## Use Cases
 
-### Lectur & Seminar
-- (2021.06.) _한국지능정보시스템학회 춘계학술대회 튜토리얼 세션 <오픈소스 텍스트 분석 라이브러리: TEANAPS>_ ([(Link)](http://www.kiiss.or.kr/conference/conf/sub03.html)
-- (2021.05.) _IBK AI/빅데이터 과정 <텍스트 마이닝>_
-- (2021.05.) _연세대학교 정보대학원 SMBA 과정 <고급 텍스트 마이닝>_
-- (2021.03.) _연세대학교 정보대학원 SMBA 과정 <고급 텍스트 마이닝>_
-- (2020.09.) _연세대학교 정보대학원 일반과정 <텍스트 마이닝: 비정형 데이터 분석>_
-- (2020.09.) _롯데칠성 데이터분석 아카데미 Application Part <비정형 데이터 분석>_
-
 ### Journal
 - (2021.02.) _Jung, J. H., Chung, H. I., & Lee, Z. K. (2021). An Analysis of Mobile Food Delivery App'Baemin'by Using Text Mining and ARIMA Model. 디지털콘텐츠학회논문지 (J. DCS), 22(2), 291-299._ [(Link)](http://journal.dcs.or.kr/xml/28233/28233.pdf)
 - (2020.12.) _Son, A., Shin, W., & Lee, Z. (2020). An Analysis of Key Elements for FinTech Companies Based on Text Mining: From the User's Review. The Journal of Information Systems, 29(4), 137-151._ [(Link)](https://www.koreascience.or.kr/article/JAKO202009252092422.page)
@@ -44,7 +36,7 @@
   - 해외축구 이적 예측하기 (이적설 진위여부 판별)
   - `Slack` 메신저 연동 해외축구 이슈 알리미 구현
 
-- 연세대학교 <텍스트 마이닝: 비정형 데이터 분석> (2020 가을학기)
+- (2020) 연세대학교 정보대학원 일반과정 <텍스트 마이닝: 비정형 데이터 분석> 
   - _텍스트마이닝 기법과 ARIMA 모델을 활용한 '배달의 민족' 앱 리뷰 주제 분류 및 이상치 탐지_
   - _코로나-19로 인한 심리방역 현황 및 향후 대응방안을 위한 제언_
   - _뱅샐과 토스의 사용자는 무슨 생각을 할까?_
@@ -54,8 +46,16 @@
   - _웹툰 아마추어 작가의 게시글 분석_
   - _토픽모델링 & 감성분석을 통한 간편걸제 앱 서비스 비교분석: Big-bank vs. Big-tech 중심으로_
 
-- 연세대학교 <롯데칠성음료 데이터분석 아카데미: 비정형 데이터 분석> (2020)
+- (2020) 롯데칠성 데이터분석 아카데미 Application Part <비정형 데이터 분석> (2020)
   - _일본 불매 관련 비정형 데이터 분석을 통한 당사 제품군 판매 영향력 분석_
+
+### Lecture & Seminar
+- (2021.06.) _한국지능정보시스템학회 춘계학술대회 튜토리얼 세션 <오픈소스 텍스트 분석 라이브러리: TEANAPS>_ ([(Link)](http://www.kiiss.or.kr/conference/conf/sub03.html)
+- (2021.05.) _IBK AI/빅데이터 과정 <텍스트 마이닝>_
+- (2021.05.) _연세대학교 정보대학원 SMBA 과정 <고급 텍스트 마이닝>_
+- (2021.03.) _연세대학교 정보대학원 SMBA 과정 <고급 텍스트 마이닝>_
+- (2020.09.) _연세대학교 정보대학원 일반과정 <텍스트 마이닝: 비정형 데이터 분석>_
+- (2020.09.) _롯데칠성 데이터분석 아카데미 Application Part <비정형 데이터 분석>_
 
 <br><br>
 ---
