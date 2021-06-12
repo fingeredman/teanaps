@@ -60,10 +60,6 @@ class Processing():
         else:
             return False
     
-    '''
-    
-    '''
-    
     def get_stopword(self):
         stopword_list = []
         f = open(self.stopword_path, encoding="utf-8")
@@ -135,10 +131,12 @@ class Processing():
                 content_ = content_[loc:]
                 start = position
                 end = position + len(word)
+                org_word = sentence_org[start:end]
             else:
                 start = 0
                 end = 0
-            loc_list.append((sentence_org[start:end], pos, (start, end)))
+                org_word = word
+            loc_list.append((org_word, pos, (start, end)))
         return loc_list
         
     def language_detector(self, sentence):

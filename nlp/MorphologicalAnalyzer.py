@@ -24,8 +24,8 @@ class MorphologicalAnalyzer():
             word_tagged_pos_list = self.__parse(sentence)
         # English
         else:
-            sentence = self.processing.replacer(sentence)
             sentence = sentence.lower()
+            sentence = self.processing.replacer(sentence)
             sentence_org = sentence
             word_list = word_tokenize(sentence)
             word_tagged_pos_list = nltk.pos_tag(word_list)
@@ -38,8 +38,10 @@ class MorphologicalAnalyzer():
                     pos = con.POS_TAG_MAP[pos]
                 elif pos in con.SYMBOLS_POS_MAP.keys():
                     pos = con.SYMBOLS_POS_MAP[pos]
+                elif word == "be":
+                    pos = "JKS"
                 else:
-                    pos = "SW"
+                    pos = "UN"
                 lemmatized_word_list.append((word.lower(), pos))
             word_tagged_pos_list = lemmatized_word_list
             word_tagged_pos_list = self.processing.get_token_position(sentence_org, word_tagged_pos_list)
