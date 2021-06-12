@@ -11,8 +11,7 @@
   - Machine Learning
 - [`TEANAPS` OPEN API](./teanaps_user_guide-rest_api.md#teanaps-user-guide)
 - [Tutorial](./teanaps_user_guide-tutorial.md#teanaps-user-guide)
-- [References](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
-- [Journal & Project](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
+- [Use Cases](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
 - [Appendix](./teanaps_user_guide-appendix.md#teanaps-user-guide)
 
 ---

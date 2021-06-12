@@ -11,8 +11,7 @@
   - [Machine Learning](./teanaps_user_guide-api_documentation-machine-learning.md#teanaps-user-guide)
 - [`TEANAPS` OPEN API](./teanaps_user_guide-rest_api.md#teanaps-user-guide)
 - [Tutorial](./teanaps_user_guide-tutorial.md#teanaps-user-guide)
-- [References](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
-- [Journal & Project](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
+- [Use Cases](./teanaps_user_guide-references_journal_project.md#teanaps-user-guide)
 - Appendix
 
 ---
@@ -197,6 +196,14 @@
     > | 14 | 물질(Meterial)      | MT | 원소, 금속, 암석, 화학물질                                                |
     > | 15 | 용어(Term)          | TM | 색, 방향, 기후, 모양/형태, 증상, 약품, 용어, URL, 이메일 주소, 모델, 부품, 프로젝트  |
     > | 16 | 알 수 없음           | UN | 특정 개체명 분류에 해당하지 않는 단어                                         |
+
+## References
+- Install KoNLPy in colaboratory [(Link)](https://github.com/konlpy/konlpy/issues/188#issuecomment-383550386)  
+- MeCab PoS tagger for Mac/Linux [(Link)](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/)  
+- MeCab PoS tagger for Windows [(Link)](https://cleancode-ws.tistory.com/97)  
+- KoBERT [(Link)](https://github.com/sktbrain/kobert)  
+- Pytorch-BERT-CRF-NER [(Link)](https://github.com/eagle705/pytorch-bert-crf-ner)  
+- Korean Sentence Splitter [(Link)](https://github.com/hyunwoongko/kss?fbclid=IwAR2G4Ym3OwQOeouTokpjTMXo49vpZGuF5mYS7GUsmTSpKehXvDrCqSj-Zhk#korean-sentence-splitter) 
 
 <br><br>
 ---

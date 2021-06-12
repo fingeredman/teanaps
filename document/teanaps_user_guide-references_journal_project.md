@@ -11,26 +11,26 @@
   - [Machine Learning](./teanaps_user_guide-api_documentation-machine-learning.md#teanaps-user-guide)
 - [`TEANAPS` OPEN API](./teanaps_user_guide-rest_api.md#teanaps-user-guide)
 - [Tutorial](./teanaps_user_guide-tutorial.md#teanaps-user-guide)
-- References
-- Journal & Project
+- Use Cases
 - [Appendix](./teanaps_user_guide-appendix.md#teanaps-user-guide)
 
 ---
-## References
-- Install KoNLPy in colaboratory [(Link)](https://github.com/konlpy/konlpy/issues/188#issuecomment-383550386)  
-- MeCab PoS tagger for Mac/Linux [(Link)](https://bitbucket.org/eunjeon/mecab-ko-dic/src/master/)  
-- MeCab PoS tagger for Windows [(Link)](https://cleancode-ws.tistory.com/97)  
-- KoBERT [(Link)](https://github.com/sktbrain/kobert)  
-- Pytorch-BERT-CRF-NER [(Link)](https://github.com/eagle705/pytorch-bert-crf-ner)  
-- Korean Sentence Splitter [(Link)](https://github.com/hyunwoongko/kss?fbclid=IwAR2G4Ym3OwQOeouTokpjTMXo49vpZGuF5mYS7GUsmTSpKehXvDrCqSj-Zhk#korean-sentence-splitter)  
+## Use Cases
 
-## Journal & Project
+### Lectur & Seminar
+- (2021) _한국지능정보시스템학회 춘계학술대회 튜토리얼 <오픈소스 텍스트 분석 라이브러리: TEANAPS>_ ([(Link)](http://www.kiiss.or.kr/conference/conf/sub03.html)
+- (2021.05.) _IBK AI/빅데이터 과정 <텍스트 마이닝>_
+- (2021.05.) _연세대학교 정보대학원 SMBA 과정 <고급 텍스트 마이닝>_
+- (2021.03.) _연세대학교 정보대학원 SMBA 과정 <고급 텍스트 마이닝>_
+- (2020.09.) _연세대학교 정보대학원 일반과정 <텍스트 마이닝: 비정형 데이터 분석>_
+- (2020.09.) _롯데칠성 데이터분석 아카데미 Application Part <비정형 데이터 분석>_
+
 ### Journal
-- (2021.02) _Jung, J. H., Chung, H. I., & Lee, Z. K. (2021). An Analysis of Mobile Food Delivery App'Baemin'by Using Text Mining and ARIMA Model. 디지털콘텐츠학회논문지 (J. DCS), 22(2), 291-299._ [(Link)](http://journal.dcs.or.kr/xml/28233/28233.pdf)
-- (2020.12) _Son, A., Shin, W., & Lee, Z. (2020). An Analysis of Key Elements for FinTech Companies Based on Text Mining: From the User's Review. The Journal of Information Systems, 29(4), 137-151._ [(Link)](https://www.koreascience.or.kr/article/JAKO202009252092422.page)
-- (2020.06) _Lee, S. H., Kim, J., Yoon, S. H., & Kim, H. W. (2020). An Analysis on Key Factors of Mobile Fitness Application by Using Text Mining Techniques: User Experience Perspective. Journal of Information Technology Services, 19(3), 117-137._ [(Link)](https://www.koreascience.or.kr/article/JAKO202021741261139.page)
-- (2020.05) _최윤진, 이소현, 윤상혁, & 김희웅. (2020). Joint Sentiment 토픽모델링 기반 국내 여행 불만족 요인 연구. Korea Business Review, 24(2), 121-141._ [(Link)](https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE09348682)
-- (2020.04) _우유란, 이중정, & 이소현. (2020). 이커머스 유료회원제 가입자/비가입자 주요 이슈 비교: 텍스트마이닝 기법 활용. 인터넷전자상거래연구, 20(2), 107-125._ [(Link)](https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE09332620)
+- (2021.02.) _Jung, J. H., Chung, H. I., & Lee, Z. K. (2021). An Analysis of Mobile Food Delivery App'Baemin'by Using Text Mining and ARIMA Model. 디지털콘텐츠학회논문지 (J. DCS), 22(2), 291-299._ [(Link)](http://journal.dcs.or.kr/xml/28233/28233.pdf)
+- (2020.12.) _Son, A., Shin, W., & Lee, Z. (2020). An Analysis of Key Elements for FinTech Companies Based on Text Mining: From the User's Review. The Journal of Information Systems, 29(4), 137-151._ [(Link)](https://www.koreascience.or.kr/article/JAKO202009252092422.page)
+- (2020.06.) _Lee, S. H., Kim, J., Yoon, S. H., & Kim, H. W. (2020). An Analysis on Key Factors of Mobile Fitness Application by Using Text Mining Techniques: User Experience Perspective. Journal of Information Technology Services, 19(3), 117-137._ [(Link)](https://www.koreascience.or.kr/article/JAKO202021741261139.page)
+- (2020.05.) _최윤진, 이소현, 윤상혁, & 김희웅. (2020). Joint Sentiment 토픽모델링 기반 국내 여행 불만족 요인 연구. Korea Business Review, 24(2), 121-141._ [(Link)](https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE09348682)
+- (2020.04.) _우유란, 이중정, & 이소현. (2020). 이커머스 유료회원제 가입자/비가입자 주요 이슈 비교: 텍스트마이닝 기법 활용. 인터넷전자상거래연구, 20(2), 107-125._ [(Link)](https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE09332620)
 
 ### Project
 - [Chat-bot with `TEANAPS`](https://github.com/fingeredman/chatbot-with-teanaps#teanaps를-활용한-챗봇-구현)
