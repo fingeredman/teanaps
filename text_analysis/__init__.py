@@ -7,3 +7,4 @@ from teanaps.text_analysis.TopicClustering import TopicClustering
 from teanaps.text_analysis.DocumentClustering import DocumentClustering
 from teanaps.text_analysis.SentimentAnalysis import SentimentAnalysis
 from teanaps.text_analysis.KeywordExtractor import KeywordExtractor
+from teanaps.text_analysis.SimCalculator import SimCalculator
