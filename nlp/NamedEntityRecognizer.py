@@ -33,7 +33,7 @@ class NamedEntityRecognizer():
         self.__load_ner_model()
         
     def parse(self, input_text):
-        input_text_lower = input_text.lower()
+        input_text_lower = input_text.lower()[:200]
         list_of_input_ids = self.__sentence_to_token_index_list([input_text_lower])
         x_input = torch.tensor(list_of_input_ids).long()
         list_of_pred_ids, _ = self.model(x_input)
