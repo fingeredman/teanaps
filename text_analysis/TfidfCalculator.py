@@ -21,8 +21,12 @@ class TfidfCalculator():
     def __init__(self):
         self.fh = FileHandler()
     
-    def calculation_tfidf(self, tokenized_sentence_list, tfidf_count=100, ifidf_state=False,
+    def calculation_tfidf(self, tokenized_sentence_list, tfidf_count=100, tfidf_state=False, ifidf_state="",
                           tf_vectorizer_path=con.TF_VECTORIZER_PATH, tfidf_vectorizer_path=con.TFIDF_VECTORIZER_PATH):
+        if ifidf_state != "":
+            print("'ifidf_state' has been replaced with 'tfidf_state'")
+            return None
+        
         # TF Vector
         self.tf_vectorizer = CountVectorizer()
         self.tf_matrix = self.tf_vectorizer.fit_transform(tokenized_sentence_list).todense()
@@ -43,8 +47,8 @@ class TfidfCalculator():
         self.tfidf_matrix = self.tfidf_vectorizer.fit_transform(tokenized_sentence_list).todense()
         self.tfidf_matrix = pd.DataFrame(self.tfidf_matrix, columns=self.tfidf_vectorizer.get_feature_names())
         #self.tfidf_dict = dict(self.tfidf_matrix.sum(axis=0).sort_values(ascending=False).items())
-        if ifidf_state == True:
-            self.tfidf_dict = {}
+        self.tfidf_dict = {}
+        if tfidf_state == True:
             tf_list = self.get_tf_list()[:tfidf_count]
             tfidf_word_list = [word for word, count in tf_list if word in self.tfidf_matrix.keys()]
             self.tfidf_dict = dict(self.tfidf_matrix[tfidf_word_list].sum())
@@ -80,7 +84,7 @@ class TfidfCalculator():
         tf_list = [[word, self.tf_dict[word]] for word in self.tf_dict.keys() if word not in self.__get_stopwords()]
         tf_list.sort(key=lambda elem: elem[1], reverse=True)
         return tf_list
-        
+    
     def get_tfidf_matrix(self):
         return self.tfidf_matrix
     
