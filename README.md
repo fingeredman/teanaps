@@ -13,7 +13,7 @@
 ---
 ## Notice! 
 > - [`TEANAPS` 소개자료](./document/introduction/teanaps_introduction_20210611_v1.3.pdf)가 업로드되었습니다. `TEANAPS` 기능과 특장점을 확인해보세요.
-> - [`TEANAPS` News Article Scrapper](https://github.com/fingeredman/teanaps-web-scrapper/blob/main/news_scrapper/teanaps_web_scrapper_guide-news_scrapper.md#teanaps-news-article-scrapper)로 뉴스기사 및 댓글을 직접 수집하고 `TEANAPS`를 활용해 분석해보세요.
+> - [`TEANAPS` Web Scrapper](https://github.com/fingeredman/teanaps-web-scrapper#teanaps-web-scrapper)로 텍스트 데이터를 직접 수집하고 `TEANAPS`를 활용해 분석해보세요.
 > - `TEANAPS`가 `v0.9.7` 버전으로 업데이트 되었습니다. 기존 설치하신 분들은 반드시 업데이트 후 사용 바랍니다.
 > - `TEANAPS`를 활용한 실무/연구 프로젝트 **지원이 필요하신 분들** 또는 **사례 공유가 가능하신 분**의 연락을 기다립니다.     
 (***Contact : admin@teanaps.com***)  
@@ -79,6 +79,7 @@
 
 ---
 ## Update History
+> 2021.07.10. `Documentation` 업데이트  
 > 2021.06.27. `Documentation` 업데이트  
 > 2021.06.12. `TEANAPS 소개자료`, `Documentation` 업데이트  
 > 2021.05.30. `Documentation` 업데이트  
