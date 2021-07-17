@@ -1,4 +1,5 @@
 from teanaps import configure as con
+from teanaps.nlp import Processing
 PLOTLY_USERNAME = con.PLOTLY_USERNAME
 PLOTLY_API_KEY = con.PLOTLY_API_KEY
 
@@ -13,14 +14,26 @@ from sumy.utils import get_stop_words
 class DocumentSummarizer():  
     def __init__(self):
         self.stopword_list = self.__get_stopwords()
+        self.pro = Processing()
+        self.document = ""
     
-    def summarize(self, summarizer_type, max_sentences):
+    def summarize(self, summarizer_type, max_sentences, document = ""):
+        if self.document == "":
+            target_document = document
+        else:
+            target_document = self.document
+        # Spacing
+        _target_document = ""
+        sentence_list = self.pro.sentence_splitter(target_document)
+        for sentence in sentence_list:
+            _target_document += sentence + " "
+        _target_document = _target_document.strip()
         # TextRank
         if summarizer_type == "textrank":
-            self.result_list = summarize(self.document, ratio=0.3, word_count=None, split=True)[:max_sentences]
+            self.result_list = summarize(_target_document, ratio=0.3, word_count=None, split=True)[:max_sentences]
         # PyTextRank
         elif summarizer_type == "lsa":
-            parser = HtmlParser.from_string(self.document, None,tokenizer=Tokenizer("english"))
+            parser = HtmlParser.from_string(_target_document, None,tokenizer=Tokenizer("english"))
             stemmer = Stemmer("english")
             summarizer = LsaSummarizer(stemmer)
             summarizer.stop_words = get_stop_words("english")
