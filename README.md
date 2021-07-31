@@ -79,6 +79,7 @@
 
 ---
 ## Update History
+> 2021.07.31. `Documentation` 업데이트  
 > 2021.07.10. `Documentation` 업데이트  
 > 2021.06.27. `Documentation` 업데이트  
 > 2021.06.12. `TEANAPS 소개자료`, `Documentation` 업데이트  
