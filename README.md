@@ -15,7 +15,7 @@
 > - `TEANAPS`를 활용한 실무/연구 프로젝트 **지원이 필요하신 분** 또는 **사례 공유가 가능하신 분**의 연락을 기다립니다.     
 (***Contact : admin@teanaps.com***)  
 > - [`TEANAPS` Web Scrapper](https://github.com/fingeredman/teanaps-web-scrapper#teanaps-web-scrapper)로 텍스트 데이터를 직접 수집하고 `TEANAPS`를 활용해 분석해보세요.
-> - `TEANAPS`가 `v0.9.6` 버전으로 업데이트 되었습니다. 기존 설치하신 분들은 반드시 업데이트 후 사용 바랍니다.
+> - `TEANAPS`가 `v0.9.610` 버전으로 업데이트 되었습니다. 기존 설치하신 분들은 반드시 업데이트 후 사용 바랍니다.
 > - 본 자료는 국내 대학강의 및 학회, 세미나에 교육자료로 활용되고 있습니다. ([`Use Case` 살펴보기](./document/user_guide/teanaps_user_guide-references_journal_project.md#use-cases))
 > - `TEANAPS` 라이브러리 사용법은 [`User Guide`](./document/user_guide/teanaps_user_guide-install_teanaps.md#teanaps-user-guide)를 참조해주시기 바랍니다.
 
@@ -55,26 +55,27 @@
 
 ---
 ## Release history
-> 2021.05.08. `teanaps v0.9.6` 업데이트  
-> 2021.04.11. `teanaps v0.9.5` 업데이트  
-> 2020.12.12. `teanaps v0.9.4` 업데이트  
-> 2020.12.12. `teanaps v0.9.3` 업데이트  
-> 2020.11.15. `teanaps v0.9.2` 업데이트  
-> 2020.11.07. `teanaps v0.9.1` 업데이트  
-> 2020.10.17. `teanaps v0.8.1` 업데이트  
-> 2020.08.22. `teanaps v0.7.2` 업데이트  
-> 2020.08.22. `teanaps v0.7.1` 업데이트  
-> 2020.02.29. `teanaps v0.6.1` 업데이트  
-> 2020.01.11. `teanaps v0.5.2` 업데이트  
-> 2020.01.04. `teanaps v0.5.1` 업데이트  
-> 2019.12.21. `teanaps v0.4.3` 업데이트  
-> 2019.12.07. `teanaps v0.4.2` 업데이트  
-> 2019.11.23. `teanaps v0.4.1` 업데이트  
-> 2019.11.09. `teanaps v0.3.3` 업데이트  
-> 2019.10.13. `teanaps v0.3.2` 업데이트  
-> 2019.09.22. `teanaps v0.3.1` 업데이트  
-> 2019.08.21. `teanaps v0.2.1` 업데이트  
-> 2019.07.12. `teanaps v0.1.1` 업데이트   
+> 2021.08.14. `teanaps v0.9.610` 업데이트  
+> 2021.05.08. `teanaps v0.9.600` 업데이트  
+> 2021.04.11. `teanaps v0.9.500` 업데이트  
+> 2020.12.12. `teanaps v0.9.400` 업데이트  
+> 2020.12.12. `teanaps v0.9.300` 업데이트  
+> 2020.11.15. `teanaps v0.9.200` 업데이트  
+> 2020.11.07. `teanaps v0.9.100` 업데이트  
+> 2020.10.17. `teanaps v0.8.100` 업데이트  
+> 2020.08.22. `teanaps v0.7.200` 업데이트  
+> 2020.08.22. `teanaps v0.7.100` 업데이트  
+> 2020.02.29. `teanaps v0.6.100` 업데이트  
+> 2020.01.11. `teanaps v0.5.200` 업데이트  
+> 2020.01.04. `teanaps v0.5.100` 업데이트  
+> 2019.12.21. `teanaps v0.4.300` 업데이트  
+> 2019.12.07. `teanaps v0.4.200` 업데이트  
+> 2019.11.23. `teanaps v0.4.100` 업데이트  
+> 2019.11.09. `teanaps v0.3.300` 업데이트  
+> 2019.10.13. `teanaps v0.3.200` 업데이트  
+> 2019.09.22. `teanaps v0.3.100` 업데이트  
+> 2019.08.21. `teanaps v0.2.100` 업데이트  
+> 2019.07.12. `teanaps v0.1.100` 업데이트   
 
 ---
 ## Update History
