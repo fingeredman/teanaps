@@ -28,7 +28,7 @@ class TfidfCalculator():
             return None
         
         # TF Vector
-        self.tf_vectorizer = CountVectorizer()
+        self.tf_vectorizer = CountVectorizer(token_pattern='\S+')
         self.tf_matrix = self.tf_vectorizer.fit_transform(tokenized_sentence_list).todense()
         self.tf_matrix = pd.DataFrame(self.tf_matrix, columns=self.tf_vectorizer.get_feature_names())
         #self.tf_dict = dict(self.tf_matrix.sum(axis=0).sort_values(ascending=False).items())
@@ -43,7 +43,7 @@ class TfidfCalculator():
                     self.tf_dict[word] = 1
         
         # TF-IDF Vector
-        self.tfidf_vectorizer = TfidfVectorizer()
+        self.tfidf_vectorizer = TfidfVectorizer(token_pattern='\S+')
         self.tfidf_matrix = self.tfidf_vectorizer.fit_transform(tokenized_sentence_list).todense()
         self.tfidf_matrix = pd.DataFrame(self.tfidf_matrix, columns=self.tfidf_vectorizer.get_feature_names())
         #self.tfidf_dict = dict(self.tfidf_matrix.sum(axis=0).sort_values(ascending=False).items())
