@@ -25,6 +25,8 @@ STOPWORD_PATH = "teanaps/data/stopword/stopword.txt"
 STOPWORD_ORG_PATH = "teanaps/data/stopword/stopword_org.txt"
 CNOUN_PATH = "teanaps/data/stopword/cnoun.txt"
 CNOUN_ORG_PATH = "teanaps/data/stopword/cnoun_org.txt"
+SYNONYM_PATH = "teanaps/data/stopword/synonym.txt"
+SYNONYM_ORG_PATH = "teanaps/data/stopword/synonym_org.txt"
 
 # -----------------------------------------
 # teanaps.nlp.MorphologicalAnalyzer
