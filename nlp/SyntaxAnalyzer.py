@@ -51,7 +51,6 @@ class SyntaxAnalyzer():
         
         # Synonym
         synonym_dict = self.__get_synonym_dict()
-        print(synonym_dict)
         _sa_result = []
         for word, pos_tag, ner_tag, loc in sa_result:
             if word in synonym_dict.keys():
