@@ -13,7 +13,81 @@ class Processing():
         self.stopword_org_path = con.STOPWORD_ORG_PATH
         self.cnoun_path = con.CNOUN_PATH
         self.cnoun_org_path = con.CNOUN_ORG_PATH
+        self.synonym_path = con.SYNONYM_PATH
+        self.synonym_org_path = con.SYNONYM_ORG_PATH
         #self.kkma = Kkma()
+        
+    def get_synonym(self):        
+        synonym_list = open(con.SYNONYM_PATH, encoding="utf-8").read().strip().split("\n")
+        synonym_dict = {}
+        for synonym in synonym_list:
+            for i, word in enumerate(synonym.split("\t")):
+                if i == 0:
+                    representative_word = word
+            synonym_dict[representative_word] = synonym.split("\t")
+        return synonym_dict
+    
+    def add_synonym(self, add_dict={}):
+        synonym_dict = self.get_synonym()
+        for representative_word, synonym_list in add_dict.items():
+            if representative_word in synonym_dict.keys():
+                for synonym in synonym_list:
+                    if synonym not in synonym_dict[representative_word]:
+                        synonym_dict[representative_word].append(synonym)
+            else:
+                synonym_dict[representative_word] = []
+                for synonym in synonym_list:
+                    if synonym not in synonym_dict[representative_word]:
+                        synonym_dict[representative_word].append(synonym)
+        f = open(self.synonym_path, "w", encoding="utf-8")
+        for representative_word, synonym_list in synonym_dict.items():
+            synonym_line = ""
+            if representative_word not in synonym_list:
+                f.write(representative_word + "\t")
+            for synonym in synonym_list:
+                synonym_line += synonym + "\t"
+            f.write(synonym_line.strip() + "\n")
+        f.close()
+        
+    def remove_synonym(self, add_list=[]):
+        synonym_dict = self.get_synonym()
+        for synonym in add_list:
+            if synonym in synonym_dict.keys():
+                del synonym_dict[synonym]
+            else:
+                for representative_word, synonym_list in synonym_dict.items():
+                    if synonym in synonym_list:
+                        synonym_list.remove(synonym)
+        f = open(self.synonym_path, "w", encoding="utf-8")
+        for representative_word, synonym_list in synonym_dict.items():
+            synonym_line = ""
+            if representative_word not in synonym_list:
+                f.write(representative_word + "\t")
+            for synonym in synonym_list:
+                synonym_line += synonym + "\t"
+            f.write(synonym_line.strip() + "\n")
+        f.close()
+        
+    def clear_synonym(self):
+        f = open(self.synonym_path, "w", encoding="utf-8")
+        f.close()
+        
+    def set_org_synonym(self):
+        f = open(self.synonym_path, "w", encoding="utf-8")
+        f_org = open(self.synonym_org_path, encoding="utf-8")
+        for line in f_org:
+            f.write(line)
+        f_org.close()
+        f.close()
+        
+    def is_synonym(self, synonym):
+        synonym_dict = self.get_synonym()
+        if synonym in synonym_dict.keys():
+            return True
+        for representative_word, synonym_list in synonym_dict.items():
+            if representative_word == synonym or synonym in synonym_list:
+                return True
+        return False
         
     def get_cnoun(self):
         cnoun_list = []
@@ -24,11 +98,13 @@ class Processing():
         return cnoun_list
     
     def add_cnoun(self, add_list=[]):
+        cnoun_list = self.get_cnoun()
         f = open(self.cnoun_path, "a", encoding="utf-8")
         if type(add_list) == type(""):
             add_list = [add_list]
         for cnoun in add_list:
-            f.write(cnoun + "\n")
+            if cnoun not in cnoun_list:
+                f.write(cnoun + "\n")
         f.close()
         
     def remove_cnoun(self, remove_list=[]):
@@ -69,11 +145,13 @@ class Processing():
         return stopword_list
     
     def add_stopword(self, add_list=[]):
+        stopword_list = self.get_stopword()
         f = open(self.stopword_path, "a", encoding="utf-8")
         if type(add_list) == type(""):
             add_list = [add_list]
         for stopword in add_list:
-            f.write(stopword + "\n")
+            if stopword not in stopword_list:
+                f.write(stopword + "\n")
         f.close()
         
     def remove_stopword(self, remove_list=[]):

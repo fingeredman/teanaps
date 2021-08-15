@@ -48,7 +48,27 @@ class SyntaxAnalyzer():
         for word, loc in candidate_cnoun_list:
             sa_result.append((word, "NNG", "UN", loc))
         sa_result.sort(key=lambda elem: elem[3][0])
+        
+        # Synonym
+        synonym_dict = self.__get_synonym_dict()
+        print(synonym_dict)
+        _sa_result = []
+        for word, pos_tag, ner_tag, loc in sa_result:
+            if word in synonym_dict.keys():
+                word = synonym_dict[word]
+            _sa_result.append((word, pos_tag, ner_tag, loc))
+        sa_result = _sa_result
         return sa_result
+    
+    def __get_synonym_dict(self):
+        synonym_list = open(con.SYNONYM_PATH, encoding="utf-8").read().strip().split("\n")
+        synonym_dict = {}
+        for synonym in synonym_list:
+            for i, word in enumerate(synonym.split("\t")):
+                if i == 0:
+                    representative_word = word
+                synonym_dict[word] = representative_word
+        return synonym_dict
     
     def __get_cnoun_list(self):
         cnoun_list = open(con.CNOUN_PATH, encoding="utf-8").read().strip().split("\n")
