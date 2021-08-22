@@ -102,4 +102,4 @@
 
 <br><br>
 ---
-<center>ⓒ 2021. TEANAPS rights reserved.</center>
+<center>ⓒ 2021. TEANAPS all rights reserved.</center>
