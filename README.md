@@ -1,4 +1,4 @@
-# `TEANAPS`: Text Analysis APIs for Ecucation
+# `TEANAPS`: Text Analysis APIs for Education
 > ![teanaps_logo_wide](./data/logo/teanaps_logo_wide.png)
 
 > 본 자료는 텍스트 마이닝(text mining)에 보다 쉽게 접근할 수 있도록 도와주는 `Python` 라이브러리 입니다. 텍스트 마이닝을 위해서는 `Python` 언어를 배운 후에도 다양한 라이브러리를 활용할 줄 알아야합니다(e.g., KoNLPy, NLTK, Gensim). 하지만 배워야하는 외부 라이브러리가 적지않고 난이도도 높아 `Python` 언어에 충분히 익숙하지 않으신 분들은 접근하기가 쉽지 않습니다.  
