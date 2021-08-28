@@ -2,7 +2,7 @@
 > ![teanaps_logo_wide](https://github.com/fingeredman/teanaps/blob/master/data/logo/teanaps_logo_wide.png)
 
 > 본 자료는 텍스트 마이닝(text mining)에 보다 쉽게 접근할 수 있도록 도와주는 `Python` 라이브러리 입니다. 텍스트 마이닝을 위해서는 `Python` 언어를 배운 후에도 다양한 라이브러리를 활용할 줄 알아야합니다(e.g., KoNLPy, NLTK, Gensim). 하지만 배워야하는 외부 라이브러리가 적지않고 난이도도 높아 `Python` 언어에 충분히 익숙하지 않으신 분들은 접근하기가 쉽지 않습니다.  
-`TEANAPS`는 텍스트 마이닝과 관련된 외부 라이브러리들을 하나의 인터페이스(API) 형태로 통합하고 `Google Colabotory`를 활용해 설치환경을 통일하여, 텍스트 마이닝을 위한 사전작업을 최소화하고 필요한 프로그래밍 코드를 최소화 할 수 있도록 도와줍니다. 본 라이브러리를 활용하기 전 `Python` 기초문법과 텍스트 마이닝에 필요한 필수 사전지식을 먼저 학습하시기를 추천드리며, `WIKI` 문서를 참조하시어 `TEANAPS`를 활용해보시길 권장드립니다. ([`TEANAPS` 소개자료 Download](https://github.com/fingeredman/teanaps/raw/master/document/introduction/teanaps_introduction_20210611_v1.3.pdf))
+`TEANAPS`는 텍스트 마이닝과 관련된 외부 라이브러리들을 하나의 인터페이스(API) 형태로 통합하고 `Google Colabotory`를 활용해 설치환경을 통일하여, 텍스트 마이닝을 위한 사전작업을 최소화하고 필요한 프로그래밍 코드를 최소화 할 수 있도록 도와줍니다. 본 라이브러리를 활용하기 전 `Python` 기초문법과 텍스트 마이닝에 필요한 필수 사전지식을 먼저 학습하시기를 추천드리며, [`WIKI` 문서](https://github.com/fingeredman/teanaps/wiki#teanaps-text-analysis-apis-for-education)를 참조하시어 `TEANAPS`를 활용해보시길 권장드립니다. ([`TEANAPS` 소개자료 Download](https://github.com/fingeredman/teanaps/raw/master/document/introduction/teanaps_introduction_20210611_v1.3.pdf))
 
 - 본 자료는 텍스트 마이닝을 활용한 연구 및 강의를 위한 목적으로 제작되었습니다.
 - 본 자료를 강의 또는 연구 목적으로 활용하고자 하시는 경우 꼭 아래 메일주소로 연락주세요.
@@ -17,8 +17,8 @@
 (***Contact : admin@teanaps.com***)  
 > - [`TEANAPS` Web Scrapper](https://github.com/fingeredman/teanaps-web-scrapper#teanaps-web-scrapper)로 텍스트 데이터를 직접 수집하고 `TEANAPS`를 활용해 분석해보세요.
 > - `TEANAPS`가 `v0.9.610` 버전으로 업데이트 되었습니다. 기존 설치하신 분들은 반드시 업데이트 후 사용 바랍니다.
-> - 본 자료는 국내 대학강의 및 학회, 세미나에 교육자료로 활용되고 있습니다. ([`Use Case` 살펴보기](https://github.com/fingeredman/teanaps/wiki/USE-CASES#teanaps-user-guide))
-> - `TEANAPS` 라이브러리 사용법은 [`API Documentation`](https://github.com/fingeredman/teanaps/wiki/HANDLER#teanaps-user-guide)을 참조해주시기 바랍니다.
+> - 본 자료는 국내 대학강의 및 학회, 세미나에 교육자료로 활용되고 있습니다. ([`Use Case` 살펴보기](https://github.com/fingeredman/teanaps/wiki/USE-CASES#teanaps-use-cases))
+> - `TEANAPS` 라이브러리 사용법은 [`API Documentation`](https://github.com/fingeredman/teanaps/wiki/ARCHITECTURE#teanaps-api-documentation)을 참조해주시기 바랍니다.
 
 ---
 ## What can you do with `TEANAPS`?
@@ -29,11 +29,11 @@
 ---
 ## Why `TEANAPS`?
 
-- `TEANAPS`를 활용하면 <U>**분석코드를 최대 70% 까지 간소화**</U>할 수 있습니다. ([분석코드 살펴보기](https://github.com/fingeredman/teanaps/wiki/HANDLER#teanaps-user-guide))
+- `TEANAPS`를 활용하면 <U>**분석코드를 최대 70% 까지 간소화**</U>할 수 있습니다. ([분석코드 살펴보기](https://github.com/fingeredman/teanaps/wiki/ARCHITECTURE#teanaps-api-documentation))
 - `TEANAPS`는 최신 언어모델을 적용해 오픈소스 패키지 대비 <U>**높은 퍼포먼스**</U>를 제공합니다. ([성능평가 결과 살펴보기](https://github.com/fingeredman/teanaps/wiki/APPENDIX#appendix))
-- `TEANAPS`는 분석결과를 효과적으로 표현하기 위한 <U>**다양한 시각화**</U>를 제공합니다. ([시각화 기능 살펴보기](https://github.com/fingeredman/teanaps/wiki/VISUALIZATION#teanaps-user-guide))
+- `TEANAPS`는 분석결과를 효과적으로 표현하기 위한 <U>**다양한 시각화**</U>를 제공합니다. ([시각화 기능 살펴보기](https://github.com/fingeredman/teanaps/wiki/VISUALIZATION#teanaps-api-documentation))
 - `TEANAPS`는 <U>**OPEN API**</U>를 통해 다양한 환경에서 텍스트 분석을 지원합니다.
-- `TEANAPS`는 텍스트 분석을 위한 <U>**`WIKI` 문서, [강의자료 및 실습코드](https://github.com/fingeredman/text-mining-for-practice)**</U>를 무료로 제공합니다.
+- `TEANAPS`는 텍스트 분석을 위한 <U>[**`WIKI` 문서**](https://github.com/fingeredman/teanaps/wiki#teanaps-text-analysis-apis-for-education), [강의자료 및 실습코드](https://github.com/fingeredman/text-mining-for-practice)</U>를 무료로 제공합니다.
 - `TEANAPS`는 다양한 도메인의 <U>**`프로젝트/연구`**</U>를 무료로 지원합니다.  
 (***Contact : admin@teanaps.com***)  
 
