@@ -49,9 +49,11 @@ class Processing():
             f.write(synonym_line.strip() + "\n")
         f.close()
         
-    def remove_synonym(self, add_list=[]):
+    def remove_synonym(self, remove_list=[]):
+        if type(remove_list) == type(""):
+            remove_list = [remove_list]
         synonym_dict = self.get_synonym()
-        for synonym in add_list:
+        for synonym in remove_list:
             if synonym in synonym_dict.keys():
                 del synonym_dict[synonym]
             else:
@@ -268,7 +270,7 @@ class Processing():
             sentence = re.sub(pattern, repl, sentence)
         return sentence
     
-    def masking(self, sentence, replace_char="*", ner_tag_list=[], model_path=""):
+    def masking(self, sentence, replace_char="*", replace_char_pattern = "", ner_tag_list=[], model_path=""):
         if model_path == "":
             ner = NamedEntityRecognizer()
         else:
@@ -276,7 +278,21 @@ class Processing():
         ner_result = ner.parse(sentence)
         for word, ner_tag, loc in ner_result:
             if len(ner_tag_list) == 0 or ner_tag in ner_tag_list:
-                sentence = sentence[:loc[0]] + replace_char*len(word) + sentence[loc[1]:]
+                if replace_char_pattern != "":
+                    masked_word = ""
+                    for w, r in zip(word, replace_char_pattern):
+                        if w == r or r == "_":
+                            masked_word += w
+                        elif r == replace_char:
+                            masked_word += r
+                        else:
+                            masked_word += w
+                    if len(word) > len(replace_char_pattern):
+                        masked_word += replace_char*len(word[len(replace_char_pattern):])
+                    sentence = sentence[:loc[0]] + masked_word + sentence[loc[1]:]
+                else:
+                    sentence = sentence[:loc[0]] + replace_char*len(word) + sentence[loc[1]:]
+                
         return sentence
     
     def sentence_splitter(self, paragraph):
