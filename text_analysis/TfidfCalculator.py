@@ -117,7 +117,7 @@ class TfidfCalculator():
     def draw_tfidf(self, max_words=100):
         gv = GraphVisualizer()
         gv.set_plotly()
-        x = self.get_word_list()[:max_words]
+        x = [word for word, _ in self.get_tf_list()][:max_words]
         y = [score for _, score in self.get_tf_list()][:max_words]
         data_meta_list = []
         data_meta = {
