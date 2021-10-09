@@ -100,8 +100,8 @@ subprocess.call("pip install python-pptx", shell=True)
 #!pip install python-pptx
 
 # 23) kss (https://github.com/hyunwoongko/kss?fbclid=IwAR2G4Ym3OwQOeouTokpjTMXo49vpZGuF5mYS7GUsmTSpKehXvDrCqSj-Zhk#korean-sentence-splitter)
-subprocess.call("pip install kss", shell=True)
-#!pip install kss
+subprocess.call("pip install kss==2.0.1", shell=True)
+#!pip install kss==2.0.1
 
 # 23) hdbscan (https://hdbscan.readthedocs.io/en/latest/)
 subprocess.call("pip install hdbscan", shell=True)
