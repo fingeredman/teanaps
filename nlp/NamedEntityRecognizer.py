@@ -180,7 +180,8 @@ class NamedEntityRecognizer():
             convert_keys[new_key_name] = v
         self.model.load_state_dict(convert_keys)
         self.model.eval()
-        device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+        #device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+        device = torch.device('cpu')
         self.model.to(device)
     
     def __get_attention(self, model, sentence):
