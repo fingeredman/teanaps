@@ -1,7 +1,7 @@
 # -----------------------------------------
 # * Version *
 # -----------------------------------------
-VERSION = "0.9.5"
+VERSION = "0.9.611"
 
 # -----------------------------------------
 # * API *
@@ -78,16 +78,6 @@ SKIP_WORD_LIST = ["/"]
 # -----------------------------------------
 # teanaps.nlp.NamedEntityRecognizer
 # -----------------------------------------
-'''
-NER_MODEL_PATH = "teanaps/model/ner_cv/best-epoch-5-step-750-acc-0.997.bin"
-NER_UTIL_PATH = {
-    "token_to_index": "teanaps/model/ner_cv/token_to_index",
-    "index_to_token": "teanaps/model/ner_cv/index_to_token",
-    "entity_to_index": "teanaps/model/ner_cv/entity_to_index",
-    "index_to_entity": "teanaps/model/ner_cv/index_to_entity",
-    "tokenizer": "teanaps/model/ner_cv/tokenizer"
-}
-'''
 NER_MODEL_PATH = "teanaps/model/ner/ner_model.bin"
 NER_UTIL_PATH = {
     "token_to_index": "teanaps/model/ner/token_to_index",
@@ -96,26 +86,6 @@ NER_UTIL_PATH = {
     "index_to_entity": "teanaps/model/ner/index_to_entity",
     "tokenizer": "teanaps/model/ner/tokenizer"
 }
-'''
-NER_MODEL_PATH = "teanaps/model/ner_article/ner_article_model_20191215.bin"
-NER_UTIL_PATH = {
-    "token_to_index": "teanaps/model/ner_article/token_to_index",
-    "index_to_token": "teanaps/model/ner_article/index_to_token",
-    "entity_to_index": "teanaps/model/ner_article/entity_to_index",
-    "index_to_entity": "teanaps/model/ner_article/index_to_entity",
-    "tokenizer": "teanaps/model/ner_article/tokenizer"
-}
-'''
-'''
-KEA_MODEL_PATH = "teanaps/model/kea/kea_model.bin"
-KEA_UTIL_PATH = {
-    "token_to_index": "teanaps/model/kea/token_to_index",
-    "index_to_token": "teanaps/model/kea/index_to_token",
-    "entity_to_index": "teanaps/model/kea/entity_to_index",
-    "index_to_entity": "teanaps/model/kea/index_to_entity",
-    "tokenizer": "teanaps/model/kea/tokenizer"
-}
-'''
 BERT_CONFIG = {
     "attention_probs_dropout_prob": 0.1,
     "hidden_act": "gelu",
