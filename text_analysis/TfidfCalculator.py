@@ -149,7 +149,7 @@ class TfidfCalculator():
         }
         return gv.draw_histogram(data_meta_list, graph_meta)
     
-    def get_wordcloud(self, weight_dict):
+    def get_wordcloud(self, weight_dict, mask_path=None):
         temp_dict = {}
         if type(weight_dict) == list:
             for word, weight in weight_dict:
@@ -166,6 +166,7 @@ class TfidfCalculator():
             "min_font_size": 10,
             "max_font_size": 500,
             "margin": 10,
-            "background_color": "white"
+            "background_color": "white",
+            "mask_path": mask_path
         }
         tv.draw_wordcloud(data_meta, graph_meta)

@@ -28,7 +28,7 @@ class SentimentAnalysis():
         sentence_list =  [[sentence, '0']]
         bert_sentence_list = BERTDataset(sentence_list, 0, 1, self.tok, 
                                          con.SENTIMENT_MODEL_CONFIG["max_len"], True, False)
-        gluon_sentence_list = mx.gluon.data.DataLoader(bert_sentence_list, num_workers=5,
+        gluon_sentence_list = mx.gluon.data.DataLoader(bert_sentence_list, num_workers=0,
                                                        batch_size=int(con.SENTIMENT_MODEL_CONFIG["batch_size"]/2))
         for t, v, s, label in gluon_sentence_list:
             token_ids = t.as_in_context(self.ctx)
@@ -37,8 +37,6 @@ class SentimentAnalysis():
             label = label.as_in_context(self.ctx)
             _, output = self.model(token_ids, segment_ids, valid_length.astype("float32"))
             for r in output:
-                #neg = np.exp(r[0].asnumpy())[0]
-                #pos = np.exp(r[1].asnumpy())[0]
                 neg = 1/(1 + np.exp(-r[0].asnumpy()))[0]
                 pos = 1/(1 + np.exp(-r[1].asnumpy()))[0]
                 sentiment_label = "positive" if neg < pos else "negative"
@@ -132,7 +130,7 @@ class SentimentAnalysis():
         sentence_list =  [[sentence, '0']]
         bert_sentence_list = BERTDataset(sentence_list, 0, 1, self.tok, 
                                          con.SENTIMENT_MODEL_CONFIG["max_len"], True, False)
-        gluon_sentence_list = mx.gluon.data.DataLoader(bert_sentence_list, num_workers=5,
+        gluon_sentence_list = mx.gluon.data.DataLoader(bert_sentence_list, num_workers=0,
                                                        batch_size=int(con.SENTIMENT_MODEL_CONFIG["batch_size"]/2))
         for t, v, s, label in gluon_sentence_list:
             token_ids = t.as_in_context(self.ctx)

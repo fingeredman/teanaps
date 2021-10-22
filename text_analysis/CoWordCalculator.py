@@ -152,12 +152,43 @@ class CoWordCalculator():
         return centrality_dict  
     
     
-    def get_word_network_graph(self, centrality_dict, mode="markers"):
+    def get_word_network_graph(self, centrality_dict, mode="markers", centrality_th=0.5, ego_node_list=[], node_size_rate=100, edge_width_rate=10):
         tv = TextVisualizer()
         tv.set_plotly()
+        '''
         data_meta = {
             "node_list": self.get_node_list(),
             "edge_list": [(a, b, w) for (a, b), w in self.get_edge_list()],
+            "weight_dict": centrality_dict
+        }
+        '''
+        
+        #node_list = [word for word, centrality in centrality_dict.items() if centrality >= centrality_th]
+        
+        #edge_list = [(a, b, w) for (a, b), w in self.get_edge_list() if a in node_list and b in node_list and (a in ego_node_list or b in ego_node_list)]
+        edge_list = [(a, b, w) for (a, b), w in self.get_edge_list() if w >= centrality_th and (a in ego_node_list or b in ego_node_list)]
+        node_list = []
+        for a, b, c in edge_list:
+            #if c >= centrality_th:
+            if a not in node_list:
+                node_list.append(a)
+            if b not in node_list:
+                node_list.append(b)
+        
+        '''
+        #node_list = ['B', 'A', 'C', 'D', 'E']
+        edge_list = [('A', 'B', 891), ('A', 'C', 156), ('A', 'D', 83), ('C', 'E', 52)]
+        centrality_dict = {'A': 1, 'B': 2, 'C': 3, 'D':4, 'E': 5}
+        node_list = []
+        for a, b, c in edge_list:
+            if a not in node_list:
+                node_list.append(a)
+            if b not in node_list:
+                node_list.append(b)
+        '''
+        data_meta = {
+            "node_list": node_list,
+            "edge_list": edge_list,
             "weight_dict": centrality_dict
         }
 
@@ -168,7 +199,7 @@ class CoWordCalculator():
             "weight_name": "Word Centrality",
         }
 
-        return tv.draw_network(data_meta, graph_meta, mode=mode)
+        return tv.draw_network(data_meta, graph_meta, mode=mode, node_size_rate=node_size_rate, edge_width_rate=edge_width_rate)
         
     '''
     from multiprocessing import Pool
