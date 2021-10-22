@@ -1,7 +1,7 @@
 # -----------------------------------------
 # * Version *
 # -----------------------------------------
-VERSION = "0.9.610"
+VERSION = "0.9.5"
 
 # -----------------------------------------
 # * API *
@@ -78,6 +78,16 @@ SKIP_WORD_LIST = ["/"]
 # -----------------------------------------
 # teanaps.nlp.NamedEntityRecognizer
 # -----------------------------------------
+'''
+NER_MODEL_PATH = "teanaps/model/ner_cv/best-epoch-5-step-750-acc-0.997.bin"
+NER_UTIL_PATH = {
+    "token_to_index": "teanaps/model/ner_cv/token_to_index",
+    "index_to_token": "teanaps/model/ner_cv/index_to_token",
+    "entity_to_index": "teanaps/model/ner_cv/entity_to_index",
+    "index_to_entity": "teanaps/model/ner_cv/index_to_entity",
+    "tokenizer": "teanaps/model/ner_cv/tokenizer"
+}
+'''
 NER_MODEL_PATH = "teanaps/model/ner/ner_model.bin"
 NER_UTIL_PATH = {
     "token_to_index": "teanaps/model/ner/token_to_index",
@@ -94,6 +104,16 @@ NER_UTIL_PATH = {
     "entity_to_index": "teanaps/model/ner_article/entity_to_index",
     "index_to_entity": "teanaps/model/ner_article/index_to_entity",
     "tokenizer": "teanaps/model/ner_article/tokenizer"
+}
+'''
+'''
+KEA_MODEL_PATH = "teanaps/model/kea/kea_model.bin"
+KEA_UTIL_PATH = {
+    "token_to_index": "teanaps/model/kea/token_to_index",
+    "index_to_token": "teanaps/model/kea/index_to_token",
+    "entity_to_index": "teanaps/model/kea/entity_to_index",
+    "index_to_entity": "teanaps/model/kea/index_to_entity",
+    "tokenizer": "teanaps/model/kea/tokenizer"
 }
 '''
 BERT_CONFIG = {
@@ -162,7 +182,7 @@ SENTIMENT_BERT_CONFIG = {
 # -----------------------------------------
 # teanaps.text_analysis.CoWordCalculator
 # -----------------------------------------
-WINDOW_SIZE = 2
+WINDOW_SIZE = 5
 MAX_WORKERS = 5
 
 # -----------------------------------------
@@ -264,6 +284,8 @@ COLOR_CODE_LIST = [
 # -----------------------------------------
 WATERMARK_URL = "https://raw.githubusercontent.com/fingeredman/teanaps/master/data/logo/teanaps_logo_no-bg.png"
 WORDCLOUD_FONT_PATH = "teanaps/data/font/NanumSquareB.otf"
+WORDCLOUD_MASK_PATH = "teanaps/data/font/wordcloud_mask_type_01.png"
+WORDCLOUD_WATERMARK_PATH = "teanaps/data/font/wordcloud_mask_type_02.png"
 
 # -----------------------------------------
 # * Handler *
