@@ -13,10 +13,12 @@ from IPython.display import display
 
 from igraph import Graph
 import networkx as nx
+import numpy as np
 import math
 from wordcloud import WordCloud, ImageColorGenerator
 import matplotlib.pyplot as plt
 import random
+from PIL import Image
 
 class TextVisualizer():  
     def __init__(self):
@@ -123,8 +125,13 @@ class TextVisualizer():
         self.set_plotly()
         return iplot(fig, filename="SENTENCE ATTENTION")
     
-    def draw_wordcloud(self, data_meta, graph_meta):
+    def draw_wordcloud(self, data_meta, graph_meta, mask_path=con.WORDCLOUD_MASK_PATH):
         weight_dict = data_meta["weight_dict"]
+        if graph_meta["mask_path"] is None:
+            mask_image = Image.open(mask_path)
+        else:
+            mask_image = Image.open(graph_meta["mask_path"]).convert("RGB")
+        mask = np.array(mask_image)
         word_list = []
         for word, frequency in weight_dict.items():
             for i in range(int(frequency)):
@@ -135,16 +142,24 @@ class TextVisualizer():
             word_string += word + " "
         word_string = word_string.strip()
         wc = WordCloud(font_path=con.WORDCLOUD_FONT_PATH, background_color=graph_meta["background_color"], \
-                       margin=graph_meta["margin"], min_font_size=graph_meta["min_font_size"], \
+                       mask=mask, margin=graph_meta["margin"], min_font_size=graph_meta["min_font_size"], \
                        max_font_size=graph_meta["max_font_size"], width=graph_meta["width"], height=graph_meta["height"])
         wc.generate(word_string)
 
         plt.figure(figsize=(20, 20))
-        plt.imshow(wc, interpolation="bilinear")
+        #plt.imshow(wc, interpolation="bilinear")
+        image_colors = ImageColorGenerator(mask)
+        plt.imshow(wc.recolor(color_func=image_colors), interpolation="bilinear")
+        
+        if graph_meta["mask_path"] is None:
+            wordcloud_watermark_image = Image.open(con.WORDCLOUD_WATERMARK_PATH)
+            wordcloud_watermark_image = wordcloud_watermark_image.resize(mask_image.size)
+            wordcloud_watermark = np.array(wordcloud_watermark_image)
+            plt.imshow(wordcloud_watermark, alpha=1.0)
         plt.axis("off")
         plt.show()
-        
-    def draw_network(self, data_meta, graph_meta, mode="markers"):
+                
+    def draw_network(self, data_meta, graph_meta, mode="text+markers", node_size_rate=100, edge_width_rate=10):
         # Generate Graph
         node_list = data_meta["node_list"]
         edge_list = data_meta["edge_list"]
@@ -152,7 +167,10 @@ class TextVisualizer():
         G = nx.Graph()
         G.add_weighted_edges_from(edge_list)
         pos = nx.spring_layout(G)
-        edge_trace = go.Scatter(x=[], y=[], line=dict(width=0.5,color='#999'), hoverinfo='none', mode='lines')
+        '''
+        #edge_trace = go.Scatter(x=[], y=[], line=dict(width=0.5, color='#999'), hoverinfo='none', mode='lines')
+        edge_trace = go.Scatter(x=[], y=[], line=dict(width=50, color='#999'), hoverinfo='none', mode='lines')
+                
         pos = nx.spring_layout(G)
         # Data
         for edge in G.edges():
@@ -160,9 +178,43 @@ class TextVisualizer():
             x1, y1 = pos[edge[1]]
             edge_trace['x'] += tuple([x0, x1, None])
             edge_trace['y'] += tuple([y0, y1, None])
-        node_trace = go.Scatter(x=[], y=[], text=[], mode=mode, hoverinfo='text', 
+            print(edge[0], edge[1], G.get_edge_data(edge[0], edge[1])['weight'])
+            #edge_trace['line']['width'] += tuple([G.get_edge_data(edge[0], edge[1])['weight']])
+            #edge_trace['line']['width'] += [10]
+        
+        print("edge_trace", edge_trace)
+        '''
+        
+        #
+        # Data
+        edge_trace_list = []
+        for edge in G.edges():
+            x0, y0 = pos[edge[0]]
+            x1, y1 = pos[edge[1]]
+            edge_trace = go.Scatter(x=[], y=[], line=dict(width=G.get_edge_data(edge[0], edge[1])['weight']/edge_width_rate, color='#999'), mode='lines')
+            edge_trace['x'] += tuple([x0, x1, None])
+            edge_trace['y'] += tuple([y0, y1, None])
+            edge_trace_list.append(edge_trace)
+            
+            middle_node_trace = go.Scatter(x=[], y=[], text=[], mode='markers', hoverinfo='text', marker=go.Marker(opacity=0))
+            middle_node_trace['x'].append((x0+x1)/2)
+            middle_node_trace['y'].append((y0+y1)/2)
+            middle_node_trace['text']+=["strength: " + str(G.get_edge_data(edge[0], edge[1])['weight'])]
+            edge_trace_list.append(middle_node_trace)
+            #edge_trace['line']['width'] += tuple([G.get_edge_data(edge[0], edge[1])['weight']])
+            #edge_trace['line']['width'] += [10]
+        
+        
+        #
+        
+        #node_trace = go.Scatter(x=[], y=[], text=[], mode=mode, hoverinfo='text', 
+        node_trace = go.Scatter(x=[], y=[], text=[], mode=mode, hoverinfo='hovertext', hovertext=[], 
+                                #line=dict(width=500, color='#888'),
+                                hoverlabel=dict(namelength=0), # remove trace+number label
                                 marker=dict(showscale=True, colorscale='YlOrRd', reversescale=True, color=[],
-                                            size=[math.sqrt(weight_dict[node])*100 for node in node_list],
+                                            #size=[math.sqrt(weight_dict[node])*100 for node in node_list],
+                                            size=[], 
+                                            #colorbar=dict(thickness=15, title=graph_meta["weight_name"], xanchor='left', 
                                             colorbar=dict(thickness=15, title=graph_meta["weight_name"], xanchor='left', 
                                                           titleside='right'), 
                                             line=dict(width=1, color="black")))
@@ -171,11 +223,18 @@ class TextVisualizer():
             node_trace['x'] += tuple([x])
             node_trace['y'] += tuple([y])
         for node, adjacencies in enumerate(G.adjacency()):
-            node_trace['marker']['color']+=tuple([len(adjacencies[1])])
-            node_info = "Node: " + str(adjacencies[0]) + "<br>weight: " + str(weight_dict[adjacencies[0]])
+            #node_trace['marker']['color']+=tuple([len(adjacencies[1])])
+            node_trace['marker']['color']+=tuple([math.sqrt(weight_dict[adjacencies[0]])*node_size_rate])
+            node_trace['marker']['size']+=tuple([math.sqrt(weight_dict[adjacencies[0]])*node_size_rate])
+            #node_info = "Node: " + str(adjacencies[0]) + "<br>weight: " + str(weight_dict[adjacencies[0]])
+            #node_trace['text']+=tuple([node_info])
+            node_info = str(adjacencies[0])
+            hover_info = "Node: " + str(adjacencies[0]) + "<br>weight: " + str(weight_dict[adjacencies[0]])
             node_trace['text']+=tuple([node_info])
+            node_trace['hovertext']+=tuple([hover_info])
         # Graph
-        fig = go.Figure(data=[edge_trace, node_trace], 
+        #fig = go.Figure(data=[edge_trace, node_trace], 
+        fig = go.Figure(data=edge_trace_list+[node_trace], 
                         layout=go.Layout(title=graph_meta["title"], titlefont=dict(size=16),
                                          showlegend=False, hovermode='closest', images=self.watermark_image,
                                          width=graph_meta["width"], height=graph_meta["height"],margin=dict(b=20,l=5,r=5,t=40),
