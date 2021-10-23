@@ -125,10 +125,10 @@ class TextVisualizer():
         self.set_plotly()
         return iplot(fig, filename="SENTENCE ATTENTION")
     
-    def draw_wordcloud(self, data_meta, graph_meta, mask_path=con.WORDCLOUD_MASK_PATH):
+    def draw_wordcloud(self, data_meta, graph_meta):
         weight_dict = data_meta["weight_dict"]
         if graph_meta["mask_path"] is None:
-            mask_image = Image.open(mask_path)
+            mask_image = Image.open(con.WORDCLOUD_MASK_PATH)
         else:
             mask_image = Image.open(graph_meta["mask_path"]).convert("RGB")
         mask = np.array(mask_image)
@@ -159,7 +159,7 @@ class TextVisualizer():
         plt.axis("off")
         plt.show()
                 
-    def draw_network(self, data_meta, graph_meta, mode="text+markers", node_size_rate=100, edge_width_rate=10):
+    def draw_network(self, data_meta, graph_meta, mode="text+markers", node_size_rate=10, edge_width_rate=10, text_size_rate=10):
         # Generate Graph
         node_list = data_meta["node_list"]
         edge_list = data_meta["edge_list"]
@@ -206,7 +206,6 @@ class TextVisualizer():
         
         
         #
-        
         #node_trace = go.Scatter(x=[], y=[], text=[], mode=mode, hoverinfo='text', 
         node_trace = go.Scatter(x=[], y=[], text=[], mode=mode, hoverinfo='hovertext', hovertext=[], 
                                 #line=dict(width=500, color='#888'),
@@ -225,16 +224,35 @@ class TextVisualizer():
         for node, adjacencies in enumerate(G.adjacency()):
             #node_trace['marker']['color']+=tuple([len(adjacencies[1])])
             node_trace['marker']['color']+=tuple([math.sqrt(weight_dict[adjacencies[0]])*node_size_rate])
-            node_trace['marker']['size']+=tuple([math.sqrt(weight_dict[adjacencies[0]])*node_size_rate])
+            #node_trace['marker']['size']+=tuple([math.sqrt(weight_dict[adjacencies[0]])*node_size_rate])
+            node_trace['marker']['size']+=tuple([weight_dict[adjacencies[0]]*node_size_rate**2])
             #node_info = "Node: " + str(adjacencies[0]) + "<br>weight: " + str(weight_dict[adjacencies[0]])
             #node_trace['text']+=tuple([node_info])
             node_info = str(adjacencies[0])
             hover_info = "Node: " + str(adjacencies[0]) + "<br>weight: " + str(weight_dict[adjacencies[0]])
             node_trace['text']+=tuple([node_info])
             node_trace['hovertext']+=tuple([hover_info])
+        
+        text_trace_list = []
+        if mode == "text":
+            text_trace = go.Scatter(
+                                    x=node_trace['x'],
+                                    y=node_trace['y'],
+                                    mode="text",
+                                    #name="Lines, Markers and Text",
+                                    text=node_trace['text'],
+                                    #textposition="top right",
+                                    textfont=dict(
+                                        #family="sans serif",
+                                        size=[s**2/50/text_size_rate for s in node_trace['marker']['size']],
+                                        #color="crimson"
+                                    )
+                                )
+            text_trace_list.append(text_trace)
+            node_trace['text'] = []
         # Graph
         #fig = go.Figure(data=[edge_trace, node_trace], 
-        fig = go.Figure(data=edge_trace_list+[node_trace], 
+        fig = go.Figure(data=edge_trace_list+[node_trace]+text_trace_list, 
                         layout=go.Layout(title=graph_meta["title"], titlefont=dict(size=16),
                                          showlegend=False, hovermode='closest', images=self.watermark_image,
                                          width=graph_meta["width"], height=graph_meta["height"],margin=dict(b=20,l=5,r=5,t=40),
