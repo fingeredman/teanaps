@@ -24,7 +24,7 @@
 ## What can you do with `TEANAPS`?
 > ![what_can_you_do](https://github.com/fingeredman/teanaps/blob/master/data/sample_image/what_can_you_do.png)
 
-> `#TEANAPS` `#티냅스` `#티냅스_라고_불러주세요` `#텍스트분석` `#text_analysis` `#TA` `#텍스트마이닝` `#text_mining` `#자연어처리` `#nlp` `#텍스트전처리` `#text_pre-processing` `#띄어쓰기_보정` `#불용어` `#stopwords` `#언어식별` `#language_detection` `#임베딩` `#embedding` `#형태소분석` `#pos_tagging` `#개체명인식` `#ner` `#구문분석` `#syntax_analysis` `#TF-IDF` `#감성분석` `#sentiment_analysis` `#긍부정` `#긍부정_키워드` `#클러스터링` `#문서군집화` `#text_clustering` `#문서분류` `#text_classification` `#문서유사도` `#text_similarity` `#네트워크분석` `#network_analysis` `#네트워크중심성` `#network_centrality` `#연관어분석` `#co-word_analysis` `#키워드추출` `#keyword_extraction`
+> `#TEANAPS` `#티냅스` `#티냅스_라고_불러주세요` `#텍스트분석` `#text_analysis` `#TA` `#텍스트마이닝` `#text_mining` `#자연어처리` `#nlp` `#텍스트전처리` `#text_pre-processing` `#띄어쓰기_보정` `#불용어` `#stopwords` `#언어식별` `#language_detection` `#임베딩` `#embedding` `#형태소분석` `#pos_tagging` `#개체명인식` `#ner` `#구문분석` `#syntax_analysis` `#TF-IDF` `#감성분석` `#sentiment_analysis` `#긍부정` `#긍부정_키워드` `#클러스터링` `#문서군집화` `#text_clustering` `#문서분류` `#text_classification` `#문서유사도` `#text_similarity` `#네트워크분석` `#network_analysis` `#네트워크중심성` `#network_centrality` `#연관어분석` `#co-word_analysis` `#키워드추출` `#keyword_extraction` `#문서요약` `#text_summarization`
  
 ---
 ## Why `TEANAPS`?
