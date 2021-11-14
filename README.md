@@ -39,4 +39,4 @@
 
 <br><br>
 ---
-<center>ⓒ 2021. TEANAPS all rights reserved.</center>
+| Github : http://teanaps.com | E-mail : admin@teanaps.com | ⓒ 2021. TEANAPS all rights reserved. |  
