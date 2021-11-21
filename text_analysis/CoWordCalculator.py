@@ -152,7 +152,7 @@ class CoWordCalculator():
         return centrality_dict  
     
     
-    def get_word_network_graph(self, centrality_dict, mode="markers", c_th=0.5, centrality_th=0.5, ego_node_list=[], node_size_rate=10, edge_width_rate=10, text_size_rate=10):
+    def get_word_network_graph(self, centrality_dict, mode="markers", centrality_th=0.5, weight_th=0.5, ego_node_list=[], node_size_rate=10, edge_width_rate=10, text_size_rate=10):
         tv = TextVisualizer()
         tv.set_plotly()
         '''
@@ -163,16 +163,16 @@ class CoWordCalculator():
         }
         '''
         
-        #node_list = [word for word, centrality in centrality_dict.items() if centrality >= centrality_th]
+        #node_list = [word for word, centrality in centrality_dict.items() if centrality >= weight_th]
         
         #edge_list = [(a, b, w) for (a, b), w in self.get_edge_list() if a in node_list and b in node_list and (a in ego_node_list or b in ego_node_list)]
         if len(ego_node_list) > 0:
-            edge_list = [(a, b, w) for (a, b), w in self.get_edge_list() if w >= centrality_th and (a in ego_node_list or b in ego_node_list) and (centrality_dict[a] >= c_th and centrality_dict[b] >= c_th)]
+            edge_list = [(a, b, w) for (a, b), w in self.get_edge_list() if w >= weight_th and (a in ego_node_list or b in ego_node_list) and (centrality_dict[a] >= centrality_th and centrality_dict[b] >= centrality_th)]
         else:
-            edge_list = [(a, b, w) for (a, b), w in self.get_edge_list() if w >= centrality_th and (centrality_dict[a] >= c_th and centrality_dict[b] >= c_th)]
+            edge_list = [(a, b, w) for (a, b), w in self.get_edge_list() if w >= weight_th and (centrality_dict[a] >= centrality_th and centrality_dict[b] >= centrality_th)]
         node_list = []
         for a, b, c in edge_list:
-            #if c >= centrality_th:
+            #if c >= weight_th:
             if a not in node_list:
                 node_list.append(a)
             if b not in node_list:
