@@ -155,17 +155,7 @@ class CoWordCalculator():
     def get_word_network_graph(self, centrality_dict, mode="markers", centrality_th=0.5, weight_th=0.5, ego_node_list=[], node_size_rate=10, edge_width_rate=10, text_size_rate=10):
         tv = TextVisualizer()
         tv.set_plotly()
-        '''
-        data_meta = {
-            "node_list": self.get_node_list(),
-            "edge_list": [(a, b, w) for (a, b), w in self.get_edge_list()],
-            "weight_dict": centrality_dict
-        }
-        '''
         
-        #node_list = [word for word, centrality in centrality_dict.items() if centrality >= weight_th]
-        
-        #edge_list = [(a, b, w) for (a, b), w in self.get_edge_list() if a in node_list and b in node_list and (a in ego_node_list or b in ego_node_list)]
         if len(ego_node_list) > 0:
             edge_list = [(a, b, w) for (a, b), w in self.get_edge_list() if w >= weight_th and (a in ego_node_list or b in ego_node_list) and (centrality_dict[a] >= centrality_th and centrality_dict[b] >= centrality_th)]
         else:
@@ -178,17 +168,6 @@ class CoWordCalculator():
             if b not in node_list:
                 node_list.append(b)
         
-        '''
-        #node_list = ['B', 'A', 'C', 'D', 'E']
-        edge_list = [('A', 'B', 891), ('A', 'C', 156), ('A', 'D', 83), ('C', 'E', 52)]
-        centrality_dict = {'A': 1, 'B': 2, 'C': 3, 'D':4, 'E': 5}
-        node_list = []
-        for a, b, c in edge_list:
-            if a not in node_list:
-                node_list.append(a)
-            if b not in node_list:
-                node_list.append(b)
-        '''
         data_meta = {
             "node_list": node_list,
             "edge_list": edge_list,
@@ -203,55 +182,3 @@ class CoWordCalculator():
         }
 
         return tv.draw_network(data_meta, graph_meta, mode=mode, node_size_rate=node_size_rate, edge_width_rate=edge_width_rate)
-        
-    '''
-    from multiprocessing import Pool
-    import itertools
-    import time
-
-    def chunks(l, n):
-        l_c = iter(l)
-        while 1:
-            x = tuple(itertools.islice(l_c, n))
-            if not x:
-                return
-            yield x
-
-    def _betmap(G_normalized_weight_sources_tuple):
-        if centrality_type == "b_cent":
-            return nx.betweenness_centrality_source(*G_normalized_weight_sources_tuple)
-        elif centrality_type == "c_cent":
-            return nx.closeness_centrality_source(*G_normalized_weight_sources_tuple)
-
-    def betweenness_centrality_parallel(G, processes=None):
-        p = Pool(processes=processes)
-        node_divisor = len(p._pool) * 4
-        node_chunks = list(chunks(G.nodes(), int(G.order() / node_divisor)))
-        num_chunks = len(node_chunks)
-        bt_sc = p.map(_betmap,
-                      zip([G] * num_chunks,
-                          [True] * num_chunks,
-                          [None] * num_chunks,
-                          node_chunks))
-        bt_c = bt_sc[0]
-        for bt in bt_sc[1:]:
-            for n in bt:
-                bt_c[n] += bt[n]
-        return bt_c
-
-    def closeness_centrality_parallel(G, processes=None):
-        p = Pool(processes=processes)
-        node_divisor = len(p._pool) * 4
-        node_chunks = list(chunks(G.nodes(), int(G.order() / node_divisor)))
-        num_chunks = len(node_chunks)
-        bt_sc = p.map(_betmap,
-                      zip([G] * num_chunks,
-                          [True] * num_chunks,
-                          [None] * num_chunks,
-                          node_chunks))
-        bt_c = bt_sc[0]
-        for bt in bt_sc[1:]:
-            for n in bt:
-                bt_c[n] += bt[n]
-        return bt_c
-    '''
