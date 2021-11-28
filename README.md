@@ -12,7 +12,7 @@
 
 ---
 ## Notice! 
-> - `TEANAPS`가 `v0.9.611` 버전으로 업데이트 되었습니다. 기존 설치하신 분들은 반드시 업데이트 후 사용 바랍니다.
+> - `TEANAPS`가 `v0.9.612` 버전으로 업데이트 되었습니다. 기존 설치하신 분들은 반드시 업데이트 후 사용 바랍니다.
 > - [**`TEANAPS` WIKI**](https://github.com/fingeredman/teanaps/wiki#teanaps-text-analysis-apis-for-education)가 업로드 되었습니다. `TEANAPS`에 대한 자세한 설명과 활용 가이드를 확인해보세요.
 > - [`TEANAPS` Web Scrapper](https://github.com/fingeredman/teanaps-web-scrapper#teanaps-web-scrapper)로 텍스트 데이터를 직접 수집하고 `TEANAPS`를 활용해 분석해보세요.
 > - `TEANAPS`를 활용한 실무/연구 프로젝트 **지원이 필요하신 분** 또는 **사례 공유가 가능하신 분**의 연락을 기다립니다.     
