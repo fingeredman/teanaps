@@ -30,7 +30,7 @@ class GraphVisualizer():
             "sizey": 0.7,
             "xanchor": "center",
             "yanchor": "center",
-            "opacity": 0.3,
+            "opacity": 0.1,
             "layer": "above"
         }]
         
@@ -61,11 +61,13 @@ class GraphVisualizer():
             "polar": {
                 "radialaxis": {
                     "visible": True, 
-                    "range": [min(data_meta["r"])*0, max(data_meta["r"])*1.05]
+                    "range": [min(data_meta["r"])*1.05, max(data_meta["r"])*1.05]
+                    #"range": [-1,0.5]
                     }
                 },
-                "showlegend": False
-             }
+                "showlegend": False,
+            "images": self.watermark_image
+        }
         fig = go.Figure(data=data, layout=layout)
         self.set_plotly()
         iplot(fig, filename=graph_meta["title"])

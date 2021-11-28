@@ -32,7 +32,7 @@ class TextVisualizer():
             "sizey": 0.7,
             "xanchor": "center",
             "yanchor": "center",
-            "opacity": 0.3,
+            "opacity": 0.1,
             "layer": "above"
         }]
         
