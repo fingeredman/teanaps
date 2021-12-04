@@ -39,4 +39,4 @@
 
 <br><br>
 ---
-| Github : http://teanaps.com | E-mail : admin@teanaps.com | ⓒ 2021. TEANAPS all rights reserved. | 상표 등록번호 : 제 40-1795866 호 |  
+| Github : http://teanaps.com | ⓒ 2021. TEANAPS all rights reserved. | 상표 등록번호 : 제 40-1795866 호 |  
