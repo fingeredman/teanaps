@@ -37,6 +37,9 @@
 - `TEANAPS`는 다양한 도메인의 <U>**`프로젝트/연구`**</U>를 무료로 지원합니다.  
 (***Contact : admin@teanaps.com***)  
 
-<br><br>
 ---
-| Github : http://teanaps.com | ⓒ 2021. TEANAPS all rights reserved. | 상표 등록번호 : 제 40-1795866 호 |  
+<p align ="left">
+<img src="https://img.shields.io/badge/http://teanaps.com-181717?style=flat-square&logo=GitHub&logoColor=white" />
+<img src="https://img.shields.io/badge/admin@teanaps.com-4FAEBD?style=flat-square&logo=Mail.Ru&logoColor=white" />
+<img src="https://img.shields.io/badge/ⓒ 2021. TEANAPS all rights reserved.-AA344D?style=flat-square&logo=&logoColor=white" />
+<img src="https://img.shields.io/badge/[상표등록번호] 제 40－1795866 호-13448F?style=flat-square&logo=&logoColor=white" />
