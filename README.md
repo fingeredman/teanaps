@@ -41,5 +41,5 @@
 <p align ="left">
 <img src="https://img.shields.io/badge/http://teanaps.com-181717?style=flat-square&logo=GitHub&logoColor=white" />
 <img src="https://img.shields.io/badge/admin@teanaps.com-4FAEBD?style=flat-square&logo=Mail.Ru&logoColor=white" />
-<img src="https://img.shields.io/badge/ⓒ 2021. TEANAPS all rights reserved.-4A4535?style=flat-square&logo=&logoColor=white" />
+<img src="https://img.shields.io/badge/ⓒ 2022. TEANAPS all rights reserved.-4A4535?style=flat-square&logo=&logoColor=white" />
 <img src="https://img.shields.io/badge/[상표등록번호] 제 40－1795866 호-85433A?style=flat-square&logo=&logoColor=white" />
