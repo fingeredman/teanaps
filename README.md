@@ -1,7 +1,7 @@
 # `TEANAPS`: Text Analysis APIs
 > ![teanaps_logo_1600x400](https://github.com/fingeredman/teanaps/blob/master/data/logo/teanaps_logo_1600x400.png)
 
-> `TEANAPS`는 자연어 처리(NLP)와 텍스트 분석을 위한 `Python` 라이브러리 입니다. 텍스트 분석을 위해서는 `Python` 언어를 배운 후에도 다양한 자연어 처리 및 머신러닝 라이브러리 등을 활용할 줄 알아야합니다(e.g., KoNLPy, NLTK, Gensim, sklearn). 하지만 배워야하는 라이브러리가 적지않고 난이도도 높아 `Python` 언어에 충분히 익숙하지 않으신 분들은 접근하기가 쉽지 않습니다.  
+> `TEANAPS`는 자연어 처리(NLP)와 텍스트 분석을 위한 `Python` 라이브러리 입니다. 텍스트 분석을 위해서는 `Python` 언어를 배운 후에도 다양한 자연어 처리 및 머신러닝 라이브러리 등을 활용할 줄 알아야합니다(e.g., KoNLPy, NLTK, Gensim). 하지만 배워야하는 라이브러리가 적지않고 난이도도 높아 `Python` 언어에 충분히 익숙하지 않으신 분들은 접근하기가 쉽지 않습니다.  
 `TEANAPS`는 자언어 처리와 텍스트 분석 관련 라이브러리를 하나의 인터페이스로 통합하고 `Google Colabotory`를 활용해 설치환경을 일원화하여, 텍스트 분석을 위한 사전 준비작업을 최소화하고 필요한 프로그래밍 시간을 최소화 할 수 있도록 도와줍니다. 본 라이브러리를 활용하기 전 `Python` 기초문법과 텍스트 분석에 필요한 필수 사전지식을 먼저 학습하시기를 추천드리며, [`WIKI` 문서](https://github.com/fingeredman/teanaps/wiki#teanaps-text-analysis-apis)를 참조하시어 `TEANAPS`를 활용해보시길 권장드립니다. ([`TEANAPS` 소개자료 Download](https://github.com/fingeredman/teanaps/raw/master/document/introduction/teanaps_introduction_20210611_v1.3.pdf))
 
 - 본 자료는 텍스트 분석을 활용한 연구 및 강의를 위한 목적으로 제작되었습니다.
