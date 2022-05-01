@@ -5,7 +5,7 @@
 `TEANAPS`는 자언어 처리와 텍스트 분석에 필요한 다양한 라이브러리를 하나의 인터페이스로 통합하고 `Google Colabotory`를 활용해 설치환경을 일원화하여, 텍스트 분석을 위한 사전 준비작업을 최소화하고 분석에 필요한 시간을 최소화 할 수 있도록 도와줍니다. 본 라이브러리를 활용하기 전 `Python` 기초문법과 텍스트 분석에 필요한 필수 사전지식을 먼저 학습하시기를 추천드리며, [`WIKI` 문서](https://github.com/fingeredman/teanaps/wiki#teanaps-text-analysis-apis)를 참조하시어 `TEANAPS`를 활용해보시길 권장드립니다. ([`TEANAPS` 소개자료 Download](https://github.com/fingeredman/teanaps/raw/master/document/introduction/teanaps_introduction_20210611_v1.3.pdf))
 
 - 본 자료는 텍스트 분석을 활용한 연구 및 강의를 위한 목적으로 제작되었습니다.
-- 본 자료를 강의 또는 연구 목적으로 활용하고자 하시는 경우 꼭 아래 메일주소로 연락주세요.
+- 본 자료를 강의 또는 연구 목적으로 활용하고자 하시는 경우 반드시 사전에 아래 메일주소로 연락주세요.
 - 본 자료에 대한 <U>상업적 활용과 허가되지 않은 배포를 금지</U>합니다.
 - 강의, 저작권, 출판, 특허, 공동저자에 관련해서는 문의 바랍니다.
 - **Contact : ADMIN(admin@teanaps.com)**
