@@ -12,13 +12,15 @@
 
 ---
 ## Notice! 
+
 > - `Docker` 가상환경을 활용해 내 PC에서도 간단하게 `TEANAPS` 라이브러리를 활용해볼 수 있습니다. [**`Docker` 설치 가이드**](https://github.com/fingeredman/teanaps/wiki/INSTALL-GUIDE#docker-for-everyone)를 확인해보세요.  
-> - [**`TEANAPS` WIKI**](https://github.com/fingeredman/teanaps/wiki#teanaps-text-analysis-apis-for-education)가 업로드 되었습니다. `TEANAPS`에 대한 자세한 설명과 활용 가이드를 확인해보세요.
-> - [`TEANAPS` Web Scraper](https://github.com/fingeredman/teanaps-web-scraper#teanaps-web-scraper)로 텍스트 데이터를 직접 수집하고 `TEANAPS`를 활용해 분석해보세요.
-> - `TEANAPS`를 활용한 텍스트 분석 실무/연구 프로젝트 지원, 또는 활용사례 공유가 가능하신 분들의 연락을 기다립니다.  
-> (***Contact : admin@teanaps.com***)    
-> - `TEANAPS` 라이브러리 사용법은 [`API Documentation`](https://github.com/fingeredman/teanaps/wiki/ARCHITECTURE#teanaps-api-documentation)을 참조해주시기 바랍니다.
-> - 본 자료는 국내 대학강의 및 학회, 세미나에 교육자료로 활용되고 있습니다. ([`Use Case` 살펴보기](https://github.com/fingeredman/teanaps/wiki/USE-CASES#teanaps-use-cases))
+> - `TEANAPS` 라이브러리가 `v0.9.611` 버전으로 업데이트 되었습니다. 기존 설치하신 분들은 반드시 업데이트 후 사용 바랍니다.
+> - [**`TEANAPS` WIKI**](https://github.com/fingeredman/teanaps/wiki#teanaps-text-analysis-apis-for-education)가 업로드 되었습니다. `TEANAPS` 라이브러리에 대한 자세한 설명과 활용 가이드를 확인해보세요.
+> - `TEANAPS` 라이브러리 사용법 및 샘플코드는 [`API Documentation`](https://github.com/fingeredman/teanaps/wiki/ARCHITECTURE#teanaps-api-documentation)을 참조해주시기 바랍니다.
+> - [`TEANAPS` Web Scrapper](https://github.com/fingeredman/teanaps-web-scrapper#teanaps-web-scrapper)로 텍스트 데이터를 직접 수집하고 `TEANAPS` 라이브러리를 활용해 분석해보세요.
+> - `TEANAPS`를 활용한 실무/연구 프로젝트 **지원이 필요하신 분** 또는 **사례 공유가 가능하신 분**의 연락을 기다립니다.     
+(***Contact : admin@teanaps.com***)  
+> - 본 자료는 국내 대학강의 및 학회, 세미나에 교육 및 실습자료로 활용되고 있습니다. ([`Use Case` 살펴보기](https://github.com/fingeredman/teanaps/wiki/USE-CASES#teanaps-use-cases))
 
 ---
 ## What can you do with `TEANAPS`?
