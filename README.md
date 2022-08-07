@@ -14,7 +14,6 @@
 ## Notice! 
 
 > - `Docker` 가상환경을 활용해 내 PC에서도 간단하게 `TEANAPS` 라이브러리를 활용해볼 수 있습니다. [**`Docker` 설치 가이드**](https://github.com/fingeredman/teanaps/wiki/INSTALL-GUIDE#docker-for-everyone)를 확인해보세요.  
-> - `TEANAPS` 라이브러리가 `v0.9.611` 버전으로 업데이트 되었습니다. 기존 설치하신 분들은 반드시 업데이트 후 사용 바랍니다.
 > - [**`TEANAPS` WIKI**](https://github.com/fingeredman/teanaps/wiki#teanaps-text-analysis-apis-for-education)가 업로드 되었습니다. `TEANAPS` 라이브러리에 대한 자세한 설명과 활용 가이드를 확인해보세요.
 > - `TEANAPS` 라이브러리 사용법 및 샘플코드는 [`API Documentation`](https://github.com/fingeredman/teanaps/wiki/ARCHITECTURE#teanaps-api-documentation)을 참조해주시기 바랍니다.
 > - [`TEANAPS` Web Scrapper](https://github.com/fingeredman/teanaps-web-scrapper#teanaps-web-scrapper)로 텍스트 데이터를 직접 수집하고 `TEANAPS` 라이브러리를 활용해 분석해보세요.
@@ -26,7 +25,7 @@
 ## What can you do with `TEANAPS`?
 > ![what_can_you_do](https://github.com/fingeredman/teanaps/blob/master/data/sample_image/what_can_you_do.png)
 
-> `#TEANAPS` `#티냅스` `#티냅스_라고_불러주세요` `#텍스트분석` `#text_analysis` `#TA` `#텍스트마이닝` `#text_mining` `#자연어처리` `#nlp` `#텍스트전처리` `#text_pre-processing` `#띄어쓰기_보정` `#불용어` `#stopwords` `#동의어` `#synonym` `#치환사전` `#replacement` `#언어식별` `#language_detection` `#임베딩` `#embedding` `#형태소분석` `#pos_tagging` `#개체명인식` `#named_entity` `#ner` `#구문분석` `#syntax_analysis` `#TF-IDF` `#감성분석` `#sentiment_analysis` `#긍부정` `#긍부정_키워드` `#클러스터링` `#문서군집화` `#text_clustering` `#문서분류` `#text_classification` `#문서유사도` `#text_similarity` `#네트워크분석` `#network_analysis` `#네트워크중심성` `#network_centrality` `#연관어분석` `#co-word_analysis` `#키워드추출` `#keyword_extraction` `#문서요약` `#text_summarization`
+> `#TEANAPS` `#티냅스` `#티냅스_라고_불러주세요` `#텍스트분석` `#text_analysis` `#TA` `#텍스트마이닝` `#text_mining` `#자연어처리` `#nlp` `#텍스트전처리` `#text_pre-processing` `#띄어쓰기_보정` `#불용어` `#stopwords` `#동의어` `#synonym` `#치환사전` `#replacement` `#언어식별` `#language_detection` `#임베딩` `#embedding` `#형태소분석` `#pos_tagging` `#개체명인식` `#named_entity` `#ner` `#구문분석` `#syntax_analysis` `#TF-IDF` `#감성분석` `#sentiment_analysis` `#긍부정` `#긍부정_키워드` `#클러스터링` `#문서군집화` `#text_clustering` `#문서분류` `#text_classification` `#문서유사도` `#text_similarity` `#네트워크분석` `#network_analysis` `#네트워크중심성` `#network_centrality` `#연관어분석` `#co-word_analysis` `#키워드추출` `#keyword_extraction` `#문서요약` `#text_summarization` `#docker` `#jupyter_notebook`
  
 ---
 ## Why `TEANAPS`?
