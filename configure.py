@@ -252,7 +252,7 @@ COLOR_CODE_LIST = [
 # -----------------------------------------
 # teanaps.visualization.GraphVisualizer
 # -----------------------------------------
-WATERMARK_URL = "https://raw.githubusercontent.com/fingeredman/teanaps/master/data/logo/teanaps_logo_nbg_1600x400.png"
+WATERMARK_URL = "https://raw.githubusercontent.com/fingeredman/teanaps-documents/main/data/logo/teanaps_logo_nbg_1600x400.png"
 WORDCLOUD_FONT_PATH = "teanaps/data/font/NanumSquareB.otf"
 WORDCLOUD_MASK_PATH = "teanaps/data/image/wordcloud_mask_type_01.png"
 WORDCLOUD_WATERMARK_PATH = "teanaps/data/image/wordcloud_mask_type_02.png"
