@@ -1,7 +1,7 @@
 # -----------------------------------------
 # * Version *
 # -----------------------------------------
-VERSION = "0.9.612"
+VERSION = "0.9.620"
 
 # -----------------------------------------
 # * API *
@@ -21,12 +21,12 @@ PLOTLY_API_KEY = "7xQjXPiDYPi1iIrrT3ID"
 # -----------------------------------------
 # teanaps.nlp.Processing
 # -----------------------------------------
-STOPWORD_PATH = "teanaps/data/stopword/stopword.txt"
-STOPWORD_ORG_PATH = "teanaps/data/stopword/stopword_org.txt"
-CNOUN_PATH = "teanaps/data/stopword/cnoun.txt"
-CNOUN_ORG_PATH = "teanaps/data/stopword/cnoun_org.txt"
-SYNONYM_PATH = "teanaps/data/stopword/synonym.txt"
-SYNONYM_ORG_PATH = "teanaps/data/stopword/synonym_org.txt"
+STOPWORD_PATH = "teanaps/data/corpus/stopword.txt"
+STOPWORD_ORG_PATH = "teanaps/data/corpus/stopword_org.txt"
+CNOUN_PATH = "teanaps/data/corpus/cnoun.txt"
+CNOUN_ORG_PATH = "teanaps/data/corpus/cnoun_org.txt"
+SYNONYM_PATH = "teanaps/data/corpus/synonym.txt"
+SYNONYM_ORG_PATH = "teanaps/data/corpus/synonym_org.txt"
 
 # -----------------------------------------
 # teanaps.nlp.MorphologicalAnalyzer
@@ -254,8 +254,8 @@ COLOR_CODE_LIST = [
 # -----------------------------------------
 WATERMARK_URL = "https://raw.githubusercontent.com/fingeredman/teanaps/master/data/logo/teanaps_logo_nbg_1600x400.png"
 WORDCLOUD_FONT_PATH = "teanaps/data/font/NanumSquareB.otf"
-WORDCLOUD_MASK_PATH = "teanaps/data/font/wordcloud_mask_type_01.png"
-WORDCLOUD_WATERMARK_PATH = "teanaps/data/font/wordcloud_mask_type_02.png"
+WORDCLOUD_MASK_PATH = "teanaps/data/image/wordcloud_mask_type_01.png"
+WORDCLOUD_WATERMARK_PATH = "teanaps/data/image/wordcloud_mask_type_02.png"
 
 # -----------------------------------------
 # * Handler *
