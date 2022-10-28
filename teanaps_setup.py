@@ -108,6 +108,7 @@ subprocess.call("pip install kss==2.0.1", shell=True)
 subprocess.call("pip install hdbscan", shell=True)
 #!pip install hdbscan
 
+# 24) joblib (https://pypi.org/project/joblib/)
 subprocess.call("pip install joblib==1.1.0", shell=True)
 
 os_type = platform.platform()
