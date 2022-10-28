@@ -40,7 +40,7 @@ class TfidfCalculator():
             word_list = tokenized_sentence.split(" ")
             for word in word_list:
                 word = word.lower()
-                if word not in self.__get_stopwords()
+                if word not in self.__get_stopwords():
                     if word in self.tf_dict.keys():
                         self.tf_dict[word] += 1
                     else:
