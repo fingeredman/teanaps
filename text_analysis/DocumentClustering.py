@@ -29,6 +29,9 @@ import pandas as pd
 import numpy as np
 from collections import OrderedDict
 
+import warnings
+warnings.filterwarnings(action='ignore')
+
 class DocumentClustering():  
     def __init__(self):
         self.stopword_list = self.__get_stopwords()

@@ -11,6 +11,9 @@ from sumy.summarizers.lsa import LsaSummarizer
 from sumy.nlp.stemmers import Stemmer
 from sumy.utils import get_stop_words
 
+import warnings
+warnings.filterwarnings(action='ignore')
+
 class DocumentSummarizer():  
     def __init__(self):
         self.stopword_list = self.__get_stopwords()

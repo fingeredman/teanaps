@@ -13,6 +13,9 @@ from mxnet import gluon
  
 import numpy as np
 
+import warnings
+warnings.filterwarnings(action='ignore')
+
 class SentimentAnalysis():  
     def __init__(self, model_path=con.SENTIMENT_MODEL_PATH, kobert_path=con.SENTIMENT_UTIL_PATH["kobert"]):
         self.ctx = mx.cpu()

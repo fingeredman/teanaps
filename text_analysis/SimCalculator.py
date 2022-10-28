@@ -4,6 +4,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.metrics.pairwise import manhattan_distances
 
+import warnings
+warnings.filterwarnings(action='ignore')
+
 class SimCalculator():  
     def __init__(self):
         None

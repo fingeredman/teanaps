@@ -19,6 +19,9 @@ import math
 
 import networkx as nx
 
+import warnings
+warnings.filterwarnings(action='ignore')
+
 class CoWordCalculator():  
     def __init__(self):
         None

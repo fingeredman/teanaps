@@ -17,6 +17,9 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 
+import warnings
+warnings.filterwarnings(action='ignore')
+
 class TfidfCalculator():  
     def __init__(self):
         self.fh = FileHandler()
@@ -37,10 +40,11 @@ class TfidfCalculator():
             word_list = tokenized_sentence.split(" ")
             for word in word_list:
                 word = word.lower()
-                if word in self.tf_dict.keys():
-                    self.tf_dict[word] += 1
-                else:
-                    self.tf_dict[word] = 1
+                if word not in self.__get_stopwords()
+                    if word in self.tf_dict.keys():
+                        self.tf_dict[word] += 1
+                    else:
+                        self.tf_dict[word] = 1
         
         # TF-IDF Vector
         self.tfidf_vectorizer = TfidfVectorizer(token_pattern='\S+')
@@ -49,7 +53,7 @@ class TfidfCalculator():
         #self.tfidf_dict = dict(self.tfidf_matrix.sum(axis=0).sort_values(ascending=False).items())
         self.tfidf_dict = {}
         if tfidf_state == True:
-            tf_list = self.get_tf_list()[:tfidf_count]
+            tf_list = self.get_tf_list()#[:tfidf_count]
             tfidf_word_list = [word for word, count in tf_list if word in self.tfidf_matrix.keys()]
             self.tfidf_dict = dict(self.tfidf_matrix[tfidf_word_list].sum())
         # Make Result Dictionary
@@ -128,16 +132,16 @@ class TfidfCalculator():
             "y_axis": "y1",
         }
         data_meta_list.append(data_meta)
-        if max_words <= 100:
-            z = [score for _, score in self.get_tfidf_list()][:max_words]
-            data_meta = {
-                "graph_type": "scatter",
-                "data_name": "TF-IDF",
-                "x_data": x,
-                "y_data": z,
-                "y_axis": "y2"
-            }
-            data_meta_list.append(data_meta)
+        #if max_words <= 100:
+        z = [self.get_tfidf_dict()[word] for word, _ in self.get_tf_list()][:max_words]
+        data_meta = {
+            "graph_type": "scatter",
+            "data_name": "TF-IDF",
+            "x_data": x,
+            "y_data": z,
+            "y_axis": "y2"
+        }
+        data_meta_list.append(data_meta)
         graph_meta = {
             "title": "단어빈도 및 TF-IDF (TF & TF-IDF)",
             "x_tickangle": -45,
