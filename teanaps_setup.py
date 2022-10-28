@@ -110,6 +110,11 @@ subprocess.call("pip install hdbscan", shell=True)
 
 # 24) joblib (https://pypi.org/project/joblib/)
 subprocess.call("pip install joblib==1.1.0", shell=True)
+#!pip install joblib==1.1.0
+
+# 25) sentencepiece (https://pypi.org/project/sentencepiece/)
+subprocess.call("pip install sentencepiece==0.1.6", shell=True)
+#!pip install sentencepiece==0.1.6
 
 os_type = platform.platform()
 if "Windows" not in os_type:
