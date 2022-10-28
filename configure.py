@@ -1,7 +1,19 @@
 # -----------------------------------------
+# * Env Check *
+# -----------------------------------------
+import os
+path_str = os.environ["PATH"]
+path_list = path_str.split(":")
+path_check = len([path for path in path_list if "/home/teanaps_home" in path])
+if path_check == 0:
+    TEANAPS_PATH = ""
+else:
+    TEANAPS_PATH = "/home/teanaps_home/anaconda3/lib/python3.7/site-packages/"
+    
+# -----------------------------------------
 # * Version *
 # -----------------------------------------
-VERSION = "0.9.620"
+VERSION = "0.9.700"
 
 # -----------------------------------------
 # * API *
@@ -21,12 +33,12 @@ PLOTLY_API_KEY = "7xQjXPiDYPi1iIrrT3ID"
 # -----------------------------------------
 # teanaps.nlp.Processing
 # -----------------------------------------
-STOPWORD_PATH = "teanaps/data/corpus/stopword.txt"
-STOPWORD_ORG_PATH = "teanaps/data/corpus/stopword_org.txt"
-CNOUN_PATH = "teanaps/data/corpus/cnoun.txt"
-CNOUN_ORG_PATH = "teanaps/data/corpus/cnoun_org.txt"
-SYNONYM_PATH = "teanaps/data/corpus/synonym.txt"
-SYNONYM_ORG_PATH = "teanaps/data/corpus/synonym_org.txt"
+STOPWORD_PATH = TEANAPS_PATH + "teanaps/data/corpus/stopword.txt"
+STOPWORD_ORG_PATH = TEANAPS_PATH + "teanaps/data/corpus/stopword_org.txt"
+CNOUN_PATH = TEANAPS_PATH + "teanaps/data/corpus/cnoun.txt"
+CNOUN_ORG_PATH = TEANAPS_PATH + "teanaps/data/corpus/cnoun_org.txt"
+SYNONYM_PATH = TEANAPS_PATH + "teanaps/data/corpus/synonym.txt"
+SYNONYM_ORG_PATH = TEANAPS_PATH + "teanaps/data/corpus/synonym_org.txt"
 
 # -----------------------------------------
 # teanaps.nlp.MorphologicalAnalyzer
@@ -78,13 +90,13 @@ SKIP_WORD_LIST = ["/"]
 # -----------------------------------------
 # teanaps.nlp.NamedEntityRecognizer
 # -----------------------------------------
-NER_MODEL_PATH = "teanaps/model/ner/ner_model.bin"
+NER_MODEL_PATH = TEANAPS_PATH + "teanaps/model/ner/ner_model.bin"
 NER_UTIL_PATH = {
-    "token_to_index": "teanaps/model/ner/token_to_index",
-    "index_to_token": "teanaps/model/ner/index_to_token",
-    "entity_to_index": "teanaps/model/ner/entity_to_index",
-    "index_to_entity": "teanaps/model/ner/index_to_entity",
-    "tokenizer": "teanaps/model/ner/tokenizer"
+    "token_to_index": TEANAPS_PATH + "teanaps/model/ner/token_to_index",
+    "index_to_token": TEANAPS_PATH + "teanaps/model/ner/index_to_token",
+    "entity_to_index": TEANAPS_PATH + "teanaps/model/ner/entity_to_index",
+    "index_to_entity": TEANAPS_PATH + "teanaps/model/ner/index_to_entity",
+    "tokenizer": TEANAPS_PATH + "teanaps/model/ner/tokenizer"
 }
 BERT_CONFIG = {
     "attention_probs_dropout_prob": 0.1,
@@ -124,10 +136,10 @@ TF_VECTORIZER_PATH = "tf_vectorizer"
 # -----------------------------------------
 # teanaps.text_analysis.SentimentAnalysis
 # -----------------------------------------
-SENTIMENT_MODEL_PATH = "teanaps/model/sentiment/senti_model"
+SENTIMENT_MODEL_PATH = TEANAPS_PATH + "teanaps/model/sentiment/senti_model"
 SENTIMENT_UTIL_PATH = {
-    "tokenizer": "teanaps/model/sentiment/tokenizer",
-    "kobert": "teanaps/model/sentiment/mxnet_kobert",
+    "tokenizer": TEANAPS_PATH + "teanaps/model/sentiment/tokenizer",
+    "kobert": TEANAPS_PATH + "teanaps/model/sentiment/mxnet_kobert",
 }
 SENTIMENT_MODEL_CONFIG = {
     "max_len": 128,
@@ -253,9 +265,9 @@ COLOR_CODE_LIST = [
 # teanaps.visualization.GraphVisualizer
 # -----------------------------------------
 WATERMARK_URL = "https://raw.githubusercontent.com/fingeredman/teanaps-documents/main/data/logo/teanaps_logo_nbg_1600x400.png"
-WORDCLOUD_FONT_PATH = "teanaps/data/font/NanumSquareB.otf"
-WORDCLOUD_MASK_PATH = "teanaps/data/image/wordcloud_mask_type_01.png"
-WORDCLOUD_WATERMARK_PATH = "teanaps/data/image/wordcloud_mask_type_02.png"
+WORDCLOUD_FONT_PATH = TEANAPS_PATH + "teanaps/data/font/NanumSquareB.otf"
+WORDCLOUD_MASK_PATH = TEANAPS_PATH + "teanaps/data/image/wordcloud_mask_type_01.png"
+WORDCLOUD_WATERMARK_PATH = TEANAPS_PATH + "teanaps/data/image/wordcloud_mask_type_02.png"
 
 # -----------------------------------------
 # * Handler *
