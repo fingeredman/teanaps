@@ -202,11 +202,13 @@ class DocumentClustering():
         tfidf_matrix = self.__get_tfidf_matrix(document_list)
         tsne = TSNE(n_components=2)
         X_tsne = tsne.fit_transform(tfidf_matrix)
+        #DF_DOCUMENT_LIST = df_article = pd.DataFrame(document_list, columns = ["label", "source", "datetime", "title", "content"])
         df_tfidf_matrix_tsne = pd.DataFrame(X_tsne, columns=['x', 'y'])
         df_predict = pd.DataFrame(predict_list, columns=['predict'])
-        df_token = pd.DataFrame(document_list)
-        df_content = pd.DataFrame(df_document_list, columns=['content'])
-        df_result = df_document_list[["label"]].join(df_predict).join(df_content).join(df_token).join(df_tfidf_matrix_tsne)
+        df_token = pd.DataFrame(document_list, columns=['plain text'])
+        #df_content = pd.DataFrame(df_document_list, columns=['content'])
+        #df_result = df_document_list[["label"]].join(df_predict).join(df_content).join(df_token).join(df_tfidf_matrix_tsne)
+        df_result = df_document_list.join(df_predict).join(df_token).join(df_tfidf_matrix_tsne)
         return df_result
     
     # .get_silhouette_score() Will be replaced by .get_silhouette_score2()
