@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings(action='ignore')
+
 from teanaps.text_analysis import TfidfCalculator
 from teanaps.visualization import GraphVisualizer
 from teanaps import configure as con
@@ -29,9 +32,6 @@ import pandas as pd
 import numpy as np
 from collections import OrderedDict
 
-import warnings
-warnings.filterwarnings(action='ignore')
-
 class DocumentClustering():  
     def __init__(self):
         self.stopword_list = self.__get_stopwords()
@@ -60,18 +60,18 @@ class DocumentClustering():
         return stopword_list
     
     # .kmeans_clustering() Will be replaced by .clustering()
-    def kmeans_clustering(self, document_list, num_cluters, max_iterations):
+    def kmeans_clustering(self, document_list, num_clusters, max_iterations):
         print(".kmeans_clustering() Will be replaced by .clustering()")
         tfidf_matrix = self.__get_tfidf_matrix(document_list)
-        km = KMeans(n_clusters = num_cluters, init="k-means++", n_init=10, max_iter=max_iterations, random_state=0)
+        km = KMeans(n_clusters=num_clusters, init="k-means++", n_init=10, max_iter=max_iterations, random_state=0)
         predict_list = km.fit_predict(tfidf_matrix)
         inertia = km.inertia_
         return {"inertia": inertia, "predict_list": predict_list}
     
-    def clustering(self, alg, document_list, num_cluters=3, max_iterations=300, eps=0.5, min_samples=5):
+    def clustering(self, alg, document_list, num_clusters=3, max_iterations=300, eps=0.5, min_samples=5):
         tfidf_matrix = self.__get_tfidf_matrix(document_list)
         if alg == "kmeans":
-            km = KMeans(n_clusters = num_cluters, init="k-means++", n_init=10, max_iter=max_iterations, random_state=0)
+            km = KMeans(n_clusters = num_clusters, init="k-means++", n_init=10, max_iter=max_iterations, random_state=0)
             predict_list = km.fit_predict(tfidf_matrix)
             inertia = km.inertia_
         if alg == "dbscan":
@@ -85,20 +85,20 @@ class DocumentClustering():
         return {"inertia": inertia, "predict_list": predict_list}
     
     # .inertia_transition() Will be replaced by .kmeans_inertia_transition()
-    def inertia_transition(self, document_list, max_cluters, max_iterations):
+    def inertia_transition(self, document_list, max_clusters, max_iterations):
         print(".inertia_transition() Will be replaced by .kmeans_inertia_transition()")
         tfidf_matrix = self.__get_tfidf_matrix(document_list)
         inertia_list = []
-        for num_clutsers in range(1, max_cluters+1):
+        for num_clutsers in range(1, max_clusters+1):
             km = KMeans(n_clusters = num_clutsers, init="k-means++", n_init=10, max_iter=max_iterations, random_state=0)
             km.fit(tfidf_matrix)
             inertia_list.append(km.inertia_)
         return inertia_list
     
-    def kmeans_inertia_transition(self, document_list, max_cluters, max_iterations):
+    def kmeans_inertia_transition(self, document_list, max_clusters, max_iterations):
         tfidf_matrix = self.__get_tfidf_matrix(document_list)
         inertia_list = []
-        for num_clutsers in range(1, max_cluters+1):
+        for num_clutsers in range(1, max_clusters+1):
             km = KMeans(n_clusters = num_clutsers, init="k-means++", n_init=10, max_iter=max_iterations, random_state=0)
             km.fit(tfidf_matrix)
             inertia_list.append(km.inertia_)
@@ -265,15 +265,18 @@ class DocumentClustering():
         silhouette_avg = silhouette_score(X, cluster_labels)
         sample_silhouette_values = silhouette_samples(X, cluster_labels)
         #df_result = self.get_tfidf_tsne(document_list, cluster_labels, df_document_list)
-        silhouette_result = {"silhouette_avg": silhouette_avg, "silhouette_score": []}
-        for label, content, predict, silhouette in zip(df_result['label'], df_result['content'], 
-                                  df_result['predict'], sample_silhouette_values):
-            silhouette_result["silhouette_score"].append([str(predict), str(silhouette)[:8], label, content])
+        #silhouette_result = {"silhouette_avg": silhouette_avg, "silhouette_score": []}
+        #for label, content, predict, silhouette in zip(df_result['label'], df_result['content'], 
+        #                          df_result['predict'], sample_silhouette_values):
+        #    silhouette_result["silhouette_score"].append([str(predict), str(silhouette)[:8], label, content])
+        df_silhouette = pd.DataFrame(sample_silhouette_values, columns=['silhouette score'])
+        silhouette_result = df_result.join(df_silhouette)
         return silhouette_result
     
     # .get_silhouette_graph2() Will be replaced by .get_silhouette_graph()
     #def get_silhouette_graph2(self, alg, document_list, df_document_list, num_clusters=3, eps=0.5, min_samples=5, print_result=False):
-    def get_silhouette_graph2(self, document_list, df_result, print_result=False):
+    #def get_silhouette_graph2(self, document_list, df_result, print_result=False):
+    def get_silhouette_graph2(self, document_list, df_result):
         print(".get_silhouette_graph2() Will be replaced by .get_silhouette_graph()")
         X = self.__get_tfidf_matrix(document_list)
         color_list = con.COLOR_CODE_LIST
@@ -295,8 +298,6 @@ class DocumentClustering():
         fig = tools.make_subplots(rows=1, cols=2, print_grid=False, subplot_titles=('Silhouette Graph', 'Clutering Graph'))
         # Initialize Silhouette Graph
         num_clusters = len(OrderedDict.fromkeys(df_result["predict"]))
-        fig['layout']['xaxis1'].update(title='Silhouette Coefficient', range=[-0.1, 1])
-        fig['layout']['yaxis1'].update(title='Cluster Label', showticklabels=False, range=[0, len(X) + (num_clusters + 1) * 10])
         '''
         if alg == "kmeans":
             # Compute K-Means Cluster
@@ -326,7 +327,8 @@ class DocumentClustering():
         print("For n_clusters =", num_clusters, "The average silhouette_score is :", silhouette_avg)
         sample_silhouette_values = silhouette_samples(X, cluster_labels)
         #df_result = self.get_tfidf_tsne(document_list, cluster_labels, df_document_list)
-        
+        fig['layout']['xaxis1'].update(title='Silhouette Score', range=[min(sample_silhouette_values)*1.05, max(sample_silhouette_values)*1.05])
+        fig['layout']['yaxis1'].update(title='Cluster', showticklabels=False, range=[0, len(X) + (num_clusters + 1) * 10])
         y_lower = 10
         for i in OrderedDict.fromkeys(cluster_labels):
             content_label_list = []
@@ -377,10 +379,10 @@ class DocumentClustering():
             fig['layout'].update(title="Silhouette Analysis for KMeans Clustering - " + str(num_clusters) + " Cluster")
             fig['layout']["images"] = self.watermark_image
         self.set_plotly()
-        if print_result == True:
-            for label, content, predict, silhouette in zip(df_result['label'], df_result['content'], 
-                                                           df_result['predict'], sample_silhouette_values):
-                print(str(predict) + "|" + str(silhouette)[:8] + "|" + label + "|" + content)
+        #if print_result == True:
+        #    for label, content, predict, silhouette in zip(df_result['label'], df_result['content'], 
+        #                                                   df_result['predict'], sample_silhouette_values):
+        #        print(str(predict) + "|" + str(silhouette)[:8] + "|" + label + "|" + content)
         return iplot(fig, filename='basic-line')
     
     # .get_silhouette_graph() Will be replaced by .get_silhouette_graph2()
