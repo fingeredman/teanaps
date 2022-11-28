@@ -53,6 +53,9 @@ class DocumentClustering():
     def __get_tfidf_matrix(self, document_list):
         self.tfidf.calculation_tfidf(document_list)
         tfidf_matrix = self.tfidf.get_tfidf_matrix()
+        if len(tfidf_matrix.columns) > 5000:
+            tf_list = self.tfidf.get_tf_list()[:3000]
+            tfidf_matrix = tfidf_matrix[[term for term, freq in tf_list]]
         return tfidf_matrix
     
     def __get_stopwords(self):
