@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings(action='ignore')
+
 from teanaps import configure as con
 from teanaps.visualization import GraphVisualizer
 
@@ -44,7 +47,9 @@ class SyntaxAnalyzer():
                     remove_index_list.append(i)
         remove_index_list.sort(reverse=True)
         for remove_index in remove_index_list:
-            del sa_result[remove_index]
+            # 임시조치
+            if remove_index < len(sa_result):
+                del sa_result[remove_index]
         for word, loc in candidate_cnoun_list:
             sa_result.append((word, "NNG", "UN", loc))
         sa_result.sort(key=lambda elem: elem[3][0])
