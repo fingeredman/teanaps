@@ -13,6 +13,7 @@
 ---
 ## Notice! 
 
+> - [메일확인 지연안내] 메일서버 오류로 2022년 11월 부터 12월 기간동안 수신된 관리자 메일 확인이 누락되었습니다. 늦었지만 확인되는대로 회신드리도록 하겠습니다. 양해 부탁드립니다.
 > - `TEANAPS` 라이브러리가 `v0.9.700` 버전으로 업데이트 되었습니다. 기존 설치하신 분들은 반드시 업데이트 후 사용 바랍니다.
 > - `Docker` 가상환경을 활용해 내 PC에서도 간단하게 `TEANAPS` 라이브러리를 활용해볼 수 있습니다. [**`Docker` 설치 가이드**](https://github.com/fingeredman/teanaps/wiki/INSTALL-GUIDE#docker-for-everyone)를 확인해보세요.  
 > - [**`TEANAPS` WIKI**](https://github.com/fingeredman/teanaps/wiki#teanaps-text-analysis-apis-for-education)가 업로드 되었습니다. `TEANAPS` 라이브러리에 대한 자세한 설명과 활용 가이드를 확인해보세요.
