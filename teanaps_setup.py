@@ -113,8 +113,8 @@ subprocess.call("pip install joblib==1.1.0", shell=True)
 #!pip install joblib==1.1.0
 
 # 25) sentencepiece (https://pypi.org/project/sentencepiece/)
-subprocess.call("pip install sentencepiece==0.1.6", shell=True)
-#!pip install sentencepiece==0.1.6
+subprocess.call("pip install sentencepiece==0.1.96", shell=True)
+#!pip install sentencepiece==0.1.96
 
 os_type = platform.platform()
 if "Windows" not in os_type:
