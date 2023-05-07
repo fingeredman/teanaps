@@ -13,7 +13,7 @@
 ---
 ## Notice! 
 
-> - `!안내! 최근 Google Colaboratory에서 제공하는 Python 버전이 3.10으로 업데이트됨에 따라, 일부 TEANAPS 라이브러리 기능이 Colab 환경에서 제한되고 있습니다. 빠른 시일 내에 업데이트를 통해 정상화하도록 하겠습니다. 급히 활용이 필요하신 분들은 우선 [Docker](https://github.com/fingeredman/teanaps/wiki/INSTALL-GUIDE#docker-for-everyone) 환경을 활용해주시기 바랍니다.
+> - `!안내!` 최근 Google Colaboratory에서 제공하는 Python 버전이 3.10으로 업데이트됨에 따라, 일부 TEANAPS 라이브러리 기능이 Colab 환경에서 제한되고 있습니다. 빠른 시일 내에 업데이트를 통해 정상화하도록 하겠습니다. 급히 활용이 필요하신 분들은 우선 [Docker](https://github.com/fingeredman/teanaps/wiki/INSTALL-GUIDE#docker-for-everyone) 환경을 활용해주시기 바랍니다.
 > - `TEANAPS` 라이브러리가 `v0.9.700` 버전으로 업데이트 되었습니다. 기존 설치하신 분들은 반드시 업데이트 후 사용 바랍니다.
 > - `Docker` 가상환경을 활용해 내 PC에서도 간단하게 `TEANAPS` 라이브러리를 활용해볼 수 있습니다. [**`Docker` 설치 가이드**](https://github.com/fingeredman/teanaps/wiki/INSTALL-GUIDE#docker-for-everyone)를 확인해보세요.  
 > - [**`TEANAPS` WIKI**](https://github.com/fingeredman/teanaps/wiki#teanaps-text-analysis-apis-for-education)가 업로드 되었습니다. `TEANAPS` 라이브러리에 대한 자세한 설명과 활용 가이드를 확인해보세요.
