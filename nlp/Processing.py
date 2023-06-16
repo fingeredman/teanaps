@@ -1,5 +1,5 @@
 from teanaps import configure as con
-from teanaps.nlp import NamedEntityRecognizer
+#from teanaps.nlp import NamedEntityRecognizer
 #from konlpy.tag import Kkma
 from kss import split_sentences
       
@@ -270,6 +270,7 @@ class Processing():
             sentence = re.sub(pattern, repl, sentence)
         return sentence
     
+    '''
     def masking(self, sentence, replace_char="*", replace_char_pattern = "", ner_tag_list=[], model_path=""):
         if model_path == "":
             ner = NamedEntityRecognizer()
@@ -294,7 +295,8 @@ class Processing():
                     sentence = sentence[:loc[0]] + replace_char*len(word) + sentence[loc[1]:]
                 
         return sentence
-    
+    '''
+
     def sentence_splitter(self, paragraph):
         #sentence_list = self.kkma.sentences(paragraph)
         sentence_list = split_sentences(paragraph)
