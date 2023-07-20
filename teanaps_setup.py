@@ -78,11 +78,11 @@ subprocess.call("pip install --upgrade mxnet>=1.5.0", shell=True)
 
 # 17) pytorch_pretrained_bert
 subprocess.call("pip install pytorch_pretrained_bert", shell=True)
-#!pip install python-igraph
+#!pip install pytorch_pretrained_bert
 
-# 18) iGraph (https://pypi.org/project/igraph-python/)
-subprocess.call("pip install python-igraph", shell=True)
-#!pip install python-igraph
+# 18) igraph (https://pypi.org/project/igraph/)
+subprocess.call("pip install igraph", shell=True)
+#!pip install igraph
 
 # 19) botocore (https://pypi.org/project/botocore/)
 subprocess.call("pip install awscli awsebcli botocore==1.18.18 --upgrade", shell=True)
